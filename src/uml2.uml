@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="uml2">
+  <packagedElement xmi:type="uml:Class" xmi:id="_Jp41wFKtEeSfz9zyc_bhOQ" name="Member">
+    <generalization xmi:id="_sbUic1KvEeSfz9zyc_bhOQ" general="_em_h0FKtEeSfz9zyc_bhOQ"/>
+    <generalization xmi:id="_uOcF41KvEeSfz9zyc_bhOQ" general="_bSj8oFKtEeSfz9zyc_bhOQ"/>
+    <generalization xmi:id="_wGho41KvEeSfz9zyc_bhOQ" general="_hAizIFKtEeSfz9zyc_bhOQ"/>
+    <generalization xmi:id="_yLgYY1KvEeSfz9zyc_bhOQ" general="_iybAcFKtEeSfz9zyc_bhOQ"/>
+    <generalization xmi:id="_zNI0g1KvEeSfz9zyc_bhOQ" general="_fxSKsFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_rjzWgFKtEeSfz9zyc_bhOQ" name="Property2"/>
+    <ownedAttribute xmi:id="_syglUFKtEeSfz9zyc_bhOQ" name="Property3"/>
+    <ownedAttribute xmi:id="_o7PG4FKvEeSfz9zyc_bhOQ" name="Property4"/>
+    <ownedAttribute xmi:id="_pK7IsFKvEeSfz9zyc_bhOQ" name="Property5"/>
+    <ownedAttribute xmi:id="_pXMDEFKvEeSfz9zyc_bhOQ" name="Property6"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KQT8kFKtEeSfz9zyc_bhOQ" name="Role">
+    <generalization xmi:id="_9D6sY1KvEeSfz9zyc_bhOQ" general="_49qosFKvEeSfz9zyc_bhOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LOT14FKtEeSfz9zyc_bhOQ" name="Post">
+    <generalization xmi:id="_vK-mo1KvEeSfz9zyc_bhOQ" general="_bSj8oFKtEeSfz9zyc_bhOQ"/>
+    <generalization xmi:id="_8dj3AFKvEeSfz9zyc_bhOQ" general="_49qosFKvEeSfz9zyc_bhOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_MUezwFKtEeSfz9zyc_bhOQ" name="Judge">
+    <generalization xmi:id="__zVgAFKvEeSfz9zyc_bhOQ" general="_Jp41wFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_BGrXMFKwEeSfz9zyc_bhOQ" name="审批来源用户id"/>
+    <ownedAttribute xmi:id="_CiCh8FKwEeSfz9zyc_bhOQ" name="审批者用户id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_NamHQFKtEeSfz9zyc_bhOQ" name="Team">
+    <generalization xmi:id="_43ckkFKyEeSfz9zyc_bhOQ" general="_3dGGcFKyEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_6N72YFKyEeSfz9zyc_bhOQ" name="项目类型id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_OJqzwFKtEeSfz9zyc_bhOQ" name="FileTree">
+    <generalization xmi:id="_u1tr01KwEeSfz9zyc_bhOQ" general="_Jp41wFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_vJC3gFKwEeSfz9zyc_bhOQ" name="文件树拥有者的id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_PRy5cFKtEeSfz9zyc_bhOQ" name="TeamFileTree">
+    <generalization xmi:id="_BeFVI1KxEeSfz9zyc_bhOQ" general="_NamHQFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_B-2f4FKxEeSfz9zyc_bhOQ" name="项目文件树所对应的项目的id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_SYtAAFKtEeSfz9zyc_bhOQ" name="Notification">
+    <generalization xmi:id="_tWqwY1KvEeSfz9zyc_bhOQ" general="_em_h0FKtEeSfz9zyc_bhOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_UHmx0FKtEeSfz9zyc_bhOQ" name="Buy">
+    <generalization xmi:id="_0Yjz41KxEeSfz9zyc_bhOQ" general="_Jp41wFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_JT6B4FKxEeSfz9zyc_bhOQ" name="采购申请人的id"/>
+    <ownedAttribute xmi:id="_JeQ3wFKxEeSfz9zyc_bhOQ" name="采购确认人的id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_U4PkkFKtEeSfz9zyc_bhOQ" name="News">
+    <generalization xmi:id="_DD_Gg1KyEeSfz9zyc_bhOQ" general="_Jp41wFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_2H_xMFKxEeSfz9zyc_bhOQ" name="新闻撰写人的id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_V21TwFKtEeSfz9zyc_bhOQ" name="Message"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_WnJ9cFKtEeSfz9zyc_bhOQ" name="Task"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_X8k4QFKtEeSfz9zyc_bhOQ" name="Blog">
+    <generalization xmi:id="_YgFbs1KyEeSfz9zyc_bhOQ" general="_Jp41wFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_W4KboFKyEeSfz9zyc_bhOQ" name="博客的作者id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_YXQCEFKtEeSfz9zyc_bhOQ" name="Version">
+    <generalization xmi:id="_go4Hw1KyEeSfz9zyc_bhOQ" general="_NamHQFKtEeSfz9zyc_bhOQ"/>
+    <generalization xmi:id="_h_1ToFKyEeSfz9zyc_bhOQ" general="_Jp41wFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_e97o4FKyEeSfz9zyc_bhOQ" name="版本对应的工程id"/>
+    <ownedAttribute xmi:id="_g_w9wFKyEeSfz9zyc_bhOQ" name="版本更改人id"/>
+    <ownedAttribute xmi:id="_JKFsoFKzEeSfz9zyc_bhOQ" name="版本对应父版本vid"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZX-fQFKtEeSfz9zyc_bhOQ" name="Project_Text">
+    <generalization xmi:id="_3BMfg1KwEeSfz9zyc_bhOQ" general="_NamHQFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_3VSgMFKwEeSfz9zyc_bhOQ" name="项目文档属于的项目的id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_amIUcFKtEeSfz9zyc_bhOQ" name="Cale">
+    <generalization xmi:id="_qUIsI1KyEeSfz9zyc_bhOQ" general="_NamHQFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_pBIMIFKyEeSfz9zyc_bhOQ" name="日程所属项目"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_bSj8oFKtEeSfz9zyc_bhOQ" name="Member_Post">
+    <ownedAttribute xmi:id="_IkyukFKwEeSfz9zyc_bhOQ" name="职位id"/>
+    <ownedAttribute xmi:id="_IwrOcFKwEeSfz9zyc_bhOQ" name="用户id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_em_h0FKtEeSfz9zyc_bhOQ" name="Notification_Member">
+    <ownedAttribute xmi:id="_Ezj4oFKwEeSfz9zyc_bhOQ" name="通知id"/>
+    <ownedAttribute xmi:id="_FFNpUFKwEeSfz9zyc_bhOQ" name="用户id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_fxSKsFKtEeSfz9zyc_bhOQ" name="Team_Member">
+    <generalization xmi:id="_z-k4g1KvEeSfz9zyc_bhOQ" general="_NamHQFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_ZZO8IFKwEeSfz9zyc_bhOQ" name="项目组id"/>
+    <ownedAttribute xmi:id="_bksHEFKwEeSfz9zyc_bhOQ" name="团队成员id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_hAizIFKtEeSfz9zyc_bhOQ" name="Task_Member">
+    <generalization xmi:id="_wvyBQ1KvEeSfz9zyc_bhOQ" general="_WnJ9cFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_UTnGIFKwEeSfz9zyc_bhOQ" name="任务id"/>
+    <ownedAttribute xmi:id="_UaysMFKwEeSfz9zyc_bhOQ" name="接收任务的团队成员id"/>
+    <ownedAttribute xmi:id="_KVj2sFKyEeSfz9zyc_bhOQ" name="任务发起人的团队成员id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iybAcFKtEeSfz9zyc_bhOQ" name="Message_Member">
+    <generalization xmi:id="_ysciQ1KvEeSfz9zyc_bhOQ" general="_V21TwFKtEeSfz9zyc_bhOQ"/>
+    <ownedAttribute xmi:id="_f5u0sFKwEeSfz9zyc_bhOQ" name="信息id"/>
+    <ownedAttribute xmi:id="_guKiUFKwEeSfz9zyc_bhOQ" name="接收信息的团队成员id"/>
+    <ownedAttribute xmi:id="_NhYScFKyEeSfz9zyc_bhOQ" name="私信发信人的id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_49qosFKvEeSfz9zyc_bhOQ" name="Post_Role">
+    <ownedAttribute xmi:id="_N6QXYFKwEeSfz9zyc_bhOQ" name="职位id"/>
+    <ownedAttribute xmi:id="_OFZ3cFKwEeSfz9zyc_bhOQ" name="权限id"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_3dGGcFKyEeSfz9zyc_bhOQ" name="TeamType"/>
+</uml:Model>

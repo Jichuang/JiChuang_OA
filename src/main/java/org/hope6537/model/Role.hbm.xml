@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="org.hope6537.model.Role" table="Role_Database">
+		<id name="rid" type="integer">
+			<column name="rid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="rdes" type="string">
+			<column name="rdes"></column>
+		</property>
+		<property name="rstatus" type="string">
+			<column name="rstatus"></column>
+		</property>
+		<many-to-one name="rrid" cascade="save-update" lazy="false"
+			column="rrid" class="org.hope6537.model.Role"></many-to-one>
+		<set name="posts" table="role_post_Database">
+			<key column="rid"></key>
+			<many-to-many class="org.hope6537.model.Post" column="pid"></many-to-many>
+		</set>
+	</class>
+
+</hibernate-mapping>

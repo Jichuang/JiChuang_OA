@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="org.hope6537.model.Team" table="Team_Database">
+		<id name="tid" type="integer">
+			<column name="tid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="tname" type="string">
+			<column name="tname"></column>
+		</property>
+		<property name="tdate" type="string" length="255">
+			<column name="tdate"></column>
+		</property>
+		<property name="tdes" type="string" length="1000">
+			<column name="tdes"></column>
+		</property>
+		<property name="timage" type="string">
+			<column name="timage"></column>
+		</property>
+		<property name="tinfo" type="string" length="500">
+			<column name="tinfo"></column>
+		</property>
+		<property name="tqa" type="string" length="500">
+			<column name="tqa"></column>
+		</property>
+		<many-to-one name="ttid" class="org.hope6537.model.TeamType"
+			cascade="save-update" column="ttid"></many-to-one>
+	</class>
+
+</hibernate-mapping>
