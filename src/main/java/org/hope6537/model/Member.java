@@ -3,6 +3,8 @@ package org.hope6537.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import org.hope6537.utils.AESLocker;
+
 /** 
  * <pre>
  * 一.团队成员对象 Member —— 数据库表 基本字段如下
@@ -262,6 +264,32 @@ public class Member implements Serializable {
 
 	public void setPosts(Set<Role> posts) {
 		this.posts = posts;
+	}
+
+	/**
+	 * <p>Describe: 解密</p>
+	 * <p>Using: </p>
+	 * <p>How To Work: </p>
+	 * <p>DevelopedTime: 2014年10月19日下午8:10:56 </p>
+	 * <p>Author:Hope6537</p>
+	 * @see
+	 */
+	public void Decrypt() {
+		mpassword = AESLocker.Decrypt(mpassword);
+		System.out.println("UnLocking");
+	}
+
+	/**
+	 * <p>Describe: 加密</p>
+	 * <p>Using: </p>
+	 * <p>How To Work: </p>
+	 * <p>DevelopedTime: 2014年10月19日下午8:10:49 </p>
+	 * <p>Author:Hope6537</p>
+	 * @see
+	 */
+	public void Encrypt() {
+		mpassword = AESLocker.Encrypt(mpassword);
+		System.out.println("Locking");
 	}
 
 }

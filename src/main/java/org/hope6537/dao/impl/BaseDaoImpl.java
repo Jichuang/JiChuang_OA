@@ -26,7 +26,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	private Class<?> clz;
 
 	@Autowired(required = true)
-	private SessionFactory sessionFactory;
+	protected SessionFactory sessionFactory;
 
 	public BaseDaoImpl() {
 		ParameterizedType type = (ParameterizedType) this.getClass()

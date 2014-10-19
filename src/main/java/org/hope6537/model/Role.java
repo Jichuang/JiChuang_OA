@@ -33,6 +33,16 @@ public class Role implements Serializable {
 
 	private Set<Post> posts;
 
+	private Set<Operate> operates;
+
+	public Set<Operate> getOperates() {
+		return operates;
+	}
+
+	public void setOperates(Set<Operate> operates) {
+		this.operates = operates;
+	}
+
 	public Integer getRid() {
 		return rid;
 	}

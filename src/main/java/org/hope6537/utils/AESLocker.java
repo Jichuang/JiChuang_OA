@@ -14,7 +14,7 @@ public class AESLocker {
 		try {
 			// 判断Key是否正确
 			if (sKey == null) {
-				System.out.print("将使用默认Key");
+				System.out.println("将使用默认Key");
 				sKey = "Hope6537JiChuang";
 			}
 			// 判断Key是否为16位
@@ -60,7 +60,7 @@ public class AESLocker {
 
 	private static String Encrypt(String sSrc, String sKey) {
 		if (sKey == null) {
-			System.out.print("将使用默认key");
+			System.out.println("将使用默认key");
 			sKey = "Hope6537JiChuang";
 		}
 		// 判断Key是否为16位

@@ -1,6 +1,7 @@
 package org.hope6537.dao.test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.hope6537.model.Member;
@@ -11,7 +12,6 @@ import org.hope6537.service.MemberService;
 import org.hope6537.service.MessageService;
 import org.hope6537.service.TaskService;
 import org.hope6537.service.TeamService;
-import org.hope6537.utils.AESLocker;
 import org.hope6537.utils.SpringHelper;
 import org.junit.Test;
 
@@ -27,12 +27,34 @@ public class ServiceTest extends SpringHelper {
 	}
 
 	@Test
-	public void memberServiceTest() {
+	public void memberServiceInsertTest() {
 		MemberService memberService = (MemberService) context
 				.getBean("memberService");
-		Member member = memberService.selectEntryFromPrimaryKey(2);
-		member.setMpassword(AESLocker.Decrypt(member.getMpassword()));
-		System.out.println(member.toString());
+		Member member = new Member();
+		member.setMdate("2014-10-19 20:08:44");
+		member.setMimage("1.png");
+		Map<String, String> taskinfo = new HashMap<String, String>();
+		taskinfo.put("重要程度", "非常重要");
+		taskinfo.put("难易程度", "非常难");
+		member.setMinfo("个人简历");
+		member.setMname("赵鹏");
+		member.setMpassword("4236537");
+		member.setMqa(taskinfo.toString());
+		member.setMstatus("正常");
+		member.setMusername("hope6537@qq.com");
+		member.Encrypt();
+		memberService.insertEntry(member);
+	}
+
+	@Test
+	public void memberServiceGetTest() {
+		MemberService memberService = (MemberService) context
+				.getBean("memberService");
+		List<Member> list = memberService.selectEntryAll();
+		for (Member member : list) {
+			member.Decrypt();
+			System.out.println(member.toString());
+		}
 	}
 
 	@Test

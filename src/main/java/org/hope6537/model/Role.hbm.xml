@@ -18,6 +18,10 @@
 			<key column="rid"></key>
 			<many-to-many class="org.hope6537.model.Post" column="pid"></many-to-many>
 		</set>
+		<set name="operates" table="operate_post_Database">
+			<key column="rid"></key>
+			<many-to-many class="org.hope6537.model.Operate" column="oid"></many-to-many>
+		</set>
 	</class>
 
 </hibernate-mapping>
