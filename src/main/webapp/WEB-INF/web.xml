@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_1413258506715">
-	<display-name>JiChuang's HomePage Web Application Ver 0.0.1</display-name>
+	<display-name>JiChuang's OA Web Application Ver 0.0.1</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
