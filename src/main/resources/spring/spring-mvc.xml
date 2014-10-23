@@ -53,7 +53,7 @@
 				<ref bean="mappingJacksonHttpMessageConverter" /><!-- json转换器 -->
 			</list>
 		</property>
-	</bean>
+	</bean>6
 
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<!-- <bean

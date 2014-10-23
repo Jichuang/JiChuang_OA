@@ -45,7 +45,8 @@
 			target="_blank"> <i class="icon-gift"></i> <span class="title">每日活动</span>
 		</a>
 		</li>
-		<li class="active"><a href="javascript:;"> <i class="icon-bookmark-empty"></i> <span class="title">个人工作</span> <span
+		<li class="active"><a href="javascript:;"> <i
+				class="icon-bookmark-empty"></i> <span class="title">个人工作</span> <span
 				class="arrow "></span>
 		</a>
 			<ul class="sub-menu">
@@ -78,7 +79,7 @@
 				<li><a href="login.html"> 个人信息设置</a></li>
 				<li><a href="login_soft.html"> 账号密码修改</a></li>
 			</ul></li>
-			<li><a href="javascript:;"> <i class="icon-folder-open"></i>
+		<li><a href="javascript:;"> <i class="icon-folder-open"></i>
 				<span class="title">项目文件管理</span> <span class="arrow "></span>
 		</a>
 			<ul class="sub-menu">
@@ -209,7 +210,7 @@
 					</ul></li>
 				<li><a href="#"> Item 3 </a></li>
 			</ul></li>
-		
+
 
 		<li class=""><a href="javascript:;"> <i class="icon-th"></i>
 				<span class="title">Data Tables</span> <span class="arrow "></span>
