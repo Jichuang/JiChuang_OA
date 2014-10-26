@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FOLDER name="/" path="/">
+	<FILE filename="User123000.xml" filePath="G:\User123000.xml" />
+	<FOLDER path="/usr" name="usr">
+		<FILE filename="2.xml" filePath="G:\2.xml">
+			<FILE filename="2.xml" filePath="G:\2.xml" />
+		</FILE>
+		<FOLDER path="/usr/hope6537" name="hope6537">
+			<FILE filename="User123000.xml" filePath="G:\User123000.xml" />
+		</FOLDER>
+	</FOLDER>
+</FOLDER>
