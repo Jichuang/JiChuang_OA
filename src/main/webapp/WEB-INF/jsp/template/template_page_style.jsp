@@ -23,24 +23,24 @@
 			</select>
 		</div>
 		<div class="theme-option">
-			<span>Header</span> <select
+			<span>顶部菜单栏</span> <select
 				class="header-option form-control input-small">
-				<option value="fixed" selected="selected">Fixed</option>
-				<option value="default">Default</option>
+				<option value="fixed" selected="selected">修正置顶</option>
+				<option value="default">默认置顶</option>
 			</select>
 		</div>
 		<div class="theme-option">
-			<span>Sidebar</span> <select
+			<span>侧边栏</span> <select
 				class="sidebar-option form-control input-small">
-				<option value="fixed">Fixed</option>
-				<option value="default" selected="selected">Default</option>
+				<option value="fixed">修正下拉框</option>
+				<option value="default" selected="selected">默认跟随页面</option>
 			</select>
 		</div>
 		<div class="theme-option">
-			<span>Footer</span> <select
+			<span>底部栏目</span> <select
 				class="footer-option form-control input-small">
-				<option value="fixed">Fixed</option>
-				<option value="default" selected="selected">Default</option>
+				<option value="fixed" selected="selected">修正在菜单下方</option>
+				<option value="default">默认设置</option>
 			</select>
 		</div>
 	</div>

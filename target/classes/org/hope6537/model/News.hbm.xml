@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="org.hope6537.model.News" table="News_Database">
+		<id name="newsid" type="int">
+			<column name="newsid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="newsdate" type="string">
+			<column name="newsdate"></column>
+		</property>
+		<property name="newsdes" type="string" length="2500">
+			<column name="newsdes"></column>
+		</property>
+		<property name="newsinfo" type="string" length="255">
+			<column name="newsinfo"></column>
+		</property>
+		<property name="newsstatus" type="string">
+			<column name="newsstatus"></column>
+		</property>
+		<property name="newstitle" type="string" length="50">
+			<column name="newstitle"></column>
+		</property>
+		<many-to-one name="newsmid" cascade="save-update"
+			class="org.hope6537.model.Member" column="newsmid"></many-to-one>
+	</class>
+
+</hibernate-mapping>

@@ -67,8 +67,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 	<!-- BEGIN LOGIN -->
 	<div class="content">
 		<!-- BEGIN LOGIN FORM -->
-		<form class="login-form" action="memberAction/SIGNUP.hopedo"
-			method="get">
+		<form class="login-form" action="swap.jsp" method="post">
 			<h3 class="form-title">请输入您的账号密码</h3>
 			<div class="alert alert-error hide">
 				<button class="close" data-dismiss="alert"></button>
@@ -98,6 +97,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				<button type="submit" class="btn blue pull-right">
 					登录 <i class="m-icon-swapright m-icon-white"></i>
 				</button>
+				<a><button type="button" class="btn red pull-right">
+					登录 <i class="m-icon-swapright m-icon-white"></i>
+				</button></a>
 			</div>
 			<div class="forget-password">
 				<h4>忘记密码?</h4>

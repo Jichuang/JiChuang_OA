@@ -1,10 +1,11 @@
 <html>
 <body>
 	<h2>Hello World!</h2>
-	 <%
-		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request,
-				response);
-	%> 
+	<%
+		request.getRequestDispatcher(
+				"WEB-INF/jsp/template/template_page_blank.jsp").forward(
+				request, response);
+	%>
 	<input type="text" name="username" id="username" />
 	<span id="tishi"></span>
 </body>
@@ -32,8 +33,7 @@
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
-<script
-	src="assets/plugins/jquery-validation/dist/jquery.validate.js"
+<script src="assets/plugins/jquery-validation/dist/jquery.validate.js"
 	type="text/javascript"></script>
 <script src="assets/plugins/backstretch/jquery.backstretch.min.js"
 	type="text/javascript"></script>

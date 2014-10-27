@@ -14,7 +14,7 @@
 <title>hope6537</title>
 <!-- head的include区 结束  -->
 </head>
-<body class="page-header-fixed">
+<body class="page-header-fixed page-footer-fixed">
 	<!-- 头部顶端菜单栏开始 -->
 	<jsp:include page="template_page_header.jsp" flush="true" />
 	<!-- 头部顶端菜单栏结束 -->
