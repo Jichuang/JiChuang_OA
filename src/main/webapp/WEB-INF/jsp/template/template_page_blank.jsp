@@ -5,6 +5,11 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%
+	request.getRequestDispatcher(
+			"admin_welcome.jsp").forward(request,
+			response);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,9 +63,7 @@
 			</div>
 			<!-- 页面内容头结束 -->
 			<!-- 页面正文-->
-			<div class="row">
-				<div class="col-md-12">到静安寺肯德基阿斯科利</div>
-			</div>
+			<div class="row"></div>
 			<!-- 页面正文结束-->
 		</div>
 		<!-- ======================== 页面结束处======================== -->

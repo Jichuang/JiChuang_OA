@@ -5,7 +5,7 @@
 	<div class="toggler-close"></div>
 	<div class="theme-options">
 		<div class="theme-option theme-colors clearfix">
-			<span>THEME COLOR</span>
+			<span>主题颜色</span>
 			<ul>
 				<li class="color-black current color-default" data-style="default"></li>
 				<li class="color-blue" data-style="blue"></li>
@@ -16,10 +16,10 @@
 			</ul>
 		</div>
 		<div class="theme-option">
-			<span>Layout</span> <select
+			<span>布局</span> <select
 				class="layout-option form-control input-small">
-				<option value="fluid" selected="selected">Fluid</option>
-				<option value="boxed">Boxed</option>
+				<option value="fluid" selected="selected">平铺</option>
+				<option value="boxed">箱型</option>
 			</select>
 		</div>
 		<div class="theme-option">
