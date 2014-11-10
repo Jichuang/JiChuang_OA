@@ -3,6 +3,8 @@ package org.hope6537.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hope6537.utils.AESLocker;
 
 /** 

@@ -46,7 +46,11 @@
 <!-- END PAGE LEVEL SCRIPTS -->
 <script type="text/javascript">
 	$('#username').change(function() {
+		$.post("/url", param, function(data) {
+
+		});
 		var username = $('#username').val();
+
 		$.ajax({
 			type : "get",
 			url : "memberAjax/" + username + "/isMemberExist.hopedo",

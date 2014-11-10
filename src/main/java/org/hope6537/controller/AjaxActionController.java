@@ -2,6 +2,7 @@ package org.hope6537.controller;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.hope6537.model.Member;

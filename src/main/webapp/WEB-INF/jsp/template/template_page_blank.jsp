@@ -7,7 +7,7 @@
 %>
 <%
 	request.getRequestDispatcher(
-			"admin_welcome.jsp").forward(request,
+			"../admin_welcome.jsp").forward(request,
 			response);
 %>
 <!DOCTYPE html>

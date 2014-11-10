@@ -6,8 +6,16 @@ import javax.crypto.spec.*;
 public class AESLocker {
 
 	public static void main(String[] args) throws Exception {
-		String str = Decrypt("fc54395bd9bf76516efc508ce0dceaab");
-		System.out.println(str);
+		/*
+		 * 16:18:01 ---> 16:19:02 ---> 16:18 if(throws){16:19} 
+		 */
+		String time = System.currentTimeMillis() / 1000000 + "000000000";
+		System.out.println(time.length());
+		String orderStr = "赵鹏";
+		String str1 = Encrypt(orderStr);
+		System.out.println(str1);
+		String str2 = Decrypt(str1);
+		System.out.println(str2);
 	}
 
 	private static String Decrypt(String sSrc, String sKey) {
@@ -15,7 +23,8 @@ public class AESLocker {
 			// 判断Key是否正确
 			if (sKey == null) {
 				System.out.println("将使用默认Key");
-				sKey = "Hope6537JiChuang";
+				// sKey = "Hope6537JiChuang";
+				sKey = "2014-11-09 16:18";
 			}
 			// 判断Key是否为16位
 			if (sKey.length() != 16) {
@@ -61,7 +70,8 @@ public class AESLocker {
 	private static String Encrypt(String sSrc, String sKey) {
 		if (sKey == null) {
 			System.out.println("将使用默认key");
-			sKey = "Hope6537JiChuang";
+			// sKey = "Hope6537JiChuang";
+			sKey = "2014-11-09 16:18";
 		}
 		// 判断Key是否为16位
 		if (sKey.length() != 16) {

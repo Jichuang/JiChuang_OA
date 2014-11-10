@@ -1,6 +1,6 @@
 /**
-Core script to handle the entire theme and core functions
-**/
+ * Core script to handle the entire theme and core functions
+ */
 var App = function () {
 
     // IE mode
@@ -25,7 +25,8 @@ var App = function () {
         'yellow': '#ffb848'
     };
 
-    // To get the correct viewport width based on  http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
+    // To get the correct viewport width based on
+	// http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
     var _getViewPort = function () {
         var e = window, a = 'inner';
         if (!('innerWidth' in window)) {
@@ -58,10 +59,10 @@ var App = function () {
         }
 
         /*
-          Virtual keyboards:
-          Also, note that if you're using inputs in your modal – iOS has a rendering bug which doesn't 
-          update the position of fixed elements when the virtual keyboard is triggered  
-        */
+		 * Virtual keyboards: Also, note that if you're using inputs in your
+		 * modal – iOS has a rendering bug which doesn't update the position of
+		 * fixed elements when the virtual keyboard is triggered
+		 */
         var deviceAgent = navigator.userAgent.toLowerCase();
         if (deviceAgent.match(/(iphone|ipod|ipad)/)) {
             $(document).on('focus', 'input, textarea', function () {
@@ -76,7 +77,8 @@ var App = function () {
     }
 
     var handleSidebarState = function () {
-        // remove sidebar toggler if window width smaller than 992(for tablet and phone mode)
+        // remove sidebar toggler if window width smaller than 992(for tablet
+		// and phone mode)
         var viewport = _getViewPort();
         if (viewport.width < 992) {
             $('body').removeClass("page-sidebar-closed");
@@ -113,15 +115,18 @@ var App = function () {
             var currheight;
             $(window).resize(function () {
                 if (currheight == document.documentElement.clientHeight) {
-                    return; //quite event since only body resized not window.
+                    return; // quite event since only body resized not window.
                 }
                 if (resize) {
                     clearTimeout(resize);
                 }
                 resize = setTimeout(function () {
                     handleResponsive();
-                }, 50); // wait 50ms until window resize finishes.                
-                currheight = document.documentElement.clientHeight; // store last body client height
+                }, 50); // wait 50ms until window resize finishes.
+                currheight = document.documentElement.clientHeight; // store
+																	// last body
+																	// client
+																	// height
             });
         } else {
             $(window).resize(function () {
@@ -135,10 +140,12 @@ var App = function () {
         }
     }
 
-    //* BEGIN:CORE HANDLERS *//
-    // this function handles responsive layout on screen size resize or mobile device rotate.
+    // * BEGIN:CORE HANDLERS *//
+    // this function handles responsive layout on screen size resize or mobile
+	// device rotate.
 
-    // Set proper height for sidebar and content. The content and sidebar height must be synced always.
+    // Set proper height for sidebar and content. The content and sidebar height
+	// must be synced always.
     var handleSidebarAndContentHeight = function () {
         var content = $('.page-content');
         var sidebar = $('.page-sidebar');
@@ -265,7 +272,10 @@ var App = function () {
     var handleFixedSidebar = function () {
         var menu = $('.page-sidebar-menu');
 
-        if (menu.parent('.slimScrollDiv').size() === 1) { // destroy existing instance before updating the height
+        if (menu.parent('.slimScrollDiv').size() === 1) { // destroy existing
+															// instance before
+															// updating the
+															// height
             menu.slimScroll({
                 destroy: true
             });
@@ -380,7 +390,7 @@ var App = function () {
         $('.page-sidebar').on('keypress', '.sidebar-search input', function (e) {
             if (e.which == 13) {
                 $('.sidebar-search').submit();
-                return false; //<---- Add this line
+                return false; // <---- Add this line
             }
         });
 
@@ -390,7 +400,10 @@ var App = function () {
             if ($('body').hasClass("page-sidebar-closed")) {
                 if ($('.sidebar-search').hasClass('open') == false) {
                     if ($('.page-sidebar-fixed').size() === 1) {
-                        $('.page-sidebar .sidebar-toggler').click(); //trigger sidebar toggle button
+                        $('.page-sidebar .sidebar-toggler').click(); // trigger
+																		// sidebar
+																		// toggle
+																		// button
                     }
                     $('.sidebar-search').addClass("open");
                 } else {
@@ -404,7 +417,7 @@ var App = function () {
 
     // Handles the horizontal menu
     var handleHorizontalMenu = function () {
-        //handle hor menu search form toggler click
+        // handle hor menu search form toggler click
         $('.header').on('click', '.hor-menu .hor-menu-search-form-toggler', function (e) {
             if ($(this).hasClass('off')) {
                 $(this).removeClass('off');
@@ -416,13 +429,13 @@ var App = function () {
             e.preventDefault();
         });
 
-        //handle hor menu search button click
+        // handle hor menu search button click
         $('.header').on('click', '.hor-menu .search-form .btn', function (e) {
             $('.form-search').submit();
             e.preventDefault();
         });
 
-        //handle hor menu search form on enter press
+        // handle hor menu search form on enter press
         $('.header').on('keypress', '.hor-menu .search-form input', function (e) {
             if (e.which == 13) {
                 $('.form-search').submit();
@@ -488,10 +501,10 @@ var App = function () {
     // Handles Bootstrap Accordions.
     var handleAccordions = function () {
         var lastClicked;
-        //add scrollable class name if you need scrollable panes
+        // add scrollable class name if you need scrollable panes
         jQuery('body').on('click', '.accordion.scrollable .accordion-toggle', function () {
             lastClicked = jQuery(this);
-        }); //move to faq section
+        }); // move to faq section
 
         jQuery('body').on('show.bs.collapse', '.accordion.scrollable', function () {
             jQuery('html,body').animate({
@@ -507,7 +520,7 @@ var App = function () {
             handleSidebarAndContentHeight();
         });
 
-        //activate tab if tab id provided in the URL
+        // activate tab if tab id provided in the URL
         if (location.hash) {
             var tabid = location.hash.substr(1);
             $('a[href="#' + tabid + '"]').click();
@@ -517,7 +530,8 @@ var App = function () {
     // Handles Bootstrap Modals.
     var handleModals = function () {
 
-        // fix stackable modal issue: when 2 or more modals opened, closing one of modal will remove .modal-open class. 
+        // fix stackable modal issue: when 2 or more modals opened, closing one
+		// of modal will remove .modal-open class.
         $('body').on('hide.bs.modal', function () {
            if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') == false) {
               $('html').addClass('modal-open');
@@ -535,9 +549,9 @@ var App = function () {
     // Handles Bootstrap Dropdowns
     var handleDropdowns = function () {
         /*
-          For touch supported devices disable the 
-          hoverable dropdowns - data-hover="dropdown"  
-        */
+		 * For touch supported devices disable the hoverable dropdowns -
+		 * data-hover="dropdown"
+		 */
         if (App.isTouchDevice()) {
             $('[data-hover="dropdown"]').each(function(){
                 $(this).parent().off("hover");
@@ -545,8 +559,8 @@ var App = function () {
             });
         }
         /*
-          Hold dropdown on click  
-        */
+		 * Hold dropdown on click
+		 */
         $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
             e.stopPropagation();
         })
@@ -619,9 +633,11 @@ var App = function () {
 
     // Fix input placeholder issue for IE8 and IE9
     var handleFixInputPlaceholderForIE = function () {
-        //fix html5 placeholder attribute for ie7 & ie8
+        // fix html5 placeholder attribute for ie7 & ie8
         if (isIE8 || isIE9) { // ie8 & ie9
-            // this is html5 placeholder fix for inputs, inputs with placeholder-no-fix class will be skipped(e.g: we need this for password fields)
+            // this is html5 placeholder fix for inputs, inputs with
+			// placeholder-no-fix class will be skipped(e.g: we need this for
+			// password fields)
             jQuery('input[placeholder]:not(.placeholder-no-fix), textarea[placeholder]:not(.placeholder-no-fix)').each(function () {
 
                 var input = jQuery(this);
@@ -652,7 +668,9 @@ var App = function () {
         // toggle full screen
         function toggleFullScreen() {
           if (!document.fullscreenElement &&    // alternative standard method
-              !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
+              !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current
+																						// working
+																						// methods
             if (document.documentElement.requestFullscreen) {
               document.documentElement.requestFullscreen();
             } else if (document.documentElement.mozRequestFullScreen) {
@@ -699,7 +717,7 @@ var App = function () {
         $('.header-option', panel).val("fixed");
         $('.footer-option', panel).val("default");
 
-        //handle theme layout
+        // handle theme layout
         var resetLayout = function () {
             $("body").
             removeClass("page-boxed").
@@ -760,12 +778,12 @@ var App = function () {
             }
 
             if (lastSelectedLayout != layoutOption) {
-                //layout changed, run responsive handler:
+                // layout changed, run responsive handler:
                 runResponsiveHandlers();
             }
             lastSelectedLayout = layoutOption;
 
-            //header
+            // header
             if (headerOption === 'fixed') {
                 $("body").addClass("page-header-fixed");
                 $(".header").removeClass("navbar-static-top").addClass("navbar-fixed-top");
@@ -774,23 +792,24 @@ var App = function () {
                 $(".header").removeClass("navbar-fixed-top").addClass("navbar-static-top");
             }
 
-            //sidebar
+            // sidebar
             if (sidebarOption === 'fixed') {
                 $("body").addClass("page-sidebar-fixed");
             } else {
                 $("body").removeClass("page-sidebar-fixed");
             }
 
-            //footer 
+            // footer
             if (footerOption === 'fixed') {
                 $("body").addClass("page-footer-fixed");
             } else {
                 $("body").removeClass("page-footer-fixed");
             }
 
-            handleSidebarAndContentHeight(); // fix content height            
+            handleSidebarAndContentHeight(); // fix content height
             handleFixedSidebar(); // reinitialize fixed sidebar
-            handleFixedSidebarHoverable(); // reinitialize fixed sidebar hover effect
+            handleFixedSidebarHoverable(); // reinitialize fixed sidebar hover
+											// effect
         }
 
         // handle theme colors
@@ -825,67 +844,75 @@ var App = function () {
         }
     }
 
-    //* END:CORE HANDLERS *//
+    // * END:CORE HANDLERS *//
 
     return {
 
-        //main function to initiate the theme
+        // main function to initiate the theme
         init: function () {
 
-            //IMPORTANT!!!: Do not modify the core handlers call order.
+            // IMPORTANT!!!: Do not modify the core handlers call order.
 
-            //core handlers
+            // core handlers
             handleInit(); // initialize core variables
-            handleResponsiveOnResize(); // set and handle responsive    
+            handleResponsiveOnResize(); // set and handle responsive
             handleUniform(); // hanfle custom radio & checkboxes
-            handleScrollers(); // handles slim scrolling contents 
-            handleResponsiveOnInit(); // handler responsive elements on page load
+            handleScrollers(); // handles slim scrolling contents
+            handleResponsiveOnInit(); // handler responsive elements on page
+										// load
 
-            //layout handlers
+            // layout handlers
             handleFixedSidebar(); // handles fixed sidebar menu
-            handleFixedSidebarHoverable(); // handles fixed sidebar on hover effect 
+            handleFixedSidebarHoverable(); // handles fixed sidebar on hover
+											// effect
             handleSidebarMenu(); // handles main menu
             handleHorizontalMenu(); // handles horizontal menu
-            handleSidebarToggler(); // handles sidebar hide/show            
-            handleFixInputPlaceholderForIE(); // fixes/enables html5 placeholder attribute for IE9, IE8
-            handleGoTop(); //handles scroll to top functionality in the footer
+            handleSidebarToggler(); // handles sidebar hide/show
+            handleFixInputPlaceholderForIE(); // fixes/enables html5
+												// placeholder attribute for
+												// IE9, IE8
+            handleGoTop(); // handles scroll to top functionality in the footer
             handleTheme(); // handles style customer tool
 
-            //ui component handlers
+            // ui component handlers
             handleFancybox() // handle fancy box
             handleSelect2(); // handle custom Select2 dropdowns
-            handlePortletTools(); // handles portlet action bar functionality(refresh, configure, toggle, remove)
+            handlePortletTools(); // handles portlet action bar
+									// functionality(refresh, configure, toggle,
+									// remove)
             handleDropdowns(); // handle dropdowns
             handleTabs(); // handle tabs
             handleTooltips(); // handle bootstrap tooltips
             handlePopovers(); // handles bootstrap popovers
-            handleAccordions(); //handles accordions 
+            handleAccordions(); // handles accordions
             handleModals(); // handle modals
             handleFullScreenMode(); // handles full screen
         },
 
-        //main function to initiate core javascript after ajax complete
+        // main function to initiate core javascript after ajax complete
         initAjax: function () {
             handleSelect2(); // handle custom Select2 dropdowns
             handleDropdowns(); // handle dropdowns
             handleTooltips(); // handle bootstrap tooltips
             handlePopovers(); // handles bootstrap popovers
-            handleAccordions(); //handles accordions 
-            handleUniform(); // hanfle custom radio & checkboxes     
-            handleDropdownHover() // handles dropdown hover       
+            handleAccordions(); // handles accordions
+            handleUniform(); // hanfle custom radio & checkboxes
+            handleDropdownHover() // handles dropdown hover
         },
 
-        //public function to fix the sidebar and content height accordingly
+        // public function to fix the sidebar and content height accordingly
         fixContentHeight: function () {
             handleSidebarAndContentHeight();
         },
 
-        //public function to remember last opened popover that needs to be closed on click
+        // public function to remember last opened popover that needs to be
+		// closed on click
         setLastPopedPopover: function (el) {
             lastPopedPopover = el;
         },
 
-        //public function to add callback a function which will be called on window resize
+        // public function to add callback a function which will be called on
+		// window resize
         addResponsiveHandler: function (func) {
             responsiveHandlers.push(func);
         },
@@ -916,7 +943,7 @@ var App = function () {
             App.scrollTo();
         },
 
-        // wrapper function to  block element(indicate loading)
+        // wrapper function to block element(indicate loading)
         blockUI: function (el, centerY) {
             var el = jQuery(el);
             if (el.height() <= 400) {
@@ -939,7 +966,7 @@ var App = function () {
             });
         },
 
-        // wrapper function to  un-block element(finish loading)
+        // wrapper function to un-block element(finish loading)
         unblockUI: function (el) {
             jQuery(el).unblock({
                 onUnblock: function () {
@@ -963,17 +990,20 @@ var App = function () {
 
         },
 
-        //wrapper function to update/sync jquery uniform checkbox & radios
+        // wrapper function to update/sync jquery uniform checkbox & radios
         updateUniform: function (els) {
-            $.uniform.update(els); // update the uniform checkbox & radios UI after the actual input control state changed
+            $.uniform.update(els); // update the uniform checkbox & radios UI
+									// after the actual input control state
+									// changed
         },
 
-        //public function to initialize the fancybox plugin
+        // public function to initialize the fancybox plugin
         initFancybox: function () {
             handleFancybox();
         },
 
-        //public helper function to get actual input value(used in IE9 and IE8 due to placeholder attribute not supported)
+        // public helper function to get actual input value(used in IE9 and IE8
+		// due to placeholder attribute not supported)
         getActualVal: function (el) {
             var el = jQuery(el);
             if (el.val() === el.attr("placeholder")) {
@@ -982,7 +1012,7 @@ var App = function () {
             return el.val();
         },
 
-        //public function to get a paremeter by name from URL
+        // public function to get a paremeter by name from URL
         getURLParameter: function (paramName) {
             var searchString = window.location.search.substring(1),
                 i, val, params = searchString.split("&");
@@ -1016,7 +1046,7 @@ var App = function () {
             return isIE9;
         },
 
-        //check RTL mode
+        // check RTL mode
         isRTL: function () {
             return isRTL;
         },
