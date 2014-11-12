@@ -744,43 +744,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- BlockQuotes -->
-				<div class="col-md-12 col-sm-12">
-					<div class="portlet-title">
-						<div class="caption">
-							<i class="icon-reorder"></i>Blockquotes
-						</div>
-						<div class="tools">
-							<a href="javascript:;" class="collapse"></a> <a
-								href="#portlet-config" data-toggle="modal" class="config"></a> <a
-								href="javascript:;" class="reload"></a> <a href="javascript:;"
-								class="remove"></a>
-						</div>
-					</div>
-					<div class="portlet-body">
-						<h3></h3>
-						<blockquote>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Integer posuere erat a ante. Duis mollis, est non commodo
-								luctus, nisi erat porttitor ligula integer posuere erat a ante.</p>
-						</blockquote>
-						<blockquote>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Integer posuere erat a ante.</p>
-							<small>Someone famous <cite title="Source Title">Source
-									Title</cite></small>
-						</blockquote>
-						<div class="clearfix">
-							<blockquote class="pull-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Integer posuere erat a ante.</p>
-								<small>Someone famous <cite title="Source Title">Source
-										Title</cite></small>
-							</blockquote>
-						</div>
-					</div>
-				</div>
+
+					
 
 			</div>
 			<!-- 页面内容头结束 -->
@@ -799,4 +764,5 @@
 <!-- Js核心脚本 -->
 <%@include file="template/template_page_javascript.jsp"%>
 <!-- Js核心脚本结束 -->
+<!-- djhaskdaskdh -->
 </html>

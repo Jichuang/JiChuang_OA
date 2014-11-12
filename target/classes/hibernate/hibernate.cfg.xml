@@ -15,7 +15,7 @@
 			<property name="connection.driver_class"> com.mysql.jdbc.Driver </property> 
 			<property name="current_session_context_class">thread</property> -->
 		<property name="show_sql">true</property>
-		<mapping resource="org/hope6537/model/Blog.hbm.xml" />
+		<!-- <mapping resource="org/hope6537/model/Blog.hbm.xml" />
 		<mapping resource="org/hope6537/model/Buy.hbm.xml" />
 		<mapping resource="org/hope6537/model/Cale.hbm.xml" />
 		<mapping resource="org/hope6537/model/Judge.hbm.xml" />
@@ -30,7 +30,7 @@
 		<mapping resource="org/hope6537/model/TeamType.hbm.xml" />
 		<mapping resource="org/hope6537/model/ProjectText.hbm.xml" />
 		<mapping resource="org/hope6537/model/Version.hbm.xml" />
-		<mapping resource="org/hope6537/model/Operate.hbm.xml" />
+		<mapping resource="org/hope6537/model/Operate.hbm.xml" /> -->
 
 	</session-factory>
 
