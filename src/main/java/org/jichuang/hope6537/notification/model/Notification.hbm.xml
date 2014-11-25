@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="org.jichuang.hope6537.notification.model.Notification" table="Notification_DataBase">
+		<id name="nid" type="integer">
+			<column name="nid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="ndate" type="string">
+			<column name="ndate"></column>
+		</property>
+		<property name="ndes" type="string" length="1000">
+			<column name="ndes"></column>
+		</property>
+		<property name="ninfo" type="string" length="255">
+			<column name="ninfo"></column>
+		</property>
+		<set name="nmid" table="notification_member_Database">
+			<key column="nid"></key>
+			<many-to-many class="org.jichuang.hope6537.base.model.Member" column="nmid"></many-to-many>
+		</set>
+	</class>
+
+</hibernate-mapping>

@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hope6537.model.Member;
-import org.hope6537.model.Message;
-import org.hope6537.model.Task;
-import org.hope6537.model.Team;
-import org.hope6537.service.MemberService;
-import org.hope6537.service.MessageService;
-import org.hope6537.service.TaskService;
-import org.hope6537.service.TeamService;
-import org.hope6537.utils.SpringHelper;
+import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.base.service.MemberService;
+import org.jichuang.hope6537.message.model.Message;
+import org.jichuang.hope6537.message.service.MessageService;
+import org.jichuang.hope6537.task.model.Task;
+import org.jichuang.hope6537.task.service.TaskService;
+import org.jichuang.hope6537.team.model.Team;
+import org.jichuang.hope6537.team.service.TeamService;
+import org.jichuang.hope6537.utils.SpringHelper;
 import org.junit.Test;
 
 public class ServiceTest extends SpringHelper {

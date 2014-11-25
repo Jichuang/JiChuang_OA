@@ -2,7 +2,7 @@ package org.hope6537.dao.test;
 
 import java.io.File;
 
-import org.hope6537.model.FileTree;
+import org.jichuang.hope6537.filetree.model.FileTree;
 import org.junit.Test;
 
 public class FileTreeTest {

@@ -87,7 +87,8 @@
 	<!-- Spring do -->
 
 	<aop:config>
-		<aop:pointcut expression="execution(* org.hope6537.service.impl.*.*(..))"
+		<aop:pointcut
+			expression="execution(* org.jichuang.hope6537.*.service.impl.*.*(..))"
 			id="dao" />
 		<aop:advisor advice-ref="tx" pointcut-ref="dao" />
 	</aop:config>

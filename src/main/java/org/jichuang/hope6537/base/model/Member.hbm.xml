@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="org.jichuang.hope6537.base.model.Member" table="Member_Database">
+		<id name="mid" type="int">
+			<column name="mid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="mname" type="string">
+			<column name="uname"></column>
+		</property>
+		<property name="musername" type="string" length="255">
+			<column name="musername"></column>
+		</property>
+		<property name="mpassword" type="string" length="255">
+			<column name="mpassword"></column>
+		</property>
+		<property name="mstatus" type="string">
+			<column name="mstatus"></column>
+		</property>
+		<property name="mimage" type="string" length="500">
+			<column name="mimage"></column>
+		</property>
+		<property name="mdate" type="string" length="500">
+			<column name="mdate"></column>
+		</property>
+		<property name="minfo" type="string" length="500">
+			<column name="minfo"></column>
+		</property>
+		<property name="mqa" type="string" length="500">
+			<column name="mqa"></column>
+		</property>
+		<set name="messageToOther" table="message_member_Database">
+			<key column="mtoid"></key>
+			<many-to-many class="org.jichuang.hope6537.message.model.Message"
+				column="mesid"></many-to-many>
+		</set>
+		<set name="messageFromOther" table="message_member_Database">
+			<key column="mfromid"></key>
+			<many-to-many class="org.jichuang.hope6537.message.model.Message"
+				column="mesid"></many-to-many>
+		</set>
+		<set name="teams" table="Team_Member_Database">
+			<key column="mid"></key>
+			<many-to-many class="org.jichuang.hope6537.team.model.Team"
+				column="tid"></many-to-many>
+		</set>
+		<set name="taskFromOther" table="Task_Member_Database">
+			<key column="taskfrommid"></key>
+			<many-to-many class="org.jichuang.hope6537.task.model.Task"
+				column="taskid"></many-to-many>
+		</set>
+		<set name="taskToOther" table="Task_Member_Database">
+			<key column="tasktomid"></key>
+			<many-to-many class="org.jichuang.hope6537.task.model.Task"
+				column="taskid"></many-to-many>
+		</set>
+		<set name="notifications" table="notification_member_Database">
+			<key column="nmid"></key>
+			<many-to-many class="org.jichuang.hope6537.notification.model.Notification"
+				column="nid"></many-to-many>
+		</set>
+		<set name="posts" table="post_member_Database">
+			<key column="mid"></key>
+			<many-to-many class="org.jichuang.hope6537.base.model.Post"
+				column="pid"></many-to-many>
+		</set>
+	</class>
+
+</hibernate-mapping>

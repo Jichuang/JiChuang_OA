@@ -45,7 +45,7 @@
 <script src="assets/scripts/login-soft.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script type="text/javascript">
-	$('#username').change(function() {
+	$('#username').on("click",function() {
 		$.post("/url", param, function(data) {
 
 		});

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="org.jichuang.hope6537.base.model.Cale" table="Cale_DataBase">
+		<id name="caid" type="int">
+			<column name="caid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="cainfo" type="string">
+			<column name="cainfo"></column>
+		</property>
+		<property name="cadate" type="string" length="50">
+			<column name="cadate"></column>
+		</property>
+		<property name="catstatus" type="string" length="50">
+			<column name="catstatus"></column>
+		</property>
+		<many-to-one name="catid" cascade="save-update"
+			class="org.jichuang.hope6537.team.model.Team" column="catid"></many-to-one>
+	</class>
+
+</hibernate-mapping>

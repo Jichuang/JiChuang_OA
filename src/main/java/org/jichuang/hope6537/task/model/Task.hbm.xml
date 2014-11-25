@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="org.jichuang.hope6537.task.model.Task" table="Task_Database">
+		<id name="taskid" type="int">
+			<column name="taskid"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="taskdes" type="string" length="255">
+			<column name="taskdes"></column>
+		</property>
+		<property name="taskstart" type="string" length="25">
+			<column name="taskstart"></column>
+		</property>
+		<property name="taskdead" type="string" length="25">
+			<column name="taskdead"></column>
+		</property>
+		<property name="taskend" type="string" length="25">
+			<column name="taskend"></column>
+		</property>
+		<property name="taskstatus" type="string" length="50">
+			<column name="taskstatus"></column>
+		</property>
+		<property name="taskinfo" type="string" length="500">
+			<column name="taskinfo"></column>
+		</property>
+		<set name="memberFrom" table="Task_Member_Database">
+			<key column="taskid"></key>
+			<many-to-many class="org.jichuang.hope6537.base.model.Member" column="taskfrommid"></many-to-many>
+		</set>
+		<set name="memberTo" table="Task_Member_Database">
+			<key column="taskid"></key>
+			<many-to-many class="org.jichuang.hope6537.base.model.Member" column="tasktomid"></many-to-many>
+		</set>
+	</class>
+
+</hibernate-mapping>
