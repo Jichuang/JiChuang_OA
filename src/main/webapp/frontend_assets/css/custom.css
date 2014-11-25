@@ -1,0 +1,10 @@
+/* here you can put your own css to customize and override the theme */
+body {
+	color: #000;
+	font-size: 14px;
+	direction: ltr;
+	margin: 0 !important;
+	padding: 0 !important;
+	font-family: Microsoft Yahei;
+	overflow-x: hidden;
+}

@@ -2,9 +2,7 @@
 <body>
 	<h2>Hello World!</h2>
 	<%
-		request.getRequestDispatcher(
-				"WEB-INF/jsp/template/template_page_blank.jsp").forward(
-				request, response);
+		response.sendRedirect("page/welcome.hopedo");
 	%>
 	<input type="text" name="username" id="username" />
 	<span id="tishi"></span>
@@ -45,7 +43,7 @@
 <script src="assets/scripts/login-soft.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script type="text/javascript">
-	$('#username').on("click",function() {
+	$('#username').on("click", function() {
 		$.post("/url", param, function(data) {
 
 		});

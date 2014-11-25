@@ -4,12 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/swapPage")
+@RequestMapping("/page")
 public class SwapController {
 
 	@RequestMapping("/welcome")
 	public String welcomePage() {
-		return "WEB-INF/jsp/admin_welcome";
+		return "admin/admin_welcome";
+	}
+
+	@RequestMapping("/login")
+	public String loginPage() {
+		return "admin/login";
 	}
 
 }
