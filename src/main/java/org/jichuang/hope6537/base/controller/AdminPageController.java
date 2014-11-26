@@ -19,4 +19,9 @@ public class AdminPageController {
 		return PATH + "/login";
 	}
 
+	@RequestMapping("/blog")
+	public String toBlog() {
+		return PATH + "/blog/conf";
+	}
+
 }

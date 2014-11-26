@@ -41,4 +41,5 @@ public class BlogController {
 		model.addAttribute("insertRes", res);
 		return PATH + "/blog";
 	}
+
 }

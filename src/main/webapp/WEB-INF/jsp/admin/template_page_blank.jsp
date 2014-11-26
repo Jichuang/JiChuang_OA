@@ -1,13 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="org.jichuang.hope6537.base.model.Member"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-%>
-<%
-	request.getRequestDispatcher("../admin_welcome.jsp").forward(
-			request, response);
+	Member member = (Member) session.getAttribute("loginMember");
+	if (member == null) {
+		response.sendRedirect("../page/login.hopedo");
+	}
 %>
 <!DOCTYPE html>
 <html>

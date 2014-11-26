@@ -1,13 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="org.jichuang.hope6537.base.model.Member"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-%>
-<%
-	request.getRequestDispatcher("../admin_welcome.jsp").forward(
-			request, response);
+	Member member = (Member) session.getAttribute("loginMember");
+	if (member == null) {
+		response.sendRedirect("../page/login.hopedo");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -35,27 +36,23 @@
 				<div class="col-md-12">
 					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 					<h3 class="page-title">
-						办公中心 <small>Office Center</small>
+						博客维护 <small>Blog Config</small>
 					</h3>
 					<ul class="page-breadcrumb breadcrumb">
 						<li class="btn-group">
 							<button type="button" class="btn blue dropdown-toggle"
 								data-toggle="dropdown" data-hover="dropdown" data-delay="1000"
 								data-close-others="true">
-								<span>菜单动作</span> <i class="icon-angle-down"></i>
+								<span>动作</span> <i class="icon-angle-down"></i>
 							</button>
 							<ul class="dropdown-menu pull-right" role="menu">
-								<li><a href="#">解雇</a></li>
-								<li><a href="#">招募</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li>
+								<li><a href="#"><i class="icon-edit"></i>添加新博客</a></li>
+								<li><a href="#"><i class="icon-refresh"></i>刷新博客信息</a></li>
 							</ul>
 						</li>
-						<li><i class="icon-home"></i> <a href="index.html">主页</a> <i
-							class="icon-angle-right"></i></li>
-						<li><a href="#">办公处</a> <i class="icon-angle-right"></i></li>
-						<li><a href="#">办公中心</a></li>
+						<li><i class="icon-home"></i> <a href="page/index.hopedo">主页</a>
+							<i class="icon-angle-right"></i></li>
+						<li><a href="#">博客维护</a></li>
 					</ul>
 					<!-- END PAGE TITLE & BREADCRUMB-->
 				</div>
