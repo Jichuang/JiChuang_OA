@@ -2,7 +2,7 @@
 <body>
 	<h2>Hello World!</h2>
 	<%
-		response.sendRedirect("page/welcome.hopedo");
+		response.sendRedirect("frontpage/index.hopedo");
 	%>
 	<input type="text" name="username" id="username" />
 	<span id="tishi"></span>

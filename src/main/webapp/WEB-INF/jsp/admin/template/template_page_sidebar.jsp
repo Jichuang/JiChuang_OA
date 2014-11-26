@@ -53,6 +53,18 @@
 				<li><a href="login_soft.html"> 修改个人密码</a></li>
 				<li><a href="login_soft.html"> 个人偏好设置</a></li>
 			</ul></li>
+		<!-- ================== -->
+		<li><a href="javascript:;"> <i class="icon-book"></i>
+				<span class="title">博客维护</span> <span class="arrow "></span>
+		</a>
+			<ul class="sub-menu">
+				<li><a href="javascript:;"> <i class="icon-table"></i>
+						查看我的博客
+				</a></li>
+				<li><a href="javascript:;"> <i class="icon-edit"></i> 创建新博客
+				</a></li>
+			</ul></li>
+
 		<!-- ================= -->
 		<li><a href="javascript:;"> <i class="icon-folder-open"></i>
 				<span class="title">任务维护</span> <span class="arrow "></span>

@@ -26,10 +26,13 @@
 	src="frontend_assets/plugins/bxslider/jquery.bxslider.js"></script>
 <script src="frontend_assets/scripts/app.js"></script>
 <script src="frontend_assets/scripts/index.js"></script>
+<script src="frontend_assets/plugins/jquery.mixitup.min.js"></script>
+<script src="frontend_assets/scripts/portfolio.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 		App.init();
 		App.initBxSlider();
+		Portfolio.init();
 		Index.initRevolutionSlider();
 	});
 </script>

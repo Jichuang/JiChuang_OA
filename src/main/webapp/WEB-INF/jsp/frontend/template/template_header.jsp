@@ -12,7 +12,7 @@
 			<!-- END RESPONSIVE MENU TOGGLER -->
 			<!-- BEGIN LOGO (you can use logo image instead of text)-->
 			<a class="navbar-brand logo-v1" href="index.html"> <img
-				src="frontend_assets/img/logo_blue.png" id="logoimg" alt="">
+				src="frontend_assets/img/logo.png" id="logoimg" alt="">
 			</a>
 			<!-- END LOGO -->
 		</div>
@@ -25,6 +25,7 @@
 				<li><a href="frontpage/project.hopedo"> 工程展示 </a></li>
 				<li><a href="frontpage/blog.hopedo"> 团队博客 </a></li>
 				<li><a href="frontpage/contact.hopedo">联系我们</a></li>
+				<li><a href="page/login.hopedo">进入后台</a></li>
 				<li class="menu-search"><span class="sep"></span> <i
 					class="icon-search search-btn"></i>
 

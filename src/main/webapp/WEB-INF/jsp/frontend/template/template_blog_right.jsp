@@ -5,8 +5,8 @@
 	<h2>写新文章</h2>
 	<div class="recent-news margin-bottom-10">
 		<div class="row margin-bottom-10">
-			<button class="btn blue btn-block btn-lg m-icon-big">
-				写新文章<i class="m-icon-big-swapright m-icon-white"></i>
+			<button class="btn blue btn-block btn-lg m-icon-big" id="newBlog">
+				写新文章<i class='m-icon-big-swapright m-icon-white'></i>
 			</button>
 		</div>
 	</div>

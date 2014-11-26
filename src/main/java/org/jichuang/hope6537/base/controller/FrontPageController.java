@@ -1,6 +1,5 @@
 package org.jichuang.hope6537.base.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
@@ -37,6 +36,11 @@ public class FrontPageController {
 	@RequestMapping("/single")
 	public String toSingle(HttpServletRequest request) {
 		return PATH + "/single";
+	}
+
+	@RequestMapping("/project")
+	public String toProject(HttpServletRequest request) {
+		return PATH + "/project";
 	}
 
 	@RequestMapping("/register")

@@ -63,13 +63,13 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <body class="login">
 	<!-- BEGIN LOGO -->
 	<div class="logo">
-		<img src="admin_assets/img/logo-big.png" alt="" />
+		<img src="frontend_assets/img/logo.png" alt="" />
 	</div>
 	<!-- END LOGO -->
 	<!-- BEGIN LOGIN -->
 	<div class="content">
 		<!-- BEGIN LOGIN FORM -->
-		<form class="login-form" action="swap.jsp" method="post">
+		<form class="login-form" action="member/login.hopedo" method="post">
 			<h3 class="form-title">请输入您的账号密码</h3>
 			<div class="alert alert-error hide">
 				<button class="close" data-dismiss="alert"></button>
@@ -81,7 +81,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				<div class="input-icon">
 					<i class="icon-user"></i> <input
 						class="form-control placeholder-no-fix" type="text"
-						autocomplete="off" placeholder="Username" name="username" />
+						autocomplete="off" placeholder="输入账号" name="musername" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -89,7 +89,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				<div class="input-icon">
 					<i class="icon-lock"></i> <input
 						class="form-control placeholder-no-fix" type="password"
-						autocomplete="off" placeholder="Password" name="password" />
+						autocomplete="off" placeholder="输入密码" name="mpassword" />
 				</div>
 			</div>
 			<div class="form-actions">
@@ -99,9 +99,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				<button type="submit" class="btn blue pull-right">
 					登录 <i class="m-icon-swapright m-icon-white"></i>
 				</button>
-				<a><button type="button" class="btn red pull-right">
-						登录 <i class="m-icon-swapright m-icon-white"></i>
-					</button></a>
 			</div>
 			<div class="forget-password">
 				<h4>忘记密码?</h4>

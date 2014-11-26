@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <meta charset="utf-8" />
 <title>Metronic Frotnend | Homepage</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -24,6 +27,7 @@
 	media="screen">
 <link href="frontend_assets/plugins/bxslider/jquery.bxslider.css"
 	rel="stylesheet" />
+	<link href="frontend_assets/css/pages/portfolio.css" rel="stylesheet" type="text/css"/>
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 
 <!-- BEGIN THEME STYLES -->

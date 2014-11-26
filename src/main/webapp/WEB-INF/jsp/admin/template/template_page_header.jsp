@@ -1,6 +1,10 @@
+<%@page import="org.jichuang.hope6537.base.model.Member"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%
-	String username = (String) request.getAttribute("username");
+	Member member = (Member) session.getAttribute("loginMember");
+	if (member == null) {
+		response.sendRedirect("../page/login.hopedo");
+	}
 %>
 <!-- BEGIN HEADER -->
 <div class="header navbar navbar-inverse navbar-fixed-top">
@@ -101,7 +105,7 @@
 			<li class="dropdown user"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" data-hover="dropdown"
 				data-close-others="true"> <img alt=""
-					src="admin_assets/img/avatar1_small.jpg" /> <span class="username"><%=username%></span>
+					src="admin_assets/img/avatar1_small.jpg" /> <span class="username"><%=member.getMname()%></span>
 					<i class="icon-angle-down"></i>
 			</a>
 				<ul class="dropdown-menu">
