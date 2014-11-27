@@ -2,7 +2,7 @@
 <!-- BEGIN SIDEBAR -->
 <div class="page-sidebar navbar-collapse collapse">
 	<!-- BEGIN SIDEBAR MENU -->
-	<ul class="page-sidebar-menu">
+	<ul class="page-sidebar-menu" id="menus">
 		<li>
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 			<div class="sidebar-toggler hidden-phone"></div> <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -20,7 +20,7 @@
 			</form> <!-- END RESPONSIVE QUICK SEARCH FORM -->
 		</li>
 		<!-- ================= -->
-		<li class="active"><a href="page/index.hopedo"> <i
+		<li id="indexLi"><a href="page/index.hopedo"> <i
 				class="icon-home"></i> <span class="title">欢迎</span>
 		</a></li>
 		<!-- ================= -->
@@ -54,11 +54,11 @@
 				<li><a href="member/memberConf.hopdo"> 个人偏好设置</a></li>
 			</ul></li>
 		<!-- ================== -->
-		<li><a href="javascript:;"> <i class="icon-book"></i> <span
-				class="title">博客维护</span> <span class="arrow "></span>
+		<li id="blogLi"><a href="javascript:;"> <i class="icon-book"></i>
+				<span class="title">博客维护</span> <span class="arrow "></span>
 		</a>
 			<ul class="sub-menu">
-				<li><a href="page/blog.hopedo"> <i class="icon-table"></i>
+				<li><a href="blog/conf.hopedo"> <i class="icon-table"></i>
 						查看我的博客
 				</a></li>
 				<li><a href="blog/addBlog.hopedo"> <i class="icon-edit"></i>

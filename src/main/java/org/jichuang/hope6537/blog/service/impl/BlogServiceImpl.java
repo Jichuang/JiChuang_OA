@@ -1,5 +1,6 @@
 package org.jichuang.hope6537.blog.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.jichuang.hope6537.base.dao.BaseDao;
@@ -10,7 +11,9 @@ import org.jichuang.hope6537.blog.service.BlogService;
 import org.jichuang.hope6537.utils.DateFormat_Jisuan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service("blogService")
 public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
 		BlogService {
 	@Autowired
@@ -50,5 +53,10 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
 			super.insertEntry(blog);
 		}
 		return 0;
+	}
+
+	public List<Blog> selectBlogAllByMember(Member member) {
+		return dao.selectEntryByHQL("from Blog where blogmid = "
+				+ member.getMid());
 	}
 }

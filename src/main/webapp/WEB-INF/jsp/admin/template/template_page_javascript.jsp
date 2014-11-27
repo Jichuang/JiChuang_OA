@@ -5,47 +5,57 @@
 <script src="admin_assets/plugins/respond.min.js"></script>
 <script src="admin_assets/plugins/excanvas.min.js"></script> 
 <![endif]-->
-<script src="admin_assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="admin_assets/plugins/jquery-1.10.2.min.js"
+	type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery-migrate-1.2.1.min.js"
 	type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="admin_assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
+<script
+	src="admin_assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
 	type="text/javascript"></script>
 <script src="admin_assets/plugins/bootstrap/js/bootstrap.min.js"
 	type="text/javascript"></script>
 <script
 	src="admin_assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
 	type="text/javascript"></script>
-<script src="admin_assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
+<script
+	src="admin_assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
 	type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery.blockui.min.js"
 	type="text/javascript"></script>
-<script src="admin_assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+<script src="admin_assets/plugins/jquery.cookie.min.js"
+	type="text/javascript"></script>
 <script src="admin_assets/plugins/uniform/jquery.uniform.min.js"
 	type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="admin_assets/plugins/jqvmap/jqvmap/jquery.vmap.js"
+<!-- <script src="admin_assets/plugins/jqvmap/jqvmap/jquery.vmap.js"
 	type="text/javascript"></script>
-<script src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js"
+<script
+	src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js"
 	type="text/javascript"></script>
-<script src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js"
+<script
+	src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js"
 	type="text/javascript"></script>
-<script src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js"
+<script
+	src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js"
 	type="text/javascript"></script>
-<script src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js"
+<script
+	src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js"
 	type="text/javascript"></script>
 <script src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js"
 	type="text/javascript"></script>
 <script
 	src="admin_assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
+	type="text/javascript"></script> -->
+<script src="admin_assets/plugins/flot/jquery.flot.js"
 	type="text/javascript"></script>
-<script src="admin_assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/flot/jquery.flot.resize.js"
 	type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery.pulsate.min.js"
 	type="text/javascript"></script>
-<script src="admin_assets/plugins/bootstrap-daterangepicker/moment.min.js"
+<script
+	src="admin_assets/plugins/bootstrap-daterangepicker/moment.min.js"
 	type="text/javascript"></script>
 <script
 	src="admin_assets/plugins/bootstrap-daterangepicker/daterangepicker.js"
@@ -61,17 +71,31 @@
 	type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery.sparkline.min.js"
 	type="text/javascript"></script>
+<script type="text/javascript"
+	src="admin_assets/plugins/select2/select2.min.js"></script>
+<script type="text/javascript"
+	src="admin_assets/plugins/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript"
+	src="admin_assets/plugins/data-tables/DT_bootstrap.js"></script>
+<script type="text/javascript"
+	src="admin_assets/plugins/ckeditor/ckeditor.js"></script>
+<script
+	src="admin_assets/plugins/jquery-validation/dist/jquery.validate.js"
+	type="text/javascript"></script>
+<script src="admin_assets/plugins/backstretch/jquery.backstretch.min.js"
+	type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="admin_assets/scripts/app.js" type="text/javascript"></script>
 <script src="admin_assets/scripts/index.js" type="text/javascript"></script>
 <script src="admin_assets/scripts/tasks.js" type="text/javascript"></script>
+<script src="admin_assets/scripts/table-advanced.js"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 	jQuery(document).ready(function() {
 		App.init(); // initlayout and core plugins
+		TableAdvanced.init();
 		Index.init();
-		Index.initJQVMAP(); // init index page's custom scripts
 		Index.initCalendar(); // init index page's custom scripts
 		Index.initCharts(); // init index page's custom scripts
 		Index.initChat();
@@ -81,4 +105,9 @@
 		Tasks.initDashboardWidget();
 	});
 </script>
-<!-- END JAVASCRIPTS -->
+
+
+<!--[if lt IE 9]>
+   <script src="admin_assets/plugins/respond.min.js"></script>
+   <script src="admin_assets/plugins/excanvas.min.js"></script> 
+   <![endif]-->

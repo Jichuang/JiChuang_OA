@@ -1,10 +1,12 @@
 package org.jichuang.hope6537.blog.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.BaseService;
 import org.jichuang.hope6537.blog.model.Blog;
+import org.springframework.stereotype.Service;
 
 public interface BlogService extends BaseService<Blog> {
 
@@ -19,4 +21,5 @@ public interface BlogService extends BaseService<Blog> {
 	 */
 	int insertBlog(Blog blog, Member member, Map<String, String> infos);
 
+	List<Blog> selectBlogAllByMember(Member member);
 }

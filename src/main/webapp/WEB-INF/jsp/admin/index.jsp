@@ -768,6 +768,11 @@
 </body>
 <!-- Js核心脚本 -->
 <%@include file="template/template_page_javascript.jsp"%>
+<script type="text/javascript">
+	$(document).on("ready", function() {
+		$("#indexLi").attr("class", "active");
+	});
+</script>
 <!-- Js核心脚本结束 -->
 <!-- djhaskdaskdh -->
 </html>
