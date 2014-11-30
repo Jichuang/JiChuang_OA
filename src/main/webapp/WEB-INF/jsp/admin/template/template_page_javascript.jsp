@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
@@ -29,25 +31,6 @@
 	type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<!-- <script src="admin_assets/plugins/jqvmap/jqvmap/jquery.vmap.js"
-	type="text/javascript"></script>
-<script
-	src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js"
-	type="text/javascript"></script>
-<script
-	src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js"
-	type="text/javascript"></script>
-<script
-	src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js"
-	type="text/javascript"></script>
-<script
-	src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js"
-	type="text/javascript"></script>
-<script src="admin_assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js"
-	type="text/javascript"></script>
-<script
-	src="admin_assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
-	type="text/javascript"></script> -->
 <script src="admin_assets/plugins/flot/jquery.flot.js"
 	type="text/javascript"></script>
 <script src="admin_assets/plugins/flot/jquery.flot.resize.js"
@@ -84,17 +67,22 @@
 	type="text/javascript"></script>
 <script src="admin_assets/plugins/backstretch/jquery.backstretch.min.js"
 	type="text/javascript"></script>
+<script src="admin_assets/plugins/bootstrap-toastr/toastr.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="admin_assets/scripts/app.js" type="text/javascript"></script>
 <script src="admin_assets/scripts/index.js" type="text/javascript"></script>
 <script src="admin_assets/scripts/tasks.js" type="text/javascript"></script>
+<script src="admin_assets/scripts/toast.js" type="text/javascript"></script>
+<script type="text/javascript" src="admin_assets/scripts/datatable.js"></script>
 <script src="admin_assets/scripts/table-advanced.js"></script>
+<script type="text/javascript" src="admin_assets/scripts/blog.js"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 	jQuery(document).ready(function() {
 		App.init(); // initlayout and core plugins
-		TableAdvanced.init();
+		//TableAdvanced.init();
+		BlogTable.init();
 		Index.init();
 		Index.initCalendar(); // init index page's custom scripts
 		Index.initCharts(); // init index page's custom scripts

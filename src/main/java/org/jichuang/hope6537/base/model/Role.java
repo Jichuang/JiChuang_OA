@@ -3,6 +3,17 @@ package org.jichuang.hope6537.base.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 /** 
  *<pre>
  *二.权限对象 Role —— 数据库表
@@ -19,68 +30,52 @@ import java.util.Set;
  * @version 1.0
  * @see
  */
+@Entity
+@Table(name = "Role")
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = -4637884703425668945L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "roleId", length = 50)
+	private Integer roleId;
+	@Column(name = "des", length = 50)
+	private String des;
+	@Column(name = "status", length = 50)
+	private String status;
+	/*@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "postId", targetEntity = Post.class)
+	private Set<Post> postId;*/
 
-	private Integer rid;
+	// private Set<Operate> operateId;
 
-	private String rdes;
-
-	private String rstatus;
-
-	private Role rrid;
-
-	private Set<Post> posts;
-
-	private Set<Operate> operates;
-
-	public Set<Operate> getOperates() {
-		return operates;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public void setOperates(Set<Operate> operates) {
-		this.operates = operates;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
-	public Integer getRid() {
-		return rid;
+	public String getDes() {
+		return des;
 	}
 
-	public void setRid(Integer rid) {
-		this.rid = rid;
+	public void setDes(String des) {
+		this.des = des;
 	}
 
-	public String getRdes() {
-		return rdes;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setRdes(String rdes) {
-		this.rdes = rdes;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public String getRstatus() {
-		return rstatus;
-	}
-
-	public void setRstatus(String rstatus) {
-		this.rstatus = rstatus;
-	}
-
-	public Role getRrid() {
-		return rrid;
-	}
-
-	public void setRrid(Role rrid) {
-		this.rrid = rrid;
-	}
-
-	public Set<Post> getPosts() {
-		return posts;
-	}
-
-	public void setPosts(Set<Post> posts) {
-		this.posts = posts;
-	}
+	/*
+	 * public Set<Post> getPostId() { return postId; }
+	 * 
+	 * public void setPostId(Set<Post> postId) { this.postId = postId; }
+	 */
 
 }

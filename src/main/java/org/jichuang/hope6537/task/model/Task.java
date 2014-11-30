@@ -3,6 +3,15 @@ package org.jichuang.hope6537.task.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import org.jichuang.hope6537.base.model.Member;
 
 /** 
@@ -26,6 +35,8 @@ import org.jichuang.hope6537.base.model.Member;
  * @version 1.0
  * @see
  */
+@Entity
+@Table(name = "Task")
 public class Task implements Serializable {
 
 	/**
@@ -33,111 +44,108 @@ public class Task implements Serializable {
 	 * <p>Using: </p>
 	 */
 	private static final long serialVersionUID = 1884133633273726805L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "taskId")
+	private Integer taskId;
+	@Column(name = "des", length = 500)
+	private String des;
+	@Column(name = "start", length = 50)
+	private String start;
+	@Column(name = "dead", length = 50)
+	private String dead;
+	@Column(name = "end", length = 50)
+	private String end;
+	@Column(name = "status", length = 50)
+	private String status;
+	@Column(name = "info", length = 500)
+	private String info;
 
-	private Integer taskid;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "taskFromOtherId", targetEntity = Member.class)
+	private Set<Member> memberFromId;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "taskToOtherId", targetEntity = Member.class)
+	private Set<Member> memberToId;
 
-	private String taskdes;
-
-	private String taskstart;
-
-	private String taskdead;
-
-	private String taskend;
-
-	private String taskstatus;
-
-	private String taskinfo;
-
-	private Set<Member> memberFrom;
-
-	private Set<Member> memberTo;
-
-	public Set<Member> getMemberFrom() {
-		return memberFrom;
+	public Integer getTaskId() {
+		return taskId;
 	}
 
-	public void setMemberFrom(Set<Member> memberFrom) {
-		this.memberFrom = memberFrom;
+	public void setTaskId(Integer taskId) {
+		this.taskId = taskId;
 	}
 
-	public Set<Member> getMemberTo() {
-		return memberTo;
+	public String getDes() {
+		return des;
 	}
 
-	public void setMemberTo(Set<Member> memberTo) {
-		this.memberTo = memberTo;
+	public void setDes(String des) {
+		this.des = des;
 	}
 
-	public Task() {
-		// TODO Auto-generated constructor stub
+	public String getStart() {
+		return start;
 	}
 
-	public Integer getTaskid() {
-		return taskid;
+	public void setStart(String start) {
+		this.start = start;
 	}
 
-	public void setTaskid(Integer taskid) {
-		this.taskid = taskid;
+	public String getDead() {
+		return dead;
 	}
 
-	public String getTaskdes() {
-		return taskdes;
+	public void setDead(String dead) {
+		this.dead = dead;
 	}
 
-	public void setTaskdes(String taskdes) {
-		this.taskdes = taskdes;
+	public String getEnd() {
+		return end;
 	}
 
-	public String getTaskstart() {
-		return taskstart;
+	public void setEnd(String end) {
+		this.end = end;
 	}
 
-	public void setTaskstart(String taskstart) {
-		this.taskstart = taskstart;
+	public String getStatus() {
+		return status;
 	}
 
-	public String getTaskdead() {
-		return taskdead;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public void setTaskdead(String taskdead) {
-		this.taskdead = taskdead;
+	public String getInfo() {
+		return info;
 	}
 
-	public String getTaskend() {
-		return taskend;
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
-	public void setTaskend(String taskend) {
-		this.taskend = taskend;
+	public Set<Member> getMemberFromId() {
+		return memberFromId;
 	}
 
-	public String getTaskstatus() {
-		return taskstatus;
+	public void setMemberFromId(Set<Member> memberFromId) {
+		this.memberFromId = memberFromId;
 	}
 
-	public void setTaskstatus(String taskstatus) {
-		this.taskstatus = taskstatus;
+	public Set<Member> getMemberToId() {
+		return memberToId;
 	}
 
-	public String getTaskinfo() {
-		return taskinfo;
+	public void setMemberToId(Set<Member> memberToId) {
+		this.memberToId = memberToId;
 	}
 
-	public void setTaskinfo(String taskinfo) {
-		this.taskinfo = taskinfo;
+	@Override
+	public String toString() {
+		return "Task [taskId=" + taskId + ", des=" + des + ", start=" + start
+				+ ", dead=" + dead + ", end=" + end + ", status=" + status
+				+ ", info=" + info + ", memberFromId=" + memberFromId
+				+ ", memberToId=" + memberToId + "]";
 	}
 
-	public Task(Integer taskid, String taskdes, String taskstart,
-			String taskdead, String taskend, String taskstatus, String taskinfo) {
-		super();
-		this.taskid = taskid;
-		this.taskdes = taskdes;
-		this.taskstart = taskstart;
-		this.taskdead = taskdead;
-		this.taskend = taskend;
-		this.taskstatus = taskstatus;
-		this.taskinfo = taskinfo;
-	}
-
+	
+	
 }

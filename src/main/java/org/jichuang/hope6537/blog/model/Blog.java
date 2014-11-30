@@ -2,6 +2,16 @@ package org.jichuang.hope6537.blog.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.jichuang.hope6537.base.model.Member;
 
 /** 
@@ -22,6 +32,8 @@ import org.jichuang.hope6537.base.model.Member;
  * @version 1.0
  * @see
  */
+@Entity
+@Table(name = "Blog")
 public class Blog implements Serializable {
 
 	/**
@@ -34,94 +46,86 @@ public class Blog implements Serializable {
 
 	}
 
-	private Integer blogid;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "blogId", length = 50)
+	private Integer blogId;
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, targetEntity = Member.class)
+	@JoinColumn(name = "memberId")
+	private Member memberId;
+	@Column(name = "title", length = 50)
+	private String title;
+	@Column(name = "content", length = 5000)
+	private String content;
+	@Column(name = "date", length = 50)
+	private String date;
+	@Column(name = "status", length = 50)
+	private String status;
+	@Column(name = "info", length = 50)
+	private String info;
 
-	private Member blogmid;
-
-	private String blogtitle;
-
-	private String blogcont;
-
-	private String blogdate;
-
-	private String blogstatus;
-
-	private String bloginfo;
-
-	public Integer getBlogid() {
-		return blogid;
+	public Integer getBlogId() {
+		return blogId;
 	}
 
-	public void setBlogid(Integer blogid) {
-		this.blogid = blogid;
+	public void setBlogId(Integer blogId) {
+		this.blogId = blogId;
 	}
 
-	public Member getBlogmid() {
-		return blogmid;
+	public Member getMemberId() {
+		return memberId;
 	}
 
-	public void setBlogmid(Member blogmid) {
-		this.blogmid = blogmid;
+	public void setMemberId(Member memberId) {
+		this.memberId = memberId;
 	}
 
-	public String getBlogtitle() {
-		return blogtitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setBlogtitle(String blogtitle) {
-		this.blogtitle = blogtitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getBlogcont() {
-		return blogcont;
+	public String getContent() {
+		return content;
 	}
 
-	public void setBlogcont(String blogcont) {
-		this.blogcont = blogcont;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public String getBlogdate() {
-		return blogdate;
+	public String getDate() {
+		return date;
 	}
 
-	public void setBlogdate(String blogdate) {
-		this.blogdate = blogdate;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
-	public String getBlogstatus() {
-		return blogstatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setBlogstatus(String blogstatus) {
-		this.blogstatus = blogstatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public String getBloginfo() {
-		return bloginfo;
+	public String getInfo() {
+		return info;
 	}
 
-	public void setBloginfo(String bloginfo) {
-		this.bloginfo = bloginfo;
-	}
-
-	public Blog(Integer blogid, Member blogmid, String blogtitle,
-			String blogcont, String blogdate, String blogstatus, String bloginfo) {
-		super();
-		this.blogid = blogid;
-		this.blogmid = blogmid;
-		this.blogtitle = blogtitle;
-		this.blogcont = blogcont;
-		this.blogdate = blogdate;
-		this.blogstatus = blogstatus;
-		this.bloginfo = bloginfo;
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
 	@Override
 	public String toString() {
-		return "Blog [blogid=" + blogid + ", blogmid=" + blogmid.toString()
-				+ ", blogtitle=" + blogtitle + ", blogcont=" + blogcont
-				+ ", blogdate=" + blogdate + ", blogstatus=" + blogstatus
-				+ ", bloginfo=" + bloginfo + "]";
+		return "Blog [blogId=" + blogId + ", memberId="
+				+ memberId.getMemberId() + ", title=" + title + ", content="
+				+ content + ", date=" + date + ", status=" + status + ", info="
+				+ info + "]";
 	}
 
 }

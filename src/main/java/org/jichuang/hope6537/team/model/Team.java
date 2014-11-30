@@ -3,6 +3,15 @@ package org.jichuang.hope6537.team.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import org.jichuang.hope6537.base.model.Member;
 
 /** 
@@ -27,130 +36,114 @@ import org.jichuang.hope6537.base.model.Member;
  * @version 1.0
  * @see
  */
+@Entity
+@Table(name = "team")
 public class Team implements Serializable {
 	/**
 	 * <p>Describe: </p>
 	 * <p>Using: </p>
 	 */
 	private static final long serialVersionUID = -7944792669434983778L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "teamId")
+	private Integer teamId;
+	@Column(name = "name")
+	private String name;
+	@Column(name = "image", length = 255)
+	private String image;
+	@Column(name = "des", length = 255)
+	private String des;
+	@Column(name = "qa", length = 255)
+	private String qa;
+	@Column(name = "date")
+	private String date;
+	@Column(name = "info", length = 1000)
+	private String info;
 
-	private Integer tid;
+	private TeamType teamtypeId;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "teamId", targetEntity = Member.class)
+	private Set<Member> memberId;
 
-	private String tname;
-
-	private String timage;
-
-	private String tdes;
-
-	private String tqa;
-
-	private String tdate;
-
-	private String tinfo;
-
-	private TeamType ttid;
-
-	private Set<Member> members;
-
-	public Team(Integer tid, String tname, String timage, String tdes,
-			String tqa, String tdate, String tinfo, TeamType ttid) {
-		super();
-		this.tid = tid;
-		this.tname = tname;
-		this.timage = timage;
-		this.tdes = tdes;
-		this.tqa = tqa;
-		this.tdate = tdate;
-		this.tinfo = tinfo;
-		this.ttid = ttid;
+	public Integer getTeamId() {
+		return teamId;
 	}
 
-	public Team(String tname, String timage, String tdes, String tqa,
-			String tdate, String tinfo, TeamType ttid) {
-		super();
-		this.tname = tname;
-		this.timage = timage;
-		this.tdes = tdes;
-		this.tqa = tqa;
-		this.tdate = tdate;
-		this.tinfo = tinfo;
-		this.ttid = ttid;
+	public void setTeamId(Integer teamId) {
+		this.teamId = teamId;
 	}
 
-	public Team() {
-
+	public String getName() {
+		return name;
 	}
 
-	public Integer getTid() {
-		return tid;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setTid(Integer tid) {
-		this.tid = tid;
+	public String getImage() {
+		return image;
 	}
 
-	public String getTname() {
-		return tname;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
-	public void setTname(String tname) {
-		this.tname = tname;
+	public String getDes() {
+		return des;
 	}
 
-	public String getTimage() {
-		return timage;
+	public void setDes(String des) {
+		this.des = des;
 	}
 
-	public void setTimage(String timage) {
-		this.timage = timage;
+	public String getQa() {
+		return qa;
 	}
 
-	public String getTdes() {
-		return tdes;
+	public void setQa(String qa) {
+		this.qa = qa;
 	}
 
-	public void setTdes(String tdes) {
-		this.tdes = tdes;
+	public String getDate() {
+		return date;
 	}
 
-	public String getTqa() {
-		return tqa;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
-	public void setTqa(String tqa) {
-		this.tqa = tqa;
+	public String getInfo() {
+		return info;
 	}
 
-	public String getTdate() {
-		return tdate;
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
-	public void setTdate(String tdate) {
-		this.tdate = tdate;
+	public TeamType getTeamtypeId() {
+		return teamtypeId;
 	}
 
-	public String getTinfo() {
-		return tinfo;
+	public void setTeamtypeId(TeamType teamtypeId) {
+		this.teamtypeId = teamtypeId;
 	}
 
-	public void setTinfo(String tinfo) {
-		this.tinfo = tinfo;
+	public Set<Member> getMemberId() {
+		return memberId;
 	}
 
-	public TeamType getTtid() {
-		return ttid;
+	public void setMemberId(Set<Member> memberId) {
+		this.memberId = memberId;
 	}
 
-	public void setTtid(TeamType ttid) {
-		this.ttid = ttid;
+	@Override
+	public String toString() {
+		return "Team [teamId=" + teamId + ", name=" + name + ", image=" + image
+				+ ", des=" + des + ", qa=" + qa + ", date=" + date + ", info="
+				+ info + ", teamtypeId=" + teamtypeId + ", memberId="
+				+ memberId + "]";
 	}
-
-	public Set<Member> getMembers() {
-		return members;
-	}
-
-	public void setMembers(Set<Member> members) {
-		this.members = members;
-	}
+	
 
 }

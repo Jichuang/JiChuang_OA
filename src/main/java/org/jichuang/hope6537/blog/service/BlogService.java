@@ -22,4 +22,6 @@ public interface BlogService extends BaseService<Blog> {
 	int insertBlog(Blog blog, Member member, Map<String, String> infos);
 
 	List<Blog> selectBlogAllByMember(Member member);
+
+	int updateBlog(Blog blog, Map<String, String> infos);
 }

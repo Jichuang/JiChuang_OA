@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
-validator.Checked=src/main/webapp/admin,src/main/webapp/jsp/assets/plugins,src/main/webapp/assets,src/main/resources/spring,src/main/webapp/frontend_assets,src/main/webapp/admin_assets
+validator.Checked=src/main/webapp/WEB-INF,src/main/webapp/frontend_assets/plugins,pom.xml,src/main/webapp/admin_assets/plugins,src/main/java
+validator.Revalidate=true
 validator.Unchecked=

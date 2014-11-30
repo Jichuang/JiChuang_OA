@@ -73,7 +73,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	@SuppressWarnings("unchecked")
 	public List<T> selectEntryAll() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from" + clz.getSimpleName()).list();
+				.createQuery("from " + clz.getSimpleName()).list();
 	}
 
 	@SuppressWarnings("unchecked")

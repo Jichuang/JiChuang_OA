@@ -1,4 +1,6 @@
 <%@page import="org.jichuang.hope6537.base.model.Member"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%
 	Member member = (Member) session.getAttribute("loginMember");
@@ -11,8 +13,8 @@
 	<!-- BEGIN TOP NAVIGATION BAR -->
 	<div class="header-inner">
 		<!-- BEGIN LOGO -->
-		<a class="navbar-brand" href="index.html"> <img
-			src="admin_assets/img/logo.png" alt="logo" class="img-responsive" />
+		<a class="navbar-brand" href="page/index.hopedo"> <img
+			src="admin_assets/img/logo2.png" alt="logo" class="img-responsive" />
 		</a>
 		<!-- END LOGO -->
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -106,7 +108,7 @@
 				data-toggle="dropdown" data-hover="dropdown"
 				data-close-others="true"> <img alt=""
 					src="admin_assets/img/avatar1_small.jpg" /> <span class="username">
-						<%=null == member ? null : member.getMname()%>
+						<%=null == member ? null : member.getName()%>
 				</span> <i class="icon-angle-down"></i>
 			</a>
 				<ul class="dropdown-menu">

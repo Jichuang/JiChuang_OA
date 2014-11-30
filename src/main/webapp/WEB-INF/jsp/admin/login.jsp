@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -81,7 +83,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				<div class="input-icon">
 					<i class="icon-user"></i> <input
 						class="form-control placeholder-no-fix" type="text"
-						autocomplete="off" placeholder="输入账号" name="musername" />
+						autocomplete="off" placeholder="输入账号" name="username" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -89,7 +91,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				<div class="input-icon">
 					<i class="icon-lock"></i> <input
 						class="form-control placeholder-no-fix" type="password"
-						autocomplete="off" placeholder="输入密码" name="mpassword" />
+						autocomplete="off" placeholder="输入密码" name="password" />
 				</div>
 			</div>
 			<div class="form-actions">
@@ -136,7 +138,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		</form>
 		<!-- END FORGOT PASSWORD FORM -->
 		<!-- BEGIN REGISTRATION FORM -->
-		<form class="register-form" action="memberAction/SIGNUP.hopedo"
+		<form class="register-form" action="member/register.hopedo"
 			method="post">
 			<h3>注册新账号</h3>
 			<p>请输入您的基本信息</p>
@@ -145,7 +147,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				<div class="input-icon">
 					<i class="icon-font"></i> <input
 						class="form-control placeholder-no-fix" type="text"
-						placeholder="姓名" name="mname" />
+						placeholder="姓名" name="name" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -412,7 +414,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				<div class="input-icon">
 					<i class="icon-user"></i> <input
 						class="form-control placeholder-no-fix" type="text"
-						autocomplete="off" placeholder="注册邮箱" name="musername" />
+						autocomplete="off" placeholder="注册邮箱" name="username" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -421,7 +423,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					<i class="icon-lock"></i> <input
 						class="form-control placeholder-no-fix" type="password"
 						autocomplete="off" id="register_password" placeholder="密码"
-						name="mpassword" />
+						name="password" />
 				</div>
 			</div>
 			<div class="form-group">

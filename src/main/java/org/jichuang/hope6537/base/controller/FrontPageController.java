@@ -1,7 +1,12 @@
 package org.jichuang.hope6537.base.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.jichuang.hope6537.blog.model.Blog;
+import org.jichuang.hope6537.blog.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/frontpage")
 @Scope(value = "prototype")
 public class FrontPageController {
+	@Autowired
+	private BlogService blogService;
 
 	public static final String PATH = "frontend/";
 
@@ -20,6 +27,8 @@ public class FrontPageController {
 
 	@RequestMapping("/blog")
 	public String toBlog(HttpServletRequest request) {
+		List<Blog> blogList = blogService.selectEntryAll();
+		request.setAttribute("blogList", blogList);
 		return PATH + "/blog";
 	}
 

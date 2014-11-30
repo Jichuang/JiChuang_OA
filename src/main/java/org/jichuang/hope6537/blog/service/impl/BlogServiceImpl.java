@@ -37,26 +37,45 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
 		if (blog == null) {
 			throw new NullPointerException("博客对象为空");
 		}
-		if (blog.getBlogtitle() == null || blog.getBlogtitle().isEmpty()) {
+		if (blog.getTitle() == null || blog.getTitle().isEmpty()) {
 			throw new NullPointerException("博客没有标题");
 		}
-		if (blog.getBlogcont() == null || blog.getBlogcont().isEmpty()) {
+		if (blog.getContent() == null || blog.getContent().isEmpty()) {
 			throw new NullPointerException("博客没有内容");
 		}
 		if (member == null) {
 			throw new NullPointerException("博客没有作者");
 		} else {
-			blog.setBlogmid(member);
-			blog.setBlogdate(DateFormat_Jisuan.createNowTime());
-			blog.setBlogstatus("待审核");
-			blog.setBloginfo(infos.toString());
-			super.insertEntry(blog);
+			blog.setMemberId(member);
+			blog.setDate(DateFormat_Jisuan.createNowTime());
+			blog.setStatus("待审核");
+			blog.setInfo(infos.toString());
+			return super.insertEntry(blog);
 		}
-		return 0;
 	}
 
 	public List<Blog> selectBlogAllByMember(Member member) {
-		return dao.selectEntryByHQL("from Blog where blogmid = "
-				+ member.getMid());
+		return dao.selectEntryByHQL("from Blog where memberId = "
+				+ member.getMemberId());
+	}
+
+	public int updateBlog(Blog blog, Map<String, String> infos) {
+		if (blog == null) {
+			throw new NullPointerException("博客对象为空");
+		}
+		if (blog.getTitle() == null || blog.getTitle().isEmpty()) {
+			throw new NullPointerException("博客没有标题");
+		}
+		if (blog.getContent() == null || blog.getContent().isEmpty()) {
+			throw new NullPointerException("博客没有内容");
+		} else {
+			Blog oldBlog = this.selectEntryFromPrimaryKey(blog.getBlogId());
+			oldBlog.setContent(blog.getContent());
+			oldBlog.setTitle(blog.getTitle());
+			// 不设置日期
+			oldBlog.setStatus("待审核");
+			oldBlog.setInfo(infos.toString());
+			return this.updateEntryByObject(oldBlog);
+		}
 	}
 }

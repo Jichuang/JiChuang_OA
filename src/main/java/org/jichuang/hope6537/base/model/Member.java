@@ -1,7 +1,23 @@
 package org.jichuang.hope6537.base.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.jichuang.hope6537.message.model.Message;
 import org.jichuang.hope6537.notification.model.Notification;
@@ -30,45 +46,61 @@ import org.jichuang.hope6537.utils.AESLocker;
  * @version 1.0
  * @see
  */
+@Entity
+@Table(name = "Member")
 public class Member implements Serializable {
 
 	private static final long serialVersionUID = -7382123604352223621L;
 
-	private Integer mid;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "memberId", length = 50)
+	private Integer memberId;
+	@Column(name = "username", length = 50)
+	private String username;
+	@Column(name = "password", length = 128)
+	private String password;
+	@Column(name = "name", length = 50)
+	private String name;
+	@Column(name = "date", length = 50)
+	private String date;
+	@Column(name = "image", length = 255)
+	private String image;
+	@Column(name = "qa", length = 50)
+	private String qa;
+	@Column(name = "status", length = 50)
+	private String status;
+	@Column(name = "info", length = 1000)
+	private String info;
 
-	private String musername;
-
-	private String mpassword;
-
-	private String mname;
-
-	private String mdate;
-
-	private String mimage;
-
-	private String mqa;
-
-	private String mstatus;
-
-	private String minfo;
+	
 
 	/**
 	 * <p>Describe: 团队成员——项目组 多对多</p>
 	 * <p>Using: </p>
 	 */
-	private Set<Team> teams;
+	@ManyToMany(targetEntity = Team.class, cascade = { CascadeType.MERGE,
+			CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(name = "member_teams", joinColumns = { @JoinColumn(name = "memberId") }, inverseJoinColumns = { @JoinColumn(name = "teamId") })
+	private Set<Team> teamId;
 
 	/**
 	 * <p>Describe: 任务接受夹</p>
 	 * <p>Using: </p>
 	 */
-	private Set<Task> taskFromOther;
+	@ManyToMany(targetEntity = Task.class, cascade = { CascadeType.MERGE,
+			CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(name = "member_task", joinColumns = { @JoinColumn(name = "memberFromId") }, inverseJoinColumns = { @JoinColumn(name = "taskFromOtherId") })
+	private Set<Task> taskFromOtherId;
 
 	/**
 	 * <p>Describe: 任务发送夹</p>
 	 * <p>Using: </p>
 	 */
-	private Set<Task> taskToOther;
+	@ManyToMany(targetEntity = Task.class, cascade = { CascadeType.MERGE,
+			CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(name = "member_task", joinColumns = { @JoinColumn(name = "memberToId") }, inverseJoinColumns = { @JoinColumn(name = "taskToOtherId") })
+	private Set<Task> taskToOtherId;
 
 	/**
 	 * <p>Describe: 发信夹</p>
@@ -82,7 +114,10 @@ public class Member implements Serializable {
 	FROM member_database m , message_database mes, message_member_database mmd
 	where mes.mesid = mmd.mesid and (mmd.mfromid = m.mid or mmd.mtoid = m.mid) and mmd.mfromid = id本身</p>
 	 */
-	private Set<Message> messageToOther;
+	@ManyToMany(targetEntity = Message.class, cascade = { CascadeType.MERGE,
+			CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(name = "member_message", joinColumns = { @JoinColumn(name = "memberId") }, inverseJoinColumns = { @JoinColumn(name = "messageToOtherId") })
+	private Set<Message> messageToOtherId;
 
 	/**
 	 * <p>Describe: 收件夹</p>
@@ -96,179 +131,24 @@ public class Member implements Serializable {
 	FROM member_database m , message_database mes, message_member_database mmd
 	where mes.mesid = mmd.mesid and (mmd.mfromid = m.mid or mmd.mtoid = m.mid) and mmd.mtoid = id本身</p>
 	 */
-	private Set<Message> messageFromOther;
+	@ManyToMany(targetEntity = Message.class, cascade = { CascadeType.MERGE,
+			CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(name = "member_message", joinColumns = { @JoinColumn(name = "memberFromId") }, inverseJoinColumns = { @JoinColumn(name = "messageFromOtherId") })
+	private Set<Message> messageFromOtherId;
 
-	private Set<Notification> notifications;
+	@ManyToMany(targetEntity = Notification.class, cascade = {
+			CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(name = "member_notification", joinColumns = { @JoinColumn(name = "memberToId") }, inverseJoinColumns = { @JoinColumn(name = "notificationId") })
+	private Set<Notification> notificationId;
 
-	private Set<Role> posts;
-
-	public Integer getMid() {
-		return mid;
-	}
-
-	public void setMid(Integer mid) {
-		this.mid = mid;
-	}
-
-	public String getMusername() {
-		return musername;
-	}
-
-	public void setMusername(String musername) {
-		this.musername = musername;
-	}
-
-	public String getMpassword() {
-		return mpassword;
-	}
-
-	public void setMpassword(String mpassword) {
-		this.mpassword = mpassword;
-	}
-
-	public String getMname() {
-		return mname;
-	}
-
-	public void setMname(String mname) {
-		this.mname = mname;
-	}
-
-	public String getMdate() {
-		return mdate;
-	}
-
-	public void setMdate(String mdate) {
-		this.mdate = mdate;
-	}
-
-	public String getMimage() {
-		return mimage;
-	}
-
-	public void setMimage(String mimage) {
-		this.mimage = mimage;
-	}
-
-	public String getMqa() {
-		return mqa;
-	}
-
-	public void setMqa(String mqa) {
-		this.mqa = mqa;
-	}
-
-	public String getMstatus() {
-		return mstatus;
-	}
-
-	public void setMstatus(String mstatus) {
-		this.mstatus = mstatus;
-	}
-
-	public String getMinfo() {
-		return minfo;
-	}
-
-	public void setMinfo(String minfo) {
-		this.minfo = minfo;
-	}
-
-	@Override
-	public String toString() {
-		return "Member [mid=" + mid + ", musername=" + musername
-				+ ", mpassword=" + mpassword + ", mname=" + mname + ", mdate="
-				+ mdate + ", mimage=" + mimage + ", mqa=" + mqa + ", mstatus="
-				+ mstatus + ", minfo=" + minfo + "]";
-	}
-
-	public Member(Integer mid, String musername, String mpassword,
-			String mname, String mdate, String mimage, String mqa,
-			String mstatus, String minfo) {
-		super();
-		this.mid = mid;
-		this.musername = musername;
-		this.mpassword = mpassword;
-		this.mname = mname;
-		this.mdate = mdate;
-		this.mimage = mimage;
-		this.mqa = mqa;
-		this.mstatus = mstatus;
-		this.minfo = minfo;
-	}
-
-	public Member(String musername, String mpassword, String mname,
-			String mdate, String mimage, String mqa, String mstatus,
-			String minfo) {
-		super();
-		this.musername = musername;
-		this.mpassword = mpassword;
-		this.mname = mname;
-		this.mdate = mdate;
-		this.mimage = mimage;
-		this.mqa = mqa;
-		this.mstatus = mstatus;
-		this.minfo = minfo;
-	}
-
-	public Member() {
-	}
-
-	public Set<Message> getMessageToOther() {
-		return messageToOther;
-	}
-
-	public void setMessageToOther(Set<Message> messageToOther) {
-		this.messageToOther = messageToOther;
-	}
-
-	public Set<Message> getMessageFromOther() {
-		return messageFromOther;
-	}
-
-	public void setMessageFromOther(Set<Message> messageFromOther) {
-		this.messageFromOther = messageFromOther;
-	}
-
-	public Set<Team> getTeams() {
-		return teams;
-	}
-
-	public void setTeams(Set<Team> teams) {
-		this.teams = teams;
-	}
-
-	public Set<Task> getTaskFromOther() {
-		return taskFromOther;
-	}
-
-	public void setTaskFromOther(Set<Task> taskFromOther) {
-		this.taskFromOther = taskFromOther;
-	}
-
-	public Set<Task> getTaskToOther() {
-		return taskToOther;
-	}
-
-	public void setTaskToOther(Set<Task> taskToOther) {
-		this.taskToOther = taskToOther;
-	}
-
-	public Set<Notification> getNotifications() {
-		return notifications;
-	}
-
-	public void setNotifications(Set<Notification> notifications) {
-		this.notifications = notifications;
-	}
-
-	public Set<Role> getPosts() {
-		return posts;
-	}
-
-	public void setPosts(Set<Role> posts) {
-		this.posts = posts;
-	}
+	/*
+	 * @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.MERGE,
+	 * CascadeType.PERSIST })
+	 * 
+	 * @JoinTable(name = "member_post", joinColumns = { @JoinColumn(name =
+	 * "memberId") }, inverseJoinColumns = { @JoinColumn(name = "postId") })
+	 * private Set<Post> postId;
+	 */
 
 	/**
 	 * <p>Describe: 解密</p>
@@ -279,7 +159,7 @@ public class Member implements Serializable {
 	 * @see
 	 */
 	public void Decrypt() {
-		mpassword = AESLocker.Decrypt(mpassword);
+		password = AESLocker.Decrypt(password);
 		System.out.println("UnLocking");
 	}
 
@@ -292,8 +172,146 @@ public class Member implements Serializable {
 	 * @see
 	 */
 	public void Encrypt() {
-		mpassword = AESLocker.Encrypt(mpassword);
+		password = AESLocker.Encrypt(password);
 		System.out.println("Locking");
 	}
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getQa() {
+		return qa;
+	}
+
+	public void setQa(String qa) {
+		this.qa = qa;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public Set<Team> getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(Set<Team> teamId) {
+		this.teamId = teamId;
+	}
+
+	public Set<Task> getTaskFromOtherId() {
+		return taskFromOtherId;
+	}
+
+	public void setTaskFromOtherId(Set<Task> taskFromOtherId) {
+		this.taskFromOtherId = taskFromOtherId;
+	}
+
+	public Set<Task> getTaskToOtherId() {
+		return taskToOtherId;
+	}
+
+	public void setTaskToOtherId(Set<Task> taskToOtherId) {
+		this.taskToOtherId = taskToOtherId;
+	}
+
+	public Set<Message> getMessageToOtherId() {
+		return messageToOtherId;
+	}
+
+	public void setMessageToOtherId(Set<Message> messageToOtherId) {
+		this.messageToOtherId = messageToOtherId;
+	}
+
+	public Set<Message> getMessageFromOtherId() {
+		return messageFromOtherId;
+	}
+
+	public void setMessageFromOtherId(Set<Message> messageFromOtherId) {
+		this.messageFromOtherId = messageFromOtherId;
+	}
+
+	public Set<Notification> getNotificationId() {
+		return notificationId;
+	}
+
+	public void setNotificationId(Set<Notification> notificationId) {
+		this.notificationId = notificationId;
+	}
+
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", username=" + username
+				+ ", password=" + password + ", name=" + name + ", date="
+				+ date + ", image=" + image + ", qa=" + qa + ", status="
+				+ status + ", info=" + info + ", teamId=" + teamId
+				+ ", taskFromOtherId=" + taskFromOtherId + ", taskToOtherId="
+				+ taskToOtherId + ", messageToOtherId=" + messageToOtherId
+				+ ", messageFromOtherId=" + messageFromOtherId
+				+ ", notificationId=" + notificationId + "]";
+	}
+
+	/*
+	 * public Set<Post> getPostId() { return postId; }
+	 * 
+	 * public void setPostId(Set<Post> postId) { this.postId = postId; }
+	 */
 
 }

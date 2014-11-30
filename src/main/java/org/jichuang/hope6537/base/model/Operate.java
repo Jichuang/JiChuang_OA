@@ -20,72 +20,54 @@ public class Operate implements Serializable {
 	 */
 	private static final long serialVersionUID = 6266470652037079734L;
 
-	private Integer oid;
+	private Integer operateId;
 
-	private String odes;
+	private String des;
 
-	private String oinfo;
+	private String info;
 
-	private String ostatus;
+	private String status;
 
-	private Set<Role> oroles;
+	private Set<Role> roles;
 
-	public Integer getOid() {
-		return oid;
+	public Integer getOperateId() {
+		return operateId;
 	}
 
-	public void setOid(Integer oid) {
-		this.oid = oid;
+	public void setOperateId(Integer operateId) {
+		this.operateId = operateId;
 	}
 
-	public String getOdes() {
-		return odes;
+	public String getDes() {
+		return des;
 	}
 
-	public void setOdes(String odes) {
-		this.odes = odes;
+	public void setDes(String des) {
+		this.des = des;
 	}
 
-	public String getOinfo() {
-		return oinfo;
+	public String getInfo() {
+		return info;
 	}
 
-	public void setOinfo(String oinfo) {
-		this.oinfo = oinfo;
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
-	public String getOstatus() {
-		return ostatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setOstatus(String ostatus) {
-		this.ostatus = ostatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public Set<Role> getOroles() {
-		return oroles;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setOroles(Set<Role> oroles) {
-		this.oroles = oroles;
-	}
-
-	public Operate() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "Operate [oid=" + oid + ", odes=" + odes + ", oinfo=" + oinfo
-				+ ", ostatus=" + ostatus + ", oroles=" + oroles + "]";
-	}
-
-	public Operate(String odes, String oinfo, String ostatus, Set<Role> oroles) {
-		super();
-		this.odes = odes;
-		this.oinfo = oinfo;
-		this.ostatus = ostatus;
-		this.oroles = oroles;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 }

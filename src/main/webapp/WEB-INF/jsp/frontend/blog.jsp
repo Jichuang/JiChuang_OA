@@ -1,9 +1,11 @@
+<%@page import="org.jichuang.hope6537.blog.model.Blog"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
+	List<Blog> blogList = (List<Blog>)request.getAttribute("blogList");
 %>
 <!DOCTYPE html>
 <html>
@@ -47,7 +49,7 @@
 					id="blogShow">
 					<!-- 博客显示开始 -->
 					<%
-						for (int i = 0; i < 3; i++) {
+						for (Blog blog : blogList) {
 					%>
 					<div class="row">
 						<div class="col-md-4 col-sm-4">
@@ -79,18 +81,20 @@
 						</div>
 						<div class="col-md-8 col-sm-8">
 							<h2>
-								<a href="blog_item.html">Hadoop 2.5.0 新特性初探</a>
+								<a href="blog_item.html"><%=blog.getTitle()%></a>
 							</h2>
 							<ul class="blog-info">
-								<li><i class="icon-calendar"></i> 2014-11-26</li>
-								<li><i class="icon-comments"></i> 22条评论</li>
-								<li><i class="icon-tags"></i> Hope6537 , Java Engineer</li>
+								<li><i class="icon-calendar"></i> <%=blog.getDate()%></li>
+								<li><i class="icon-comments"></i> <%=blog.getInfo()%></li>
+								<li><i class="icon-tags"></i><%=blog.getMemberId().getName() + "," + blog.getMemberId().getUsername()%></li>
 							</ul>
-							<p>Apache Hadoop
-								2.5.0是一个在2.x.y发布线上的一个小版本，建立在之前稳定的发布版本2.4.1之上。主要特性和改进：1. Commona)
-								使用HTTP代理服务器时认证改进。当通过代理服务器使用WebHDFS时这是非常有用的。b)
-								增加了一个新的Hadoop指标监控sink，允许直接写到Graphite。c) Hadoop文件系统兼容相关的规范工作。2.
-								HDFSa) 支持 POSIX风格的扩展文件......</p>
+							<%
+								String cont = blog.getContent().replaceAll("<[^>]*>","");
+								System.out.println(cont.length());
+								cont = cont.substring(0,cont.length() <= 200 ? cont.length() : 200);
+							%>
+							<p><%=cont%>......
+							</p>
 							<a class="more" href="blog_item.html">点击阅读全文 <i
 								class="icon-angle-right"></i></a>
 						</div>

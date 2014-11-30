@@ -3,7 +3,17 @@ package org.jichuang.hope6537.notification.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.base.model.Role;
 
 /** 
  *<pre>
@@ -22,6 +32,8 @@ import org.jichuang.hope6537.base.model.Member;
  * @version 1.0
  * @see
  */
+@Entity
+@Table(name = "Notification")
 public class Notification implements Serializable {
 
 	/**
@@ -29,74 +41,72 @@ public class Notification implements Serializable {
 	 * <p>Using: </p>
 	 */
 	private static final long serialVersionUID = -1014917383769235149L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "notificationId", length = 50)
+	private Integer notificationId;
 
-	private Integer nid;
+	@Column(name = "des", length = 150)
+	private String des;
 
-	private String ndes;
+	@Column(name = "date", length = 150)
+	private String date;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "notificationId", targetEntity = Member.class)
+	private Set<Member> memberId;
 
-	private String ndate;
-
-	private Set<Member> nmid;
-
-	private String ninfo;
+	@Column(name = "info", length = 50)
+	private String info;
 
 	public Notification() {
 	}
 
+	public Integer getNotificationId() {
+		return notificationId;
+	}
+
+	public void setNotificationId(Integer notificationId) {
+		this.notificationId = notificationId;
+	}
+
+	public String getDes() {
+		return des;
+	}
+
+	public void setDes(String des) {
+		this.des = des;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public Set<Member> getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Set<Member> memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
 	@Override
 	public String toString() {
-		return "Notification [nid=" + nid + ", ndes=" + ndes + ", ndate="
-				+ ndate + ", nmid=" + nmid + ", ninfo=" + ninfo + "]";
+		return "Notification [notificationId=" + notificationId + ", des="
+				+ des + ", date=" + date + ", memberId=" + memberId + ", info="
+				+ info + "]";
 	}
-
-	public Notification(Integer nid, String ndes, String ndate,
-			Set<Member> nmid, String ninfo) {
-		super();
-		this.nid = nid;
-		this.ndes = ndes;
-		this.ndate = ndate;
-		this.nmid = nmid;
-		this.ninfo = ninfo;
-	}
-
-	public Integer getNid() {
-		return nid;
-	}
-
-	public void setNid(Integer nid) {
-		this.nid = nid;
-	}
-
-	public String getNdes() {
-		return ndes;
-	}
-
-	public void setNdes(String ndes) {
-		this.ndes = ndes;
-	}
-
-	public String getNdate() {
-		return ndate;
-	}
-
-	public void setNdate(String ndate) {
-		this.ndate = ndate;
-	}
-
-	public Set<Member> getNmid() {
-		return nmid;
-	}
-
-	public void setNmid(Set<Member> nmid) {
-		this.nmid = nmid;
-	}
-
-	public String getNinfo() {
-		return ninfo;
-	}
-
-	public void setNinfo(String ninfo) {
-		this.ninfo = ninfo;
-	}
+	
+	
 
 }

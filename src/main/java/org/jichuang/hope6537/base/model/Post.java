@@ -3,6 +3,17 @@ package org.jichuang.hope6537.base.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 /** 
  *<pre>
  *三.职务对象 Post —— 数据库表
@@ -18,6 +29,8 @@ import java.util.Set;
  * @version 1.0
  * @see
  */
+@Entity
+@Table(name = "Post")
 public class Post implements Serializable {
 
 	/**
@@ -25,68 +38,59 @@ public class Post implements Serializable {
 	 * <p>Using: </p>
 	 */
 	private static final long serialVersionUID = 2909208994893032227L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "postId", length = 50)
+	private Integer postId;
+	@Column(name = "des", length = 50)
+	private String des;
+	@Column(name = "status", length = 50)
+	private String status;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "postId", targetEntity = Member.class)
+	private Set<Member> memberId;
+	@ManyToMany(targetEntity = Role.class, cascade = { CascadeType.MERGE,
+			CascadeType.PERSIST })
+	@JoinTable(name = "post_role", joinColumns = { @JoinColumn(name = "postId") }, inverseJoinColumns = { @JoinColumn(name = "roleId") })
+	private Set<Role> roleId;
 
-	private Integer pid;
-
-	private String pdes;
-
-	private String pstatus;
-
-	private Set<Member> members;
-
-	private Set<Role> roles;
-
-	public Post(Integer pid, String pdes, String pstatus) {
-		super();
-		this.pid = pid;
-		this.pdes = pdes;
-		this.pstatus = pstatus;
+	public Integer getPostId() {
+		return postId;
 	}
 
-	@Override
-	public String toString() {
-		return "Post [pid=" + pid + ", pdes=" + pdes + ", pstatus=" + pstatus
-				+ "]";
+	public void setPostId(Integer postId) {
+		this.postId = postId;
 	}
 
-	public Integer getPid() {
-		return pid;
+	public String getDes() {
+		return des;
 	}
 
-	public void setPid(Integer pid) {
-		this.pid = pid;
+	public void setDes(String des) {
+		this.des = des;
 	}
 
-	public String getPdes() {
-		return pdes;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setPdes(String pdes) {
-		this.pdes = pdes;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public String getPstatus() {
-		return pstatus;
+	public Set<Member> getMemberId() {
+		return memberId;
 	}
 
-	public void setPstatus(String pstatus) {
-		this.pstatus = pstatus;
+	public void setMemberId(Set<Member> memberId) {
+		this.memberId = memberId;
 	}
 
-	public Set<Member> getMembers() {
-		return members;
+	public Set<Role> getRoleId() {
+		return roleId;
 	}
 
-	public void setMembers(Set<Member> members) {
-		this.members = members;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setRoleId(Set<Role> roleId) {
+		this.roleId = roleId;
 	}
 
 }

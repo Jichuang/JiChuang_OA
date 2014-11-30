@@ -29,16 +29,16 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
 		if (member == null) {
 			throw new MemberException("成员对象为空");
 		}
-		if (member.getMpassword() == null || member.getMpassword().isEmpty()) {
+		if (member.getPassword() == null || member.getPassword().isEmpty()) {
 			throw new MemberException("成员没有密码");
 		}
-		if (member.getMusername() == null || member.getMusername().isEmpty()) {
+		if (member.getUsername() == null || member.getUsername().isEmpty()) {
 			throw new MemberException("成员没有邮箱");
 		}
-		member.setMdate(DateFormat_Jisuan.createNowTime());
-		member.setMqa(infos.toString());
-		member.setMstatus("未认证");
-		member.setMpassword(AESLocker.Encrypt(member.getMpassword()));
+		member.setDate(DateFormat_Jisuan.createNowTime());
+		member.setQa(infos.toString());
+		member.setStatus("未认证");
+		member.setPassword(AESLocker.Encrypt(member.getPassword()));
 		super.insertEntry(member);
 		return 1;
 	}
@@ -48,15 +48,16 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
 		if (member == null) {
 			throw new MemberException("成员对象为空");
 		}
-		if (member.getMpassword() == null || member.getMpassword().isEmpty()) {
+		if (member.getPassword() == null || member.getPassword().isEmpty()) {
 			throw new MemberException("成员没有密码");
 		}
-		if (member.getMusername() == null || member.getMusername().isEmpty()) {
+		if (member.getUsername() == null || member.getUsername().isEmpty()) {
 			throw new MemberException("成员没有邮箱");
 		}
 
-		List<Member> list = super.selectEntryByHQL("from Member where musername = '"
-				+ member.getMusername() + "'");
+		List<Member> list = super
+				.selectEntryByHQL("from Member where username = '"
+						+ member.getUsername() + "'");
 
 		return list.size() > 0 ? list.get(0) : null;
 	}

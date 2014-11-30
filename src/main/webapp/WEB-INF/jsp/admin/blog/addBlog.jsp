@@ -1,11 +1,15 @@
+<%@page import="org.jichuang.hope6537.blog.model.Blog"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="org.jichuang.hope6537.base.model.Member"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	Member member = (Member) session.getAttribute("loginMember");
+	Blog editBlog = (Blog) request.getAttribute("editBlog");
 	if (member == null) {
 		response.sendRedirect("../page/login.hopedo");
 	}
@@ -46,7 +50,8 @@
 								<span>动作</span> <i class="icon-angle-down"></i>
 							</button>
 							<ul class="dropdown-menu pull-right" role="menu">
-								<li><a href="blog/addBlog.hopedo"><i class="icon-edit"></i>添加新博客</a></li>
+								<li><a href="blog/toAddBlog.hopedo"><i
+										class="icon-edit"></i>添加新博客</a></li>
 								<li><a href="blog/refresh.hopedo"><i
 										class="icon-refresh"></i>刷新博客信息</a></li>
 							</ul>
@@ -61,9 +66,7 @@
 			<!-- 页面内容头结束 -->
 			<!-- 页面正文-->
 			<div class="row">
-				<div class="col-md-12">
-
-
+				<div class="col-md-12" id="addArea">
 					<div class="portlet box blue">
 						<div class="portlet-title">
 							<div class="caption">
@@ -75,18 +78,19 @@
 							</div>
 						</div>
 						<div class="portlet-body">
-							<form role="form" action="blog/addblog.hopedo" method="post"
+							<form action="blog/insertBlog.hopedo" method="post"
 								id="addBlogForm">
+								<span hidden="hidden" id="isEdit"><%=editBlog == null ? 0 : 1%></span>
 								<div class="form-body">
 									<div class="form-group">
 										<label>博客标题</label> <input type="text"
-											class="form-control input-lg" name="blogtitle"
+											class="form-control input-lg" name="title" id="title"
 											placeholder="输入新文章的标题...">
 									</div>
 									<div class="form-group">
 										<label>文章内容&nbsp;<small>可以从Word文档中复制哦！</small></label>
-										<textarea class="ckeditor form-control" name="blogcont"
-											id="blogcont" rows="200" cols="50"></textarea>
+										<textarea class="ckeditor form-control" name="content"
+											id="content" rows="200" cols="50"></textarea>
 									</div>
 									<div class="form-group">
 										<label>插入图片 <small>上传后使用链接到编辑器提交链接来显示图片</small></label>
@@ -107,12 +111,12 @@
 									</div>
 									<div class="form-group">
 										<label>文章标签 <small>以分号为分割</small></label> <input type="text"
-											class="form-control input-lg" name="blogtags"
+											class="form-control input-lg" name="tags" id="tags"
 											placeholder="输入新文章的标签...">
 									</div>
 									<div class="form-group">
 										<label>选择文章种类</label> <select class="form-control input-lg"
-											name="blogtype">
+											id="type" name="type">
 											<option value="原创资料">原创资料</option>
 											<option value="转载资料">转载资料</option>
 											<option value="体会心得">体会心得</option>
@@ -123,6 +127,90 @@
 									<button type="submit" class="btn btn-block green">提交新文章</button>
 								</div>
 							</form>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-12" id="updateArea">
+					<div class="portlet box red">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="icon-globe"></i>Edit Exist Blog
+							</div>
+							<div class="tools">
+								<a href="javascript:;" class="reload"></a> <a
+									href="javascript:;" class="remove"></a>
+							</div>
+						</div>
+						<div class="portlet-body">
+
+							<!-- 两个编辑器的分界线 -->
+							<form id="updateBlogForm">
+								
+									
+									
+								<div class="form-body">
+							 <span hidden="hidden"
+									id="isEdit"><%=editBlog == null ? 0 : 1%></span>
+									<%
+										if (editBlog != null) {
+									%>
+									<input type="hidden" name="blogId" id = "_blogId" value = "<%=editBlog.getBlogId() %>"/>
+									
+									<div class="form-group">
+										<label>博客标题</label> <input type="text"
+											class="form-control input-lg" name="title" id="_title"
+											value="<%=editBlog.getTitle()%>" placeholder="输入新文章的标题...">
+									</div>
+									<div class="form-group">
+										<label>文章内容&nbsp;<small>可以从Word文档中复制哦！</small></label>
+										<textarea class="ckeditor form-control" name="content"
+											id="_content" rows="200" cols="50"><%=editBlog.getContent()%></textarea>
+									</div>
+									<div class="form-group">
+										<label>插入图片 <small>上传后使用链接到编辑器提交链接来显示图片</small></label>
+										<div class="confirm-group">
+											<ul class="breadcrumb">
+												<li>文件名 <span class="divider">:</span>
+													http://www.baidu.com/test.jpg <a href="javascript:;">[插入]</a><br />
+											</ul>
+										</div>
+									</div>
+									<div class="form-group" style="margin-bottom: 87px;">
+										<label class="col-md-3 control-label">上传图片<br />
+											<button class="btn btn-primary">插入图片</button></label>
+										<div class="col-md-9">
+											<input type="file">
+											<p class="help-block">在本地选择要上传的图片，点击提交图片按钮</p>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>文章标签 <small>以分号为分割</small></label> <input type="text"
+											class="form-control input-lg" name="tags" id="_tags"
+											value="<%=editBlog.getInfo()
+						.substring(1, editBlog.getInfo().length() - 1)
+						.split(",")[0].split("=")[1]%>"
+											placeholder="输入新文章的标签...">
+									</div>
+									<div class="form-group">
+										<label>选择文章种类</label> <select class="form-control input-lg"
+											id="_type" name="type">
+											<option value="原创资料">原创资料</option>
+											<option value="转载资料">转载资料</option>
+											<option value="体会心得">体会心得</option>
+										</select>
+									</div>
+									<%
+										}
+									%>
+								</div>
+								<div class="form-actions right">
+									<button type="button" id="updateBlogButton" class="btn btn-block green">提交修改</button>
+								</div>
+							</form>
+
 						</div>
 					</div>
 
@@ -142,9 +230,19 @@
 	src="admin_assets/scripts/blog/addblog.js"></script>
 <script type="text/javascript">
 	$(document).on("ready", function() {
-		addBlog.init();
 		$("#blogLi").attr("class", "active");
+		var isEdit = $("#isEdit").text();
+		console.log(isEdit);
+		$(".page-title").text("");
+		if (isEdit == "0") {
+			$("#updateArea").hide();
+			$(".page-title").append("创建新博客 <small>Add New Blog</small>");
+		} else {
+			$("#addArea").hide();
+			$(".page-title").append("编辑现有博客 <small>Edit Exist Blog</small>");
+		}
 	});
 </script>
 <!-- Js核心脚本结束 -->
 </html>
+

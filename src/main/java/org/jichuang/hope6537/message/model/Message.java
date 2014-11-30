@@ -1,6 +1,16 @@
 package org.jichuang.hope6537.message.model;
 
+import java.io.Serializable;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.jichuang.hope6537.base.model.Member;
 
@@ -24,115 +34,114 @@ import org.jichuang.hope6537.base.model.Member;
  * @version 1.0
  * @see
  */
-public class Message {
-
-	private Integer mesid;
-
-	private String mestitle;
-
-	private String mesdes;
-
-	private String mesdate;
-
-	private String messtatus;
-
-	private String mesinfo;
+@Entity
+@Table(name = "Message")
+public class Message implements Serializable{
+	/**
+	 * <p>Describe: </p>
+	 * <p>Using: </p>
+	 */
+	private static final long serialVersionUID = 1505144897024599779L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "mesId", length = 50)
+	private Integer mesId;
+	@Column(name = "title", length = 50)
+	private String title;
+	@Column(name = "des", length = 500)
+	private String des;
+	@Column(name = "date", length = 50)
+	private String date;
+	@Column(name = "status", length = 50)
+	private String status;
+	@Column(name = "info", length = 500)
+	private String info;
 
 	/**
 	 * <p>Describe: </p>
 	 * <p>Using: </p>
 	 */
-	private Set<Member> memberFrom;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "messageFromOtherId", targetEntity = Member.class)
+	private Set<Member> memberFromId;
 
 	/**
 	 * <p>Describe: </p>
 	 * <p>Using: </p>
 	 */
-	private Set<Member> memberTo;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "messageToOtherId", targetEntity = Member.class)
+	private Set<Member> memberToId;
 
-	public Set<Member> getMemberFrom() {
-		return memberFrom;
+	public Integer getMesId() {
+		return mesId;
 	}
 
-	public void setMemberFrom(Set<Member> memberFrom) {
-		this.memberFrom = memberFrom;
+	public void setMesId(Integer mesId) {
+		this.mesId = mesId;
 	}
 
-	public Set<Member> getMemberTo() {
-		return memberTo;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setMemberTo(Set<Member> memberTo) {
-		this.memberTo = memberTo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public Integer getMesid() {
-		return mesid;
+	public String getDes() {
+		return des;
 	}
 
-	public void setMesid(Integer mesid) {
-		this.mesid = mesid;
+	public void setDes(String des) {
+		this.des = des;
 	}
 
-	public String getMestitle() {
-		return mestitle;
+	public String getDate() {
+		return date;
 	}
 
-	public void setMestitle(String mestitle) {
-		this.mestitle = mestitle;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
-	public String getMesdes() {
-		return mesdes;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setMesdes(String mesdes) {
-		this.mesdes = mesdes;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public String getMesdate() {
-		return mesdate;
+	public String getInfo() {
+		return info;
 	}
 
-	public void setMesdate(String mesdate) {
-		this.mesdate = mesdate;
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
-	public String getMesstatus() {
-		return messtatus;
+	public Set<Member> getMemberFromId() {
+		return memberFromId;
 	}
 
-	public void setMesstatus(String messtatus) {
-		this.messtatus = messtatus;
+	public void setMemberFromId(Set<Member> memberFromId) {
+		this.memberFromId = memberFromId;
 	}
 
-	public String getMesinfo() {
-		return mesinfo;
+	public Set<Member> getMemberToId() {
+		return memberToId;
 	}
 
-	public void setMesinfo(String mesinfo) {
-		this.mesinfo = mesinfo;
+	public void setMemberToId(Set<Member> memberToId) {
+		this.memberToId = memberToId;
 	}
 
 	@Override
 	public String toString() {
-		return "Message [mesid=" + mesid + ", mestitle=" + mestitle
-				+ ", mesdes=" + mesdes + ", mesdate=" + mesdate
-				+ ", messtatus=" + messtatus + ", mesinfo=" + mesinfo + "]";
+		return "Message [mesId=" + mesId + ", title=" + title + ", des=" + des
+				+ ", date=" + date + ", status=" + status + ", info=" + info
+				+ ", memberFromId=" + memberFromId + ", memberToId="
+				+ memberToId + "]";
 	}
 
-	public Message(Integer mesid, String mestitle, String mesdes,
-			String mesdate, String messtatus, String mesinfo) {
-		super();
-		this.mesid = mesid;
-		this.mestitle = mestitle;
-		this.mesdes = mesdes;
-		this.mesdate = mesdate;
-		this.messtatus = messtatus;
-		this.mesinfo = mesinfo;
-	}
-
-	public Message() {
-		// TODO Auto-generated constructor stub
-	}
+	
 }

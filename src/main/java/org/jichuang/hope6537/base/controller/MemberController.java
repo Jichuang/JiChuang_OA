@@ -55,7 +55,7 @@ public class MemberController {
 		logger.info(member.toString());
 		int res = memberService.insertRegisterService(member, infos);
 		request.setAttribute("insertRes", res);
-		logger.info(member.getMname() + "已成功注册");
+		logger.info(member.getName() + "已成功注册");
 		return PATH + "login";
 	}
 

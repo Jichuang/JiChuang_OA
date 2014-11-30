@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <!-- BEGIN SIDEBAR -->
 <div class="page-sidebar navbar-collapse collapse">
 	<!-- BEGIN SIDEBAR MENU -->
@@ -61,7 +63,7 @@
 				<li><a href="blog/conf.hopedo"> <i class="icon-table"></i>
 						查看我的博客
 				</a></li>
-				<li><a href="blog/addBlog.hopedo"> <i class="icon-edit"></i>
+				<li><a href="blog/toAddBlog.hopedo"> <i class="icon-edit"></i>
 						创建新博客
 				</a></li>
 			</ul></li>

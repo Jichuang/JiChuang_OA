@@ -1,17 +1,18 @@
 <%@page import="org.jichuang.hope6537.blog.model.Blog"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="org.jichuang.hope6537.base.model.Member"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-	+ request.getServerName() + ":" + request.getServerPort()
-	+ path + "/";
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 	Member member = (Member) session.getAttribute("loginMember");
 	if (member == null) {
 		response.sendRedirect("../page/login.hopedo");
 	}
-
-	List<Blog> blogList = (List<Blog>) request.getAttribute("blogList");
+	/* List<Blog> blogList = (List<Blog>) request.getAttribute("blogList"); */
 %>
 <!DOCTYPE html>
 <html>
@@ -19,10 +20,7 @@
 <base href="<%=basePath%>">
 <!-- head的include区 -->
 <jsp:include page="../template/template_page_head.jsp" flush="true" />
-<link rel="stylesheet" type="text/css"
-	href="admin_assets/plugins/select2/select2_metro.css" />
-<link rel="stylesheet"
-	href="admin_assets/plugins/data-tables/DT_bootstrap.css" />
+
 <title>博客维护</title>
 <!-- head的include区 结束  -->
 </head>
@@ -53,8 +51,9 @@
 								<span>动作</span> <i class="icon-angle-down"></i>
 							</button>
 							<ul class="dropdown-menu pull-right" role="menu">
-								<li><a href="blog/addBlog.hopedo"><i class="icon-edit"></i>添加新博客</a></li>
-								<li><a href="blog/refresh.hopedo"><i
+								<li><a href="blog/toAddBlog.hopedo"><i
+										class="icon-edit"></i>添加新博客</a></li>
+								<li><a href="javascript:;" id="reload"><i
 										class="icon-refresh"></i>刷新博客信息</a></li>
 							</ul>
 						</li>
@@ -77,13 +76,12 @@
 								<i class="icon-globe"></i>Blog Configration
 							</div>
 							<div class="tools">
-								<a href="javascript:;" class="reload"></a> <a
-									href="javascript:;" class="remove"></a>
+								<a href="javascript:;" class="remove"></a>
 							</div>
 						</div>
 						<div class="portlet-body">
 							<table class="table table-striped table-bordered table-hover"
-								id="sample_1">
+								id="datatable">
 								<thead>
 									<tr>
 										<th>博客标题</th>
@@ -95,32 +93,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<%
-										if (blogList != null) {
-																																														for (Blog blog : blogList) {
-									%>
-									<tr>
-										<td><%=blog.getBlogtitle()%></td>
-										<td><a href="blog/<%=blog.getBlogid()%>/content.hopedo">点击进入博客</a></td>
-										<td><%=blog.getBlogdate()%></td>
-										<td><%=blog.getBlogstatus()%></td>
-										<td><button class="btn btn-xs blue" id="editBlog">
-												<i class="icon-edit"> <span
-													style="font-family: Microsoft Yahei;"> <span
-														hidden="hidden" class="infos"><%=blog.getBloginfo()%></span>
-														编辑博客
-												</span></i>
-											</button></td>
-										<td><button class="btn btn-xs red" id="deleteBlog">
-												<i class="icon-trash"> <span
-													style="font-family: Microsoft Yahei;">删除博客</span></i>
-											</button></td>
 
-									</tr>
-									<%
-										}
-																																													}
-									%>
 								</tbody>
 							</table>
 						</div>
@@ -129,6 +102,7 @@
 				</div>
 			</div>
 			<!-- 页面正文结束-->
+			<span id="tar"></span>
 		</div>
 		<!-- ======================== 页面结束处======================== -->
 	</div>
@@ -138,8 +112,11 @@
 </body>
 <!-- Js核心脚本 -->
 <%@include file="../template/template_page_javascript.jsp"%>
+
 <script type="text/javascript">
 	$(document).ready(function() {
+
+		$("#reload").trigger("click");
 		$("#blogLi").attr("class", "active");
 	});
 </script>
