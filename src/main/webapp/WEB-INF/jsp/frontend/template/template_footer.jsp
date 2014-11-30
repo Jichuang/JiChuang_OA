@@ -19,7 +19,7 @@
 				<address class="margin-bottom-40">
 					集创团队 JiChuang Organization <br /> <i class="icon-map-marker"></i>
 					长春市卫星路6543号综合楼D区 <br /> <i class="icon-envelope"></i> Email: <a
-						href="mailto:info@keenthemes.com">hope6537@qq.com</a>
+						href="mailto:hope6537@qq.com">hope6537@qq.com</a>
 				</address>
 				<!-- END CONTACTS -->
 
@@ -29,21 +29,18 @@
 				<h2>最新动态</h2>
 				<dl class="dl-horizontal f-twitter">
 					<dt>
-						<i class="icon-twitter"></i>
+						<i class="icon-weibo"></i>
 					</dt>
 					<dd>
-						<a href="#">@keenthemes</a> Imperdiet condimentum diam dolor lorem
-						sit consectetur adipiscing <span>3 min ago</span>
+						<a href="#">@JiChuang</a> 招新中~</span><span>5天之前</span>
 					</dd>
 				</dl>
 				<dl class="dl-horizontal f-twitter">
 					<dt>
-						<i class="icon-twitter"></i>
+						<i class="icon-weibo"></i>
 					</dt>
 					<dd>
-						<a href="#">@keenthemes</a> Sequat ipsum dolor onec eget orci
-						fermentum condimentum lorem sit consectetur adipiscing <span>8
-							min ago</span>
+						<a href="#">@JiChuang</a> 艾玛要期末考试了好怕<span>14天之前</span>
 					</dd>
 				</dl>
 				<!-- END TWITTER BLOCK -->

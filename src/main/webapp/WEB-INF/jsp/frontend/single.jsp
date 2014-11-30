@@ -10,6 +10,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
+<title>工程介绍 | 集创团队</title>
 <jsp:include page="template/template_head.jsp" />
 <link href="frontend_assets/css/pages/portfolio.css" rel="stylesheet"
 	type="text/css" />
@@ -27,13 +28,14 @@
 		<div class="row breadcrumbs margin-bottom-40">
 			<div class="container">
 				<div class="col-md-4 col-sm-4">
-					<h1>Portfolio Item</h1>
+					<h1>
+						<span id="title">团队博客</span>
+					</h1>
 				</div>
 				<div class="col-md-8 col-sm-8">
 					<ul class="pull-right breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="">Pages</a></li>
-						<li class="active">Portfolio Item</li>
+						<li><a href="index.html">集创主页</a></li>
+						<li class="active">团队博客</li>
 					</ul>
 				</div>
 			</div>

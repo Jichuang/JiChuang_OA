@@ -116,6 +116,30 @@ var BlogTable = function() {
 					}
 				})
 			});
+			
+			$("#datatable").on("click", "a.deploy", function() {
+				var $this = $(this);
+				var id = ($this[0].id).split("deploy")[1];
+				console.log("id="+id);
+				$.ajax({
+					url : "blog/" + id + "/deployBlog.hopedo",
+					dataType : "json",
+					type : "PUT",
+					async : false,
+					success : function(data) {
+						var status = data.returnState;
+						if (status == "OK") {
+							toast.success(data.returnMsg);
+							$("#reload").trigger("click");
+						} else {
+							console.log("error");
+							toast.error(data.returnMsg);
+						}
+
+					}
+				})
+			});
+			
 
 			$("#updateBlogButton").click(function() {
 
@@ -182,13 +206,16 @@ var BlogTable = function() {
 														var line6 = '<a class="edit" href="blog/'
 																+ list[i].blogId
 																+ '/toUpdateBlog.hopedo"><button class="btn btn-xs blue" id="editBlog"> <i class="icon-edit"> <span style="font-family: Microsoft Yahei;"> 编辑博客 </span></i> </button></a>'
+														var line6_1 = '<a class="deploy" id="deploy'
+																+ list[i].blogId
+																+ '"><button class="btn btn-xs green" id="changeBlog"> <i class="icon-ok"> <span style="font-family: Microsoft Yahei;"> 发布博客 </span></i> </button></a>'
 														var line7 = '<a class="delete" id="delete'
 																+ list[i].blogId
 																+ '"><button class="btn btn-xs red" id="deleteBlog"> <i class="icon-trash"> <span style="font-family: Microsoft Yahei;">删除博客</span></i> </button></a>';
 														table.fnAddData([ line1,
 																line2, line3,
 																line4, line5,
-																line6, line7 ]);
+																line6+line6_1, line7 ]);
 													}
 												} else {
 													toast.error(data.returnMsg);

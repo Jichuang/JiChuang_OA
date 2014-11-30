@@ -43,8 +43,8 @@ public class Role implements Serializable {
 	private String des;
 	@Column(name = "status", length = 50)
 	private String status;
-	/*@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "postId", targetEntity = Post.class)
-	private Set<Post> postId;*/
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "roleId", targetEntity = Post.class)
+	private Set<Post> postId;
 
 	// private Set<Operate> operateId;
 
@@ -72,10 +72,12 @@ public class Role implements Serializable {
 		this.status = status;
 	}
 
-	/*
-	 * public Set<Post> getPostId() { return postId; }
-	 * 
-	 * public void setPostId(Set<Post> postId) { this.postId = postId; }
-	 */
+	public Set<Post> getPostId() {
+		return postId;
+	}
+
+	public void setPostId(Set<Post> postId) {
+		this.postId = postId;
+	}
 
 }

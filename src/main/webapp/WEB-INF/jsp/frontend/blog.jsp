@@ -3,14 +3,15 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-	+ request.getServerName() + ":" + request.getServerPort()
-	+ path + "/";
-	List<Blog> blogList = (List<Blog>)request.getAttribute("blogList");
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	List<Blog> blogList = (List<Blog>) request.getAttribute("blogList");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>">
+<title>团队博客 | 集创团队</title>
 <jsp:include page="template/template_head.jsp" />
 <link rel="stylesheet" type="text/css"
 	href="frontend_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css" />
@@ -50,6 +51,9 @@
 					<!-- 博客显示开始 -->
 					<%
 						for (Blog blog : blogList) {
+							if (!blog.getStatus().equals("正常")) {
+								continue;
+							}
 					%>
 					<div class="row">
 						<div class="col-md-4 col-sm-4">
@@ -81,22 +85,26 @@
 						</div>
 						<div class="col-md-8 col-sm-8">
 							<h2>
-								<a href="blog_item.html"><%=blog.getTitle()%></a>
+								<a href="frontpage/<%=blog.getBlogId()%>/blogitem.hopedo"><%=blog.getTitle()%></a>
 							</h2>
 							<ul class="blog-info">
 								<li><i class="icon-calendar"></i> <%=blog.getDate()%></li>
 								<li><i class="icon-comments"></i> <%=blog.getInfo()%></li>
-								<li><i class="icon-tags"></i><%=blog.getMemberId().getName() + "," + blog.getMemberId().getUsername()%></li>
+								<li><i class="icon-tags"></i><%=blog.getMemberId().getName() + ","
+						+ blog.getMemberId().getUsername()%></li>
 							</ul>
 							<%
-								String cont = blog.getContent().replaceAll("<[^>]*>","");
-								System.out.println(cont.length());
-								cont = cont.substring(0,cont.length() <= 200 ? cont.length() : 200);
+								String cont = blog.getContent().replaceAll("<[^>]*>", "");
+									System.out.println(cont.length());
+									cont = cont.substring(0, cont.length() <= 200 ? cont.length()
+											: 200);
 							%>
 							<p><%=cont%>......
 							</p>
-							<a class="more" href="blog_item.html">点击阅读全文 <i
-								class="icon-angle-right"></i></a>
+							<a class="more"
+								href="frontpage/<%=blog.getBlogId()%>/blogitem.hopedo">点击阅读全文
+								<i class="icon-angle-right"></i>
+							</a>
 						</div>
 					</div>
 					<hr class="blog-post-sep">
@@ -118,66 +126,6 @@
 				</div>
 				<!-- 博客显示结束 -->
 				<!-- 博客编辑开始 -->
-				<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40"
-					id="blogEdit">
-					<div class="row">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">写新文章</h3>
-							</div>
-							<div class="panel-body">
-								<form role="form" action="blog/addblog.hopedo" method="post">
-									<div class="form-body">
-										<div class="form-group">
-											<label>博客标题</label> <input type="text"
-												class="form-control input-lg" name="blogtitle"
-												placeholder="输入新文章的标题...">
-										</div>
-										<div class="form-group">
-											<label>文章内容&nbsp;<small>可以从Word文档中复制哦！</small></label>
-											<textarea class="ckeditor form-control" name="blogcont"
-												id="blogcont" rows="200" cols="50"></textarea>
-										</div>
-										<div class="form-group">
-											<label>插入图片 <small>上传后使用链接到编辑器提交链接来显示图片</small></label>
-											<div class="confirm-group">
-												<ul class="breadcrumb">
-													<li>文件名 <span class="divider">:</span>
-														http://www.baidu.com/test.jpg <a href="javascript:;">[插入]</a><br />
-												</ul>
-											</div>
-										</div>
-										<div class="form-group" style="margin-bottom: 87px;">
-											<label class="col-md-3 control-label">上传图片<br />
-												<button class="btn btn-primary">插入图片</button></label>
-											<div class="col-md-9">
-												<input type="file">
-												<p class="help-block">在本地选择要上传的图片，点击提交图片按钮</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label>文章标签 <small>以分号为分割</small></label> <input type="text"
-												class="form-control input-lg" name="blogtags"
-												placeholder="输入新文章的标签...">
-										</div>
-										<div class="form-group">
-											<label>选择文章种类</label> <select class="form-control input-lg"
-												name="blogtype">
-												<option value="原创资料">原创资料</option>
-												<option value="转载资料">转载资料</option>
-												<option value="体会心得">体会心得</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-actions right">
-										<button type="submit" class="btn btn-block green">提交新文章</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-
 				<jsp:include page="template/template_blog_right.jsp" />
 				<!-- END BEGIN BLOG -->
 			</div>
@@ -192,7 +140,7 @@
 <jsp:include page="template/template_script.jsp" />
 <script type="text/javascript"
 	src="frontend_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).on("ready", function() {
 		$("#blogShow").show();
 		$("#blogEdit").hide();
@@ -222,5 +170,5 @@
 				}
 
 			});
-</script>
+</script> -->
 </html>

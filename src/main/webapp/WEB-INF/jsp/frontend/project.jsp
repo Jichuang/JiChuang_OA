@@ -11,6 +11,7 @@
 <head>
 <link href="frontend_assets/plugins/fancybox/source/jquery.fancybox.css"
 	rel="stylesheet" />
+<title>工程展示</title>
 <base href="<%=basePath%>">
 <jsp:include page="template/template_head.jsp" />
 </head>
