@@ -130,6 +130,12 @@ public class BlogController {
 
 	}
 
+    /**
+     * 发布博客按钮
+     * @param blogId
+     * @param request
+     * @return
+     */
 	@RequestMapping(value = "/{blogId}/deployBlog", method = RequestMethod.PUT)
 	@ResponseBody
 	public AjaxResponse deployBlog(@PathVariable String blogId,
