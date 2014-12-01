@@ -9,6 +9,7 @@ import org.jichuang.hope6537.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -62,4 +63,15 @@ public class FrontPageController {
 		return PATH + "/admin";
 	}
 
+	@RequestMapping("/{blogId}/blogitem")
+	public String toBlogItem(@PathVariable String blogId,
+			HttpServletRequest request) {
+		if (blogId == null) {
+			throw new NullPointerException("博客id为空");
+		}
+		Blog blog = blogService.selectEntryFromPrimaryKey(Integer
+				.parseInt(blogId));
+		request.setAttribute("blog", blog);
+		return PATH + "/blogitem";
+	}
 }

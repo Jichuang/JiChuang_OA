@@ -87,7 +87,8 @@ public class BlogController {
 					.parseInt(blogId));
 			Member member = (Member) request.getSession().getAttribute(
 					"loginMember");
-			if (!editBlog.getMemberId().getMemberId().equals(member.getMemberId())) {
+			if (!editBlog.getMemberId().getMemberId()
+					.equals(member.getMemberId())) {
 				response.sendRedirect("../conf.hopedo?selectRes=0");
 			}
 			request.setAttribute("editBlog", editBlog);
@@ -125,6 +126,26 @@ public class BlogController {
 			infos.put("博客类型", blogType);
 			int res = blogService.updateBlog(blog, infos);
 			return AjaxResponse.getInstanceByResult(res == 1);
+		}
+
+	}
+
+	@RequestMapping(value = "/{blogId}/deployBlog", method = RequestMethod.PUT)
+	@ResponseBody
+	public AjaxResponse deployBlog(@PathVariable String blogId,
+			HttpServletRequest request) {
+		Logger.getLogger(getClass()).info(request.getParameter("blogId"));
+		if (blogId == null) {
+			return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
+		} else {
+			Logger.getLogger(getClass()).info("将要发布id为" + blogId + "的博客");
+			Blog blog = blogService.selectEntryFromPrimaryKey(Integer
+					.parseInt(blogId));
+			blog.setStatus("正常");
+			int res = blogService.updateEntryByObject(blog);
+			AjaxResponse ajax = AjaxResponse.getInstanceByResult(res == 1);
+			ajax.setReturnMsg(res == 1 ? "博客发布成功" : "博客发布失败");
+			return ajax;
 		}
 
 	}

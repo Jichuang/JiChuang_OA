@@ -10,6 +10,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
+<title>联系我们 | 集创团队</title>
 <jsp:include page="template/template_head.jsp" />
 </head>
 <body>

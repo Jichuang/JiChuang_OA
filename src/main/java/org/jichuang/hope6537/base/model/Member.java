@@ -73,8 +73,6 @@ public class Member implements Serializable {
 	@Column(name = "info", length = 1000)
 	private String info;
 
-	
-
 	/**
 	 * <p>Describe: 团队成员——项目组 多对多</p>
 	 * <p>Using: </p>
@@ -141,14 +139,10 @@ public class Member implements Serializable {
 	@JoinTable(name = "member_notification", joinColumns = { @JoinColumn(name = "memberToId") }, inverseJoinColumns = { @JoinColumn(name = "notificationId") })
 	private Set<Notification> notificationId;
 
-	/*
-	 * @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.MERGE,
-	 * CascadeType.PERSIST })
-	 * 
-	 * @JoinTable(name = "member_post", joinColumns = { @JoinColumn(name =
-	 * "memberId") }, inverseJoinColumns = { @JoinColumn(name = "postId") })
-	 * private Set<Post> postId;
-	 */
+	@ManyToMany(targetEntity = Post.class, cascade = { CascadeType.MERGE,
+			CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(name = "member_post", joinColumns = { @JoinColumn(name = "memberId") }, inverseJoinColumns = { @JoinColumn(name = "postId") })
+	private Set<Post> postId;
 
 	/**
 	 * <p>Describe: 解密</p>
