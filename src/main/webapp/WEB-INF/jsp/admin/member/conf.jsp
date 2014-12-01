@@ -13,6 +13,7 @@
         response.sendRedirect("../page/login.hopedo");
     }
     Map<String, List<String>> memberInfos = InfoUtils.getInfoMap(member.getQa());
+
 %>
 
 <!DOCTYPE html>
