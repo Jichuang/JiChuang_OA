@@ -152,7 +152,7 @@ var BlogTable = function() {
 					title : _title,
 					content : _content,
 					tags : _tags,
-					type : _type,
+					type : _type
 				};
 				$.ajax({
 					url : "blog.hopedo",
