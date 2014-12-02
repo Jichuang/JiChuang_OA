@@ -14,13 +14,12 @@ import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.utils.AESLocker;
 import org.jichuang.hope6537.utils.AjaxResponse;
 import org.jichuang.hope6537.utils.DateFormat_Jisuan;
+import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/member")
@@ -103,6 +102,27 @@ public class MemberController {
                 request.setAttribute("paramMember", paramMember);
             }
             return PATH + "/member/conf";
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{memberId}")
+    @ResponseBody
+    public AjaxResponse refresh(@PathVariable String memberId) {
+        Logger.getLogger(getClass()).info("进入用户刷新");
+        if (memberId == null) {
+            logger.error("没有ID");
+            return new AjaxResponse(ReturnState.ERROR, "没有匹配的ID");
+        } else {
+            logger.info("即将获取ID为" + memberId + "的用户");
+            Member ajaxmember = memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId));
+            if (ajaxmember == null) {
+                return new AjaxResponse(ReturnState.ERROR, "没有匹配的用户");
+            } else {
+                AjaxResponse ajaxResponse = AjaxResponse.getInstanceByResult(true);
+                ajaxResponse.addAttribute("ajaxMember", ajaxmember);
+                ajaxResponse.setReturnMsg("用户数据获取成功");
+                return ajaxResponse;
+            }
         }
     }
 

@@ -94,20 +94,20 @@
 <div class="col-md-9">
 <div class="row">
     <div class="col-md-8 profile-info">
-        <h1>赵鹏
-            <small>Hope6537</small>
+        <h1><span id="name"
+                ></span>
+            <small><span id="email"></span></small>
         </h1>
         <p>
-            以Java开发为主 具有3年Java开发经验 擅长Web、Android应用开发
-            研究基于Hadoop的数据分析
+            <span id="shortInfo"></span>
         </p>
 
-        <p><a href="#">www.hope6537.org</a></p>
+        <p><a href="#"><span id="website"></span></a></p>
         <ul class="list-inline">
-            <li><i class="icon-map-marker"></i> 中国</li>
-            <li><i class="icon-calendar"></i> 1994-08-24</li>
-            <li><i class="icon-briefcase"></i> Java Engineer</li>
-            <li><i class="icon-star"></i> Founder</li>
+            <li><i class="icon-map-marker"></i> <span id="country"></span></li>
+            <li><i class="icon-calendar"></i> <span id="birth"></span></li>
+            <li><i class="icon-briefcase"></i> <span id="postSmall"></span></li>
+            <li><i class="icon-star"></i> <span id="roleSmall"></span></li>
         </ul>
     </div>
     <!--end col-md-8-->
@@ -123,15 +123,15 @@
                 <ul class="list-unstyled">
                     <li>
                         <span class="sale-info">目前职位 </span>
-                        <span class="sale-num">Java Engineer</span>
+                        <span class="sale-num" id="post"></span>
                     </li>
                     <li>
                         <span class="sale-info">所属组别  </span>
-                        <span class="sale-num">Administrator</span>
+                        <span class="sale-num" id="role"></span>
                     </li>
                     <li>
                         <span class="sale-info">账户状态</span>
-                        <span class="sale-num">正常</span>
+                        <span class="sale-num" id="status"></span>
                     </li>
                     <li>
                         <a class="btn btn-block red" style="margin-top: 20px;" href="member/logout.hopedo"><i
@@ -152,7 +152,7 @@
 <div class="tab-content">
 <div class="tab-pane active" id="tab_1_11">
     <div class="portlet-body">
-        <table class="table table-striped table-bordered table-advance table-hover">
+        <table class="table table-striped table-bordered table-advance table-hover" id="messageTable">
             <thead>
             <tr>
                 <th><i class="icon-briefcase"></i> 私信标题</th>
@@ -176,7 +176,7 @@
 <div class="tab-pane" id="tab_1_22">
 <div class="tab-pane active" id="tab_1_1_1">
 <div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
-<ul class="feeds">
+<ul class="feeds" id="taskTable">
 <li>
     <div class="col1">
         <div class="cont">
@@ -187,11 +187,8 @@
             </div>
             <div class="cont-col2">
                 <div class="desc">
-                    You have 4 pending tasks.
-                                                               <span class="label label-danger label-sm">
-                                                               Take action
-                                                               <i class="icon-share-alt"></i>
-                                                               </span>
+                    You have 4 pending tasks.<span class="label label-danger label-sm"> Take action<i
+                        class="icon-share-alt"></i></span>
                 </div>
             </div>
         </div>
@@ -595,21 +592,21 @@
                     <form role="form" action="#">
                         <div class="form-group">
                             <label class="control-label">姓名</label>
-                            <input type="text" value="赵鹏" class="form-control"/>
+                            <input type="text" value="赵鹏" id="updateName" class="form-control"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label">电话号码</label>
-                            <input type="text" value="18686602599" class="form-control"/>
+                            <input type="text" value="18686602599" id="updatePhoneNumber" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">性别</label>
+                            <label class="control-label" id="updateSex">性别</label>
                             <select class="form-control">
                                 <option value="男">男</option>
                                 <option value="女">女</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">简短介绍
+                            <label class="control-label" id="updateShortInfo">简短介绍
                                 <small>50字左右</small>
                             </label>
                             <textarea class="form-control" rows="3">
@@ -617,11 +614,11 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">个人简介</label>
-                            <textarea class="ckeditor form-control" name="content" id="content" rows="200" cols="50"
+                            <textarea class="ckeditor form-control" name="content" id="updateInfo" rows="200" cols="50"
                                       style="visibility: hidden; display: none;"></textarea>
                         </div>
                         <div class="margiv-top-10">
-                            <a href="#" class="btn green">保存更改</a>
+                            <a href="javascript:;" class="btn green">保存更改</a>
                         </div>
                     </form>
                 </div>
@@ -665,15 +662,15 @@
                     <form action="#">
                         <div class="form-group">
                             <label class="control-label">当前账户密码</label>
-                            <input type="password" class="form-control"/>
+                            <input type="password" class="form-control" id="nowPassword"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label">新密码</label>
-                            <input type="password" class="form-control"/>
+                            <input type="password" class="form-control" id="newPassword"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label">重新输入新密码</label>
-                            <input type="password" class="form-control"/>
+                            <input type="password" class="form-control" id="confrimPassword"/>
                         </div>
                         <div class="margin-top-10">
                             <a href="#" class="btn green">更改账户密码</a>
@@ -752,7 +749,7 @@
         </div>
     </div>
     <!--end add-portfolio-->
-    <div class="row portfolio-block">
+    <div class="row portfolio-block" id="teamTable">
         <div class="col-md-5">
             <div class="portfolio-text">
                 <img src="admin_assets/img/profile/portfolio/logo_metronic.jpg" alt=""/>
@@ -1289,10 +1286,7 @@
 </div>
 </div>
 <!-- END PAGE CONTENT-->
-
-
 <!-- 页面正文结束-->
-<span id="tar"></span>
 </div>
 <!-- ======================== 页面结束处======================== -->
 </div>
