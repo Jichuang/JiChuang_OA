@@ -7,14 +7,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.MemberService;
-import org.jichuang.hope6537.utils.AESLocker;
-import org.jichuang.hope6537.utils.AjaxResponse;
-import org.jichuang.hope6537.utils.DateFormat_Jisuan;
-import org.jichuang.hope6537.utils.ReturnState;
+import org.jichuang.hope6537.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -50,12 +50,12 @@ public class MemberController {
         String sex = (String) request.getParameter("sex");
         String phonenumber = (String) request.getParameter("phone");
         String country = (String) request.getParameter("country");
-        Map<String, String> infos = new HashMap<String, String>();
-        infos.put("phonenumber", phonenumber);
-        infos.put("sex", sex);
-        infos.put("country", country);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("phonenumber", phonenumber);
+        jsonObject.put("sex", sex);
+        jsonObject.put("country", country);
         logger.info(member.toString());
-        int res = memberService.insertRegisterService(member, infos);
+        int res = memberService.insertRegisterService(member, jsonObject);
         request.setAttribute("insertRes", res);
         logger.info(member.getName() + "已成功注册");
         return PATH + "login";
@@ -95,12 +95,7 @@ public class MemberController {
             response.sendRedirect("../page/login.hopedo");
             return null;
         } else {
-            if (memberId.equals("-1") || memberId == null) {
-                request.setAttribute("paramMember", member);
-            } else {
-                Member paramMember = memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId));
-                request.setAttribute("paramMember", paramMember);
-            }
+            request.setAttribute("memberId", memberId);
             return PATH + "/member/conf";
         }
     }
@@ -114,14 +109,36 @@ public class MemberController {
             return new AjaxResponse(ReturnState.ERROR, "没有匹配的ID");
         } else {
             logger.info("即将获取ID为" + memberId + "的用户");
-            Member ajaxmember = memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId));
-            if (ajaxmember == null) {
+            Member ajaxMember = memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId));
+            if (ajaxMember == null) {
                 return new AjaxResponse(ReturnState.ERROR, "没有匹配的用户");
             } else {
                 AjaxResponse ajaxResponse = AjaxResponse.getInstanceByResult(true);
-                ajaxResponse.addAttribute("ajaxMember", ajaxmember);
+                ajaxResponse.addAttribute("ajaxMember", ajaxMember);
+                ajaxResponse.addAttribute("ajaxInfos", ajaxMember.getQa());
+                logger.info(ajaxMember.getQa());
                 ajaxResponse.setReturnMsg("用户数据获取成功");
                 return ajaxResponse;
+            }
+        }
+    }
+
+    @RequestMapping(value = "/{memberId}", method = RequestMethod.PUT)
+    @ResponseBody
+    public AjaxResponse updateMember(@PathVariable String memberId, HttpServletRequest request) throws MemberException {
+        logger.info("进入更新用户数据用户");
+        if (memberId == null) {
+            logger.info("没有ID");
+            return new AjaxResponse(ReturnState.ERROR, "没有获取到ID");
+        } else {
+            logger.info("获取ID为" + memberId + "的用户");
+            Member member = memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId));
+            if (member == null) {
+                return new AjaxResponse(ReturnState.ERROR, "没有匹配的用户");
+            } else {
+                Map<String, String[]> map = request.getParameterMap();
+                int res = memberService.updateMember(member, map);
+                return AjaxResponse.getInstanceByResult(res == 1);
             }
         }
     }

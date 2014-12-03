@@ -26,7 +26,7 @@ var App = function () {
     };
 
     // To get the correct viewport width based on
-	// http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
+    // http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
     var _getViewPort = function () {
         var e = window, a = 'inner';
         if (!('innerWidth' in window)) {
@@ -46,23 +46,23 @@ var App = function () {
             isRTL = true;
         }
 
-        isIE8 = !! navigator.userAgent.match(/MSIE 8.0/);
-        isIE9 = !! navigator.userAgent.match(/MSIE 9.0/);
-        isIE10 = !! navigator.userAgent.match(/MSIE 10.0/);
+        isIE8 = !!navigator.userAgent.match(/MSIE 8.0/);
+        isIE9 = !!navigator.userAgent.match(/MSIE 9.0/);
+        isIE10 = !!navigator.userAgent.match(/MSIE 10.0/);
 
         if (isIE10) {
             jQuery('html').addClass('ie10'); // detect IE10 version
         }
-        
+
         if (isIE10 || isIE9 || isIE8) {
             jQuery('html').addClass('ie'); // detect IE10 version
         }
 
         /*
-		 * Virtual keyboards: Also, note that if you're using inputs in your
-		 * modal – iOS has a rendering bug which doesn't update the position of
-		 * fixed elements when the virtual keyboard is triggered
-		 */
+         * Virtual keyboards: Also, note that if you're using inputs in your
+         * modal – iOS has a rendering bug which doesn't update the position of
+         * fixed elements when the virtual keyboard is triggered
+         */
         var deviceAgent = navigator.userAgent.toLowerCase();
         if (deviceAgent.match(/(iphone|ipod|ipad)/)) {
             $(document).on('focus', 'input, textarea', function () {
@@ -78,7 +78,7 @@ var App = function () {
 
     var handleSidebarState = function () {
         // remove sidebar toggler if window width smaller than 992(for tablet
-		// and phone mode)
+        // and phone mode)
         var viewport = _getViewPort();
         if (viewport.width < 992) {
             $('body').removeClass("page-sidebar-closed");
@@ -124,9 +124,9 @@ var App = function () {
                     handleResponsive();
                 }, 50); // wait 50ms until window resize finishes.
                 currheight = document.documentElement.clientHeight; // store
-																	// last body
-																	// client
-																	// height
+                // last body
+                // client
+                // height
             });
         } else {
             $(window).resize(function () {
@@ -142,10 +142,10 @@ var App = function () {
 
     // * BEGIN:CORE HANDLERS *//
     // this function handles responsive layout on screen size resize or mobile
-	// device rotate.
+    // device rotate.
 
     // Set proper height for sidebar and content. The content and sidebar height
-	// must be synced always.
+    // must be synced always.
     var handleSidebarAndContentHeight = function () {
         var content = $('.page-content');
         var sidebar = $('.page-sidebar');
@@ -179,7 +179,7 @@ var App = function () {
                 return;
             }
 
-            if ($(this).next().hasClass('sub-menu.always-open')) {
+            if ($(this).next().hasClass(" sub-menu.always-open")) {
                 return;
             }
 
@@ -273,9 +273,9 @@ var App = function () {
         var menu = $('.page-sidebar-menu');
 
         if (menu.parent('.slimScrollDiv').size() === 1) { // destroy existing
-															// instance before
-															// updating the
-															// height
+            // instance before
+            // updating the
+            // height
             menu.slimScroll({
                 destroy: true
             });
@@ -401,9 +401,9 @@ var App = function () {
                 if ($('.sidebar-search').hasClass('open') == false) {
                     if ($('.page-sidebar-fixed').size() === 1) {
                         $('.page-sidebar .sidebar-toggler').click(); // trigger
-																		// sidebar
-																		// toggle
-																		// button
+                        // sidebar
+                        // toggle
+                        // button
                     }
                     $('.sidebar-search').addClass("open");
                 } else {
@@ -531,36 +531,36 @@ var App = function () {
     var handleModals = function () {
 
         // fix stackable modal issue: when 2 or more modals opened, closing one
-		// of modal will remove .modal-open class.
+        // of modal will remove .modal-open class.
         $('body').on('hide.bs.modal', function () {
-           if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') == false) {
-              $('html').addClass('modal-open');
-           } else if ($('.modal:visible').size() <= 1) {
-              $('html').removeClass('modal-open');
-           }
+            if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') == false) {
+                $('html').addClass('modal-open');
+            } else if ($('.modal:visible').size() <= 1) {
+                $('html').removeClass('modal-open');
+            }
         });
     }
 
     // Handles Bootstrap Tooltips.
     var handleTooltips = function () {
-       jQuery('.tooltips').tooltip();
+        jQuery('.tooltips').tooltip();
     }
 
     // Handles Bootstrap Dropdowns
     var handleDropdowns = function () {
         /*
-		 * For touch supported devices disable the hoverable dropdowns -
-		 * data-hover="dropdown"
-		 */
+         * For touch supported devices disable the hoverable dropdowns -
+         * data-hover="dropdown"
+         */
         if (App.isTouchDevice()) {
-            $('[data-hover="dropdown"]').each(function(){
+            $('[data-hover="dropdown"]').each(function () {
                 $(this).parent().off("hover");
                 $(this).off("hover");
             });
         }
         /*
-		 * Hold dropdown on click
-		 */
+         * Hold dropdown on click
+         */
         $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
             e.stopPropagation();
         })
@@ -599,8 +599,8 @@ var App = function () {
             }
             $(this).slimScroll({
                 size: '7px',
-                color: ($(this).attr("data-handle-color")  ? $(this).attr("data-handle-color") : '#a1b2bd'),
-                railColor: ($(this).attr("data-rail-color")  ? $(this).attr("data-rail-color") : '#333'),
+                color: ($(this).attr("data-handle-color") ? $(this).attr("data-handle-color") : '#a1b2bd'),
+                railColor: ($(this).attr("data-rail-color") ? $(this).attr("data-rail-color") : '#333'),
                 position: isRTL ? 'left' : 'right',
                 height: height,
                 alwaysVisible: ($(this).attr("data-always-visible") == "1" ? true : false),
@@ -636,8 +636,8 @@ var App = function () {
         // fix html5 placeholder attribute for ie7 & ie8
         if (isIE8 || isIE9) { // ie8 & ie9
             // this is html5 placeholder fix for inputs, inputs with
-			// placeholder-no-fix class will be skipped(e.g: we need this for
-			// password fields)
+            // placeholder-no-fix class will be skipped(e.g: we need this for
+            // password fields)
             jQuery('input[placeholder]:not(.placeholder-no-fix), textarea[placeholder]:not(.placeholder-no-fix)').each(function () {
 
                 var input = jQuery(this);
@@ -662,40 +662,40 @@ var App = function () {
     }
 
     // Handle full screen mode toggle
-    var handleFullScreenMode = function() {
+    var handleFullScreenMode = function () {
         // mozfullscreenerror event handler
-       
+
         // toggle full screen
         function toggleFullScreen() {
-          if (!document.fullscreenElement &&    // alternative standard method
-              !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current
-																						// working
-																						// methods
-            if (document.documentElement.requestFullscreen) {
-              document.documentElement.requestFullscreen();
-            } else if (document.documentElement.mozRequestFullScreen) {
-              document.documentElement.mozRequestFullScreen();
-            } else if (document.documentElement.webkitRequestFullscreen) {
-              document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            if (!document.fullscreenElement &&    // alternative standard method
+                !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current
+                // working
+                // methods
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+            } else {
+                if (document.cancelFullScreen) {
+                    document.cancelFullScreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
             }
-          } else {
-            if (document.cancelFullScreen) {
-              document.cancelFullScreen();
-            } else if (document.mozCancelFullScreen) {
-              document.mozCancelFullScreen();
-            } else if (document.webkitCancelFullScreen) {
-              document.webkitCancelFullScreen();
-            }
-          }
         }
 
-        $('#trigger_fullscreen').click(function() {
+        $('#trigger_fullscreen').click(function () {
             toggleFullScreen();
         });
     }
 
     // Handle Select2 Dropdowns
-    var handleSelect2 = function() {
+    var handleSelect2 = function () {
         if (jQuery().select2) {
             $('.select2me').select2({
                 placeholder: "Select",
@@ -720,10 +720,10 @@ var App = function () {
         // handle theme layout
         var resetLayout = function () {
             $("body").
-            removeClass("page-boxed").
-            removeClass("page-footer-fixed").
-            removeClass("page-sidebar-fixed").
-            removeClass("page-header-fixed");
+                removeClass("page-boxed").
+                removeClass("page-footer-fixed").
+                removeClass("page-sidebar-fixed").
+                removeClass("page-header-fixed");
 
             $('.header > .header-inner').removeClass("container");
 
@@ -809,7 +809,7 @@ var App = function () {
             handleSidebarAndContentHeight(); // fix content height
             handleFixedSidebar(); // reinitialize fixed sidebar
             handleFixedSidebarHoverable(); // reinitialize fixed sidebar hover
-											// effect
+            // effect
         }
 
         // handle theme colors
@@ -859,18 +859,18 @@ var App = function () {
             handleUniform(); // hanfle custom radio & checkboxes
             handleScrollers(); // handles slim scrolling contents
             handleResponsiveOnInit(); // handler responsive elements on page
-										// load
+            // load
 
             // layout handlers
             handleFixedSidebar(); // handles fixed sidebar menu
             handleFixedSidebarHoverable(); // handles fixed sidebar on hover
-											// effect
+            // effect
             handleSidebarMenu(); // handles main menu
             handleHorizontalMenu(); // handles horizontal menu
             handleSidebarToggler(); // handles sidebar hide/show
             handleFixInputPlaceholderForIE(); // fixes/enables html5
-												// placeholder attribute for
-												// IE9, IE8
+            // placeholder attribute for
+            // IE9, IE8
             handleGoTop(); // handles scroll to top functionality in the footer
             handleTheme(); // handles style customer tool
 
@@ -878,8 +878,8 @@ var App = function () {
             handleFancybox() // handle fancy box
             handleSelect2(); // handle custom Select2 dropdowns
             handlePortletTools(); // handles portlet action bar
-									// functionality(refresh, configure, toggle,
-									// remove)
+            // functionality(refresh, configure, toggle,
+            // remove)
             handleDropdowns(); // handle dropdowns
             handleTabs(); // handle tabs
             handleTooltips(); // handle bootstrap tooltips
@@ -906,13 +906,13 @@ var App = function () {
         },
 
         // public function to remember last opened popover that needs to be
-		// closed on click
+        // closed on click
         setLastPopedPopover: function (el) {
             lastPopedPopover = el;
         },
 
         // public function to add callback a function which will be called on
-		// window resize
+        // window resize
         addResponsiveHandler: function (func) {
             responsiveHandlers.push(func);
         },
@@ -993,8 +993,8 @@ var App = function () {
         // wrapper function to update/sync jquery uniform checkbox & radios
         updateUniform: function (els) {
             $.uniform.update(els); // update the uniform checkbox & radios UI
-									// after the actual input control state
-									// changed
+            // after the actual input control state
+            // changed
         },
 
         // public function to initialize the fancybox plugin
@@ -1003,7 +1003,7 @@ var App = function () {
         },
 
         // public helper function to get actual input value(used in IE9 and IE8
-		// due to placeholder attribute not supported)
+        // due to placeholder attribute not supported)
         getActualVal: function (el) {
             var el = jQuery(el);
             if (el.val() === el.attr("placeholder")) {

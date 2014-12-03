@@ -1,6 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page import="org.jichuang.hope6537.base.model.Member" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%
+    Member member = (Member) session.getAttribute("loginMember");
+    if (member == null) {
+        response.sendRedirect("../page/login.hopedo");
+    }
+%>
 <!-- BEGIN SIDEBAR -->
 <div class="page-sidebar navbar-collapse collapse">
     <!-- BEGIN SIDEBAR MENU -->
@@ -51,11 +58,11 @@
             </ul>
         </li>
         <!-- ================= -->
-        <li class=""><a href="javascript:;"> <i class="icon-user"></i>
+        <li class="" id = "memberLi"><a href="javascript:;"> <i class="icon-user"></i>
             <span class="title">个人信息</span> <span class="arrow "></span>
         </a>
             <ul class="sub-menu">
-                <li><a href="member/-1/toUpdate.hopedo"> 个人信息设置</a></li>
+                <li><a href="member/<%=member.getMemberId()%>/toUpdate.hopedo"> 个人信息设置</a></li>
                 <li><a href="member/changePassword.hopedo"> 修改个人密码</a></li>
                 <li><a href="member/memberConf.hopdo"> 个人偏好设置</a></li>
             </ul>

@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.jichuang.hope6537.base.controller.AdminPageController;
 import org.jichuang.hope6537.base.model.Member;
@@ -61,7 +62,7 @@ public class BlogController {
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
         // TODO : 在这里编写其他的信息 例如info的 然后别忘了封装
-        Map<String, String> infos = new HashMap<String, String>();
+        JSONObject infos = new JSONObject();
         String blogType = request.getParameter("type");
         String blogTags = request.getParameter("tags");
         infos.put("博客标签", blogTags.toString());
@@ -119,7 +120,7 @@ public class BlogController {
         } else {
             Logger.getLogger(getClass()).info(
                     "将要修改id为" + blog.getBlogId() + "的博客");
-            Map<String, String> infos = new HashMap<String, String>();
+            JSONObject infos = new JSONObject();
             String blogType = request.getParameter("type");
             String blogTags = request.getParameter("tags");
             infos.put("博客标签", blogTags.toString());

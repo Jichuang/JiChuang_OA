@@ -12,7 +12,7 @@
     if (member == null) {
         response.sendRedirect("../page/login.hopedo");
     }
-    Map<String, List<String>> memberInfos = InfoUtils.getInfoMap(member.getQa());
+    String memberId = (String) request.getAttribute("memberId");
 
 %>
 
@@ -23,7 +23,7 @@
     <!-- head的include区 -->
     <jsp:include page="../template/template_page_head.jsp" flush="true"/>
 
-    <title>博客维护</title>
+    <title>个人信息维护</title>
     <!-- head的include区 结束  -->
 </head>
 <body class="page-header-fixed page-footer-fixed">
@@ -41,6 +41,7 @@
 <!-- 页面内容头开始 修改之-->
 <div class="row">
     <div class="col-md-12">
+        <span id="memberId" hidden="hidden"><%=memberId%></span>
         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">
             个人信息
@@ -131,7 +132,7 @@
                     </li>
                     <li>
                         <span class="sale-info">账户状态</span>
-                        <span class="sale-num" id="status"></span>
+                        <span class="sale-num" id="_status"></span>
                     </li>
                     <li>
                         <a class="btn btn-block red" style="margin-top: 20px;" href="member/logout.hopedo"><i
@@ -606,19 +607,20 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" id="updateShortInfo">简短介绍
+                            <label class="control-label">简短介绍
                                 <small>50字左右</small>
                             </label>
-                            <textarea class="form-control" rows="3">
+                            <textarea class="form-control" rows="3" id="updateShortInfo">
                             </textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">个人简介</label>
-                            <textarea class="ckeditor form-control" name="content" id="updateInfo" rows="200" cols="50"
-                                      style="visibility: hidden; display: none;"></textarea>
+                            <textarea class="ckeditor form-control" name="content" rows="200" cols="50" id="updateInfo"
+                                      style="visibility: hidden; display: none;"></span>
+                            </textarea>
                         </div>
                         <div class="margiv-top-10">
-                            <a href="javascript:;" class="btn green">保存更改</a>
+                            <a href="javascript:;" id="updateProfile" class="btn green">保存更改</a>
                         </div>
                     </form>
                 </div>
@@ -1296,12 +1298,12 @@
 </body>
 <!-- Js核心脚本 -->
 <%@include file="../template/template_page_javascript.jsp" %>
-
+<script type="text/javascript" src="../../../../admin_assets/scripts/member/memberconf.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-
         $("#reload").trigger("click");
-        $("#blogLi").attr("class", "active");
+        $("#memberLi").attr("class", "active");
+        MemberConf.init();
     });
 </script>
 <!-- Js核心脚本结束 -->
