@@ -35,6 +35,8 @@ public interface MemberService extends BaseService<Member> {
      */
     Member selectLoginService(Member member) throws MemberException;
 
-    int updateMember(Member member, Map<String, String[]> param) throws MemberException;
+    int updateMember(Member member) throws MemberException;
+
+    int updatePassword(Member member) throws MemberException;
 
 }

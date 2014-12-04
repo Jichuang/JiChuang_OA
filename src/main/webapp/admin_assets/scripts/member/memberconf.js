@@ -2,6 +2,9 @@
  * Created by Zhaopeng-Rabook on 14-12-2.
  */
 var MemberConf = function () {
+
+    var ajaxMember = null;
+    var ajaxInfos = null;
     /**
      * 用于刷新当前页面的成员对象的信息
      * 要塞的东西有很多 首先id们
@@ -65,9 +68,8 @@ var MemberConf = function () {
                 if (status == "OK") {
                     toast.success(data.returnMsg);
                     //TODO:接下来向各个控件里面塞东西了 还没塞完呢！
-                    var ajaxMember = data.returnData.ajaxMember;
-                    var ajaxInfos = eval("(" + data.returnData.ajaxInfos + ")");
-                    console.log(ajaxMember.info);
+                    ajaxMember = data.returnData.ajaxMember;
+                    ajaxInfos = eval("(" + data.returnData.ajaxInfos + ")");
                     memberData.name.text(ajaxMember.name);
                     memberData.email.text(ajaxMember.username);
                     memberData.status.text(ajaxMember.status);
@@ -90,18 +92,17 @@ var MemberConf = function () {
         })
     }
 
-
-    $("#updateProfile").on("click", function () {
+    var handleUpdateProfile = function () {
 
         var data = {
-            updateName: memberData.updateName,
-            updateInfo: memberData.updateInfo,
-            updatePhoneNumber: memberData.updatePhoneNumber,
-            updateShortInfo: memberData.updateShortInfo,
-            updateSex: memberData.updateSex
+            updateName: memberData.updateName.val(),
+            updateInfo: CKEDITOR.instances.updateInfo.getData(),
+            updatePhoneNumber: memberData.updatePhoneNumber.val(),
+            updateShortInfo: memberData.updateShortInfo.val(),
+            updateSex: memberData.updateSex.val()
         }
         $.ajax({
-            url: "member/" + id + ".hopedo",
+            url: "member/" + $("#memberId").text() + ".hopedo",
             dataType: "json",
             data: (data),
             type: "PUT",
@@ -116,9 +117,51 @@ var MemberConf = function () {
             }
         })
 
+    }
 
-    });
+    var handleUpdatePassword = function () {
 
+        var data = {
+            nowPassword: memberData.nowPassword.val(),
+            newPassword: memberData.newPassword.val(),
+            confrimPassword: memberData.confrimPassword.val()
+        }
+        if (ajaxMember.password != data.nowPassword) {
+            toast.error("密码错误，请重新输入")
+        }
+        else if (data.newPassword != data.confrimPassword) {
+            toast.error("两次密码输入的不一致")
+        }
+        else {
+            $.ajax({
+                url: "member/" + $("#memberId").text() + "/updatePassword.hopedo",
+                dataType: "json",
+                data: (data),
+                type: "PUT",
+                async: false,
+                success: function (data) {
+                    var status = data.returnState;
+                    if (status == "OK") {
+                        toast.success(data.returnMsg);
+                        window.location.href = "member/logout.hopedo";
+                    } else {
+                        toast.error(data.returnMsg);
+                    }
+                }
+            })
+        }
+
+
+    }
+
+
+    $("#updateProfile").on("click", function () {
+        handleUpdateProfile();
+    })
+
+    $("#updatePassword").on("click", function () {
+        handleUpdatePassword();
+    })
 
     $("#reload").on("click", function () {
         handleRefresh();
@@ -130,5 +173,5 @@ var MemberConf = function () {
         }
     };
 
-
-}();
+}
+    ();

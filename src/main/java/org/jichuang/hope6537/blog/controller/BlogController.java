@@ -65,8 +65,8 @@ public class BlogController {
         JSONObject infos = new JSONObject();
         String blogType = request.getParameter("type");
         String blogTags = request.getParameter("tags");
-        infos.put("博客标签", blogTags.toString());
-        infos.put("博客类型", blogType);
+        infos.put("blogTag", blogTags.toString());
+        infos.put("blogType", blogType);
         int res = blogService.insertBlog(blog, member, infos);
         request.setAttribute("insertRes", res);
         if (res != 0) {
@@ -123,8 +123,8 @@ public class BlogController {
             JSONObject infos = new JSONObject();
             String blogType = request.getParameter("type");
             String blogTags = request.getParameter("tags");
-            infos.put("博客标签", blogTags.toString());
-            infos.put("博客类型", blogType);
+            infos.put("blogTag", blogTags.toString());
+            infos.put("blogType", blogType);
             int res = blogService.updateBlog(blog, infos);
             return AjaxResponse.getInstanceByResult(res == 1);
         }

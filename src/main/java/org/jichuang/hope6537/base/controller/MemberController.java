@@ -81,11 +81,23 @@ public class MemberController {
         logger.info("进入用户登录业务");
         Member loginMember = memberService.selectLoginService(member);
         if (loginMember == null) {
-            response.sendRedirect("../page/login.hopedo");
+            response.sendRedirect("../page/login.hopedo?r=null");
         } else {
-            request.getSession().setAttribute("loginMember", loginMember);
-            response.sendRedirect("../page/index.hopedo");
+            if (loginMember.getPassword().equals(member.getPassword())) {
+                request.getSession().setAttribute("loginMember", loginMember);
+                response.sendRedirect("../page/index.hopedo");
+            } else {
+                response.sendRedirect("../page/login.hopedo?r=error");
+            }
+
         }
+    }
+
+    @RequestMapping("/logout")
+    public void memberLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.info("进入用户登出业务");
+        request.getSession().setAttribute("loginMember", null);
+        response.sendRedirect("../page/login.hopedo?r=logout");
     }
 
     @RequestMapping("{memberId}/toUpdate")
@@ -136,11 +148,38 @@ public class MemberController {
             if (member == null) {
                 return new AjaxResponse(ReturnState.ERROR, "没有匹配的用户");
             } else {
-                Map<String, String[]> map = request.getParameterMap();
-                int res = memberService.updateMember(member, map);
+                JSONObject qa = new JSONObject();
+                member.setName(request.getParameter("updateName"));
+                member.setInfo(request.getParameter("updateInfo"));
+                qa.put("phoneNumber", request.getParameter("updatePhoneNumber"));
+                qa.put("shortInfo", request.getParameter("updateShortInfo"));
+                qa.put("sex", request.getParameter("updateSex"));
+                member.setQa(qa.toJSONString());
+                int res = memberService.updateMember(member);
                 return AjaxResponse.getInstanceByResult(res == 1);
             }
         }
     }
+
+    @RequestMapping(value = "/{memberId}/updatePassword", method = RequestMethod.PUT)
+    @ResponseBody
+    public AjaxResponse updatePassword(@PathVariable String memberId, HttpServletRequest request) throws MemberException {
+        logger.info("进入更新密码");
+        if (memberId == null) {
+            logger.info("没有ID");
+            return new AjaxResponse(ReturnState.ERROR, "没有获取到ID");
+        } else {
+            logger.info("获取ID为" + memberId + "的用户");
+            Member member = memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId));
+            if (member == null) {
+                return new AjaxResponse(ReturnState.ERROR, "没有匹配的用户");
+            } else {
+                member.setPassword(request.getParameter("newPassword"));
+                int res = memberService.updatePassword(member);
+                return AjaxResponse.getInstanceByResult(res == 1);
+            }
+        }
+    }
+
 
 }

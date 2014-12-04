@@ -69,17 +69,24 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
      * 以后打算用JSON来显示
      *
      * @param member
-     * @param param
      * @return
      * @throws MemberException
      */
     @Override
-    public int updateMember(Member member, Map<String, String[]> param) throws MemberException {
+    public int updateMember(Member member) throws MemberException {
         if (member == null) {
             throw new MemberException("成员对象为空");
         } else {
-            member.setInfo(param.get("updateInfo")[0]);
+            return this.updateEntryByObject(member);
         }
-        return 1;
+    }
+
+    @Override
+    public int updatePassword(Member member) throws MemberException {
+        if (member == null) {
+            throw new MemberException("成员对象为空");
+        } else {
+            return this.updateEntryByObject(member);
+        }
     }
 }

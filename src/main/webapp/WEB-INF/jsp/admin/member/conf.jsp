@@ -600,8 +600,8 @@
                             <input type="text" value="18686602599" id="updatePhoneNumber" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" id="updateSex">性别</label>
-                            <select class="form-control">
+                            <label class="control-label">性别</label>
+                            <select class="form-control" id="updateSex">
                                 <option value="男">男</option>
                                 <option value="女">女</option>
                             </select>
@@ -616,7 +616,7 @@
                         <div class="form-group">
                             <label class="control-label">个人简介</label>
                             <textarea class="ckeditor form-control" name="content" rows="200" cols="50" id="updateInfo"
-                                      style="visibility: hidden; display: none;"></span>
+                                      style="visibility: hidden; display: none;">
                             </textarea>
                         </div>
                         <div class="margiv-top-10">
@@ -675,7 +675,7 @@
                             <input type="password" class="form-control" id="confrimPassword"/>
                         </div>
                         <div class="margin-top-10">
-                            <a href="#" class="btn green">更改账户密码</a>
+                            <a href="javascript:;" id="updatePassword" class="btn green">更改账户密码</a>
                         </div>
                     </form>
                 </div>
