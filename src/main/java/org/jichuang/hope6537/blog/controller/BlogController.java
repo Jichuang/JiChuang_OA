@@ -61,7 +61,6 @@ public class BlogController {
         Logger.getLogger(getClass()).info("进入添加博客业务");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
-        // TODO : 在这里编写其他的信息 例如info的 然后别忘了封装
         JSONObject infos = new JSONObject();
         String blogType = request.getParameter("type");
         String blogTags = request.getParameter("tags");
