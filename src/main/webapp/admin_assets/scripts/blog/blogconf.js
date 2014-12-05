@@ -117,6 +117,7 @@ var BlogTable = function () {
     });
 
     $("#refreshBlogItemButton").on("click", function () {
+        handleRefreshSingleBlogEvent();
     });
 
     var test = function () {
@@ -275,39 +276,37 @@ var BlogTable = function () {
 
     var handleRefreshSingleBlogEvent = function () {
         var frontBlogItem = {
-            title: $("#title"),
+            title: $("#_title"),
             content: $("#content"),
             member: $("#member"),
             date: $("#date"),
             blogType: $("#blogType"),
             blogTags: $("#blogTags")
         }
-        var data = {
-            blogId: $("#frontBlogItemId").text()
-        }
+        var
+            blogId = $("#frontBlogItemId").text()
+
         $.ajax({
-            url: "../blog/" + data.blogId + ".hopedo",
-            data: (data),
+            url: "../blog/" + blogId + ".hopedo",
+            data: (blogId),
             dataType: "json",
             type: "GET",
             success: function (data) {
-                console.log("success")
                 var status = data.returnState;
                 if (status == "OK") {
                     toast.success(data.returnMsg);
                     var blogItem = data.returnData.blog;
-                    var blogInfo = blogItem.info;
+                    var blogInfo = eval("(" + blogItem.info + ")");
+                    console.log(blogInfo.blogTag);
                     frontBlogItem.title.text(blogItem.title);
-                    frontBlogItem.content.text(blogItem.content);
-                    frontBlogItem.member.text(blogItem.member.memberId);
+                    frontBlogItem.member.text(blogItem.memberId.name);
                     frontBlogItem.date.text(blogItem.date);
                     frontBlogItem.blogType.text(blogInfo.blogType);
-                    frontBlogItem.blogTags.text(blogInfo.blogTags);
+                    frontBlogItem.blogTags.text(blogInfo.blogTag);
+                    frontBlogItem.content.text("").append(blogItem.content);
                 } else {
                     toast.error(data.returnMsg);
                 }
-            }, fail: function (data) {
-                console.log("fail");
             }
         })
     }

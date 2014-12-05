@@ -50,9 +50,9 @@
         <div class="row">
             <!-- BEGIN LEFT SIDEBAR -->
             <div class="col-md-9 blog-item margin-bottom-40">
-                <h2>
+                <h3>
                     <a href="#" id="_title"></a>
-                </h2>
+                </h3>
                 <!-- 正文区 -->
                 <span id="content"></span>
                 <!-- 正文区结束 -->
@@ -144,7 +144,7 @@
                             <label>姓名</label> <input type="text" class="form-control">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group">app
                             <label>邮箱地址 <span class="color-red">*</span></label> <input
                                 type="text" class="form-control">
                         </div>

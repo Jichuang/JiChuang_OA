@@ -166,10 +166,11 @@ public class BlogController {
      * @return
      */
     @RequestMapping(value = "/{blogId}", method = RequestMethod.GET)
-    public String refreshSimpleBlog(@PathVariable String blogId, HttpServletRequest request) {
+    @ResponseBody
+    public AjaxResponse refreshSimpleBlog(@PathVariable String blogId, HttpServletRequest request) {
         Logger.getLogger(getClass()).info("进入博客单体查询业务");
-        return "login";
-        /*if (blogId == null) {
+
+        if (blogId == null) {
             return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
         } else {
             Logger.getLogger(getClass()).info("将要查看id为" + blogId + "的博客");
@@ -180,7 +181,7 @@ public class BlogController {
             } else {
                 return AjaxResponse.getInstanceByResult(blog != null).addAttribute("blog", blog);
             }
-        }*/
+        }
     }
 
 
