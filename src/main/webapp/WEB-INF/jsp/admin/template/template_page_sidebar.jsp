@@ -63,8 +63,7 @@
         </a>
             <ul class="sub-menu">
                 <li><a href="member/<%=member.getMemberId()%>/toUpdate.hopedo"> 个人信息设置</a></li>
-                <li><a href="member/changePassword.hopedo"> 修改个人密码</a></li>
-                <li><a href="member/memberConf.hopdo"> 个人偏好设置</a></li>
+                <li><a href="member/<%=member.getMemberId()%>/toUpdate.hopedo#tab_1_3"> 修改个人密码</a></li>
             </ul>
         </li>
         <!-- ================== -->

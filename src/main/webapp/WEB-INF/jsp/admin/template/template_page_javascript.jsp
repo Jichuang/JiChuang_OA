@@ -44,7 +44,7 @@
 <script src="admin_assets/scripts/toast.js" type="text/javascript"></script>
 <script type="text/javascript" src="admin_assets/scripts/datatable.js"></script>
 <script src="admin_assets/scripts/table-advanced.js"></script>
-<script type="text/javascript" src="admin_assets/scripts/blog.js"></script>
+<script type="text/javascript" src="admin_assets/scripts/blog/blogconf.js"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <!-- BEGIN PLUGINS USED BY X-EDITABLE -->

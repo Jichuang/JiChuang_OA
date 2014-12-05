@@ -43,6 +43,7 @@
             创建新博客
             <small>Add New Blog</small>
         </h3>
+        <span hidden="hidden" id="blogItemId"><%=editBlog.getBlogId()%></span>
         <ul class="page-breadcrumb breadcrumb">
             <li class="btn-group">
                 <button type="button" class="btn blue dropdown-toggle"
@@ -53,7 +54,7 @@
                 <ul class="dropdown-menu pull-right" role="menu">
                     <li><a href="blog/toAddBlog.hopedo"><i
                             class="icon-edit"></i>添加新博客</a></li>
-                    <li><a href="blog/refresh.hopedo"><i
+                    <li><a href="javascript:;" id="reload"><i
                             class="icon-refresh"></i>刷新博客信息</a></li>
                 </ul>
             </li>
