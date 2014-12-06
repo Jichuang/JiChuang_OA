@@ -100,6 +100,20 @@ public class MemberController {
         response.sendRedirect("../page/login.hopedo?r=logout");
     }
 
+    @RequestMapping("/refresh")
+    @ResponseBody
+    public AjaxResponse memberRefresh(HttpServletRequest request, HttpServletResponse response) {
+        Member oldMember = (Member) request.getSession().getAttribute("loginMember");
+        if (oldMember == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            oldMember = this.memberService.selectEntryFromPrimaryKey(oldMember.getMemberId());
+            request.getSession().setAttribute("loginMember", oldMember);
+            return AjaxResponse.getInstanceByResult(oldMember != null).addReturnMsg("用户信息刷新成功");
+        }
+    }
+
+
     @RequestMapping("{memberId}/toUpdate")
     public String toUpdate(@PathVariable String memberId, HttpServletRequest request, HttpServletResponse response) throws IOException, MemberException {
         Member member = (Member) request.getSession().getAttribute("loginMember");

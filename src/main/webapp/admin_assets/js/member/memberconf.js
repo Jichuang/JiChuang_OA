@@ -74,7 +74,7 @@ var MemberConf = function () {
                     memberData.email.text(ajaxMember.username);
                     memberData.status.text(ajaxMember.status);
                     memberData.birth.text(ajaxInfos.sex);
-                    memberData.country.text(ajaxInfos.age);
+                    memberData.country.text(ajaxInfos.country);
                     memberData.post.text("Java Engineer");
                     memberData.postSmall.text("Java Engineer");
                     memberData.role.text("Administrator");
@@ -163,7 +163,7 @@ var MemberConf = function () {
         handleUpdatePassword();
     })
 
-    $("#reload").on("click", function () {
+    $("#reloadMember").on("click", function () {
         handleRefresh();
     })
 

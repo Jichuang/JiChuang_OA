@@ -44,21 +44,16 @@
                 class="icon-folder-open"></i> <span class="title">我的文件夹</span>
         </a></li>
         <!-- ================= -->
-        <li><a href="javascript:;"> <i class="icon-bookmark-empty"></i>
+        <li><a href="javascript:;" class="teamLi"> <i class="icon-bookmark-empty"></i>
             <span class="title">项目组信息</span> <span class="arrow "></span>
         </a>
             <ul class="sub-menu">
-                <li><a href="ui_general.html">创建新的项目组 </a></li>
-                <li><a href="ui_general.html">查看自己的项目组 </a></li>
-                <li><a href="ui_general.html">项目组成员维护 </a></li>
-                <li><a href="ui_general.html">项目组权限维护 </a></li>
-                <li><a href="ui_general.html">项目组文件树维护 </a></li>
-                <li><a href="ui_general.html">项目组日程管理 </a></li>
-                <li><a href="ui_general.html">项目组文档管理 </a></li>
+                <li><a href="team/toAddTeam.hopedo">创建新的项目组 </a></li>
+                <li><a href="team/conf.hopedo">查看自己的项目组 </a></li>
             </ul>
         </li>
         <!-- ================= -->
-        <li class="" id = "memberLi"><a href="javascript:;"> <i class="icon-user"></i>
+        <li class="" id="memberLi"><a href="javascript:;"> <i class="icon-user"></i>
             <span class="title">个人信息</span> <span class="arrow "></span>
         </a>
             <ul class="sub-menu">

@@ -99,11 +99,11 @@ var BlogTable = function () {
 
 
     $("#datatable").on("click", "a.delete", function () {
-        handleDeleteBlogEvent();
+        handleDeleteBlogEvent($(this));
     });
 
     $("#datatable").on("click", "a.deploy", function () {
-        handleDeployBlogEvent();
+        handleDeployBlogEvent($(this));
     });
 
 
@@ -144,9 +144,9 @@ var BlogTable = function () {
     }
 
 
-    var handleDeleteBlogEvent = function () {
+    var handleDeleteBlogEvent = function (e) {
 
-        var $this = $(this);
+        var $this = e;
         var id = ($this[0].id).split("delete")[1];
 
         $.ajax({
@@ -169,10 +169,9 @@ var BlogTable = function () {
     }
 
 
-    var handleDeployBlogEvent = function () {
-        var $this = $(this);
+    var handleDeployBlogEvent = function (e) {
+        var $this = e;
         var id = ($this[0].id).split("deploy")[1];
-        console.log("id=" + id);
         $.ajax({
             url: "blog/" + id + "/deployBlog.hopedo",
             dataType: "json",
@@ -319,6 +318,7 @@ var BlogTable = function () {
                 return;
             }
             initTable1();
+            handleReloadEvent();
 
         },
         frontInit: function () {

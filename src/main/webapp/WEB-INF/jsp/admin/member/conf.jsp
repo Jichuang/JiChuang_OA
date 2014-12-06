@@ -55,7 +55,7 @@
                     <span>动作</span> <i class="icon-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="javascript:;" id="reload"><i
+                    <li><a href="javascript:;" id="reloadMember"><i
                             class="icon-refresh"></i>刷新个人信息</a></li>
                 </ul>
             </li>
@@ -1298,7 +1298,6 @@
 </body>
 <!-- Js核心脚本 -->
 <%@include file="../template/template_page_javascript.jsp" %>
-<script type="text/javascript" src="../../../../admin_assets/scripts/member/memberconf.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#reload").trigger("click");

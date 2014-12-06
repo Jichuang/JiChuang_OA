@@ -15,17 +15,18 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-/** 
- *<pre>
- *三.职务对象 Post —— 数据库表
- *1.职务主键 pid int 10 自增长
- *2.职务描述 pdes varchar 255 自增长
- *3.职务状态 pstatus varchar 255 自增长
- *</pre>
+/**
+ * <pre>
+ * 三.职务对象 Post —— 数据库表
+ * 1.职务主键 pid int 10 自增长
+ * 2.职务描述 pdes varchar 255 自增长
+ * 3.职务状态 pstatus varchar 255 自增长
+ * </pre>
  * <p>Describe: </p>
  * <p>Using: </p>
  * <p>DevelopedTime: 2014年10月13日下午4:38:42</p>
  * <p>Company: ChangChun Unviersity JiChuang Team</p>
+ *
  * @author Hope6537
  * @version 1.0
  * @see
@@ -34,70 +35,65 @@ import javax.persistence.Table;
 @Table(name = "Post")
 public class Post implements Serializable {
 
-	/**
-	 * <p>Describe: </p>
-	 * <p>Using: </p>
-	 */
-	private static final long serialVersionUID = 2909208994893032227L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "postId", length = 50)
-	private Integer postId;
-	@Column(name = "des", length = 50)
-	private String des;
-	@Column(name = "status", length = 50)
-	private String status;
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "postId", targetEntity = Member.class)
-	private Set<Member> memberId;
-	
-	
-	
-	
-	
-	
-	@ManyToMany(targetEntity = Role.class, cascade = { CascadeType.MERGE,
-			CascadeType.PERSIST }, fetch = FetchType.EAGER)
-	@JoinTable(name = "post_role", joinColumns = { @JoinColumn(name = "postId") }, inverseJoinColumns = { @JoinColumn(name = "roleId") })
-	private Set<Role> roleId;
+    /**
+     * <p>Describe: </p>
+     * <p>Using: </p>
+     */
+    private static final long serialVersionUID = 2909208994893032227L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "postId", length = 50)
+    private Integer postId;
+    @Column(name = "des", length = 50)
+    private String des;
+    @Column(name = "status", length = 50)
+    private String status;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "postId", targetEntity = Member.class)
+    private Set<Member> memberId;
 
-	public Integer getPostId() {
-		return postId;
-	}
+    @ManyToMany(targetEntity = Role.class, cascade = {CascadeType.MERGE,
+            CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "post_role", joinColumns = {@JoinColumn(name = "postId")}, inverseJoinColumns = {@JoinColumn(name = "roleId")})
+    private Set<Role> roleId;
 
-	public void setPostId(Integer postId) {
-		this.postId = postId;
-	}
+    public Integer getPostId() {
+        return postId;
+    }
 
-	public String getDes() {
-		return des;
-	}
+    public void setPostId(Integer postId) {
+        this.postId = postId;
+    }
 
-	public void setDes(String des) {
-		this.des = des;
-	}
+    public String getDes() {
+        return des;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setDes(String des) {
+        this.des = des;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public Set<Member> getMemberId() {
-		return memberId;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setMemberId(Set<Member> memberId) {
-		this.memberId = memberId;
-	}
+    public Set<Member> getMemberId() {
+        return memberId;
+    }
 
-	public Set<Role> getRoleId() {
-		return roleId;
-	}
+    public void setMemberId(Set<Member> memberId) {
+        this.memberId = memberId;
+    }
 
-	public void setRoleId(Set<Role> roleId) {
-		this.roleId = roleId;
-	}
+    public Set<Role> getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Set<Role> roleId) {
+        this.roleId = roleId;
+    }
 
 }
