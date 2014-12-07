@@ -48,6 +48,17 @@ public class Team implements Serializable {
     private String image;
     @Column(name = "des", length = 255)
     private String des;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Column(name = "status", length = 50)
+    private String status;
     @Column(name = "date")
     private String date;
     @Column(name = "info", length = 1000)
@@ -55,8 +66,6 @@ public class Team implements Serializable {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = TeamType.class)
     @JoinColumn(name = "teamTypeId")
     private TeamType teamTypeId;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "teamId", targetEntity = Member.class)
-    private Set<Member> memberId;
 
     public Integer getTeamId() {
         return teamId;
@@ -114,13 +123,6 @@ public class Team implements Serializable {
         this.teamTypeId = teamTypeId;
     }
 
-    public Set<Member> getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Set<Member> memberId) {
-        this.memberId = memberId;
-    }
 
     public Team() {
     }
@@ -142,7 +144,6 @@ public class Team implements Serializable {
                 ", des='" + des + '\'' +
                 ", date='" + date + '\'' +
                 ", info='" + info + '\'' +
-                ", memberId=" + memberId +
                 '}';
     }
 }

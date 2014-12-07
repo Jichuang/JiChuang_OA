@@ -188,8 +188,7 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse refresh(HttpServletRequest request) {
-        Member member = (Member) request.getSession().getAttribute(
-                "loginMember");
+        Member member = (Member) request.getSession().getAttribute("loginMember");
         if (member == null) {
             return new AjaxResponse(ReturnState.ERROR, "刷新失败");
         }

@@ -1,10 +1,12 @@
 package org.jichuang.hope6537.base.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.base.model.Post;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,5 +40,7 @@ public interface MemberService extends BaseService<Member> {
     int updateMember(Member member) throws MemberException;
 
     int updatePassword(Member member) throws MemberException;
+
+    List<Post> getPostsByMember(Member member);
 
 }

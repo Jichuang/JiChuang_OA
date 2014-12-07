@@ -46,5 +46,13 @@ public class MemberServiceTest extends SpringHelper {
         System.out.println(jsonObject);
     }
 
+    @Test
+    public void testSelectMemberSets() {
+        MemberService memberService = (MemberService) context
+                .getBean("memberService");
+        Member member = memberService.selectEntryFromPrimaryKey(1);
+        System.out.println(memberService.getPostsByMember(member).toString());
+    }
+
 
 }

@@ -82,7 +82,7 @@ var TeamTable = function () {
                 if (status == "OK") {
                     toast.success(data.returnMsg);
                     table.fnClearTable();
-                    var list = eval(data.returnData.blogList);
+                    var list = eval(data.returnData.teamList);
                     for (var i = 0; i < list.length; i++) {
                         var line1 = '<span class="row-details row-details-close"></span><span hidden = "hidden">'
                             + list[i].info
@@ -93,7 +93,7 @@ var TeamTable = function () {
                             + '/content.hopedo">点击查看项目组详情</a>'
                         var line4 = list[i].date;
                         var line5 = list[i].status;
-                        var line6 = list[i].teamtype.name;
+                        var line6 = list[i].teamTypeId.name;
                         var line7 = '<a class="delete" id="delete'
                             + list[i].blogId
                             + '"><button class="btn btn-xs red" id="deleteBlog"> <i class="icon-trash"> <span style="font-family: Microsoft Yahei;">编辑项目组信息</span></i> </button></a>';

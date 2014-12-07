@@ -87,7 +87,7 @@
         <li><img src="frontend_assets/img/people/zhao.png" class="img-responsive" alt=""/>
             <a href="#" class="profile-edit">编辑头像</a>
         </li>
-        <li><a href="#">查看参与项目组</a></li>
+        <li><a href="../team/conf.hopedo">查看参与项目组</a></li>
         <li><a href="#">查看个人文件树</a></li>
         <li><a href="<%=basePath%>/blog/conf.hopedo">查看博客信息</a></li>
     </ul>

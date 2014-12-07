@@ -35,10 +35,6 @@ import javax.persistence.Table;
 @Table(name = "Post")
 public class Post implements Serializable {
 
-    /**
-     * <p>Describe: </p>
-     * <p>Using: </p>
-     */
     private static final long serialVersionUID = 2909208994893032227L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,13 +44,6 @@ public class Post implements Serializable {
     private String des;
     @Column(name = "status", length = 50)
     private String status;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "postId", targetEntity = Member.class)
-    private Set<Member> memberId;
-
-    @ManyToMany(targetEntity = Role.class, cascade = {CascadeType.MERGE,
-            CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "post_role", joinColumns = {@JoinColumn(name = "postId")}, inverseJoinColumns = {@JoinColumn(name = "roleId")})
-    private Set<Role> roleId;
 
     public Integer getPostId() {
         return postId;
@@ -80,20 +69,12 @@ public class Post implements Serializable {
         this.status = status;
     }
 
-    public Set<Member> getMemberId() {
-        return memberId;
+    @Override
+    public String toString() {
+        return "Post{" +
+                "postId=" + postId +
+                ", des='" + des + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
-
-    public void setMemberId(Set<Member> memberId) {
-        this.memberId = memberId;
-    }
-
-    public Set<Role> getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Set<Role> roleId) {
-        this.roleId = roleId;
-    }
-
 }

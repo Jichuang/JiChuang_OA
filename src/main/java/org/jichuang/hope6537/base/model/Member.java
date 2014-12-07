@@ -1,10 +1,6 @@
 package org.jichuang.hope6537.base.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -89,15 +85,6 @@ public class Member implements Serializable {
     private String info;
 
     /**
-     * <p>Describe: 团队成员——项目组 多对多</p>
-     * <p>Using: </p>
-     */
-    @ManyToMany(targetEntity = Team.class, cascade = {CascadeType.MERGE,
-            CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "member_teams", joinColumns = {@JoinColumn(name = "memberId")}, inverseJoinColumns = {@JoinColumn(name = "teamId")})
-    private Set<Team> teamId;
-
-    /**
      * <p>Describe: 任务接受夹</p>
      * <p>Using: </p>
      */
@@ -154,10 +141,6 @@ public class Member implements Serializable {
     @JoinTable(name = "member_notification", joinColumns = {@JoinColumn(name = "memberToId")}, inverseJoinColumns = {@JoinColumn(name = "notificationId")})
     private Set<Notification> notificationId;
 
-    @ManyToMany(targetEntity = Post.class, cascade = {CascadeType.MERGE,
-            CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "member_post", joinColumns = {@JoinColumn(name = "memberId")}, inverseJoinColumns = {@JoinColumn(name = "postId")})
-    private Set<Post> postId;
 
     /**
      * <p>Describe: 解密</p>
@@ -259,14 +242,6 @@ public class Member implements Serializable {
         this.info = info;
     }
 
-    public Set<Team> getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Set<Team> teamId) {
-        this.teamId = teamId;
-    }
-
     public Set<Task> getTaskFromOtherId() {
         return taskFromOtherId;
     }
@@ -307,22 +282,21 @@ public class Member implements Serializable {
         this.notificationId = notificationId;
     }
 
+
     @Override
     public String toString() {
-        return "Member [memberId=" + memberId + ", username=" + username
-                + ", password=" + password + ", name=" + name + ", date="
-                + date + ", image=" + image + ", qa=" + qa + ", status="
-                + status + ", info=" + info + ", teamId=" + teamId
-                + ", taskFromOtherId=" + taskFromOtherId + ", taskToOtherId="
-                + taskToOtherId + ", messageToOtherId=" + messageToOtherId
-                + ", messageFromOtherId=" + messageFromOtherId
-                + ", notificationId=" + notificationId + "]";
+        return "Member{" +
+                "info='" + info + '\'' +
+                ", status='" + status + '\'' +
+                ", qa='" + qa + '\'' +
+                ", image='" + image + '\'' +
+                ", date='" + date + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", memberId=" + memberId +
+                '}';
     }
 
-	/*
-     * public Set<Post> getPostId() { return postId; }
-	 * 
-	 * public void setPostId(Set<Post> postId) { this.postId = postId; }
-	 */
 
 }

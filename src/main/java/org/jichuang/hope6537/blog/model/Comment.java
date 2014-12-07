@@ -18,7 +18,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "commentId", length = 50)
-    private String commentId;
+    private Integer commentId;
     @Column(name = "title", length = 50)
     private String title;
     @Column(name = "content", length = 5000)
@@ -37,11 +37,11 @@ public class Comment {
     @Column(name = "status", length = 50)
     private String status;
 
-    public String getCommentId() {
+    public Integer getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(String commentId) {
+    public void setCommentId(Integer commentId) {
         this.commentId = commentId;
     }
 
