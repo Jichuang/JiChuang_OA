@@ -75,6 +75,10 @@ var TeamTable = function () {
         handleReloadEvent();
     });
 
+    $("#datatable").on("click", "a.edit", function () {
+        handle2EditTeam($(this));
+    });
+
     var handleReloadEvent = function () {
         var table = $("#datatable").dataTable();
         $.ajax({
@@ -99,9 +103,9 @@ var TeamTable = function () {
                         var line4 = list[i].date;
                         var line5 = list[i].status;
                         var line6 = list[i].teamTypeId.name;
-                        var line7 = '<a class="delete" id="edit'
+                        var line7 = '<a class="edit" id="edit'
                             + list[i].teamId
-                            + '"><button class="btn btn-xs red" id="deleteBlog"> <i class="icon-trash"> <span style="font-family: Microsoft Yahei;">编辑项目组信息</span></i> </button></a>';
+                            + '"><button class="btn btn-xs red" id="editTeam"> <i class="icon-trash"> <span style="font-family: Microsoft Yahei;">编辑项目组信息</span></i> </button></a>';
                         table.fnAddData([ line1,
                             line2, line3,
                             line4, line5,

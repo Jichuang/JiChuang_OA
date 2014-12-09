@@ -9,10 +9,11 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
     Member member = (Member) session.getAttribute("loginMember");
-    String isEdit = (String) request.getAttribute("isEdit");
     if (member == null) {
         response.sendRedirect("../page/login.hopedo");
     }
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -43,8 +44,8 @@
                     创建新项目组
                     <small>Create New Team</small>
                 </h3>
-                <span hidden="hidden" id="isEdit"><%=isEdit == null ? 0 : 1%></span>
-                <span hidden="hidden" id="blogItemId"> </span>
+                <span hidden="hidden" id="isEdit"><%=request.getAttribute("isEdit")%></span>
+                <span hidden="hidden" id="teamId"><%=request.getAttribute("teamId")%></span>
                 <span id="editBlogInfo" hidden="hidden"> </span>
                 <ul class="page-breadcrumb breadcrumb">
                     <li><i class="icon-home"></i> <a href="page/index.hopedo">主页</a>
@@ -220,13 +221,14 @@
         $("#teamLi").attr("class", "active");
         Team.init();
         var isEdit = $("#isEdit").text();
+        console.log(isEdit);
         $(".page-title").text("");
-        if (isEdit == "0") {
-            $("#updateArea").hide();
-            $(".page-title").append("创建新项目组 <small>Create New Team</small>");
-        } else {
+        if (isEdit == "1") {
             $("#addArea").hide();
             $(".page-title").append("编辑现有项目组 <small>Edit Exist Team</small>");
+        } else {
+            $("#updateArea").hide();
+            $(".page-title").append("创建新项目组 <small>Create New Team</small>");
         }
     });
 </script>

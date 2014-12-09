@@ -47,8 +47,9 @@ public class TeamController {
     }
 
     @RequestMapping("/{teamId}/toUpdateTeam")
-    public String toUpdateTeam(HttpServletRequest request) {
+    public String toUpdateTeam(@PathVariable String teamId, HttpServletRequest request) {
         request.setAttribute("isEdit", 1);
+        request.setAttribute("teamId", teamId);
         return PATH + "/team/addTeam";
     }
 
