@@ -45,9 +45,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             sessionFactory.getCurrentSession().save(t);
             return 1;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Open Session");
+            sessionFactory.openSession().save(t);
+            return 0;
         }
-        return 0;
     }
 
     public int updateEntryByObject(T t) {
@@ -55,9 +56,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             sessionFactory.getCurrentSession().update(t);
             return 1;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Open Session");
+            sessionFactory.openSession().update(t);
+            return 0;
         }
-        return 0;
     }
 
     public int deleteEntryByPrimaryKey(Serializable id) {
@@ -66,15 +68,24 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             sessionFactory.getCurrentSession().delete(t);
             return 1;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Open Session");
+            T t = this.selectEntryFromPrimaryKey(id);
+            sessionFactory.openSession().delete(t);
+            return 0;
         }
-        return 0;
     }
 
     @SuppressWarnings("unchecked")
     public List<T> selectEntryAll() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("from " + clz.getSimpleName()).list();
+        try {
+            return sessionFactory.getCurrentSession()
+                    .createQuery("from " + clz.getSimpleName()).list();
+        } catch (Exception e) {
+            System.err.println("Open Session");
+            return sessionFactory.openSession()
+                    .createQuery("from " + clz.getSimpleName()).list();
+        }
+
     }
 
     @SuppressWarnings("unchecked")

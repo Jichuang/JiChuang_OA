@@ -1,5 +1,10 @@
 var TeamTable = function () {
 
+    var initTeamType = function () {
+
+    }
+
+
     var initTable1 = function () {
 
         /* 格式化下拉栏菜单 */
@@ -94,8 +99,8 @@ var TeamTable = function () {
                         var line4 = list[i].date;
                         var line5 = list[i].status;
                         var line6 = list[i].teamTypeId.name;
-                        var line7 = '<a class="delete" id="delete'
-                            + list[i].blogId
+                        var line7 = '<a class="delete" id="edit'
+                            + list[i].teamId
                             + '"><button class="btn btn-xs red" id="deleteBlog"> <i class="icon-trash"> <span style="font-family: Microsoft Yahei;">编辑项目组信息</span></i> </button></a>';
                         table.fnAddData([ line1,
                             line2, line3,
@@ -107,6 +112,11 @@ var TeamTable = function () {
                 }
             }
         })
+    }
+
+    var handle2EditTeam = function (e) {
+        var id = (e[0].id).split("edit")[1];
+        window.location.href = "../team/" + id + "/toUpdateTeam.hopedo";
     }
 
 

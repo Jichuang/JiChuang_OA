@@ -9,6 +9,7 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
     Member member = (Member) session.getAttribute("loginMember");
+    String isEdit = (String) request.getAttribute("isEdit");
     if (member == null) {
         response.sendRedirect("../page/login.hopedo");
     }
@@ -42,7 +43,7 @@
                     创建新项目组
                     <small>Create New Team</small>
                 </h3>
-                <span hidden="hidden" id="isEdit">0</span>
+                <span hidden="hidden" id="isEdit"><%=isEdit == null ? 0 : 1%></span>
                 <span hidden="hidden" id="blogItemId"> </span>
                 <span id="editBlogInfo" hidden="hidden"> </span>
                 <ul class="page-breadcrumb breadcrumb">
@@ -82,8 +83,8 @@
                                     <label>项目组描述&nbsp;
                                         <small>可以从Word文档中复制哦！</small>
                                     </label>
-                                    <textarea class="ckeditor form-control" name="content"
-                                              id="content" rows="200" cols="50"></textarea>
+                                    <textarea class="form-control" name="newDes"
+                                              id="newDes" rows="200" cols="50"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>插入图片
@@ -115,8 +116,8 @@
                                 </form>
                                 <div class="form-group">
                                     <label>项目组种类</label>
-                                    <select class="form-control input-lg" id="type" name="type">
-                                        <option value=""></option>
+                                    <select class="form-control input-lg" id="teamType" name="teamType">
+                                        <option value="1">1</option>
                                     </select>
                                 </div>
                             </div>
@@ -147,7 +148,6 @@
                         <form id="updateBlogForm">
                             <div class="form-body">
 
-
                                 <input type="hidden" name="blogId" id="_blogId" value=""/>
 
                                 <div class="form-group">
@@ -159,8 +159,8 @@
                                     <label>文章内容&nbsp;
                                         <small>可以从Word文档中复制哦！</small>
                                     </label>
-                                    <textarea class="ckeditor form-control" name="content"
-                                              id="_content" rows="200" cols="50">
+                                    <textarea class="form-control" name="_des"
+                                              id="_des" rows="200" cols="50">
                                     </textarea>
                                 </div>
                                 <div class="form-group">

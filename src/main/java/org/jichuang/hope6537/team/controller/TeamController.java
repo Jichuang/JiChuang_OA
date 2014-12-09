@@ -8,7 +8,9 @@ import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.blog.model.Blog;
 import org.jichuang.hope6537.team.model.Team;
+import org.jichuang.hope6537.team.model.TeamType;
 import org.jichuang.hope6537.team.service.TeamService;
+import org.jichuang.hope6537.team.service.TeamTypeService;
 import org.jichuang.hope6537.utils.AjaxResponse;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class TeamController {
 
     @Autowired
     private TeamService teamService;
+    @Autowired
+    private TeamTypeService teamTypeService;
     private Logger logger = Logger.getLogger(getClass());
     private static final String PATH = AdminPageController.PATH;
 
@@ -41,6 +45,13 @@ public class TeamController {
     public String toAddTeam() {
         return PATH + "/team/addTeam";
     }
+
+    @RequestMapping("/{teamId}/toUpdateTeam")
+    public String toUpdateTeam(HttpServletRequest request) {
+        request.setAttribute("isEdit", 1);
+        return PATH + "/team/addTeam";
+    }
+
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -65,11 +76,18 @@ public class TeamController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public AjaxResponse addTeam(@ModelAttribute Team team, HttpServletRequest request) {
+    public AjaxResponse addTeam(Model model, @ModelAttribute Team team, HttpServletRequest request) {
+        Member member = (Member) request.getSession().getAttribute(
+                "loginMember");
         if (team == null) {
-
+            return new AjaxResponse(ReturnState.ERROR, "数据非法，请重新输入");
+        }
+        if (member == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-
+            String teamTypeId = request.getParameter("teamType");
+            int res = teamService.insertTeam(team, member, teamTypeId);
+            return AjaxResponse.getInstanceByResult(res > 0);
         }
     }
 }

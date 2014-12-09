@@ -31,4 +31,10 @@ public class TeamServiceTest extends SpringHelper {
         int res = teamService.insertEntry(appendTeam());
         System.out.println(res);
     }
+
+    @Test
+    public void testNum() {
+        int res = 0 ^ -1;
+        System.out.println(res);
+    }
 }

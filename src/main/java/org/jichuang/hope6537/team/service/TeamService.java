@@ -14,5 +14,7 @@ public interface TeamService extends BaseService<Team> {
 
     List<Team> selectTeamListByStatus(Status status);
 
+    int insertTeam(Team team, Member member, String teamTypeId) ;
+
 
 }

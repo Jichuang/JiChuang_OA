@@ -1,15 +1,18 @@
 var Team = function () {
 
+    var newdes = CKEDITOR.replace('newDes')
+    var editdes = CKEDITOR.replace("_des");
+
     var newData = {
-        title: $("#title").val(),
-        des: $("#des").val(),
+        name: $("#title").val(),
+        des: newdes.getData(),
         teamType: $("teamType").val()
     }
 
     var editData = {
 
         title: $("#_title").val(),
-        des: $("#_des").val(),
+        des: editdes.getData(),
         teamType: $("#_teamType").val()
     }
 
@@ -48,23 +51,37 @@ var Team = function () {
     }
 
     var handleInsertImage2TextArea = function (path) {
-        CKEDITOR.instances.content.insertHtml("<img src='" + path + "'>");
+        newdes.insertHtml("<img src='" + path + "'>");
     }
 
-
-    var handleAddTeam = function (button) {
-
+    var handleRefreshData = function () {
+        newData.name = $("#title").val();
+        newData.des = newdes.getData();
+        newData.teamType = $("#teamType").val();
+        editData.title = $("#_title").val();
+        editData.des = editdes.getData();
+        editData.teamType = $("#_teamType").val()
+    }
+    /**
+     * 创建新项目组
+     * @param button
+     */
+    var handleAddTeam = function () {
+        handleRefreshData();
         $.ajax({
             url: 'team.hopedo',
-            type: 'post',
+            type: 'POST',
             dataType: 'json',
             data: (newData),
             success: function (data) {
                 var status = data.returnState;
                 if (status == "OK") {
                     toast.success(data.returnMsg);
-                    button.hide();
-                    window.location.href = "../team/conf.hopedo";
+                    $("#addTeamButton").hide();
+                    setTimeout(function () {
+                        window.location.href = "../team/conf.hopedo";
+                    }, 2000)
+
                 } else {
                     toast.error(data.returnMsg);
                 }
@@ -77,14 +94,43 @@ var Team = function () {
 
     }
 
-    $("#addTeamButton").on("click", function () {
-        handleAddTeam($(this))
+    var handleRefreshTeamType = function () {
+
+        var teamTypeSelection = $("#teamType");
+        teamTypeSelection.empty();
+        $.ajax({
+            url: 'teamType.hopedo',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var status = data.returnState;
+                if (status == "OK") {
+                    toast.success("项目组类型刷新成功");
+                    var teamTypeList = data.returnData.teamTypeList;
+                    for (var i = 0; i < teamTypeList.length; i++) {
+                        teamTypeSelection.append('<option value="' + teamTypeList[i].teamTypeId + '">' + teamTypeList[i].name + '</option>');
+                    }
+                } else {
+                    toast.error(data.returnMsg);
+                }
+            },
+            error: function (data) {
+                toast.error(data);
+            }
+
+        });
+    }
+
+    $("#addTeamButton").live("click", function () {
+        handleRefreshData();
+        handleAddTeam();
     })
 
 
     $("#updateImageButton").on("click", function () {
         handleUploadImage();
     });
+
 
     $("ul li .insertImage").live("click", function () {
         var path = $(this).parent().first().children(".imagePath").text();
@@ -95,6 +141,7 @@ var Team = function () {
     return {
         init: function () {
             toast.info("进入项目组编辑");
+            handleRefreshTeamType();
         }
     };
 
