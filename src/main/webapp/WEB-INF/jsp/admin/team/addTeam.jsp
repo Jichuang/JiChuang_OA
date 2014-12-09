@@ -91,10 +91,13 @@
                                     </label>
 
                                     <div class="confirm-group">
-                                        <ul class="breadcrumb">
-                                            <li>文件名 <span class="divider">:</span>
-                                                http://www.baidu.com/test.jpg <a href="javascript:;">[插入]</a><br/>
+                                        <ul class="breadcrumb" id="images">
+                                            <li>
+                                                上传过的图片链接，点击插入或者点击编辑器中的插入按钮输入链接皆可插入图片
+                                            </li>
+                                            <br/>
                                         </ul>
+
                                     </div>
                                 </div>
                                 <form id="uploadImageForm" enctype="multipart/form-data">
@@ -118,7 +121,7 @@
                                 </div>
                             </div>
                             <div class="form-actions right">
-                                <button type="submit" class="btn btn-block green">提交新文章</button>
+                                <button type="submit" class="btn btn-block green" id="addTeamButton">创建新项目组</button>
                             </div>
                         </form>
 

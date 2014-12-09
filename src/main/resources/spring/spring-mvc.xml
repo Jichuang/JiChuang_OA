@@ -16,7 +16,7 @@
   	http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
   	http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-4.1.xsd">
-
+    <context:property-placeholder location="classpath:config.properties"/>
 	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
 	<context:component-scan base-package="org.jichuang.hope6537.*.controller" />
 	<!-- 定义aspectj -->

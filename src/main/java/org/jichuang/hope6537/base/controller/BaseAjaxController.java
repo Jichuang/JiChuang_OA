@@ -39,8 +39,12 @@ import javax.servlet.http.HttpServletResponse;
 @Controller()
 @RequestMapping("/baseAjax")
 public class BaseAjaxController {
-    @Value("${apacheDocPath}")
+    @Value("${apacheDocPath_Develop}")
     private String apacheDocPath;
+    @Value("${apacheDocPath_Main}")
+    private String apacheDocReal;
+    @Value("${apacheUrl}")
+    private String apacheUrl;
 
     private Logger logger = Logger.getLogger("memberAjax");
 
@@ -50,12 +54,13 @@ public class BaseAjaxController {
                                     HttpServletRequest request, HttpServletResponse response) {
         String fileName = getUploadFileName(multipartFile);
         String uploadPath = getFileUploadPath(ResourceFile.IMAGE);
+        String serverPath = getServerPath(ResourceFile.IMAGE);
         try {
             FileUtil.readWriteFile(multipartFile, fileName, uploadPath);
         } catch (IOException e) {
             return new AjaxResponse(ReturnState.ERROR, "上传失败，发生错误").addAttribute("Exception", e.getMessage());
         }
-        return AjaxResponse.getInstanceByResult(true).addAttribute("path", uploadPath + File.separator + fileName);
+        return AjaxResponse.getInstanceByResult(true).addAttribute("path", serverPath + "/" + fileName);
     }
 
     /**
@@ -79,5 +84,8 @@ public class BaseAjaxController {
         return apacheDocPath + File.separator + ResourceFile.FILEUPLOAD + File.separator + fileType;
     }
 
+    public String getServerPath(String fileType) {
+        return apacheUrl + "/" + ResourceFile.FILEUPLOAD + "/" + fileType;
+    }
 
 }

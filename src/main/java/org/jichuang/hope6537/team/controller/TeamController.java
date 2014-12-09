@@ -63,5 +63,13 @@ public class TeamController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxResponse addTeam(@ModelAttribute Team team, HttpServletRequest request) {
+        if (team == null) {
 
+        } else {
+
+        }
+    }
 }
