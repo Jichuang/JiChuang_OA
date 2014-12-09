@@ -50,7 +50,7 @@
                             <span>动作</span> <i class="icon-angle-down"></i>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="blog/toAddBlog.hopedo"><i
+                            <li><a href="team/toAddTeam.hopedo"><i
                                     class="icon-edit"></i>创建项目组</a></li>
                             <li><a href="javascript:;" id="reloadTeamTable"><i
                                     class="icon-refresh"></i>刷新项目组信息</a></li>

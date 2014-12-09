@@ -9,6 +9,7 @@
 <![endif]-->
 <script src="admin_assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="admin_assets/plugins/jquery-ajaxfileupload/ajaxfileupload.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
@@ -63,6 +64,7 @@
 <script type="text/javascript" src="admin_assets/js/blog/blogconf.js"></script>
 <script type="text/javascript" src="admin_assets/js/member/memberconf.js"></script>
 <script type="text/javascript" src="admin_assets/js/team/teamconf.js"></script>
+<script type="text/javascript" src="admin_assets/js/team/team.js"></script>
 <script src="admin_assets/scripts/form-editable.js"></script>
 <script>
     jQuery(document).ready(function () {

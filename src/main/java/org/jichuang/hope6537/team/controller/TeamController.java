@@ -37,6 +37,11 @@ public class TeamController {
         return PATH + "/team/conf";
     }
 
+    @RequestMapping("/toAddTeam")
+    public String toAddTeam() {
+        return PATH + "/team/addTeam";
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse refresh(HttpServletRequest request) throws MemberException {
@@ -56,8 +61,7 @@ public class TeamController {
             ajaxResponse.addAttribute("teamList", teamList);
             return ajaxResponse;
         }
-
-
     }
+
 
 }

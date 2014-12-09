@@ -44,7 +44,7 @@
                 class="icon-folder-open"></i> <span class="title">我的文件夹</span>
         </a></li>
         <!-- ================= -->
-        <li><a href="javascript:;" class="teamLi"> <i class="icon-bookmark-empty"></i>
+        <li id="teamLi"><a href="javascript:;"> <i class="icon-bookmark-empty"></i>
             <span class="title">项目组信息</span> <span class="arrow "></span>
         </a>
             <ul class="sub-menu">
