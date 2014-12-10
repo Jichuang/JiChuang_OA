@@ -16,20 +16,18 @@ var Team = function () {
         teamType: $("#_teamType").val()
     }
 
-    var imagesUl = $("#images");
-
 
     var image = $("#image").val();
 
-    var handleUploadImage = function () {
+    var handleUploadImage = function (id, name, imagesUl) {
 
         $.ajaxFileUpload({
             url: '../baseAjax/uploadImage.hopedo',
             type: 'post',
             secureuri: false, //一般设置为false
-            fileElementId: 'image', // 上传文件的id名 不能够添加# 因为它自带前缀
+            fileElementId: id, // 上传文件的id名 不能够添加# 因为它自带前缀
             dataType: 'json', //返回值类型，一般设置为json、application/json
-            elementIds: 'image', //传递参数到服务器
+            elementIds: name, //传递参数到服务器
             success: function (data) {
                 var data = eval(data);
                 var status = data.returnState;
@@ -50,8 +48,8 @@ var Team = function () {
         })
     }
 
-    var handleInsertImage2TextArea = function (path) {
-        newdes.insertHtml("<img src='" + path + "'>");
+    var handleInsertImage2TextArea = function (path, des) {
+        des.insertHtml("<img src='" + path + "'>");
     }
 
     var handleRefreshData = function () {
@@ -94,9 +92,8 @@ var Team = function () {
 
     }
 
-    var handleRefreshTeamType = function () {
+    var handleRefreshTeamType = function (teamTypeSelection) {
 
-        var teamTypeSelection = $("#teamType");
         teamTypeSelection.empty();
         $.ajax({
             url: 'teamType.hopedo',
@@ -121,6 +118,39 @@ var Team = function () {
         });
     }
 
+    /**
+     * 在页面内更新项目组信息
+     */
+    var handleTeamRefresh = function () {
+        var teamId = $("#teamId").text();
+        var data = {
+            teamId: teamId
+        }
+        $.ajax({
+            url: 'team/' + teamId + '.hopedo',
+            type: 'GET',
+            data: (data),
+            dataType: 'json',
+            success: function (data) {
+                var status = data.returnState;
+                if (status == "OK") {
+                    toast.success("项目组信息获取成功，准备修改");
+                    var team = data.returnData.team;
+                    editData.title = $("#_title").val(team.name);
+                    editData.des = editdes.setData(team.des);
+                    editData.teamType = $("#_teamType").find(team.teamTypeId.name).attr("selected", "selected");
+                } else {
+                    toast.error(data.returnMsg);
+                }
+            }
+        });
+    }
+
+    var handleDeleteTeam = function (teamId, teamName) {
+
+    }
+
+
     $("#addTeamButton").live("click", function () {
         handleRefreshData();
         handleAddTeam();
@@ -128,20 +158,30 @@ var Team = function () {
 
 
     $("#updateImageButton").on("click", function () {
-        handleUploadImage();
+        handleUploadImage("image", "image", $("#images"));
+    });
+    $("#_updateImageButton").on("click", function () {
+        handleUploadImage("_image", "image", $("#_images"));
     });
 
 
     $("ul li .insertImage").live("click", function () {
         var path = $(this).parent().first().children(".imagePath").text();
-        handleInsertImage2TextArea(path);
+        handleInsertImage2TextArea(path, newdes);
+        handleInsertImage2TextArea(path, editdes);
     })
 
 
     return {
         init: function () {
             toast.info("进入项目组编辑");
-            handleRefreshTeamType();
+        },
+        refresh: function () {
+            handleRefreshTeamType($("#_teamType"));
+            handleTeamRefresh();
+        },
+        refreshTeamTypeForAdd: function () {
+            handleRefreshTeamType($("#teamType"));
         }
     };
 

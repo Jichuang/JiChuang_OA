@@ -18,6 +18,8 @@
 <script src="admin_assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="admin_assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>

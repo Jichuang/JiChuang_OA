@@ -10,9 +10,11 @@
 <link href="admin_assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-<link rel="stylesheet" type="text/css" href="admin_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css" />
+<link rel="stylesheet" type="text/css" href="admin_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css"/>
 <link href="admin_assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
@@ -21,7 +23,7 @@
 <link rel="stylesheet" type="text/css" href="admin_assets/plugins/bootstrap-toastr/toastr.min.css"/>
 <link rel="stylesheet" type="text/css" href="admin_assets/plugins/select2/select2_metro.css"/>
 <link rel="stylesheet" href="admin_assets/plugins/data-tables/DT_bootstrap.css"/>
-<link href="admin_assets/css/pages/profile.css" rel="stylesheet" type="text/css" />
+<link href="admin_assets/css/pages/profile.css" rel="stylesheet" type="text/css"/>
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="admin_assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>

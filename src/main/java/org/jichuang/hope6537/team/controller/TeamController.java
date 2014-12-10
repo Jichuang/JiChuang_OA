@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.RequestWrapper;
 import java.io.IOException;
 import java.util.List;
 
@@ -89,6 +90,17 @@ public class TeamController {
             String teamTypeId = request.getParameter("teamType");
             int res = teamService.insertTeam(team, member, teamTypeId);
             return AjaxResponse.getInstanceByResult(res > 0);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{teamId}")
+    @ResponseBody
+    public AjaxResponse getTeamById(@PathVariable String teamId, HttpServletRequest request) {
+        if (teamId == null) {
+            return new AjaxResponse(ReturnState.ERROR, "错误的Id");
+        } else {
+            Team team = teamService.selectEntryFromPrimaryKey(Integer.parseInt(teamId));
+            return AjaxResponse.getInstanceByResult(team != null).addAttribute("team", team);
         }
     }
 }
