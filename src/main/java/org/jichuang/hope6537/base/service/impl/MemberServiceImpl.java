@@ -6,8 +6,13 @@ import java.util.Map;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.dao.BaseDao;
+import org.jichuang.hope6537.base.dao.Member_PostDao;
+import org.jichuang.hope6537.base.dao.PostDao;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.base.model.Member_Post;
+import org.jichuang.hope6537.base.model.Post;
+import org.jichuang.hope6537.base.model.Role;
 import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.utils.AESLocker;
 import org.jichuang.hope6537.utils.DateFormat_Jisuan;
@@ -25,6 +30,11 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
         // TODO Auto-generated method stub
         super.setDao(dao);
     }
+
+    @Autowired
+    private Member_PostDao member_postDao;
+    @Autowired
+    private PostDao postDao;
 
     public int insertRegisterService(Member member, JSONObject infos)
             throws MemberException {
@@ -69,17 +79,38 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
      * 以后打算用JSON来显示
      *
      * @param member
-     * @param param
      * @return
      * @throws MemberException
      */
     @Override
-    public int updateMember(Member member, Map<String, String[]> param) throws MemberException {
+    public int updateMember(Member member) throws MemberException {
         if (member == null) {
             throw new MemberException("成员对象为空");
         } else {
-            member.setInfo(param.get("updateInfo")[0]);
+            return this.updateEntryByObject(member);
         }
-        return 1;
+    }
+
+    @Override
+    public int updatePassword(Member member) throws MemberException {
+        if (member == null) {
+            throw new MemberException("成员对象为空");
+        } else {
+            return this.updateEntryByObject(member);
+        }
+    }
+
+    public List<Post> getPostsByMember(Member member) {
+        List<Member_Post> memberPostList = member_postDao.selectEntryByHQL("from Member_Post where memberId = " + member.getMemberId());
+        StringBuffer postIds = new StringBuffer();
+        for (int i = 0; i < memberPostList.size(); i++) {
+            postIds.append(memberPostList.get(i).getPostId().getPostId());
+            if (i < memberPostList.size() - 1) {
+                postIds.append("||");
+            }
+        }
+        String ids = postIds.toString();
+        List<Post> postList = postDao.selectEntryByHQL("from Post where postId = " + ids);
+        return postList;
     }
 }

@@ -55,8 +55,11 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
     }
 
     public List<Blog> selectBlogAllByMember(Member member) {
-        return dao.selectEntryByHQL("from Blog where memberId = "
+
+
+        List<Blog> blogList = dao.selectEntryByHQL("from Blog where memberId = "
                 + member.getMemberId());
+        return blogList;
     }
 
     public int updateBlog(Blog blog, JSONObject infos) {

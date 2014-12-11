@@ -9,6 +9,7 @@
 <![endif]-->
 <script src="admin_assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="admin_assets/plugins/jquery-ajaxfileupload/ajaxfileupload.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
@@ -17,6 +18,8 @@
 <script src="admin_assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="admin_assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
@@ -44,7 +47,7 @@
 <script src="admin_assets/scripts/toast.js" type="text/javascript"></script>
 <script type="text/javascript" src="admin_assets/scripts/datatable.js"></script>
 <script src="admin_assets/scripts/table-advanced.js"></script>
-<script type="text/javascript" src="admin_assets/scripts/blog.js"></script>
+
 <!-- END PAGE LEVEL SCRIPTS -->
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <!-- BEGIN PLUGINS USED BY X-EDITABLE -->
@@ -60,11 +63,14 @@
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/address/address.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/wysihtml5/wysihtml5.js"></script>
 <!-- END X-EDITABLE PLUGIN -->
+<script type="text/javascript" src="admin_assets/js/blog/blogconf.js"></script>
+<script type="text/javascript" src="admin_assets/js/member/memberconf.js"></script>
+<script type="text/javascript" src="admin_assets/js/team/teamconf.js"></script>
+<script type="text/javascript" src="admin_assets/js/team/team.js"></script>
 <script src="admin_assets/scripts/form-editable.js"></script>
 <script>
     jQuery(document).ready(function () {
         App.init(); // initlayout and core plugins
-//        BlogTable.init();
         FormEditable.init();
         Index.init();
         Index.initCalendar(); // init index page's custom scripts

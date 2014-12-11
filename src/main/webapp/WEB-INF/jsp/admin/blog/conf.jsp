@@ -116,9 +116,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        BlogTable.init();
-        $("#reload").trigger("click");
         $("#blogLi").attr("class", "active");
+        BlogTable.init();
     });
 </script>
 <!-- Js核心脚本结束 -->

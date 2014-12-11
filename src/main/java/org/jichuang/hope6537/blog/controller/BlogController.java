@@ -61,12 +61,11 @@ public class BlogController {
         Logger.getLogger(getClass()).info("进入添加博客业务");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
-        // TODO : 在这里编写其他的信息 例如info的 然后别忘了封装
         JSONObject infos = new JSONObject();
         String blogType = request.getParameter("type");
         String blogTags = request.getParameter("tags");
-        infos.put("博客标签", blogTags.toString());
-        infos.put("博客类型", blogType);
+        infos.put("blogTag", blogTags.toString());
+        infos.put("blogType", blogType);
         int res = blogService.insertBlog(blog, member, infos);
         request.setAttribute("insertRes", res);
         if (res != 0) {
@@ -123,8 +122,8 @@ public class BlogController {
             JSONObject infos = new JSONObject();
             String blogType = request.getParameter("type");
             String blogTags = request.getParameter("tags");
-            infos.put("博客标签", blogTags.toString());
-            infos.put("博客类型", blogType);
+            infos.put("blogTag", blogTags.toString());
+            infos.put("blogType", blogType);
             int res = blogService.updateBlog(blog, infos);
             return AjaxResponse.getInstanceByResult(res == 1);
         }
@@ -158,11 +157,38 @@ public class BlogController {
 
     }
 
+    /**
+     * 获得单体博客对象
+     * 以JSON格式传输
+     *
+     * @param blogId
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/{blogId}", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxResponse refreshSimpleBlog(@PathVariable String blogId, HttpServletRequest request) {
+        Logger.getLogger(getClass()).info("进入博客单体查询业务");
+
+        if (blogId == null) {
+            return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
+        } else {
+            Logger.getLogger(getClass()).info("将要查看id为" + blogId + "的博客");
+            Blog blog = blogService.selectEntryFromPrimaryKey(Integer
+                    .parseInt(blogId));
+            if (blog == null) {
+                return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
+            } else {
+                return AjaxResponse.getInstanceByResult(blog != null).addAttribute("blog", blog);
+            }
+        }
+    }
+
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse refresh(HttpServletRequest request) {
-        Member member = (Member) request.getSession().getAttribute(
-                "loginMember");
+        Member member = (Member) request.getSession().getAttribute("loginMember");
         if (member == null) {
             return new AjaxResponse(ReturnState.ERROR, "刷新失败");
         }

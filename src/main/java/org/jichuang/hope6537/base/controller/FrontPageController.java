@@ -16,62 +16,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/frontpage")
 @Scope(value = "prototype")
 public class FrontPageController {
-	@Autowired
-	private BlogService blogService;
+    @Autowired
+    private BlogService blogService;
 
-	public static final String PATH = "frontend/";
+    public static final String PATH = "frontend/";
 
-	@RequestMapping(value = "/aboutus"/* , method = RequestMethod.GET */)
-	public String toAboutUs(HttpServletRequest request) {
-		return PATH + "/aboutus";
-	}
+    @RequestMapping(value = "/aboutus"/* , method = RequestMethod.GET */)
+    public String toAboutUs(HttpServletRequest request) {
+        return PATH + "/aboutus";
+    }
 
-	@RequestMapping("/blog")
-	public String toBlog(HttpServletRequest request) {
-		List<Blog> blogList = blogService.selectEntryAll();
-		request.setAttribute("blogList", blogList);
-		return PATH + "/blog";
-	}
+    @RequestMapping("/blog")
+    public String toBlog(HttpServletRequest request) {
+        List<Blog> blogList = blogService.selectEntryAll();
+        request.setAttribute("blogList", blogList);
+        return PATH + "/blog";
+    }
 
-	@RequestMapping("/contact")
-	public String toContact(HttpServletRequest request) {
-		return PATH + "/contact";
-	}
+    @RequestMapping("/contact")
+    public String toContact(HttpServletRequest request) {
+        return PATH + "/contact";
+    }
 
-	@RequestMapping("/index")
-	public String toIndex(HttpServletRequest request) {
-		return PATH + "/index";
-	}
+    @RequestMapping("/index")
+    public String toIndex(HttpServletRequest request) {
+        return PATH + "/index";
+    }
 
-	@RequestMapping("/single")
-	public String toSingle(HttpServletRequest request) {
-		return PATH + "/single";
-	}
+    @RequestMapping("/single")
+    public String toSingle(HttpServletRequest request) {
+        return PATH + "/single";
+    }
 
-	@RequestMapping("/project")
-	public String toProject(HttpServletRequest request) {
-		return PATH + "/project";
-	}
+    @RequestMapping("/project")
+    public String toProject(HttpServletRequest request) {
+        return PATH + "/project";
+    }
 
-	@RequestMapping("/register")
-	public String toRegister(HttpServletRequest request) {
-		return PATH + "/register";
-	}
+    @RequestMapping("/register")
+    public String toRegister(HttpServletRequest request) {
+        return PATH + "/register";
+    }
 
-	@RequestMapping("/admin")
-	public String toAdmin(HttpServletRequest request) {
-		return PATH + "/admin";
-	}
+    @RequestMapping("/admin")
+    public String toAdmin(HttpServletRequest request) {
+        return PATH + "/admin";
+    }
 
-	@RequestMapping("/{blogId}/blogitem")
-	public String toBlogItem(@PathVariable String blogId,
-			HttpServletRequest request) {
-		if (blogId == null) {
-			throw new NullPointerException("博客id为空");
-		}
-		Blog blog = blogService.selectEntryFromPrimaryKey(Integer
-				.parseInt(blogId));
-		request.setAttribute("blog", blog);
-		return PATH + "/blogitem";
-	}
+    @RequestMapping("/{blogId}/blogitem")
+    public String toBlogItem(@PathVariable String blogId, HttpServletRequest request) {
+        request.setAttribute("blogItemId", blogId);
+        return PATH + "/blogitem";
+    }
+
+
 }
