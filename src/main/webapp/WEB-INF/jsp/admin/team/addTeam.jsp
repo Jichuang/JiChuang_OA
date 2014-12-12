@@ -46,6 +46,7 @@
         </h3>
         <span hidden="hidden" id="isEdit"><%=request.getAttribute("isEdit")%></span>
         <span hidden="hidden" id="teamId"><%=request.getAttribute("teamId")%></span>
+        <span hidden="hidden" id="oldTeamName"></span>
         <span id="editBlogInfo" hidden="hidden"> </span>
         <ul class="page-breadcrumb breadcrumb">、
             <li class="btn-group">
@@ -149,7 +150,7 @@
         <div class="portlet box red">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="icon-globe"></i>Edit Exist Blog
+                    <i class="icon-globe"></i>Edit Exist Team
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="reload"></a> <a
@@ -227,7 +228,7 @@
                         <div class="portlet-body col-md-6" style=" padding-left: 0px;">
                             <label>成员信息</label>
                             <table class="table table-striped table-bordered table-hover"
-                                   id="datatable">
+                                   id="_datatable">
                                 <thead>
                                 <tr>
                                     <th>成员编号</th>
@@ -263,6 +264,25 @@
     </div>
 </div>
 <!-- 页面正文结束-->
+<!-- full width -->
+<div id="deleteModal" class="modal fade" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">删除项目组</h4>
+    </div>
+    <div class="modal-body">
+        <p><font color="red"><h4>注意：您正在进行危险操作</h4></font></p>
+
+        <p>您确定您要删除这个项目组么？<br/>
+            它的一切数据、工程、图片、任务和成员关系将无法找回，您确定要这样做么？<br/>
+            如果您确实想要删除这个项目组，那么在下面的输入框中输入项目组的名称</p>
+        <input type="text" class="form-control" name="" id="deleteTeamName"/>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+        <button type="button" id="deleteTeamButton" class="btn red">确认删除项目组</button>
+    </div>
+</div>
 </div>
 <!-- ======================== 页面结束处======================== -->
 </div>

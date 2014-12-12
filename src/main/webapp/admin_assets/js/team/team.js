@@ -134,8 +134,9 @@ var Team = function () {
             success: function (data) {
                 var status = data.returnState;
                 if (status == "OK") {
-                    toast.success("项目组信息获取成功，准备修改");
+                    toast.info("项目组信息获取成功，准备修改");
                     var team = data.returnData.team;
+                    $("#oldTeamName").text(team.name);
                     editData.title = $("#_title").val(team.name);
                     editData.des = editdes.setData(team.des);
                     editData.teamType = $("#_teamType").find(team.teamTypeId.name).attr("selected", "selected");
@@ -146,8 +147,35 @@ var Team = function () {
         });
     }
 
-    var handleDeleteTeam = function (teamId, teamName) {
+    var handleDeleteTeam = function () {
+        var $modal = $('#deleteModal');
+        $modal.modal();
+        $("#deleteTeamButton").on("click", function () {
+            var putTeamName = $("#deleteTeamName").val();
+            var oldTeamName = $("#oldTeamName").text();
+            if (putTeamName != oldTeamName) {
+                toast.error("项目组名称不匹配");
+            }
+            else {
+                $.ajax({
+                    url: 'team/' + $("#teamId").text() + '.hopedo',
+                    type: 'DELETE',
+                    dataType: 'json',
+                    success: function (data) {
+                        var status = data.returnState;
+                        if (status == "OK") {
+                            toast.success("项目组删除成功");
+                            setTimeout(function () {
+                                window.location.href = "../team/conf.hopedo";
+                            }, 1000)
 
+                        } else {
+                            toast.error(data.returnMsg);
+                        }
+                    }
+                });
+            }
+        });
     }
 
 
@@ -163,6 +191,9 @@ var Team = function () {
     $("#_updateImageButton").on("click", function () {
         handleUploadImage("_image", "image", $("#_images"));
     });
+    $("#deleteTeam").live("click", function () {
+        handleDeleteTeam();
+    })
 
 
     $("ul li .insertImage").live("click", function () {
