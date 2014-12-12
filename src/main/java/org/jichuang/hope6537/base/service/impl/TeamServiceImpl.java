@@ -85,4 +85,20 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
         int res = res1 | res2;
         return res;
     }
+
+    @Override
+    public int deleteTeam(String teamId, Member member) {
+        try {
+            List<Member_Team> list = member_teamDao.selectEntryByHQL("from Member_Team where teamId = " + teamId + " and memberId = " + member.getMemberId());
+            if (list == null || list.isEmpty()) {
+                return -1;
+            } else {
+                int res1 = member_teamDao.doQueryByHql("delete from Member_Team where teamId =" + teamId);
+                int res2 = this.deleteEntryByPrimaryKey(Integer.parseInt(teamId));
+                return res1 + res2;
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 }

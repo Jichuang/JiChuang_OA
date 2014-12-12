@@ -88,6 +88,16 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     }
 
+    public int doQueryByHql(String hql) {
+        try {
+            return sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Open Session");
+            return sessionFactory.openSession().createQuery(hql).executeUpdate();
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     public List<T> selectEntryByHQL(String hql) {
         List<T> list = new ArrayList<T>();
