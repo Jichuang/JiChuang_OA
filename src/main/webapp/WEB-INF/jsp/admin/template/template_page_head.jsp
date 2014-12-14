@@ -10,8 +10,8 @@
 <link href="admin_assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-<link href="assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
-<link href="assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+<link href="admin_assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+<link href="admin_assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
 <link rel="stylesheet" type="text/css" href="admin_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css"/>

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.RequestWrapper;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 @Controller
@@ -92,6 +93,21 @@ public class TeamController {
             return AjaxResponse.getInstanceByResult(res > 0);
         }
     }
+
+    @RequestMapping(value = "/{teamId}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public AjaxResponse deleteTeamById(@PathVariable String teamId, HttpServletRequest request) {
+        Member member = (Member) request.getSession().getAttribute(
+                "loginMember");
+        if (teamId == null || member == null) {
+            return new AjaxResponse(ReturnState.ERROR, "无效操作");
+        } else {
+            int res = teamService.deleteTeam(teamId, member);
+            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("删除成功");
+        }
+
+    }
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/{teamId}")
     @ResponseBody

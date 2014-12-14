@@ -51,7 +51,6 @@ public class TeamFileTree implements Serializable {
 	}
 
 	public TeamFileTree() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

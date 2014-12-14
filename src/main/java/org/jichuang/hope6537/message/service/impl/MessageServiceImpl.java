@@ -15,7 +15,6 @@ public class MessageServiceImpl extends BaseServiceImpl<Message> implements
 	@Qualifier("messageDao")
 	@Override
 	public void setDao(BaseDao<Message> dao) {
-		// TODO Auto-generated method stub
 		super.setDao(dao);
 	}
 
