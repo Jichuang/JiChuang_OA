@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /target
 =======
 # Eclipse project files
@@ -15,4 +15,4 @@ bison-webapp/src/main/webapp/js/bower_components/
 # Others
 target/
 logs/
->>>>>>> branch 'master' of https://github.com/Hope6537/JiChuang_OA.git
+
