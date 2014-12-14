@@ -127,7 +127,6 @@ public class Judge implements Serializable {
 	}
 
 	public Judge() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

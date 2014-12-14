@@ -15,7 +15,6 @@ public class TaskServiceImpl extends BaseServiceImpl<Task> implements
 	@Override
 	@Qualifier("taskDao")
 	public void setDao(BaseDao<Task> dao) {
-		// TODO Auto-generated method stub
 		super.setDao(dao);
 	}
 

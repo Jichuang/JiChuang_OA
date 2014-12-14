@@ -27,7 +27,6 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
     @Qualifier(value = "memberDao")
     @Override
     public void setDao(BaseDao<Member> dao) {
-        // TODO Auto-generated method stub
         super.setDao(dao);
     }
 
