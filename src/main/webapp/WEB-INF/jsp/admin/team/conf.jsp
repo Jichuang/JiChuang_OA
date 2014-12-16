@@ -109,7 +109,8 @@
 </body>
 <!-- Js核心脚本 -->
 <%@include file="../template/template_page_javascript.jsp" %>
-
+<script type="text/javascript" src="admin_assets/js/team/teamconf.js"></script>
+<script type="text/javascript" src="admin_assets/js/team/team.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         TeamTable.init();
