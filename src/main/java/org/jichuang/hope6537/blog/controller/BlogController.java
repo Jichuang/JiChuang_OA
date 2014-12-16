@@ -33,11 +33,14 @@ public class BlogController {
 
     private static final String PATH = AdminPageController.PATH + "/blog";
 
+    private Logger logger = Logger.getLogger(getClass());
+
     @Autowired
     private BlogService blogService;
 
     @RequestMapping("/conf")
     public String toConf(HttpServletRequest request) {
+        logger.info("博客业务——进入维护");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
         if (member == null) {
@@ -50,6 +53,7 @@ public class BlogController {
 
     @RequestMapping("/toAddBlog")
     public String toAddBlog() {
+        logger.info("博客业务——进入添加博客页面");
         return PATH + "/addBlog";
     }
 
@@ -58,7 +62,7 @@ public class BlogController {
     public void addBlog(Model model, @ModelAttribute Blog blog,
                         HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        Logger.getLogger(getClass()).info("进入添加博客业务");
+        logger.info("博客业务——进入添加博客业务");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
         JSONObject infos = new JSONObject();
@@ -79,6 +83,7 @@ public class BlogController {
     public String toUpdateBlog(@PathVariable String blogId,
                                HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        logger.info("博客业务——进入更新博客页面");
         if (blogId == null) {
             response.sendRedirect("conf.hopedo?selectRes=0");
             return null;
@@ -100,6 +105,7 @@ public class BlogController {
     @ResponseBody
     public AjaxResponse deleteBlog(@PathVariable String blogId,
                                    HttpServletRequest request) {
+        logger.info("博客业务——进入删除博客业务");
         if (blogId == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作失败");
         } else {
@@ -113,6 +119,7 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
     public AjaxResponse updateBlog(Blog blog, HttpServletRequest request) {
+        logger.info("博客业务——进入更新博客业务");
         Logger.getLogger(getClass()).info(request.getParameter("blogId"));
         if (blog == null || blog.getBlogId() == null) {
             return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
@@ -141,6 +148,7 @@ public class BlogController {
     @ResponseBody
     public AjaxResponse deployBlog(@PathVariable String blogId,
                                    HttpServletRequest request) {
+        logger.info("博客业务——进入发布博客业务");
         Logger.getLogger(getClass()).info(request.getParameter("blogId"));
         if (blogId == null) {
             return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
@@ -168,8 +176,7 @@ public class BlogController {
     @RequestMapping(value = "/{blogId}", method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse refreshSimpleBlog(@PathVariable String blogId, HttpServletRequest request) {
-        Logger.getLogger(getClass()).info("进入博客单体查询业务");
-
+        logger.info("博客业务——进入查询单体博客业务");
         if (blogId == null) {
             return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
         } else {
@@ -188,6 +195,7 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse refresh(HttpServletRequest request) {
+        logger.info("博客业务——进入刷新博客列表业务");
         Member member = (Member) request.getSession().getAttribute("loginMember");
         if (member == null) {
             return new AjaxResponse(ReturnState.ERROR, "刷新失败");
