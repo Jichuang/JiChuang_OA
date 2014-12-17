@@ -61,7 +61,7 @@ public class TeamController {
         } else if (member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            int res = teamService.updateTeam(team, member , newTeamTypeId);
+            int res = teamService.updateTeam(team, member, newTeamTypeId);
             return AjaxResponse.getInstanceByResult(res > -1).addReturnMsg("修改项目组成功");
         }
     }

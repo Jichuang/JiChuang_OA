@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository("notificationDao")
 public class NotificationDaoImpl extends BaseDaoImpl<Notification> implements
-		NotificationDao {
+        NotificationDao {
 
 }

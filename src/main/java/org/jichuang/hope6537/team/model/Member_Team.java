@@ -32,6 +32,17 @@ public class Member_Team {
     @JoinColumn(name = "teamId")
     private Team teamId;
 
+    @Column(name = "status", length = 50)
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Member getMemberId() {
         return memberId;
     }

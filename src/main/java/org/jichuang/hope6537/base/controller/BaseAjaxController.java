@@ -1,30 +1,23 @@
 package org.jichuang.hope6537.base.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.UUID;
-import java.util.logging.Logger;
-
-import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.model.ResourceFile;
-import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.utils.AjaxResponse;
 import org.jichuang.hope6537.utils.FileUtil;
 import org.jichuang.hope6537.utils.ReturnState;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+import java.util.logging.Logger;
 
 /**
  * <p>Describe: 异步交互控制器</p>

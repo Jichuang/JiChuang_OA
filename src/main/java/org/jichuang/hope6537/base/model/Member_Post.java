@@ -1,8 +1,6 @@
 package org.jichuang.hope6537.base.model;
 
 
-import org.jichuang.hope6537.team.model.TeamType;
-
 import javax.persistence.*;
 
 @Entity

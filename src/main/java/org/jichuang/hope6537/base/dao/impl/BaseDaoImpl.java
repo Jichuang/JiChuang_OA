@@ -1,13 +1,13 @@
 package org.jichuang.hope6537.base.dao.impl;
 
+import org.hibernate.SessionFactory;
+import org.jichuang.hope6537.base.dao.BaseDao;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.SessionFactory;
-import org.jichuang.hope6537.base.dao.BaseDao;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <pre>

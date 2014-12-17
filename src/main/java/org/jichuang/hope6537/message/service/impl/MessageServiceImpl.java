@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Service("messageService")
 public class MessageServiceImpl extends BaseServiceImpl<Message> implements
-		MessageService {
-	@Autowired
-	@Qualifier("messageDao")
-	@Override
-	public void setDao(BaseDao<Message> dao) {
-		super.setDao(dao);
-	}
+        MessageService {
+    @Autowired
+    @Qualifier("messageDao")
+    @Override
+    public void setDao(BaseDao<Message> dao) {
+        super.setDao(dao);
+    }
 
 }

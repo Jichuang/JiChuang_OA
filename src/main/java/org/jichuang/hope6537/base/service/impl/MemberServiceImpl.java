@@ -1,9 +1,5 @@
 package org.jichuang.hope6537.base.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.dao.BaseDao;
 import org.jichuang.hope6537.base.dao.Member_PostDao;
@@ -12,13 +8,14 @@ import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.model.Member_Post;
 import org.jichuang.hope6537.base.model.Post;
-import org.jichuang.hope6537.base.model.Role;
 import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.utils.AESLocker;
 import org.jichuang.hope6537.utils.DateFormat_Jisuan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("memberService")
 public class MemberServiceImpl extends BaseServiceImpl<Member> implements

@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
-	<class name="org.jichuang.hope6537.version.model.Version" table="Version_DataBase">
-		<id name="vid" type="int">
-			<column name="vid"></column>
-			<generator class="increment"></generator>
-		</id>
-		<property name="vpath" type="string">
-			<column name="vpath"></column>
-		</property>
-		<property name="vdate" type="string" length="50">
-			<column name="vdate"></column>
-		</property>
-		<property name="vstatus" type="string" length="50">
-			<column name="vstatus"></column>
-		</property>
-		<property name="vinfo" type="string" length="500">
-			<column name="vinfo"></column>
-		</property>
-		<many-to-one name="vbefore" cascade="save-update"
-			class="org.jichuang.hope6537.version.model.Version" column="vbefore"></many-to-one>
-		<many-to-one name="vtid" cascade="save-update"
-			class="org.jichuang.hope6537.team.model.Team" column="vtid"></many-to-one>
-		<many-to-one name="vmid" cascade="save-update"
-			class="org.jichuang.hope6537.base.model.Member" column="vmid"></many-to-one>
-	</class>
+    <class name="org.jichuang.hope6537.version.model.Version" table="Version_DataBase">
+        <id name="vid" type="int">
+            <column name="vid"></column>
+            <generator class="increment"></generator>
+        </id>
+        <property name="vpath" type="string">
+            <column name="vpath"></column>
+        </property>
+        <property name="vdate" type="string" length="50">
+            <column name="vdate"></column>
+        </property>
+        <property name="vstatus" type="string" length="50">
+            <column name="vstatus"></column>
+        </property>
+        <property name="vinfo" type="string" length="500">
+            <column name="vinfo"></column>
+        </property>
+        <many-to-one name="vbefore" cascade="save-update"
+                     class="org.jichuang.hope6537.version.model.Version" column="vbefore"></many-to-one>
+        <many-to-one name="vtid" cascade="save-update"
+                     class="org.jichuang.hope6537.team.model.Team" column="vtid"></many-to-one>
+        <many-to-one name="vmid" cascade="save-update"
+                     class="org.jichuang.hope6537.base.model.Member" column="vmid"></many-to-one>
+    </class>
 
 </hibernate-mapping>

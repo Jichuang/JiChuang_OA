@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
-	<class name="org.jichuang.hope6537.judge.model.Judge" table="Judge_Database">
-		<id name="jid" type="integer">
-			<column name="jid"></column>
-			<generator class="increment"></generator>
-		</id>
-		<property name="jdes" type="string" length="1000">
-			<column name="jdes"></column>
-		</property>
-		<property name="jstatus" type="string">
-			<column name="mesdes"></column>
-		</property>
-		<property name="jstartdate" type="string" length="50">
-			<column name="jstartdate"></column>
-		</property>
-		<property name="jenddate" type="string">
-			<column name="jenddate"></column>
-		</property>
-		<property name="jinfo" type="string" length="500">
-			<column name="jinfo"></column>
-		</property>
-		<many-to-one name="jto" cascade="save-update"
-			class="org.jichuang.hope6537.base.model.Member" column="jtoid"></many-to-one>
-		<many-to-one name="jfrom" cascade="save-update"
-			class="org.jichuang.hope6537.base.model.Member" column="jformid"></many-to-one>
-	</class>
+    <class name="org.jichuang.hope6537.judge.model.Judge" table="Judge_Database">
+        <id name="jid" type="integer">
+            <column name="jid"></column>
+            <generator class="increment"></generator>
+        </id>
+        <property name="jdes" type="string" length="1000">
+            <column name="jdes"></column>
+        </property>
+        <property name="jstatus" type="string">
+            <column name="mesdes"></column>
+        </property>
+        <property name="jstartdate" type="string" length="50">
+            <column name="jstartdate"></column>
+        </property>
+        <property name="jenddate" type="string">
+            <column name="jenddate"></column>
+        </property>
+        <property name="jinfo" type="string" length="500">
+            <column name="jinfo"></column>
+        </property>
+        <many-to-one name="jto" cascade="save-update"
+                     class="org.jichuang.hope6537.base.model.Member" column="jtoid"></many-to-one>
+        <many-to-one name="jfrom" cascade="save-update"
+                     class="org.jichuang.hope6537.base.model.Member" column="jformid"></many-to-one>
+    </class>
 
 </hibernate-mapping>

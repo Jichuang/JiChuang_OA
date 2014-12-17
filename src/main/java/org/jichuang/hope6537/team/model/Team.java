@@ -1,11 +1,7 @@
 package org.jichuang.hope6537.team.model;
 
-import java.io.Serializable;
-import java.util.Set;
-
 import javax.persistence.*;
-
-import org.jichuang.hope6537.base.model.Member;
+import java.io.Serializable;
 
 /**
  * <pre>

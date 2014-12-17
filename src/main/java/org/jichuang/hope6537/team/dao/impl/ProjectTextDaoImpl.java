@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository("projectTextDao")
 public class ProjectTextDaoImpl extends BaseDaoImpl<ProjectText> implements
-		ProjectTextDao {
+        ProjectTextDao {
 
 }

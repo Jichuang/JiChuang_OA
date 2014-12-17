@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Service("taskService")
 public class TaskServiceImpl extends BaseServiceImpl<Task> implements
-		TaskService {
-	@Autowired
-	@Override
-	@Qualifier("taskDao")
-	public void setDao(BaseDao<Task> dao) {
-		super.setDao(dao);
-	}
+        TaskService {
+    @Autowired
+    @Override
+    @Qualifier("taskDao")
+    public void setDao(BaseDao<Task> dao) {
+        super.setDao(dao);
+    }
 
 }

@@ -1,13 +1,11 @@
 package org.jichuang.hope6537.blog.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.BaseService;
 import org.jichuang.hope6537.blog.model.Blog;
-import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 public interface BlogService extends BaseService<Blog> {
 
