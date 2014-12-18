@@ -5,4 +5,6 @@ import org.jichuang.hope6537.message.model.Message;
 
 public interface MessageDao extends BaseDao<Message> {
 
+
 }
+

@@ -23,7 +23,7 @@ public class Member_Message {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Message.class)
     @JoinColumn(name = "messageId")
-    private Member messageId;
+    private Message messageId;
 
     public Integer getId() {
         return id;
@@ -49,11 +49,11 @@ public class Member_Message {
         this.getMemberId = getMemberId;
     }
 
-    public Member getMessageId() {
+    public Message getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(Member messageId) {
+    public void setMessageId(Message messageId) {
         this.messageId = messageId;
     }
 }

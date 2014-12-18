@@ -1,10 +1,7 @@
 package org.jichuang.hope6537.message.model;
 
-import org.jichuang.hope6537.base.model.Member;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * <pre>
@@ -37,8 +34,8 @@ public class Message implements Serializable {
     private static final long serialVersionUID = 1505144897024599779L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "mesId", length = 50)
-    private Integer mesId;
+    @Column(name = "messageId", length = 50)
+    private Integer messageId;
     @Column(name = "title", length = 50)
     private String title;
     @Column(name = "des", length = 500)
@@ -50,12 +47,16 @@ public class Message implements Serializable {
     @Column(name = "info", length = 500)
     private String info;
 
-    public Integer getMesId() {
-        return mesId;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setMesId(Integer mesId) {
-        this.mesId = mesId;
+    public Integer getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
     }
 
     public String getTitle() {
@@ -97,10 +98,11 @@ public class Message implements Serializable {
     public void setInfo(String info) {
         this.info = info;
     }
+
     @Override
     public String toString() {
         return "Message{" +
-                "mesId=" + mesId +
+                "mesId=" + getMessageId() +
                 ", title='" + title + '\'' +
                 ", des='" + des + '\'' +
                 ", date='" + date + '\'' +
