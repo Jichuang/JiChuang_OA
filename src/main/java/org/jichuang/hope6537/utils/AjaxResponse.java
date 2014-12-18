@@ -1,12 +1,10 @@
 package org.jichuang.hope6537.utils;
 
-import java.util.HashMap;
-
-import java.util.Map;
-
 import org.springframework.validation.BindingResult;
-
 import org.springframework.validation.ObjectError;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AjaxResponse {
     private ReturnState returnState = ReturnState.OK;

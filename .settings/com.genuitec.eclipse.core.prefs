@@ -1,4 +1,0 @@
-eclipse.preferences.version=1
-validator.Checked=src/main/webapp/WEB-INF,src/main/webapp/frontend_assets/plugins,pom.xml,src/main/webapp/admin_assets/plugins,src/main/java
-validator.Revalidate=true
-validator.Unchecked=

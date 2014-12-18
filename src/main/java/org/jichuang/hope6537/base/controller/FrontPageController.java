@@ -1,9 +1,5 @@
 package org.jichuang.hope6537.base.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.jichuang.hope6537.blog.model.Blog;
 import org.jichuang.hope6537.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +7,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/frontpage")

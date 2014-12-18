@@ -84,62 +84,59 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <form action="blog/insertBlog.hopedo" method="post"
-                      id="addBlogForm">
 
 
-                    <div class="form-body">
-                        <div class="form-group">
-                            <label>项目组名称</label>
-                            <input type="text" class="form-control input-lg" name="title" id="title"
-                                   placeholder="输入新项目组的名称...">
-                        </div>
-                        <div class="form-group">
-                            <label>项目组描述&nbsp;
-                                <small>可以从Word文档中复制哦！</small>
-                            </label>
-                            <textarea class="form-control" name="newDes"
-                                      id="newDes" rows="200" cols="50"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>插入图片
-                                <small>上传后使用链接到编辑器提交链接来显示图片</small>
-                            </label>
+                <div class="form-body">
+                    <div class="form-group">
+                        <label>项目组名称</label>
+                        <input type="text" class="form-control input-lg" name="title" id="title"
+                               placeholder="输入新项目组的名称...">
+                    </div>
+                    <div class="form-group">
+                        <label>项目组描述&nbsp;
+                            <small>可以从Word文档中复制哦！</small>
+                        </label>
+                        <textarea class="form-control" name="newDes"
+                                  id="newDes" rows="200" cols="50"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>插入图片
+                            <small>上传后使用链接到编辑器提交链接来显示图片</small>
+                        </label>
 
-                            <div class="confirm-group">
-                                <ul class="breadcrumb" id="images">
-                                    <li>
-                                        上传过的图片链接，点击插入或者点击编辑器中的插入按钮输入链接皆可插入图片
-                                    </li>
-                                    <br/>
-                                </ul>
+                        <div class="confirm-group">
+                            <ul class="breadcrumb" id="images">
+                                <li>
+                                    上传过的图片链接，点击插入或者点击编辑器中的插入按钮输入链接皆可插入图片
+                                </li>
+                                <br/>
+                            </ul>
 
-                            </div>
-                        </div>
-                        <form id="uploadImageForm" enctype="multipart/form-data">
-                            <div class="form-group" style="margin-bottom: 87px;">
-                                <label class="col-md-3 control-label btn btn-primary"
-                                       id="updateImageButton">上传当前图片<br/>
-                                </label>
-
-                                <div class="col-md-9">
-                                    <input type="file" id="image" name="image">
-
-                                    <p class="help-block">在本地选择要上传的图片，点击提交图片按钮</p>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="form-group">
-                            <label>项目组种类</label>
-                            <select class="form-control input-lg" id="teamType" name="teamType">
-                                <option value="1">1</option>
-                            </select>
                         </div>
                     </div>
-                    <div class="form-actions right">
-                        <button type="submit" class="btn btn-block green" id="addTeamButton">创建新项目组</button>
+                    <form id="uploadImageForm" enctype="multipart/form-data">
+                        <div class="form-group" style="margin-bottom: 87px;">
+                            <label class="col-md-3 control-label btn btn-primary"
+                                   id="updateImageButton">上传当前图片<br/>
+                            </label>
+
+                            <div class="col-md-9">
+                                <input type="file" id="image" name="image">
+
+                                <p class="help-block">在本地选择要上传的图片，点击提交图片按钮</p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <label>项目组种类</label>
+                        <select class="form-control input-lg" id="teamType" name="teamType">
+                            <option value="1">1</option>
+                        </select>
                     </div>
-                </form>
+                </div>
+                <div class="form-actions right">
+                    <button type="submit" class="btn btn-block green" id="addTeamButton">创建新项目组</button>
+                </div>
 
             </div>
         </div>
@@ -254,7 +251,7 @@
 
 
                     <div class="form-actions right">
-                        <button type="button" id="updateBlogButton" class="btn btn-block green">提交修改</button>
+                        <button type="button" id="updateTeamButton" class="btn btn-block green">提交修改</button>
                     </div>
                 </form>
 
@@ -292,6 +289,8 @@
 </body>
 <!-- Js核心脚本 -->
 <%@include file="../template/template_page_javascript.jsp" %>
+<script type="text/javascript" src="admin_assets/js/team/teamconf.js"></script>
+<script type="text/javascript" src="admin_assets/js/team/team.js"></script>
 <script type="text/javascript">
     $(document).on("ready", function () {
         $("#teamLi").attr("class", "active");

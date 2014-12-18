@@ -1,25 +1,9 @@
 package org.jichuang.hope6537.base.model;
 
-import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
-import org.jichuang.hope6537.message.model.Message;
-import org.jichuang.hope6537.notification.model.Notification;
-import org.jichuang.hope6537.task.model.Task;
-import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.utils.AESLocker;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * <pre>
@@ -83,64 +67,6 @@ public class Member implements Serializable {
      */
     @Column(name = "info", length = 10000)
     private String info;
-
-    /**
-     * <p>Describe: 任务接受夹</p>
-     * <p>Using: </p>
-     */
-    @ManyToMany(targetEntity = Task.class, cascade = {CascadeType.MERGE,
-            CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "member_task", joinColumns = {@JoinColumn(name = "memberFromId")}, inverseJoinColumns = {@JoinColumn(name = "taskFromOtherId")})
-    private Set<Task> taskFromOtherId;
-
-    /**
-     * <p>Describe: 任务发送夹</p>
-     * <p>Using: </p>
-     */
-    @ManyToMany(targetEntity = Task.class, cascade = {CascadeType.MERGE,
-            CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "member_task", joinColumns = {@JoinColumn(name = "memberToId")}, inverseJoinColumns = {@JoinColumn(name = "taskToOtherId")})
-    private Set<Task> taskToOtherId;
-
-    /**
-     * <p>Describe: 发信夹</p>
-     * <p>Using: SELECT DISTINCT
-     * mes.mesid,
-     * mes.mestitle,
-     * mes.mesdes,
-     * mes.messtatus,
-     * mes.mesinfo,
-     * mes.mesdate
-     * FROM member_database m , message_database mes, message_member_database mmd
-     * where mes.mesid = mmd.mesid and (mmd.mfromid = m.mid or mmd.mtoid = m.mid) and mmd.mfromid = id本身</p>
-     */
-    @ManyToMany(targetEntity = Message.class, cascade = {CascadeType.MERGE,
-            CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "member_message", joinColumns = {@JoinColumn(name = "memberId")}, inverseJoinColumns = {@JoinColumn(name = "messageToOtherId")})
-    private Set<Message> messageToOtherId;
-
-    /**
-     * <p>Describe: 收件夹</p>
-     * <p>Using: SELECT DISTINCT
-     * mes.mesid,
-     * mes.mestitle,
-     * mes.mesdes,
-     * mes.messtatus,
-     * mes.mesinfo,
-     * mes.mesdate
-     * FROM member_database m , message_database mes, message_member_database mmd
-     * where mes.mesid = mmd.mesid and (mmd.mfromid = m.mid or mmd.mtoid = m.mid) and mmd.mtoid = id本身</p>
-     */
-    @ManyToMany(targetEntity = Message.class, cascade = {CascadeType.MERGE,
-            CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "member_message", joinColumns = {@JoinColumn(name = "memberFromId")}, inverseJoinColumns = {@JoinColumn(name = "messageFromOtherId")})
-    private Set<Message> messageFromOtherId;
-
-    @ManyToMany(targetEntity = Notification.class, cascade = {
-            CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "member_notification", joinColumns = {@JoinColumn(name = "memberToId")}, inverseJoinColumns = {@JoinColumn(name = "notificationId")})
-    private Set<Notification> notificationId;
-
 
     /**
      * <p>Describe: 解密</p>
@@ -240,46 +166,6 @@ public class Member implements Serializable {
 
     public void setInfo(String info) {
         this.info = info;
-    }
-
-    public Set<Task> getTaskFromOtherId() {
-        return taskFromOtherId;
-    }
-
-    public void setTaskFromOtherId(Set<Task> taskFromOtherId) {
-        this.taskFromOtherId = taskFromOtherId;
-    }
-
-    public Set<Task> getTaskToOtherId() {
-        return taskToOtherId;
-    }
-
-    public void setTaskToOtherId(Set<Task> taskToOtherId) {
-        this.taskToOtherId = taskToOtherId;
-    }
-
-    public Set<Message> getMessageToOtherId() {
-        return messageToOtherId;
-    }
-
-    public void setMessageToOtherId(Set<Message> messageToOtherId) {
-        this.messageToOtherId = messageToOtherId;
-    }
-
-    public Set<Message> getMessageFromOtherId() {
-        return messageFromOtherId;
-    }
-
-    public void setMessageFromOtherId(Set<Message> messageFromOtherId) {
-        this.messageFromOtherId = messageFromOtherId;
-    }
-
-    public Set<Notification> getNotificationId() {
-        return notificationId;
-    }
-
-    public void setNotificationId(Set<Notification> notificationId) {
-        this.notificationId = notificationId;
     }
 
 

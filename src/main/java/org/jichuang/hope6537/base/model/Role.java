@@ -1,9 +1,7 @@
 package org.jichuang.hope6537.base.model;
 
-import java.io.Serializable;
-import java.util.Set;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * <pre>

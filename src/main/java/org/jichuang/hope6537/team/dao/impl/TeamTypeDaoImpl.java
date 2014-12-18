@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository("teamTypeDao")
 public class TeamTypeDaoImpl extends BaseDaoImpl<TeamType> implements
-		TeamTypeDao {
+        TeamTypeDao {
 
 }

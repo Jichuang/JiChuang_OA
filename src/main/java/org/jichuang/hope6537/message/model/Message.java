@@ -1,147 +1,113 @@
 package org.jichuang.hope6537.message.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
-import org.jichuang.hope6537.base.model.Member;
-
-/** 
- *<pre>
- *十二.私信对象 Message —— 数据库表/可能会使用XML进行映射
-1.私信主键id mesid int 10
-2.私信发信人 mesfrom_mid int 10 对应单一
-3.私信收信人 改为多对多
-4.私信标题 mestitle varchar 50
-5.私信内容 mesdes varchar 500
-6.私信时间 mesdate varchar 50
-7.私信状态 messtatus varchar 50
-8.私信其他信息：键值对 mesifno varchar 255
- *</pre>
+/**
+ * <pre>
+ * 十二.私信对象 Message —— 数据库表/可能会使用XML进行映射
+ * 1.私信主键id mesid int 10
+ * 2.私信发信人 mesfrom_mid int 10 对应单一
+ * 3.私信收信人 改为多对多
+ * 4.私信标题 mestitle varchar 50
+ * 5.私信内容 mesdes varchar 500
+ * 6.私信时间 mesdate varchar 50
+ * 7.私信状态 messtatus varchar 50
+ * 8.私信其他信息：键值对 mesifno varchar 255
+ * </pre>
  * <p>Describe: </p>
  * <p>Using: </p>
  * <p>DevelopedTime: 2014年10月13日下午8:07:06</p>
  * <p>Company: ChangChun Unviersity JiChuang Team</p>
+ *
  * @author Hope6537
  * @version 1.0
  * @see
  */
 @Entity
 @Table(name = "Message")
-public class Message implements Serializable{
-	/**
-	 * <p>Describe: </p>
-	 * <p>Using: </p>
-	 */
-	private static final long serialVersionUID = 1505144897024599779L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "mesId", length = 50)
-	private Integer mesId;
-	@Column(name = "title", length = 50)
-	private String title;
-	@Column(name = "des", length = 500)
-	private String des;
-	@Column(name = "date", length = 50)
-	private String date;
-	@Column(name = "status", length = 50)
-	private String status;
-	@Column(name = "info", length = 500)
-	private String info;
+public class Message implements Serializable {
+    /**
+     * <p>Describe: </p>
+     * <p>Using: </p>
+     */
+    private static final long serialVersionUID = 1505144897024599779L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "messageId", length = 50)
+    private Integer messageId;
+    @Column(name = "title", length = 50)
+    private String title;
+    @Column(name = "des", length = 500)
+    private String des;
+    @Column(name = "date", length = 50)
+    private String date;
+    @Column(name = "status", length = 50)
+    private String status;
+    @Column(name = "info", length = 500)
+    private String info;
 
-	/**
-	 * <p>Describe: </p>
-	 * <p>Using: </p>
-	 */
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "messageFromOtherId", targetEntity = Member.class)
-	private Set<Member> memberFromId;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-	/**
-	 * <p>Describe: </p>
-	 * <p>Using: </p>
-	 */
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "messageToOtherId", targetEntity = Member.class)
-	private Set<Member> memberToId;
+    public Integer getMessageId() {
+        return messageId;
+    }
 
-	public Integer getMesId() {
-		return mesId;
-	}
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
+    }
 
-	public void setMesId(Integer mesId) {
-		this.mesId = mesId;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getDes() {
+        return des;
+    }
 
-	public String getDes() {
-		return des;
-	}
+    public void setDes(String des) {
+        this.des = des;
+    }
 
-	public void setDes(String des) {
-		this.des = des;
-	}
+    public String getDate() {
+        return date;
+    }
 
-	public String getDate() {
-		return date;
-	}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getInfo() {
+        return info;
+    }
 
-	public String getInfo() {
-		return info;
-	}
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
-	public void setInfo(String info) {
-		this.info = info;
-	}
-
-	public Set<Member> getMemberFromId() {
-		return memberFromId;
-	}
-
-	public void setMemberFromId(Set<Member> memberFromId) {
-		this.memberFromId = memberFromId;
-	}
-
-	public Set<Member> getMemberToId() {
-		return memberToId;
-	}
-
-	public void setMemberToId(Set<Member> memberToId) {
-		this.memberToId = memberToId;
-	}
-
-	@Override
-	public String toString() {
-		return "Message [mesId=" + mesId + ", title=" + title + ", des=" + des
-				+ ", date=" + date + ", status=" + status + ", info=" + info
-				+ ", memberFromId=" + memberFromId + ", memberToId="
-				+ memberToId + "]";
-	}
-
-	
+    @Override
+    public String toString() {
+        return "Message{" +
+                "mesId=" + getMessageId() +
+                ", title='" + title + '\'' +
+                ", des='" + des + '\'' +
+                ", date='" + date + '\'' +
+                ", status='" + status + '\'' +
+                ", info='" + info + '\'' +
+                '}';
+    }
 }

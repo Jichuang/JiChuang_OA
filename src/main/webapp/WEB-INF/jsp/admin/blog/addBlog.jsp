@@ -43,7 +43,9 @@
             创建新博客
             <small>Add New Blog</small>
         </h3>
-        <span hidden="hidden" id="blogItemId"><%=editBlog.getBlogId()%></span>
+
+
+        <span hidden="hidden" id="isEdit"><%=editBlog == null ? 0 : 1%></span>
         <ul class="page-breadcrumb breadcrumb">
             <li class="btn-group">
                 <button type="button" class="btn blue dropdown-toggle"
@@ -82,7 +84,7 @@
             <div class="portlet-body">
                 <form action="blog/insertBlog.hopedo" method="post"
                       id="addBlogForm">
-                    <span id="editBlogInfo" hidden="hidden"><%=editBlog.getInfo()%></span>
+
 
                     <div class="form-body">
                         <div class="form-group">
@@ -145,7 +147,9 @@
         </div>
 
     </div>
-
+    <%
+        if (editBlog != null) {
+    %>
     <div class="col-md-12" id="updateArea">
         <div class="portlet box red">
             <div class="portlet-title">
@@ -164,11 +168,9 @@
 
 
                     <div class="form-body">
-							 <span hidden="hidden"
-                                   id="isEdit"><%=editBlog == null ? 0 : 1%></span>
-                        <%
-                            if (editBlog != null) {
-                        %>
+
+                        <span hidden="hidden" id="blogItemId"><%=editBlog.getBlogId()%></span>
+                        <span id="editBlogInfo" hidden="hidden"><%=editBlog.getInfo()%></span>
                         <input type="hidden" name="blogId" id="_blogId" value="<%=editBlog.getBlogId() %>"/>
 
                         <div class="form-group">
@@ -223,9 +225,7 @@
                             <option value="体会心得">体会心得</option>
                         </select>
                         </div>
-                        <%
-                            }
-                        %>
+
                     </div>
                     <div class="form-actions right">
                         <button type="button" id="updateBlogButton" class="btn btn-block green">提交修改</button>
@@ -234,8 +234,10 @@
 
             </div>
         </div>
-
     </div>
+    <%
+        }
+    %>
 </div>
 <!-- 页面正文结束-->
 </div>
@@ -247,9 +249,13 @@
 </body>
 <!-- Js核心脚本 -->
 <%@include file="../template/template_page_javascript.jsp" %>
+<script type="text/javascript" src="admin_assets/js/blog/blogconf.js"></script>
+<script type="javascript">
+    console.log($("#isEdit").text());
+</script>
+
 <script type="text/javascript">
     $(document).on("ready", function () {
-        BlogTable.init();
         $("#blogLi").attr("class", "active");
         var isEdit = $("#isEdit").text();
         $(".page-title").text("");
@@ -260,19 +266,16 @@
             $("#addArea").hide();
             $(".page-title").append("编辑现有博客 <small>Edit Exist Blog</small>");
         }
+        BlogTable.init();
+
     });
 </script>
-
 <script>
     $(document).ready(function () {
         var info = eval("(" + $("#editBlogInfo").text() + ")");
-        console.log(info);
         $("#_tags").val(info.blogTag);
         $("#_type").val(info.blogType);
-
     });
-
-
 </script>
 <!-- Js核心脚本结束 -->
 </html>

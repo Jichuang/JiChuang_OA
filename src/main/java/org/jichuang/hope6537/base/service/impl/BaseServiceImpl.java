@@ -1,11 +1,11 @@
 package org.jichuang.hope6537.base.service.impl;
 
-import java.io.Serializable;
-import java.util.List;
-
 import org.jichuang.hope6537.base.dao.BaseDao;
 import org.jichuang.hope6537.base.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
 

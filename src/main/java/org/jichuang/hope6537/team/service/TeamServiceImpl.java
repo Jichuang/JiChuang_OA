@@ -1,16 +1,16 @@
-package org.jichuang.hope6537.base.service.impl;
+package org.jichuang.hope6537.team.service;
 
 
 import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.dao.BaseDao;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.base.service.impl.BaseServiceImpl;
 import org.jichuang.hope6537.team.dao.Member_TeamDao;
 import org.jichuang.hope6537.team.dao.TeamTypeDao;
 import org.jichuang.hope6537.team.model.Member_Team;
 import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.team.model.TeamType;
-import org.jichuang.hope6537.team.service.TeamService;
 import org.jichuang.hope6537.utils.DateFormat_Jisuan;
 import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +99,24 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
             }
         } catch (Exception e) {
             return 0;
+        }
+    }
+
+    @Override
+    public int updateTeam(Team team, Member member, String newTeamTypeId) {
+        Team oldTeam = this.selectEntryFromPrimaryKey(team.getTeamId());
+        oldTeam.setName(team.getName());
+        oldTeam.setDes(team.getDes());
+        oldTeam.setTeamTypeId(teamTypeDao.selectEntryFromPrimaryKey(Integer.parseInt(newTeamTypeId)));
+        try {
+            List<Member_Team> list = member_teamDao.selectEntryByHQL("from Member_Team where teamId =" + team.getTeamId() + " and memberId = " + member.getMemberId());
+            if (list == null || list.isEmpty()) {
+                return -1;
+            } else {
+                return this.updateEntryByObject(oldTeam);
+            }
+        } catch (Exception e) {
+            return -1;
         }
     }
 }

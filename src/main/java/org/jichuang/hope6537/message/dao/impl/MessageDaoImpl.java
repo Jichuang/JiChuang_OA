@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository("messageDao")
 public class MessageDaoImpl extends BaseDaoImpl<Message> implements MessageDao {
-
 }

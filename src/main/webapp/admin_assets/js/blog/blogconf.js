@@ -316,9 +316,10 @@ var BlogTable = function () {
         init: function () {
             if (!jQuery().dataTable) {
                 return;
+            } else {
+                initTable1();
+                handleReloadEvent();
             }
-            initTable1();
-            handleReloadEvent();
 
         },
         frontInit: function () {

@@ -1,14 +1,10 @@
 package org.jichuang.hope6537.team.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.jichuang.hope6537.base.controller.AdminPageController;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
-import org.jichuang.hope6537.base.service.MemberService;
-import org.jichuang.hope6537.blog.model.Blog;
 import org.jichuang.hope6537.team.model.Team;
-import org.jichuang.hope6537.team.model.TeamType;
 import org.jichuang.hope6537.team.service.TeamService;
 import org.jichuang.hope6537.team.service.TeamTypeService;
 import org.jichuang.hope6537.utils.AjaxResponse;
@@ -20,10 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.RequestWrapper;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 @Controller
@@ -40,25 +32,45 @@ public class TeamController {
 
     @RequestMapping("/conf")
     public String toTeam() {
+        logger.info("项目组业务——进入项目组维护页面");
         return PATH + "/team/conf";
     }
 
     @RequestMapping("/toAddTeam")
     public String toAddTeam() {
+        logger.info("项目组业务——进入添加项目组");
         return PATH + "/team/addTeam";
     }
 
     @RequestMapping("/{teamId}/toUpdateTeam")
     public String toUpdateTeam(@PathVariable String teamId, HttpServletRequest request) {
+        logger.info("项目组业务——根据ID进入项目组修改页面");
         request.setAttribute("isEdit", 1);
         request.setAttribute("teamId", teamId);
         return PATH + "/team/addTeam";
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    @ResponseBody
+    public AjaxResponse updateTeamById(Model model, @ModelAttribute Team team, HttpServletRequest request) {
+        logger.info("项目组业务——更新当前单体项目组");
+        Member member = (Member) request.getSession().getAttribute("loginMember");
+        String newTeamTypeId = request.getParameter("teamType");
+        if (team == null) {
+            return new AjaxResponse(ReturnState.ERROR, "没有对应的項目組");
+        } else if (member == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            int res = teamService.updateTeam(team, member, newTeamTypeId);
+            return AjaxResponse.getInstanceByResult(res > -1).addReturnMsg("修改项目组成功");
+        }
     }
 
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse refresh(HttpServletRequest request) throws MemberException {
+        logger.info("项目组业务——刷新当前列表");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
         if (member == null) {
@@ -80,6 +92,7 @@ public class TeamController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public AjaxResponse addTeam(Model model, @ModelAttribute Team team, HttpServletRequest request) {
+        logger.info("项目组业务——添加新项目组");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
         if (team == null) {
@@ -97,6 +110,7 @@ public class TeamController {
     @RequestMapping(value = "/{teamId}", method = RequestMethod.DELETE)
     @ResponseBody
     public AjaxResponse deleteTeamById(@PathVariable String teamId, HttpServletRequest request) {
+        logger.info("项目组业务——删除当前项目组");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
         if (teamId == null || member == null) {
@@ -112,6 +126,7 @@ public class TeamController {
     @RequestMapping(method = RequestMethod.GET, value = "/{teamId}")
     @ResponseBody
     public AjaxResponse getTeamById(@PathVariable String teamId, HttpServletRequest request) {
+        logger.info("项目组业务——根据ID获取项目组");
         if (teamId == null) {
             return new AjaxResponse(ReturnState.ERROR, "错误的Id");
         } else {

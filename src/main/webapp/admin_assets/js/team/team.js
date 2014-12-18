@@ -2,6 +2,7 @@ var Team = function () {
 
     var newdes = CKEDITOR.replace('newDes')
     var editdes = CKEDITOR.replace("_des");
+    var editTeam = null;
 
     var newData = {
         name: $("#title").val(),
@@ -10,8 +11,8 @@ var Team = function () {
     }
 
     var editData = {
-
-        title: $("#_title").val(),
+        teamId: $("#teamId").text(),
+        name: $("#_title").val(),
         des: editdes.getData(),
         teamType: $("#_teamType").val()
     }
@@ -56,7 +57,8 @@ var Team = function () {
         newData.name = $("#title").val();
         newData.des = newdes.getData();
         newData.teamType = $("#teamType").val();
-        editData.title = $("#_title").val();
+        editData.teamId = $("#teamId").text();
+        editData.name = $("#_title").val();
         editData.des = editdes.getData();
         editData.teamType = $("#_teamType").val()
     }
@@ -65,7 +67,6 @@ var Team = function () {
      * @param button
      */
     var handleAddTeam = function () {
-        handleRefreshData();
         $.ajax({
             url: 'team.hopedo',
             type: 'POST',
@@ -119,7 +120,7 @@ var Team = function () {
     }
 
     /**
-     * 在页面内更新项目组信息
+     * 在页面内刷新项目组信息
      */
     var handleTeamRefresh = function () {
         var teamId = $("#teamId").text();
@@ -136,8 +137,9 @@ var Team = function () {
                 if (status == "OK") {
                     toast.info("项目组信息获取成功，准备修改");
                     var team = data.returnData.team;
+                    editTeam = team;
                     $("#oldTeamName").text(team.name);
-                    editData.title = $("#_title").val(team.name);
+                    editData.name = $("#_title").val(team.name);
                     editData.des = editdes.setData(team.des);
                     editData.teamType = $("#_teamType").find(team.teamTypeId.name).attr("selected", "selected");
                 } else {
@@ -147,6 +149,9 @@ var Team = function () {
         });
     }
 
+    /**
+     * 删除项目组
+     */
     var handleDeleteTeam = function () {
         var $modal = $('#deleteModal');
         $modal.modal();
@@ -178,13 +183,53 @@ var Team = function () {
         });
     }
 
+    var json2form = function (jsonString) {
+        var dataString = "";
+        for (var e in jsonString) {
+            dataString += e + "=" + jsonString[e] + "&";
+        }
+        return dataString.substring(0, dataString.length - 1);
+    }
 
+
+    /**
+     * 执行更新操作
+     */
+    var handleUpdateTeam = function () {
+        console.log(editData);
+        $.ajax({
+            url: 'team.hopedo',
+            type: 'PUT',
+            data: (editData),
+            dataType: 'JSON',
+            success: function (data) {
+                var status = data.returnState;
+                if (status == "OK") {
+                    toast.success(data.returnMsg);
+                    $("#updateTeamButton").hide();
+                    setTimeout(function () {
+                        window.location.href = "../team/conf.hopedo";
+                    }, 2000)
+
+                } else {
+                    toast.error(data.returnMsg);
+                }
+            },
+            error: function (data) {
+                toast.error(data);
+            }
+        });
+    }
+
+
+    $("#updateTeamButton").on("click", function () {
+        handleRefreshData();
+        handleUpdateTeam();
+    })
     $("#addTeamButton").live("click", function () {
         handleRefreshData();
         handleAddTeam();
     })
-
-
     $("#updateImageButton").on("click", function () {
         handleUploadImage("image", "image", $("#images"));
     });
@@ -193,6 +238,9 @@ var Team = function () {
     });
     $("#deleteTeam").live("click", function () {
         handleDeleteTeam();
+    })
+    $("#refreshTeam").on("click", function () {
+        handleTeamRefresh();
     })
 
 

@@ -1,4 +1,3 @@
-<%@page import="org.jichuang.hope6537.utils.InfoUtils" %>
 <%@page import="org.jichuang.hope6537.blog.model.Blog" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%
