@@ -18,7 +18,7 @@ public class Member_Notification {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Notification.class)
     @JoinColumn(name = "notificationId")
-    private Member notificationId;
+    private Notification notificationId;
 
     public Integer getId() {
         return id;
@@ -36,11 +36,11 @@ public class Member_Notification {
         this.memberId = memberId;
     }
 
-    public Member getNotificationId() {
+    public Notification getNotificationId() {
         return notificationId;
     }
 
-    public void setNotificationId(Member notificationId) {
+    public void setNotificationId(Notification notificationId) {
         this.notificationId = notificationId;
     }
 }

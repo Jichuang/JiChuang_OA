@@ -1,16 +1,16 @@
-package org.jichuang.hope6537.base.service.impl;
+package org.jichuang.hope6537.team.service;
 
 
 import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.dao.BaseDao;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.base.service.impl.BaseServiceImpl;
 import org.jichuang.hope6537.team.dao.Member_TeamDao;
 import org.jichuang.hope6537.team.dao.TeamTypeDao;
 import org.jichuang.hope6537.team.model.Member_Team;
 import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.team.model.TeamType;
-import org.jichuang.hope6537.team.service.TeamService;
 import org.jichuang.hope6537.utils.DateFormat_Jisuan;
 import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
