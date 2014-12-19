@@ -4,45 +4,45 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
- 
-var cbpAnimatedHeader = (function() {
 
-	var docElem = document.documentElement,
-		header = document.querySelector( '.navbar-inner' ),
-		headerwrap = document.querySelector( '.front-header' ),
-		didScroll = false,
-		changeHeaderOn = 300;
+var cbpAnimatedHeader = (function () {
 
-	function init() {
-		window.addEventListener( 'scroll', function( event ) {
-			if( !didScroll ) {
-				didScroll = true;
-				setTimeout( scrollPage, 250 );
-			}
-		}, false );
-	}
+    var docElem = document.documentElement,
+        header = document.querySelector('.navbar-inner'),
+        headerwrap = document.querySelector('.front-header'),
+        didScroll = false,
+        changeHeaderOn = 300;
 
-	function scrollPage() {
-		var sy = scrollY();
-		if ( sy >= changeHeaderOn ) {
-			classie.add( header, 'navbar-inner-shrink' );
-			classie.add( headerwrap, 'front-header-shrink' );
-		}
-		else {
-			classie.remove( header, 'navbar-inner-shrink' );
-			classie.remove( headerwrap, 'front-header-shrink' );
-		}
-		didScroll = false;
-	}
+    function init() {
+        window.addEventListener('scroll', function (event) {
+            if (!didScroll) {
+                didScroll = true;
+                setTimeout(scrollPage, 250);
+            }
+        }, false);
+    }
 
-	function scrollY() {
-		return window.pageYOffset || docElem.scrollTop;
-	}
+    function scrollPage() {
+        var sy = scrollY();
+        if (sy >= changeHeaderOn) {
+            classie.add(header, 'navbar-inner-shrink');
+            classie.add(headerwrap, 'front-header-shrink');
+        }
+        else {
+            classie.remove(header, 'navbar-inner-shrink');
+            classie.remove(headerwrap, 'front-header-shrink');
+        }
+        didScroll = false;
+    }
 
-	init();
+    function scrollY() {
+        return window.pageYOffset || docElem.scrollTop;
+    }
+
+    init();
 
 })();

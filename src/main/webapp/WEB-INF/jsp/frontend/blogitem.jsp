@@ -1,5 +1,4 @@
-<%@page import="org.jichuang.hope6537.blog.model.Blog" %>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -145,7 +144,7 @@
 
                         <div class="form-group">app
                             <label>邮箱地址 <span class="color-red">*</span></label> <input
-                                type="text" class="form-control">
+                                    type="text" class="form-control">
                         </div>
 
                         <div class="form-group">

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <!-- BEGIN RIGHT SIDEBAR -->
 <div class="col-md-3 col-sm-3 blog-sidebar">
     <!-- 写新文章按钮结束 -->

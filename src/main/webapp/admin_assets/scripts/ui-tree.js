@@ -5,7 +5,7 @@ var UITree = function () {
         init: function () {
 
             var DataSourceTree = function (options) {
-                this._data  = options.data;
+                this._data = options.data;
                 this._delay = options.delay;
             };
 
@@ -22,7 +22,7 @@ var UITree = function () {
                     }, this._delay)
                 }
             };
-            
+
             // INITIALIZING TREE
             var treeDataSource = new DataSourceTree({
                 data: [
@@ -74,7 +74,7 @@ var UITree = function () {
                     { name: '<i class="icon-suitcase"></i> Portfolio <div class="tree-actions"><i class="icon-plus"></i><i class="icon-remove"></i><i class="icon-refresh"></i></div>', type: 'item', additionalParameters: { id: 'I12' } }
                 ],
                 delay: 400
-            });  
+            });
 
             var treeDataSource6 = new DataSourceTree({
                 data: [
@@ -85,7 +85,7 @@ var UITree = function () {
                     { name: '<i class="icon-suitcase"></i> Portfolio <div class="tree-actions"><i class="icon-plus"></i><i class="icon-remove"></i><i class="icon-refresh"></i></div>', type: 'item', additionalParameters: { id: 'I12' } }
                 ],
                 delay: 400
-            });    
+            });
 
             $('#MyTree').tree({
                 dataSource: treeDataSource,

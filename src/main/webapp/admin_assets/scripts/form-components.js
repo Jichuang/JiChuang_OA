@@ -1,10 +1,10 @@
 var FormComponents = function () {
 
-    var handleBootstrapMaxlength = function() {
+    var handleBootstrapMaxlength = function () {
         $('#maxlength_defaultconfig').maxlength({
             limitReachedClass: "label label-danger",
         })
-    
+
         $('#maxlength_thresholdconfig').maxlength({
             limitReachedClass: "label label-danger",
             threshold: 20
@@ -35,8 +35,8 @@ var FormComponents = function () {
     var handleSpinners = function () {
         $('#spinner1').spinner();
         $('#spinner2').spinner({disabled: true});
-        $('#spinner3').spinner({value:0, min: 0, max: 10});
-        $('#spinner4').spinner({value:0, step: 5, min: 0, max: 200});
+        $('#spinner3').spinner({value: 0, min: 0, max: 10});
+        $('#spinner4').spinner({value: 0, step: 5, min: 0, max: 200});
     }
 
     var handleWysihtml5 = function () {
@@ -110,7 +110,7 @@ var FormComponents = function () {
                 console.log("Callback has been called!");
                 $('#defaultrange input').val(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             }
-        );        
+        );
 
         $('#reportrange').daterangepicker({
                 opens: (App.isRTL() ? 'left' : 'right'),
@@ -270,6 +270,7 @@ var FormComponents = function () {
             if (!state.id) return state.text; // optgroup
             return "<img class='flag' src='admin_assets/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
         }
+
         $("#select2_sample4").select2({
             placeholder: "Select a Country",
             allowClear: true,
@@ -336,8 +337,8 @@ var FormComponents = function () {
                         },
                         dataType: "jsonp"
                     }).done(function (data) {
-                        callback(data);
-                    });
+                            callback(data);
+                        });
                 }
             },
             formatResult: movieFormatResult, // omitted for brevity, see the source of this page
@@ -386,6 +387,7 @@ var FormComponents = function () {
             if (!state.id) return state.text; // optgroup
             return "<img class='flag' src='admin_assets/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
         }
+
         $("#select2_sample_modal_4").select2({
             allowClear: true,
             formatResult: format,
@@ -451,8 +453,8 @@ var FormComponents = function () {
                         },
                         dataType: "jsonp"
                     }).done(function (data) {
-                        callback(data);
-                    });
+                            callback(data);
+                        });
                 }
             },
             formatResult: movieFormatResult, // omitted for brevity, see the source of this page
@@ -613,8 +615,8 @@ var FormComponents = function () {
             btn.attr('disabled', true);
 
             input.attr("readonly", true).
-            attr("disabled", true).
-            addClass("spinner");
+                attr("disabled", true).
+                addClass("spinner");
 
             $.post('demo/username_checker.php', {
                 username: input.val()
@@ -622,8 +624,8 @@ var FormComponents = function () {
                 btn.attr('disabled', false);
 
                 input.attr("readonly", false).
-                attr("disabled", false).
-                removeClass("spinner");
+                    attr("disabled", false).
+                    removeClass("spinner");
 
                 if (res.status == 'OK') {
                     input.closest('.form-group').removeClass('has-error').addClass('has-success');
@@ -666,15 +668,15 @@ var FormComponents = function () {
             }
 
             input.attr("readonly", true).
-            attr("disabled", true).
-            addClass("spinner");
+                attr("disabled", true).
+                addClass("spinner");
 
             $.post('demo/username_checker.php', {
                 username: input.val()
             }, function (res) {
                 input.attr("readonly", false).
-                attr("disabled", false).
-                removeClass("spinner");
+                    attr("disabled", false).
+                    removeClass("spinner");
 
                 // change popover font color based on the result
                 if (res.status == 'OK') {
