@@ -1,5 +1,6 @@
 package org.jichuang.hope6537.base.dao.impl;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jichuang.hope6537.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,17 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         clz = (Class<?>) type.getActualTypeArguments()[0];
     }
 
-    @SuppressWarnings("unchecked")
     public T selectEntryFromPrimaryKey(Serializable id) {
-        return (T) sessionFactory.getCurrentSession().get(clz, id);
+        try {
+            return (T) sessionFactory.getCurrentSession().get(clz, id);
+        } catch (Exception e) {
+            Session session = sessionFactory.openSession();
+            System.err.println("Open Session");
+            T t = (T) session.get(clz, id);
+            session.close();
+            System.err.println("Open Session Closed");
+            return t;
+        }
     }
 
     public int insertEntry(T t) {
@@ -45,8 +54,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             sessionFactory.getCurrentSession().save(t);
             return 1;
         } catch (Exception e) {
+            Session session = sessionFactory.openSession();
             System.err.println("Open Session");
-            sessionFactory.openSession().save(t);
+            session.save(t);
+            session.close();
+            System.err.println("Open Session Closed");
             return 0;
         }
     }
@@ -56,8 +68,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             sessionFactory.getCurrentSession().update(t);
             return 1;
         } catch (Exception e) {
+            Session session = sessionFactory.openSession();
             System.err.println("Open Session");
-            sessionFactory.openSession().update(t);
+            session.update(t);
+            session.close();
+            System.err.println("Open Session Closed");
             return 0;
         }
     }
@@ -68,9 +83,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             sessionFactory.getCurrentSession().delete(t);
             return 1;
         } catch (Exception e) {
+            Session session = sessionFactory.openSession();
             System.err.println("Open Session");
             T t = this.selectEntryFromPrimaryKey(id);
-            sessionFactory.openSession().delete(t);
+            session.delete(t);
+            session.close();
+            System.err.println("Open Session Closed");
             return 0;
         }
     }
@@ -81,9 +99,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             return sessionFactory.getCurrentSession()
                     .createQuery("from " + clz.getSimpleName()).list();
         } catch (Exception e) {
+            Session session = sessionFactory.openSession();
             System.err.println("Open Session");
-            return sessionFactory.openSession()
+            List list = session
                     .createQuery("from " + clz.getSimpleName()).list();
+            session.close();
+            System.err.println("Open Session Closed");
+            return list;
+
         }
 
     }
@@ -92,8 +115,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         try {
             return sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
         } catch (Exception e) {
+            Session session = sessionFactory.openSession();
             System.err.println("Open Session");
-            return sessionFactory.openSession().createQuery(hql).executeUpdate();
+            int res = session.createQuery(hql).executeUpdate();
+            session.close();
+            System.err.println("Open Session Closed");
+            return res;
         }
 
     }
@@ -104,7 +131,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         try {
             list = sessionFactory.getCurrentSession().createQuery(hql).list();
         } catch (Exception e) {
-            list = sessionFactory.openSession().createQuery(hql).list();
+            Session session = sessionFactory.openSession();
+            System.err.println("Open Session");
+            list = session.createQuery(hql).list();
+            session.close();
+            System.err.println("Open Session Closed");
         }
         return list;
     }

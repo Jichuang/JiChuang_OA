@@ -54,6 +54,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
             <props>
+                <prop key="current_session_context_class">thread</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
