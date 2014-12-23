@@ -1,3 +1,10 @@
+var basePath = function () {
+    var url = window.location + "";
+    var h = url.split("//");
+    var x = h[1].split("/");
+    return h[0] + "//" + window.location.host + "/" + x[1] + "/";
+}();
+
 var Team = function () {
 
     var newdes = CKEDITOR.replace('newDes')
@@ -23,7 +30,7 @@ var Team = function () {
     var handleUploadImage = function (id, name, imagesUl) {
 
         $.ajaxFileUpload({
-            url: '../baseAjax/uploadImage.hopedo',
+            url: basePath + '/baseAjax/uploadImage.hopedo',
             type: 'post',
             secureuri: false, //一般设置为false
             fileElementId: id, // 上传文件的id名 不能够添加# 因为它自带前缀
@@ -68,7 +75,7 @@ var Team = function () {
      */
     var handleAddTeam = function () {
         $.ajax({
-            url: 'team.hopedo',
+            url: basePath + 'team.hopedo',
             type: 'POST',
             dataType: 'json',
             data: (newData),
@@ -78,7 +85,7 @@ var Team = function () {
                     toast.success(data.returnMsg);
                     $("#addTeamButton").hide();
                     setTimeout(function () {
-                        window.location.href = "../team/conf.hopedo";
+                        window.location.href = basePath + "/team/conf.hopedo";
                     }, 2000)
 
                 } else {
@@ -97,7 +104,7 @@ var Team = function () {
 
         teamTypeSelection.empty();
         $.ajax({
-            url: 'teamType.hopedo',
+            url: basePath + 'teamType.hopedo',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -128,7 +135,7 @@ var Team = function () {
             teamId: teamId
         }
         $.ajax({
-            url: 'team/' + teamId + '.hopedo',
+            url: basePath + 'team/' + teamId + '.hopedo',
             type: 'GET',
             data: (data),
             dataType: 'json',
@@ -163,7 +170,7 @@ var Team = function () {
             }
             else {
                 $.ajax({
-                    url: 'team/' + $("#teamId").text() + '.hopedo',
+                    url: basePath + 'team/' + $("#teamId").text() + '.hopedo',
                     type: 'DELETE',
                     dataType: 'json',
                     success: function (data) {
@@ -171,7 +178,7 @@ var Team = function () {
                         if (status == "OK") {
                             toast.success("项目组删除成功");
                             setTimeout(function () {
-                                window.location.href = "../team/conf.hopedo";
+                                window.location.href = basePath + "/team/conf.hopedo";
                             }, 1000)
 
                         } else {
@@ -198,7 +205,7 @@ var Team = function () {
     var handleUpdateTeam = function () {
         console.log(editData);
         $.ajax({
-            url: 'team.hopedo',
+            url: basePath + 'team.hopedo',
             type: 'PUT',
             data: (editData),
             dataType: 'JSON',
@@ -208,7 +215,7 @@ var Team = function () {
                     toast.success(data.returnMsg);
                     $("#updateTeamButton").hide();
                     setTimeout(function () {
-                        window.location.href = "../team/conf.hopedo";
+                        window.location.href = basePath + "/team/conf.hopedo";
                     }, 2000)
 
                 } else {

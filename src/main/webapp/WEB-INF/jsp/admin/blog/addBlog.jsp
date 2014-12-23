@@ -271,9 +271,12 @@
 </script>
 <script>
     $(document).ready(function () {
-        var info = eval("(" + $("#editBlogInfo").text() + ")");
-        $("#_tags").val(info.blogTag);
-        $("#_type").val(info.blogType);
+        var isEdit = $("#isEdit").text();
+        if (!(isEdit == "0")) {
+            var info = eval("(" + $("#editBlogInfo").text() + ")");
+            $("#_tags").val(info.blogTag);
+            $("#_type").val(info.blogType);
+        }
     });
 </script>
 <!-- Js核心脚本结束 -->

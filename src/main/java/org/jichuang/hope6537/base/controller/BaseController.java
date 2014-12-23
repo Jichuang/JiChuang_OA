@@ -24,7 +24,6 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/base")
-@Scope("prototype")
 public class BaseController {
 
     @Autowired
@@ -34,7 +33,7 @@ public class BaseController {
     @Autowired
     private RoleService roleService;
 
-    public static final String PATH = "admin/";
+    public static final String PATH = AdminPageController.PATH;
     private Logger logger = Logger.getLogger(getClass());
 
     /**
@@ -75,7 +74,7 @@ public class BaseController {
 
     @RequestMapping("toMember")
     public String toMember() {
-        return PATH + "base/memberconf";
+        return PATH + "/base/memberconf";
     }
 
 
@@ -86,9 +85,10 @@ public class BaseController {
         return refresh(request, memberService, "all");
     }
 
+
     @RequestMapping("toRole")
     public String toRole() {
-        return PATH + "base/roleconf";
+        return PATH + "/base/roleconf";
     }
 
     @RequestMapping(value = "/role", method = RequestMethod.GET)
@@ -101,7 +101,7 @@ public class BaseController {
 
     @RequestMapping("toPost")
     public String toPost() {
-        return PATH + "base/postconf";
+        return PATH + "/base/postconf";
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.GET)

@@ -81,7 +81,7 @@
                                id="datatable">
                             <thead>
                             <tr>
-                                <th>职位编号</th>
+                                <th style="width: 60px;">职位编号</th>
                                 <th>职位名称</th>
                                 <th>职位状态</th>
                                 <th>职位操作</th>

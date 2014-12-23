@@ -6,6 +6,7 @@
 <!--[if lt IE 9]>
 <script src="admin_assets/plugins/respond.min.js"></script>
 <script src="admin_assets/plugins/excanvas.min.js"></script>
+<script type="text/javascript" src="admin_assets/js/base/global.js"></script>
 <![endif]-->
 <script src="admin_assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>

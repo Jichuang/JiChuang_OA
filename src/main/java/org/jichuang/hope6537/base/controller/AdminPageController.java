@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/page")
 public class AdminPageController {
 
-    public static final String PATH = "admin/";
+    public static final String PATH = "/admin/";
 
     @RequestMapping("/index")
     public String toIndex() {

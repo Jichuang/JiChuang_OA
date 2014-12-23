@@ -18,7 +18,7 @@
     <base href="<%=basePath%>">
     <!-- head的include区 -->
     <jsp:include page="../template/template_page_head.jsp" flush="true"/>
-    <title>权限维护</title>
+    <title>团队成员维护</title>
     <!-- head的include区 结束  -->
 </head>
 <body class="page-header-fixed page-footer-fixed">
@@ -38,8 +38,8 @@
             <div class="col-md-12">
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                 <h3 class="page-title">
-                    权限维护
-                    <small>Team Config</small>
+                    团队成员维护
+                    <small>Member Config</small>
                 </h3>
                 <ul class="page-breadcrumb breadcrumb">
                     <li class="btn-group">
@@ -50,14 +50,14 @@
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href="team/toAddTeam.hopedo"><i
-                                    class="icon-edit"></i>添加新权限</a></li>
+                                    class="icon-edit"></i>添加新成员</a></li>
                             <li><a href="javascript:;" id="reloadTeamTable"><i
-                                    class="icon-refresh"></i>刷新权限信息</a></li>
+                                    class="icon-refresh"></i>刷新成员信息</a></li>
                         </ul>
                     </li>
                     <li><i class="icon-home"></i> <a href="page/index.hopedo">主页</a>
                         <i class="icon-angle-right"></i></li>
-                    <li><a href="javascript:;">权限维护</a></li>
+                    <li><a href="javascript:;">团队成员维护</a></li>
                 </ul>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -70,7 +70,7 @@
                 <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="icon-globe"></i>Team Configration
+                            <i class="icon-globe"></i>Member Configration
                         </div>
                         <div class="tools">
                             <a href="javascript:;" class="remove"></a>
@@ -81,14 +81,15 @@
                                id="datatable">
                             <thead>
                             <tr>
-                                <th style="width: 60px;">权限编号</th>
-                                <th>权限内容</th>
-                                <th>权限状态</th>
-                                <th>权限操作</th>
+                                <th style="width: 100px;">成员姓名</th>
+                                <th>成员邮箱</th>
+                                <th>成员注册日期</th>
+                                <th>成员状态</th>
+                                <th>查看成员详细信息</th>
+                                <th>团队成员操作</th>
                             </tr>
                             </thead>
                             <tbody>
-
                             </tbody>
                         </table>
                     </div>
@@ -106,10 +107,10 @@
 </body>
 <!-- Js核心脚本 -->
 <%@include file="../template/template_page_javascript.jsp" %>
-<script type="text/javascript" src="admin_assets/js/base/roleconf.js"></script>
+<script type="text/javascript" src="admin_assets/js/base/memberconf.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        RoleTable.init();
+        MemberTable.init();
         $("#adminLi").attr("class", "active");
     });
 </script>
