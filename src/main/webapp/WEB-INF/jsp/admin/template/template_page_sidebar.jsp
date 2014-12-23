@@ -1,5 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%@ page import="org.jichuang.hope6537.base.model.Member" %>
+<%@ page language="java" import="org.jichuang.hope6537.base.model.Member" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
@@ -131,14 +130,14 @@
             </ul>
         </li>
         <!-- ================= -->
-        <li class=""><a href="javascript:;"> <i class="icon-th"></i>
+        <li id="adminLi"><a href="javascript:;"> <i class="icon-th"></i>
             <span class="title">管理员维护</span> <span class="arrow "></span>
         </a>
             <ul class="sub-menu">
-                <li><a href="table_basic.html"> 新闻维护</a></li>
-                <li><a href="table_responsive.html"> 用户设置</a></li>
-                <li><a href="table_managed.html"> 项目组设置</a></li>
-                <li><a href="table_editable.html"> 参数设置</a></li>
+                <li><a href="news/conf.hopedo"> 新闻维护</a></li>
+                <li><a href="base/toMember.hopedo"> 用户设置</a></li>
+                <li><a href="base/toRole.hopedo"> 权限设置</a></li>
+                <li><a href="base/toPost.hopedo"> 职务设置</a></li>
             </ul>
         </li>
         <!-- ================= -->

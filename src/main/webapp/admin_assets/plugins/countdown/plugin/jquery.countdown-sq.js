@@ -1,7 +1,7 @@
 ﻿/* http://keith-wood.name/countdown.html
-   Albanian initialisation for the jQuery countdown extension
-   Written by Erzen Komoni. */
-(function($) {
+ Albanian initialisation for the jQuery countdown extension
+ Written by Erzen Komoni. */
+(function ($) {
     $.countdown.regional['sq'] = {
         labels: ['Vite', 'Muaj', 'Javë', 'Ditë', 'Orë', 'Minuta', 'Sekonda'],
         labels1: ['Vit', 'Muaj', 'Javë', 'Dit', 'Orë', 'Minutë', 'Sekond'],

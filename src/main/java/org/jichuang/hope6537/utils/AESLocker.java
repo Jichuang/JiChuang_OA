@@ -7,7 +7,7 @@ public class AESLocker {
 
     public static void main(String[] args) throws Exception {
         /*
-		 * 16:18:01 ---> 16:19:02 ---> 16:18 if(throws){16:19}
+         * 16:18:01 ---> 16:19:02 ---> 16:18 if(throws){16:19}
 		 */
         String time = System.currentTimeMillis() / 1000000 + "000000000";
         System.out.println(time.length());

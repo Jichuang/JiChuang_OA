@@ -5,7 +5,7 @@ var FormFileUpload = function () {
         //main function to initiate the module
         init: function () {
 
-             // Initialize the jQuery File Upload widget:
+            // Initialize the jQuery File Upload widget:
             $('#fileupload').fileupload({
                 // Uncomment the following to send cross-domain cookies:
                 //xhrFields: {withCredentials: true},                
@@ -34,19 +34,19 @@ var FormFileUpload = function () {
                 acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
             });
 
-                // Upload server status check for browsers with CORS support:
+            // Upload server status check for browsers with CORS support:
             if ($.support.cors) {
                 $.ajax({
                     url: 'admin_assets/plugins/jquery-file-upload/server/php/',
                     type: 'HEAD'
                 }).fail(function () {
-                    $('<div class="alert alert-danger"/>')
-                        .text('Upload server currently unavailable - ' +
+                        $('<div class="alert alert-danger"/>')
+                            .text('Upload server currently unavailable - ' +
                                 new Date())
-                        .appendTo('#fileupload');
-                });
+                            .appendTo('#fileupload');
+                    });
             }
-            
+
             ////////////////////
 
             // Initialize the jQuery File Upload widget:

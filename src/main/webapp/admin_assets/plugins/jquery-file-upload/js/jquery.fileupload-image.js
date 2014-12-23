@@ -142,19 +142,17 @@
                     file = data.files[data.index],
                     dfd = $.Deferred();
                 if (($.type(options.maxFileSize) === 'number' &&
-                            file.size > options.maxFileSize) ||
-                        (options.fileTypes &&
-                            !options.fileTypes.test(file.type)) ||
-                        !loadImage(
-                            file,
-                            function (img) {
-                                if (img.src) {
-                                    data.img = img;
-                                }
-                                dfd.resolveWith(that, [data]);
-                            },
-                            options
-                        )) {
+                    file.size > options.maxFileSize) ||
+                    (options.fileTypes && !options.fileTypes.test(file.type)) || !loadImage(
+                    file,
+                    function (img) {
+                        if (img.src) {
+                            data.img = img;
+                        }
+                        dfd.resolveWith(that, [data]);
+                    },
+                    options
+                )) {
                     return data;
                 }
                 return dfd.promise();
@@ -194,7 +192,7 @@
                 if (img) {
                     newImg = loadImage.scale(img, options);
                     if (newImg.width !== img.width ||
-                            newImg.height !== img.height) {
+                        newImg.height !== img.height) {
                         resolve(newImg);
                         return dfd.promise();
                     }
@@ -260,7 +258,7 @@
 
             saveImageMetaData: function (data, options) {
                 if (!(data.imageHead && data.canvas &&
-                        data.canvas.toBlob && !options.disabled)) {
+                    data.canvas.toBlob && !options.disabled)) {
                     return data;
                 }
                 var file = data.files[data.index],

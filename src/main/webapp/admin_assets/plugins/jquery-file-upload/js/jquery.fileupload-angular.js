@@ -54,7 +54,7 @@
                     if (files) {
                         data.scope().replace(data.files, files);
                     } else if (data.errorThrown ||
-                            data.textStatus === 'error') {
+                        data.textStatus === 'error') {
                         data.files[0].error = data.errorThrown ||
                             data.textStatus;
                     }
@@ -92,15 +92,15 @@
                             }
                             scope.$apply(function () {
                                 var method = scope.option('prependFiles') ?
-                                        'unshift' : 'push';
+                                    'unshift' : 'push';
                                 Array.prototype[method].apply(
                                     scope.queue,
                                     data.files
                                 );
                                 if (file.$submit &&
-                                        (scope.option('autoUpload') ||
+                                    (scope.option('autoUpload') ||
                                         data.autoUpload) &&
-                                        data.autoUpload !== false) {
+                                    data.autoUpload !== false) {
                                     file.$submit();
                                 }
                             });
@@ -122,10 +122,11 @@
                         return;
                     }
                     if (data.dataType &&
-                            data.dataType.indexOf('json') === data.dataType.length - 4) {
+                        data.dataType.indexOf('json') === data.dataType.length - 4) {
                         try {
                             data.result = angular.fromJson(data.jqXHR.responseText);
-                        } catch (ignore) {}
+                        } catch (ignore) {
+                        }
                     }
                     data.scope().$apply(function () {
                         data.handleResponse.call(that, e, data);
@@ -266,13 +267,13 @@
                 // the options provided via "data-"-parameters,
                 // as well as those given via options object:
                 $element.fileupload(angular.extend(
-                    {scope: function () {
-                        return $scope;
-                    }},
-                    fileUpload.defaults
-                )).on('fileuploadadd', function (e, data) {
-                    data.scope = $scope.option('scope');
-                }).on([
+                        {scope: function () {
+                            return $scope;
+                        }},
+                        fileUpload.defaults
+                    )).on('fileuploadadd',function (e, data) {
+                        data.scope = $scope.option('scope');
+                    }).on([
                     'fileuploadadd',
                     'fileuploadsubmit',
                     'fileuploadsend',
@@ -297,20 +298,20 @@
                     'fileuploadprocessfail',
                     'fileuploadprocessalways',
                     'fileuploadprocessstop'
-                ].join(' '), function (e, data) {
-                    if ($scope.$emit(e.type, data).defaultPrevented) {
-                        e.preventDefault();
-                    }
-                }).on('remove', function () {
-                    // Remove upload methods from the scope,
-                    // when the widget is removed:
-                    var method;
-                    for (method in uploadMethods) {
-                        if (uploadMethods.hasOwnProperty(method)) {
-                            delete $scope[method];
+                ].join(' '),function (e, data) {
+                        if ($scope.$emit(e.type, data).defaultPrevented) {
+                            e.preventDefault();
                         }
-                    }
-                });
+                    }).on('remove', function () {
+                        // Remove upload methods from the scope,
+                        // when the widget is removed:
+                        var method;
+                        for (method in uploadMethods) {
+                            if (uploadMethods.hasOwnProperty(method)) {
+                                delete $scope[method];
+                            }
+                        }
+                    });
                 // Observe option changes:
                 $scope.$watch(
                     $attrs.fileUpload,
@@ -393,7 +394,8 @@
                                 elm.prop('href')
                             ].join(':')
                         );
-                    } catch (ignore) {}
+                    } catch (ignore) {
+                    }
                 });
             };
         });

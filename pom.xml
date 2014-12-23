@@ -1,25 +1,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.hope6537</groupId>
-	<artifactId>JiChuang_OA</artifactId>
-	<packaging>war</packaging>
-	<version>0.1</version>
-	<name>JiChuang_OA</name>
-	<url>http://maven.apache.org</url>
-	<dependencies>
-		<dependency>
-			<groupId>org.hope6537</groupId>
-			<artifactId>hope6537-utils</artifactId>
-			<version>1.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate.common</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>4.0.5.Final</version>
-		</dependency>
-	</dependencies>
-	<build>
-		<finalName>JiChuang_OA</finalName>
-	</build>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.hope6537</groupId>
+    <artifactId>JiChuang_OA</artifactId>
+    <packaging>war</packaging>
+    <version>0.1</version>
+    <name>JiChuang_OA</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <dependency>
+            <groupId>org.hope6537</groupId>
+            <artifactId>hope6537-utils</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>4.0.5.Final</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>JiChuang_OA</finalName>
+    </build>
 </project>

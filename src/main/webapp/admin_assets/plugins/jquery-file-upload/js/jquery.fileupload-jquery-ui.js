@@ -47,7 +47,7 @@
                     .find('.progress-extended').each(function () {
                         $(this).html(
                             ($this.data('blueimp-fileupload') ||
-                                    $this.data('fileupload'))
+                                $this.data('fileupload'))
                                 ._renderExtendedProgress(data)
                         );
                     });

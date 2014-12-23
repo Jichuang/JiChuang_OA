@@ -15,4 +15,5 @@ bison-webapp/src/main/webapp/js/bower_components/
 # Others
 target/
 logs/
-
+webapp/admin_assets/img/upload
+webapp/frontend_assets/img/upload

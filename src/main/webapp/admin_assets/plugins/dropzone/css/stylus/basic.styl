@@ -26,7 +26,6 @@
 .dropzone-previews *
   box-sizing border-box
 
-
 .dropzone
   position relative
   border 1px solid rgba(0, 0, 0, 0.08)
@@ -82,17 +81,15 @@
         overflow hidden
         height 100%
 
-
       img
         absolute top left
         width @width
         height @width
 
       .dz-size
-        absolute bottom -28px left 3px
+        absolute bottom - 28px left 3px
         height 28px
         line-height @height
-
 
     &.dz-error
       .dz-error-mark
@@ -101,12 +98,10 @@
       .dz-success-mark
         display block
 
-
     &:hover
       .dz-details
         img
           display none
-
 
     .dz-success-mark
     .dz-error-mark
@@ -118,14 +113,13 @@
 
       font-size 30px
       text-align center
-      right -10px
-      top -10px
+      right - 10px
+      top - 10px
 
     .dz-success-mark
       color #8CC657
     .dz-error-mark
       color #EE162D
-
 
     .dz-progress
       position absolute
@@ -144,15 +138,13 @@
         width 0%
         background-color #8CC657
 
-
     &.dz-processing
       .dz-progress
         display block
 
-
     .dz-error-message
       display none
-      absolute top -5px left -20px
+      absolute top - 5px left - 20px
       background rgba(245, 245, 245, 0.8)
       padding 8px 10px
       color #800
