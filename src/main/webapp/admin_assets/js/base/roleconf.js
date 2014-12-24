@@ -71,13 +71,106 @@ var RoleTable = function () {
             });
     }
 
-    $("#reloadTeamTable").on("click", function () {
-        handleReloadEvent();
-    });
 
-    $("#datatable").on("click", "a.edit", function () {
-        handle2EditRole($(this));
-    });
+    var handleAddNewRoleEvent = function () {
+        var data = {
+            addNewRoleDes: $("#addNewRoleDes").val()
+        }
+        $.ajax({
+            url: basePath + 'base/role.hopedo',
+            type: 'POST',
+            data: (data),
+            dataType: 'json',
+            success: function (data) {
+                var status = data.returnState;
+                if (status == "OK") {
+                    toast.success("权限添加成功");
+                    $("#addNewRoleModal").modal('hide');
+                    handleReloadEvent();
+                } else {
+                    toast.error(data.returnMsg);
+                }
+            }
+        });
+    }
+
+    var showAddNewRoleModalEvent = function () {
+        var $modal = $('#addNewRoleModal');
+        $modal.modal();
+    }
+
+    var showEditRoleModal = function (id) {
+        var $modal = $('#updateRoleModal');
+        $modal.modal();
+        $.ajax({
+            url: "base/" + id + "/role.hopedo",
+            dataType: "json",
+            type: "GET",
+            async: false,
+            success: function (data) {
+                var status = data.returnState;
+                if (status == "OK") {
+                    toast.success("查询成功");
+                    var role = data.returnData.role;
+                    $("#editRoleId").text(role.roleId);
+                    $("#updateRoleDes").val(role.des);
+                    $("#updateRoleStatus").val(role.status);
+                } else {
+                    toast.error(data.returnMsg);
+                }
+            }
+        })
+    }
+
+    var handleUpdateRoleEvent = function () {
+        var id = $("#editRoleId").text();
+        var data = {
+            des: $("#updateRoleDes").val(),
+            status: $("#updateRoleStatus").val()
+        }
+        $.ajax({
+            url: "base/" + id + "/role.hopedo",
+            dataType: "json",
+            type: "PUT",
+            data: (data),
+            async: false,
+            success: function (data) {
+                var status = data.returnState;
+                if (status == "OK") {
+                    toast.info(data.returnMsg);
+                    $('#updateRoleModal').modal('hide')
+                    handleReloadEvent();
+                } else {
+                    toast.error(data.returnMsg);
+                }
+            }
+        })
+    }
+
+    var showDeleteConfirmModalEvent = function () {
+        $("#confrimModal").modal();
+    }
+
+    var handleDeleteRoleEvent = function () {
+        var id = $("#editRoleId").text();
+        $.ajax({
+            url: "base/" + id + "/role.hopedo",
+            dataType: "json",
+            type: "DELETE",
+            async: false,
+            success: function (data) {
+                var status = data.returnState;
+                if (status == "OK") {
+                    toast.success(data.returnMsg);
+                    $('#confrimModal').modal('hide');
+                    $('#updateRoleModal').modal('hide');
+                    handleReloadEvent();
+                } else {
+                    toast.error(data.returnMsg);
+                }
+            }
+        })
+    }
 
     var handleReloadEvent = function () {
         var table = $("#datatable").dataTable();
@@ -89,7 +182,7 @@ var RoleTable = function () {
             success: function (data) {
                 var status = data.returnState;
                 if (status == "OK") {
-                    toast.success(data.returnMsg);
+                    toast.info(data.returnMsg);
                     table.fnClearTable();
                     var list = eval(data.returnData.roleList);
                     for (var i = 0; i < list.length; i++) {
@@ -112,11 +205,39 @@ var RoleTable = function () {
         })
     }
 
-    var handle2EditRole = function (e) {
+    var handle2EditRoleEvent = function (e) {
         var id = (e[0].id).split("edit")[1];
-        alert("修改id=" + id);
-        //window.location.href = "../team/" + id + "/toUpdateTeam.hopedo";
+        showEditRoleModal(id);
     }
+
+    $("#addNewRole").on("click", function () {
+        showAddNewRoleModalEvent();
+    });
+
+    $("#addNewRoleButton").on("click", function () {
+        handleAddNewRoleEvent();
+    });
+
+
+    $("#reloadRoleTable").on("click", function () {
+        handleReloadEvent();
+    });
+
+    $("#datatable").on("click", "a.edit", function () {
+        handle2EditRoleEvent($(this));
+    });
+
+    $("#updateRoleButton").on("click", function () {
+        handleUpdateRoleEvent();
+    });
+
+    $("#deleteRoleButton").on("click", function () {
+        showDeleteConfirmModalEvent();
+    });
+
+    $("#confirm").on("click", function () {
+        handleDeleteRoleEvent();
+    });
 
     return {
         // main function to initiate the module

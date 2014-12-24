@@ -10,7 +10,7 @@ import org.jichuang.hope6537.base.model.Member_Post;
 import org.jichuang.hope6537.base.model.Post;
 import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.utils.AESLocker;
-import org.jichuang.hope6537.utils.DateFormat_Jisuan;
+import org.jichuang.hope6537.utils.DateFormatCalculate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
         if (member.getUsername() == null || member.getUsername().isEmpty()) {
             throw new MemberException("成员没有邮箱");
         }
-        member.setDate(DateFormat_Jisuan.createNowTime());
+        member.setDate(DateFormatCalculate.createNowTime());
         member.setQa(infos.toJSONString());
         member.setStatus("未认证");
         member.setPassword(AESLocker.Encrypt(member.getPassword()));

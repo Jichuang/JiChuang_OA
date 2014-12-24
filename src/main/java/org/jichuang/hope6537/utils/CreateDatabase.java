@@ -5,11 +5,9 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 
 /**
- * @描述：Hibernate框架初始化
- * @作者：赵鹏
- * @变量：
- * @开发时间：2013-10-26下午08:54:37
- * @版本：
+ * Hibernate框架初始化
+ * @author ：赵鹏
+ * @since ：2013-10-26下午08:54:37
  */
 public class CreateDatabase {
 

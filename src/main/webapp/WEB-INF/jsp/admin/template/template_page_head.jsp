@@ -6,6 +6,7 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <meta name="MobileOptimized" content="320">
+<script type="text/javascript" src="admin_assets/js/base/global.js"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="admin_assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

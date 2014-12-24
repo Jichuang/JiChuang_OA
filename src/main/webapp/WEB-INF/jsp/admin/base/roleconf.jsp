@@ -39,7 +39,7 @@
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                 <h3 class="page-title">
                     权限维护
-                    <small>Team Config</small>
+                    <small>Role Config</small>
                 </h3>
                 <ul class="page-breadcrumb breadcrumb">
                     <li class="btn-group">
@@ -49,9 +49,9 @@
                             <span>动作</span> <i class="icon-angle-down"></i>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="team/toAddTeam.hopedo"><i
+                            <li><a href="javascript:;" id="addNewRole"><i
                                     class="icon-edit"></i>添加新权限</a></li>
-                            <li><a href="javascript:;" id="reloadTeamTable"><i
+                            <li><a href="javascript:;" id="reloadRoleTable"><i
                                     class="icon-refresh"></i>刷新权限信息</a></li>
                         </ul>
                     </li>
@@ -70,7 +70,7 @@
                 <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="icon-globe"></i>Team Configration
+                            <i class="icon-globe"></i>Role Configration
                         </div>
                         <div class="tools">
                             <a href="javascript:;" class="remove"></a>
@@ -99,6 +99,79 @@
     </div>
     <!-- ======================== 页面结束处======================== -->
 </div>
+
+<div id="addNewRoleModal" class="modal fade" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">添加新权限</h4>
+    </div>
+
+
+    <div class="modal-body">
+        <p><font color="red"><h4>注意：您正在进行管理操作</h4></font></p>
+
+        <div class="form-group">
+            <label class="control-label">输入新权限的内容，请确认您填写的信息准确无误。</label>
+            <input type="text" class="form-control" name="" id="addNewRoleDes"/>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" id="cancel" class="btn btn-default">取消</button>
+        <button type="button" id="addNewRoleButton" class="btn blue">添加新权限</button>
+    </div>
+</div>
+
+<div id="updateRoleModal" class="modal fade" tabindex="-1">
+
+    <span hidden="hidden" id="editRoleId"></span>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">编辑已有权限</h4>
+    </div>
+
+    <div class="modal-body">
+        <p><font color="red"><h4>注意：您正在进行管理风险操作</h4></font></p>
+
+        <div class="form-group">
+            <label class="control-label">更改权限的内容</label>
+            <input type="text" class="form-control" name="" id="updateRoleDes"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">更改权限的状态</label>
+            <select id="updateRoleStatus" class="form-control">
+                <option value="正常">正常</option>
+                <option value="不可用">不可用</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="updateRoleButton" class="btn blue"><i class="icon-edit"></i>修改该权限</button>
+        <button type="button" id="deleteRoleButton" class="btn red"><i class="icon-edit"></i>删除该权限</button>
+    </div>
+</div>
+
+
+<div id="confrimModal" class="modal fade"
+     style="width: 480px;">
+    <div class="modal-dialog" style="width: 480px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">请确认您的操作</h4>
+            </div>
+            <div class="modal-body">
+                <p>您确定要删除该权限么？注意该操作无法被逆转！</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn default">取消</button>
+                <button type="button" data-dismiss="modal" id="confirm" class="btn green">是的删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- 页面尾端include  -->
 <%@include file="../template/template_page_footer.jsp" %>
