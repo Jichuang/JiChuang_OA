@@ -267,6 +267,8 @@ var PostTable = function () {
     var showEditPostModal = function (id) {
         var $modal = $('#updatePostModal');
         $modal.modal();
+
+
         $.ajax({
             url: "base/" + id + "/post.hopedo",
             dataType: "json",
@@ -292,6 +294,9 @@ var PostTable = function () {
                     if (roleList == null) {
                         handleRefreshRolesEvent();
                     }
+                    $("#_adminRoles").remove("option");
+                    $("#_writeRoles").remove("option");
+                    $("#_readRoles").remove("option");
                     for (var i = 0; i < roleList.length; i++) {
                         var roleType = roleList[i].type;
                         var selected = "";

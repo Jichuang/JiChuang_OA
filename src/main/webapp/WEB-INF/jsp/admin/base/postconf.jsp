@@ -156,7 +156,7 @@
                     <option value="不可用">不可用</option>
                 </select>
             </div>
-            <label class="control-label"><i class="icon-search"></i> 更改职位的权限</label>
+            <label class="control-label"><i class="icon-search"></i> 更改职位的权限 <small>左侧是待添加权限，右侧是已有权限</small></label>
 
             <div class="form-group">
                 <select multiple="multiple" class="multi-select" id="updateRolePost" name="updateRolePost[]"
