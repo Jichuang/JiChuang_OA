@@ -84,6 +84,7 @@
                                 <th style="width: 60px;">权限编号</th>
                                 <th>权限内容</th>
                                 <th>权限状态</th>
+                                <th>权限类型</th>
                                 <th>权限操作</th>
                             </tr>
                             </thead>
@@ -114,6 +115,14 @@
             <label class="control-label">输入新权限的内容，请确认您填写的信息准确无误。</label>
             <input type="text" class="form-control" name="" id="addNewRoleDes"/>
         </div>
+        <div class="form-group">
+            <label class="control-label">输入新权限的类型，请确认您填写的信息准确无误。</label>
+            <select id="addNewRoleType" class="form-control">
+                <option value="管理员权限">管理员权限</option>
+                <option value="读写权限">读写权限</option>
+                <option value="只读权限">只读权限</option>
+            </select>
+        </div>
 
     </div>
     <div class="modal-footer">
@@ -137,6 +146,14 @@
         <div class="form-group">
             <label class="control-label">更改权限的内容</label>
             <input type="text" class="form-control" name="" id="updateRoleDes"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">更改权限的类型</label>
+            <select id="updateRoleType" class="form-control">
+                <option value="管理员权限">管理员权限</option>
+                <option value="读写权限">读写权限</option>
+                <option value="只读权限">只读权限</option>
+            </select>
         </div>
         <div class="form-group">
             <label class="control-label">更改权限的状态</label>

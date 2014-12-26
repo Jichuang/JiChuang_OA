@@ -97,4 +97,6 @@ public interface BaseDao<T> {
 
     int doQueryByHql(String hql);
 
+    int doQueryBySql(String sql);
+
 }

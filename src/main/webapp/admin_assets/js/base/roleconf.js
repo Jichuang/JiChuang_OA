@@ -74,7 +74,8 @@ var RoleTable = function () {
 
     var handleAddNewRoleEvent = function () {
         var data = {
-            addNewRoleDes: $("#addNewRoleDes").val()
+            addNewRoleDes: $("#addNewRoleDes").val(),
+            addNewRoleType: $("#addNewRoleType").val()
         }
         $.ajax({
             url: basePath + 'base/role.hopedo',
@@ -114,6 +115,7 @@ var RoleTable = function () {
                     var role = data.returnData.role;
                     $("#editRoleId").text(role.roleId);
                     $("#updateRoleDes").val(role.des);
+                    $("#updateRoleType").val(role.type);
                     $("#updateRoleStatus").val(role.status);
                 } else {
                     toast.error(data.returnMsg);
@@ -125,6 +127,7 @@ var RoleTable = function () {
     var handleUpdateRoleEvent = function () {
         var id = $("#editRoleId").text();
         var data = {
+            type: $("#updateRoleType").val(),
             des: $("#updateRoleDes").val(),
             status: $("#updateRoleStatus").val()
         }
@@ -182,7 +185,7 @@ var RoleTable = function () {
             success: function (data) {
                 var status = data.returnState;
                 if (status == "OK") {
-                    toast.info(data.returnMsg);
+                    // toast.info(data.returnMsg);
                     table.fnClearTable();
                     var list = eval(data.returnData.roleList);
                     for (var i = 0; i < list.length; i++) {
@@ -192,11 +195,12 @@ var RoleTable = function () {
                         var line2 = list[i].roleId;
                         var line4 = list[i].des;
                         var line5 = list[i].status;
+                        var line6 = list[i].type;
                         var line7 = '<a class="edit" id="edit'
                             + list[i].roleId
                             + '"><button class="btn btn-xs blue" id="editRole"> <i class="icon-edit"> ' +
                             '<span style="font-family: Microsoft Yahei;">编辑权限信息</span></i> </button></a>';
-                        table.fnAddData([ line1, line2, line4, line5, line7 ]);
+                        table.fnAddData([ line1, line2, line4, line5, line6 , line7 ]);
                     }
                 } else {
                     toast.error(data.returnMsg);
@@ -247,7 +251,7 @@ var RoleTable = function () {
             }
             initTable1();
             handleReloadEvent();
-
+            toast.info("刷新成功");
         }
 
     };

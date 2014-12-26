@@ -3,6 +3,7 @@ package org.jichuang.hope6537.base.controller;
 import org.apache.log4j.Logger;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.base.model.Post;
 import org.jichuang.hope6537.base.model.Role;
 import org.jichuang.hope6537.base.service.BaseService;
 import org.jichuang.hope6537.base.service.MemberService;
@@ -96,7 +97,12 @@ public class BaseController {
     @ResponseBody
     public AjaxResponse refreshRole(HttpServletRequest request) throws MemberException {
         logger.info("管理员业务——刷新当前权限列表");
-        return refresh(request, roleService, "all");
+        String status = request.getParameter("status");
+        String hql = "all";
+        if (status != null) {
+            hql = "from Role where status = '正常'";
+        }
+        return refresh(request, roleService, hql);
     }
 
     @RequestMapping(value = "/role", method = RequestMethod.POST)
@@ -109,7 +115,8 @@ public class BaseController {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
             String des = request.getParameter("addNewRoleDes");
-            int res = roleService.insertRole(des);
+            String type = request.getParameter("addNewRoleType");
+            int res = roleService.insertRole(des, type);
             return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加权限成功");
         }
 
@@ -141,6 +148,7 @@ public class BaseController {
         } else {
             Role role = roleService.selectEntryFromPrimaryKey(Integer.parseInt(roleId));
             role.setDes(request.getParameter("des"));
+            role.setType(request.getParameter("type"));
             role.setStatus(request.getParameter("status"));
             int res = roleService.updateEntryByObject(role);
             return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("更新权限成功");
@@ -172,6 +180,64 @@ public class BaseController {
     public AjaxResponse refreshPost(HttpServletRequest request) throws MemberException {
         logger.info("管理员业务——刷新当前职务列表");
         return refresh(request, postService, "all");
+    }
+
+
+    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxResponse insertNewPost(HttpServletRequest request) throws MemberException {
+        logger.info("管理员业务——添加新职位");
+        Member member = (Member) request.getSession().getAttribute(
+                "loginMember");
+        if (member == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            String des = request.getParameter("addNewPostDes");
+            String[] type = request.getParameter("addNewPostRoles").split(",");
+            int postId = postService.insertPost(des, true);
+            int res = postService.updateRoles4PostById(type, postId + "");
+            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加职位成功");
+        }
+
+    }
+
+    @RequestMapping(value = "/{postId}/post", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxResponse selectPostById(@PathVariable String postId, HttpServletRequest request) throws MemberException {
+        logger.info("管理员业务——查询单体职位");
+        Member member = (Member) request.getSession().getAttribute(
+                "loginMember");
+        if (member == null || postId == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            Post post = postService.selectEntryFromPrimaryKey(Integer.parseInt(postId));
+            List<Role> roleList = postService.selectRolesByPostId(postId);
+            return AjaxResponse.getInstanceByResult(post != null)
+                    .addAttribute("post", post)
+                    .addAttribute("roleList", roleList);
+        }
+
+    }
+
+
+    @RequestMapping(value = "/{postId}/post", method = RequestMethod.PUT)
+    @ResponseBody
+    public AjaxResponse updatePostById(@PathVariable String postId, HttpServletRequest request) throws MemberException {
+        logger.info("管理员业务——更新单体职位");
+        Member member = (Member) request.getSession().getAttribute(
+                "loginMember");
+        if (member == null || postId == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            Post post = postService.selectEntryFromPrimaryKey(Integer.parseInt(postId));
+            post.setDes(request.getParameter("des"));
+            post.setStatus(request.getParameter("status"));
+            String[] oldRoles = request.getParameter("postRoleIds").split(",");
+            String[] newRoles = request.getParameter("roleList").split(",");
+            int res = postService.updateRoles4PostById(post, oldRoles, newRoles, postId);
+            //本体更新完了，接下来更新权限集合
+            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("更新权限成功");
+        }
     }
 
 
