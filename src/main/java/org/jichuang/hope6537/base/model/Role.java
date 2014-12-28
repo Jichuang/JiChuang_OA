@@ -33,6 +33,9 @@ public class Role implements Serializable {
     private String des;
     @Column(name = "status", length = 50)
     private String status;
+    //管理员 读写 只读
+    @Column(name = "type", length = 20)
+    private String type;
 
 
     public Integer getRoleId() {
@@ -58,4 +61,13 @@ public class Role implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
+

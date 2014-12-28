@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <form id="uploadImageForm" enctype="multipart/form-data">
-                        <div class="form-group" style="margin-bottom: 87px;">
+                        <div class="form-group" style="margin-bottom: 50px;">
                             <label class="col-md-3 control-label btn btn-primary"
                                    id="updateImageButton">上传当前图片<br/>
                             </label>
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                         <form id="_uploadImageForm" enctype="multipart/form-data">
-                            <div class="form-group" style="margin-bottom: 87px;">
+                            <div class="form-group" style="margin-bottom: 50px;">
                                 <label class="col-md-3 control-label btn btn-primary"
                                        id="_updateImageButton">上传当前图片<br/>
                                 </label>

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class NotificationServiceImpl extends BaseServiceImpl<Notification> imple
         if (member == null) {
             throw new MemberException("没有用户对象");
         } else {
+
             String hql1 = "from Member_Notification where memberId = " + member.getMemberId();
             List<Member_Notification> list = member_notificationDao.selectEntryByHQL(hql1);
             StringBuffer ids = new StringBuffer();

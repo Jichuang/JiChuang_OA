@@ -6,6 +6,7 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <meta name="MobileOptimized" content="320">
+<script type="text/javascript" src="admin_assets/js/base/global.js"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="admin_assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -24,6 +25,13 @@
 <link rel="stylesheet" type="text/css" href="admin_assets/plugins/select2/select2_metro.css"/>
 <link rel="stylesheet" href="admin_assets/plugins/data-tables/DT_bootstrap.css"/>
 <link href="admin_assets/css/pages/profile.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="admin_assets/plugins/clockface/css/clockface.css"/>
+<link rel="stylesheet" type="text/css" href="admin_assets/plugins/bootstrap-colorpicker/css/colorpicker.css"/>
+<link rel="stylesheet" type="text/css" href="admin_assets/plugins/jquery-multi-select/css/multi-select.css"/>
+<link rel="stylesheet" type="text/css"
+      href="admin_assets/plugins/bootstrap-switch/static/stylesheets/bootstrap-switch-metro.css"/>
+<link rel="stylesheet" type="text/css" href="admin_assets/plugins/jquery-tags-input/jquery.tagsinput.css"/>
+<link rel="stylesheet" type="text/css" href="admin_assets/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="admin_assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>

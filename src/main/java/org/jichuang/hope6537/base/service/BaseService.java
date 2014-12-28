@@ -85,4 +85,6 @@ public interface BaseService<T> {
 
     int doQueryByHql(String hql);
 
+    int doQueryBySql(String sql);
+
 }

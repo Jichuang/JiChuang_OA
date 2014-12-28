@@ -1,3 +1,10 @@
+var basePath = function () {
+    var url = window.location + "";
+    var h = url.split("//");
+    var x = h[1].split("/");
+    return h[0] + "//" + window.location.host + "/" + x[1] + "/";
+}();
+
 var TeamTable = function () {
 
     var initTeamType = function () {
@@ -82,7 +89,7 @@ var TeamTable = function () {
     var handleReloadEvent = function () {
         var table = $("#datatable").dataTable();
         $.ajax({
-            url: "team.hopedo",
+            url: basePath + "team.hopedo",
             dataType: "json",
             type: "GET",
             async: false,
@@ -120,7 +127,7 @@ var TeamTable = function () {
 
     var handle2EditTeam = function (e) {
         var id = (e[0].id).split("edit")[1];
-        window.location.href = "../team/" + id + "/toUpdateTeam.hopedo";
+        window.location.href = basePath + "/team/" + id + "/toUpdateTeam.hopedo";
     }
 
 
@@ -137,7 +144,7 @@ var TeamTable = function () {
             blogId = $("#frontBlogItemId").text()
 
         $.ajax({
-            url: "../blog/" + blogId + ".hopedo",
+            url: basePath + "../blog/" + blogId + ".hopedo",
             data: (blogId),
             dataType: "json",
             type: "GET",

@@ -51,5 +51,10 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         return dao.doQueryByHql(hql);
     }
 
+    @Override
+    public int doQueryBySql(String sql) {
+        return dao.doQueryBySql(sql);
+    }
+
 
 }

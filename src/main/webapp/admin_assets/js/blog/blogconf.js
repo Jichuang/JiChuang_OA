@@ -1,3 +1,10 @@
+var basePath = function () {
+    var url = window.location + "";
+    var h = url.split("//");
+    var x = h[1].split("/");
+    return h[0] + "//" + window.location.host + "/" + x[1] + "/";
+}();
+
 var BlogTable = function () {
 
     var initTable1 = function () {
@@ -60,7 +67,7 @@ var BlogTable = function () {
                 // here
             ],
             // set the initial value
-            "iDisplayLength": 10,
+            "iDisplayLength": 10
         });
 
         jQuery('#datatable_wrapper .dataTables_filter input').addClass(
@@ -122,7 +129,7 @@ var BlogTable = function () {
 
     var test = function () {
         $.ajax({
-            url: "blog.hopedo",
+            url: basePath + "blog.hopedo",
             dataType: "json",
             type: "PUT",
             data: (data),
@@ -133,7 +140,7 @@ var BlogTable = function () {
                     $("#updateBlogButton").hide();
                     toast.success(data.returnMsg);
                     setTimeout(function () {
-                            window.location.href = "blog/conf.hopedo";
+                            window.location.href = basePath + "blog/conf.hopedo";
                         }
                         , 1000);
                 } else {
@@ -150,7 +157,7 @@ var BlogTable = function () {
         var id = ($this[0].id).split("delete")[1];
 
         $.ajax({
-            url: "blog/" + id + ".hopedo",
+            url: basePath + "blog/" + id + ".hopedo",
             dataType: "json",
             type: "DELETE",
             async: false,
@@ -173,7 +180,7 @@ var BlogTable = function () {
         var $this = e;
         var id = ($this[0].id).split("deploy")[1];
         $.ajax({
-            url: "blog/" + id + "/deployBlog.hopedo",
+            url: basePath + "blog/" + id + "/deployBlog.hopedo",
             dataType: "json",
             type: "PUT",
             async: false,
@@ -206,7 +213,7 @@ var BlogTable = function () {
             type: _type
         };
         $.ajax({
-            url: "blog.hopedo",
+            url: basePath + "blog.hopedo",
             dataType: "json",
             type: "PUT",
             data: (data),
@@ -217,7 +224,7 @@ var BlogTable = function () {
                     $("#updateBlogButton").hide();
                     toast.success(data.returnMsg);
                     setTimeout(function () {
-                            window.location.href = "blog/conf.hopedo";
+                            window.location.href = basePath + "blog/conf.hopedo";
                         }
                         , 1000);
                 } else {
@@ -231,7 +238,7 @@ var BlogTable = function () {
     var handleReloadEvent = function () {
         var table = $("#datatable").dataTable();
         $.ajax({
-            url: "blog.hopedo",
+            url: basePath + "blog.hopedo",
             dataType: "json",
             type: "GET",
             async: false,
@@ -286,7 +293,7 @@ var BlogTable = function () {
             blogId = $("#frontBlogItemId").text()
 
         $.ajax({
-            url: "../blog/" + blogId + ".hopedo",
+            url: basePath + "/blog/" + blogId + ".hopedo",
             data: (blogId),
             dataType: "json",
             type: "GET",

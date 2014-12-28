@@ -56,8 +56,8 @@
             <span class="title">个人信息</span> <span class="arrow "></span>
         </a>
             <ul class="sub-menu">
-                <li><a href="member/<%=member.getMemberId()%>/toUpdate.hopedo"> 个人信息设置</a></li>
-                <li><a href="member/<%=member.getMemberId()%>/toUpdate.hopedo#tab_1_3"> 修改个人密码</a></li>
+                <li><a href="member/<%=member==null?0:member.getMemberId()%>/toUpdate.hopedo"> 个人信息设置</a></li>
+                <li><a href="member/<%=member==null?0:member.getMemberId()%>/toUpdate.hopedo#tab_1_3"> 修改个人密码</a></li>
             </ul>
         </li>
         <!-- ================== -->

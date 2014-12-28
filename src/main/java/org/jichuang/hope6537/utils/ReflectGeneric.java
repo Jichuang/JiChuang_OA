@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
  * 反射泛型类型工具类
  * (例如：ObjectClass<String,Integer>，String为索引0，Integer为索引1)
  *
- * @author 赵士杰
+ * @author Hope6537
  */
 public class ReflectGeneric {
     /**

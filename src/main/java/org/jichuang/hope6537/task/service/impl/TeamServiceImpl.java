@@ -12,7 +12,7 @@ import org.jichuang.hope6537.team.model.Member_Team;
 import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.team.model.TeamType;
 import org.jichuang.hope6537.team.service.TeamService;
-import org.jichuang.hope6537.utils.DateFormat_Jisuan;
+import org.jichuang.hope6537.utils.DateFormatCalculate;
 import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -75,7 +75,7 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
         TeamType teamType = teamTypeDao.selectEntryFromPrimaryKey(Integer.parseInt(teamTypeId));
         info.put("version", "0.1-SNAPSHOT");
         team.setTeamTypeId(teamType);
-        team.setDate(DateFormat_Jisuan.createNowTime());
+        team.setDate(DateFormatCalculate.createNowTime());
         team.setStatus(Status.待审核.toString());
         team.setInfo(info.toJSONString());
         int res1 = this.insertEntry(team);

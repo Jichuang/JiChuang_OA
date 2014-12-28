@@ -6,7 +6,7 @@ import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.impl.BaseServiceImpl;
 import org.jichuang.hope6537.blog.model.Blog;
 import org.jichuang.hope6537.blog.service.BlogService;
-import org.jichuang.hope6537.utils.DateFormat_Jisuan;
+import org.jichuang.hope6537.utils.DateFormatCalculate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -46,7 +46,7 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
             throw new NullPointerException("博客没有作者");
         } else {
             blog.setMemberId(member);
-            blog.setDate(DateFormat_Jisuan.createNowTime());
+            blog.setDate(DateFormatCalculate.createNowTime());
             blog.setStatus("待审核");
             blog.setInfo(infos.toString());
             return super.insertEntry(blog);

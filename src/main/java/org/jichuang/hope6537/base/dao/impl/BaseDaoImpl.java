@@ -125,6 +125,20 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     }
 
+    public int doQueryBySql(String sql) {
+        try {
+            return sessionFactory.getCurrentSession().createSQLQuery(sql).executeUpdate();
+        } catch (Exception e) {
+            Session session = sessionFactory.openSession();
+            System.err.println("Open Session");
+            int res = session.createSQLQuery(sql).executeUpdate();
+            session.close();
+            System.err.println("Open Session Closed");
+            return res;
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     public List<T> selectEntryByHQL(String hql) {
         List<T> list = new ArrayList<T>();
