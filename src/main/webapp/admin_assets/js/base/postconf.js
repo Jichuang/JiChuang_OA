@@ -81,7 +81,7 @@ var PostTable = function () {
             success: function (data) {
                 var status = data.returnState;
                 if (status == "OK") {
-                    toast.success(data.returnMsg);
+                    toast.info(data.returnMsg);
                     table.fnClearTable();
                     var list = eval(data.returnData.postList);
                     for (var i = 0; i < list.length; i++) {
@@ -123,6 +123,14 @@ var PostTable = function () {
 
     $("#updatePostButton").on("click", function () {
         handleUpdatePostEvent();
+    });
+
+    $("#deletePostButton").on("click", function () {
+        showDeleteConfirmModalEvent();
+    });
+
+    $("#confirm").on("click", function () {
+        handleDeletePostEvent();
     });
 
     var handleUpdatePostEvent = function () {
@@ -234,7 +242,7 @@ var PostTable = function () {
             success: function (data) {
                 var status = data.returnState;
                 if (status == "OK") {
-                    toast.success("权限刷新成功");
+                    //toast.success("权限刷新成功");
                     var list = eval(data.returnData.roleList);
                     roleList = list;
                     for (var i = 0; i < list.length; i++) {
@@ -267,8 +275,6 @@ var PostTable = function () {
     var showEditPostModal = function (id) {
         var $modal = $('#updatePostModal');
         $modal.modal();
-
-
         $.ajax({
             url: "base/" + id + "/post.hopedo",
             dataType: "json",
@@ -277,7 +283,7 @@ var PostTable = function () {
             success: function (data) {
                 var status = data.returnState;
                 if (status == "OK") {
-                    toast.success("查询成功");
+                    //toast.success("查询成功");
                     var post = data.returnData.post;
                     var postRoleList = data.returnData.roleList;
                     $("#editPostId").text(post.postId);
@@ -329,6 +335,30 @@ var PostTable = function () {
         })
     }
 
+    var showDeleteConfirmModalEvent = function () {
+        $("#confrimModal").modal();
+    }
+
+    var handleDeletePostEvent = function () {
+        var id = $("#editPostId").text();
+        $.ajax({
+            url: "base/" + id + "/post.hopedo",
+            dataType: "json",
+            type: "DELETE",
+            async: false,
+            success: function (data) {
+                var status = data.returnState;
+                if (status == "OK") {
+                    toast.success(data.returnMsg);
+                    $('#confrimModal').modal('hide');
+                    $('#updatePostModal').modal('hide');
+                    handleReloadEvent();
+                } else {
+                    toast.error(data.returnMsg);
+                }
+            }
+        })
+    }
 
     return {
         // main function to initiate the module

@@ -118,4 +118,12 @@ public class PostServiceImpl extends BaseServiceImpl<Post> implements
 
         return updateRes + deleteRes + insertRes;
     }
+
+    @Override
+    public int deletePostRoles(String postId) {
+        int res = doQueryBySql("delete from post_role where postId = " + postId);
+        return res;
+    }
+
+
 }

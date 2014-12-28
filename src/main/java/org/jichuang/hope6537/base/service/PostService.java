@@ -15,4 +15,6 @@ public interface PostService extends BaseService<Post> {
 
     int updateRoles4PostById(Post post, String[] oldRoles, String[] newRoles, String postId);
 
+    int deletePostRoles(String postId);
+
 }

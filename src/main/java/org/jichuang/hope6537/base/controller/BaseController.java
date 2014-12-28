@@ -241,4 +241,23 @@ public class BaseController {
     }
 
 
+    @RequestMapping(value = "/{postId}/post", method = RequestMethod.DELETE)
+    @ResponseBody
+    public AjaxResponse deletePostById(@PathVariable String postId, HttpServletRequest request) throws MemberException {
+        logger.info("管理员业务——删除单体职位");
+        Member member = (Member) request.getSession().getAttribute(
+                "loginMember");
+        if (member == null || postId == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            int pre = postService.deletePostRoles(postId);
+            if (pre <= 0) {
+                return AjaxResponse.getInstanceByResult(false).addReturnMsg("删除职位权限失败，正在回滚");
+            } else {
+                int res = postService.deleteEntryByPrimaryKey(Integer.parseInt(postId));
+                return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("删除职位成功");
+            }
+        }
+    }
+
 }
