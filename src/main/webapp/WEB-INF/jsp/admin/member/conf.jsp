@@ -11,9 +11,9 @@
         response.sendRedirect("../page/login.hopedo");
     }
     String memberId = (String) request.getAttribute("memberId");
+    String isEdit = (String) request.getAttribute("isEdit");
 
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +40,8 @@
 <div class="row">
     <div class="col-md-12">
         <span id="memberId" hidden="hidden"><%=memberId%></span>
+        <span id="isEdit" hidden="hidden"><%=isEdit == null ? isEdit : -1%></span>
+        <span id="isEdit2" hidden="hidden">${isEdit}</span>
         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">
             个人信息
@@ -72,13 +74,13 @@
 <!--BEGIN TABS-->
 <div class="tabbable tabbable-custom tabbable-full-width">
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab_1_1" data-toggle="tab">信息总览</a></li>
-    <li><a href="#tab_1_3" data-toggle="tab">账号设置</a></li>
-    <li><a href="#tab_1_4" data-toggle="tab">项目组信息</a></li>
-    <li><a href="#tab_1_6" data-toggle="tab">FAQ</a></li>
+    <li class="active"><a href="#memberinfo" data-toggle="tab">信息总览</a></li>
+    <li><a href="#memberaccount" id = "memberaccountTab" data-toggle="tab">账号设置</a></li>
+    <li><a href="#teaminfo" data-toggle="tab">项目组信息</a></li>
+    <li><a href="#faq" data-toggle="tab">FAQ</a></li>
 </ul>
 <div class="tab-content">
-<div class="tab-pane active" id="tab_1_1">
+<div class="tab-pane active" id="memberinfo">
 <div class="row">
 <div class="col-md-3">
     <ul class="list-unstyled profile-nav">
@@ -569,7 +571,7 @@
 </div>
 </div>
 <!--tab_1_2-->
-<div class="tab-pane" id="tab_1_3">
+<div class="tab-pane" id="memberaccount">
     <div class="row profile-account">
         <div class="col-md-3">
             <ul class="ver-inline-menu tabbable margin-bottom-10">
@@ -738,7 +740,7 @@
     </div>
 </div>
 <!--end tab-pane-->
-<div class="tab-pane" id="tab_1_4">
+<div class="tab-pane" id="teaminfo">
     <div class="row">
         <div class="col-md-12">
             <div class="add-portfolio">
@@ -806,7 +808,7 @@
         <li><a data-toggle="tab" href="#tab_3"><i class="icon-plus"></i> Other Questions</a></li>
     </ul>
 </div>
-<div class="col-md-9">
+<div class="col-md-9" id="faq">
 <div class="tab-content">
 <div id="tab_1" class="tab-pane active">
     <div id="accordion1" class="panel-group">

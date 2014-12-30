@@ -83,6 +83,16 @@ var MemberTable = function () {
         handle2EditTeam($(this));
     });
 
+    $("#datatable").on("click", "a.show", function () {
+        showMemberEvent($(this));
+    });
+
+
+    var showMemberEvent = function (e) {
+        var id = (e[0].id).split("show")[1];
+        window.location.href = basePath + "member/" + id + "/toShow.hopedo"
+    }
+
     var handleReloadEvent = function () {
         var table = $("#datatable").dataTable();
         $.ajax({
@@ -104,7 +114,7 @@ var MemberTable = function () {
                         var line3 = list[i].username;
                         var line4 = list[i].date;
                         var line5 = list[i].status;
-                        var line6 = '<a class="edit" id="edit'
+                        var line6 = '<a class="show" id ="show'
                             + list[i].memberId
                             + '"><button class="btn btn-xs blue" id="toMember"> <i class="icon-search">' +
                             ' <span style="font-family: Microsoft Yahei;">查看用户详细信息</span></i> </button></a>';
@@ -123,10 +133,9 @@ var MemberTable = function () {
         })
     }
 
+
     var handle2EditTeam = function (e) {
         var id = (e[0].id).split("edit")[1];
-        alert("修改职位");
-        // window.location.href = "../team/" + id + "/toUpdateTeam.hopedo";
     }
     return {
         // main function to initiate the module

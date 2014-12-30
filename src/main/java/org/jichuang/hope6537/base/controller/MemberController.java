@@ -118,9 +118,24 @@ public class MemberController {
             return null;
         } else {
             request.setAttribute("memberId", memberId);
+            request.setAttribute("isEdit", "1");
             return PATH + "/member/conf";
         }
     }
+
+    @RequestMapping("{memberId}/toShow")
+    public String toShow(@PathVariable String memberId, HttpServletRequest request, HttpServletResponse response) throws IOException, MemberException {
+        Member member = (Member) request.getSession().getAttribute("loginMember");
+        if (member == null) {
+            response.sendRedirect("../page/login.hopedo");
+            return null;
+        } else {
+            request.setAttribute("memberId", memberId);
+            request.setAttribute("isEdit", "0");
+            return PATH + "/member/conf";
+        }
+    }
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/{memberId}")
     @ResponseBody

@@ -169,8 +169,18 @@ var MemberConf = function () {
 
     return {
         init: function () {
+            var isEdit = $("#idEdit").text();
+            if (isEdit == "0") {
+                $("#memberaccount").hide();
+                $("#memberaccountTab").hide();
+            } else {
+                ;
+            }
+
             handleRefresh();
         }
+
+
     };
 
 }
