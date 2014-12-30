@@ -6,10 +6,10 @@ var PostTable = function () {
 
     var postService = {
         init: function () {
-            this.initTable();
+            postService.initTable();
             postService.reloadTable();
-            this.initSelect2();
-            this.refreshRole();
+            postService.initSelect2();
+            postService.refreshRole();
         },
         initTable: function () {
             /* 格式化下拉栏菜单 */
@@ -156,7 +156,7 @@ var PostTable = function () {
                     if (status == "OK") {
                         toast.success("职位添加成功");
                         $("#addNewPostModal").modal('hide');
-                         postService.reloadTable();
+                        postService.reloadTable();
                     } else {
                         toast.error(data.returnMsg);
                     }
@@ -256,7 +256,7 @@ var PostTable = function () {
                         //这个是这个用户原有的权限
                         postRoleIds = roleIds;
                         if (roleList == null) {
-                            this.refreshRole();
+                            postService.refreshRole();
                         }
                         $("#_adminRoles").remove("option");
                         $("#_writeRoles").remove("option");
@@ -308,7 +308,7 @@ var PostTable = function () {
                         toast.success(data.returnMsg);
                         $('#confrimModal').modal('hide');
                         $('#updatePostModal').modal('hide');
-                         postService.reloadTable();
+                        postService.reloadTable();
                     } else {
                         toast.error(data.returnMsg);
                     }
