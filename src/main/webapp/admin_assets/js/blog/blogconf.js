@@ -10,9 +10,6 @@ var BlogTable = function () {
     var editDes;
 
     var BlogService = {
-
-
-
         initTable: function () {
             function fnFormatDetails(oTable, nTr) {
                 var aData = oTable.fnGetData(nTr);

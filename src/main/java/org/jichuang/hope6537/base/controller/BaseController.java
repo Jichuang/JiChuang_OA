@@ -13,10 +13,7 @@ import org.jichuang.hope6537.utils.AjaxResponse;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -76,6 +73,7 @@ public class BaseController {
 
     @RequestMapping("toMember")
     public String toMember() {
+        //TODO:添加权限验证
         return PATH + "/base/memberconf";
     }
 
@@ -87,9 +85,64 @@ public class BaseController {
         return refresh(request, memberService, "all");
     }
 
+    @RequestMapping(value = "/member", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxResponse insertNewMember(@RequestBody Member member, HttpServletRequest request) {
+        logger.info("管理员业务——添加新用户");
+        Member loginMember = (Member) request.getSession().getAttribute("loginMember");
+        if (loginMember == null || member == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            int res = memberService.insertEntry(member);
+            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加用户成功");
+        }
+    }
+
+    @RequestMapping(value = "/{memberId}/member", method = RequestMethod.PUT)
+    @ResponseBody
+    public AjaxResponse updateMember(@PathVariable String memberId, @RequestBody Member member, HttpServletRequest request) throws MemberException {
+        logger.info("管理员业务——更新新用户");
+        Member loginMember = (Member) request.getSession().getAttribute("loginMember");
+        if (loginMember == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            int res = memberService.updateMember(member);
+            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加用户成功");
+        }
+    }
+
+    @RequestMapping(value = "/{memberId}/member", method = RequestMethod.DELETE)
+    @ResponseBody
+    public AjaxResponse deleteMember(@PathVariable String memberId, HttpServletRequest request) {
+        logger.info("管理员业务——更新新用户");
+        Member loginMember = (Member) request.getSession().getAttribute("loginMember");
+        if (loginMember == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            int res = memberService.deleteEntryByPrimaryKey(Integer.parseInt(memberId));
+            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加用户成功");
+        }
+    }
+
+    @RequestMapping(value = "/{memberId}/member", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxResponse getMemberById(@PathVariable String memberId, HttpServletRequest request) {
+        Member loginMember = (Member) request.getSession().getAttribute("loginMember");
+        if (loginMember == null) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            Member member = memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId));
+            return AjaxResponse.
+                    getInstanceByResult(member != null)
+                    .addReturnMsg("添加用户成功")
+                    .addAttribute("member", member);
+        }
+    }
+
 
     @RequestMapping("toRole")
     public String toRole() {
+        //TODO:添加权限验证
         return PATH + "/base/roleconf";
     }
 
@@ -172,6 +225,7 @@ public class BaseController {
 
     @RequestMapping("toPost")
     public String toPost() {
+        //TODO:添加权限验证
         return PATH + "/base/postconf";
     }
 
