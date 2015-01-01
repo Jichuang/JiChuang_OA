@@ -32,15 +32,8 @@ public class BlogController {
     private BlogService blogService;
 
     @RequestMapping("/conf")
-    public String toConf(HttpServletRequest request) {
+    public String toConf() {
         logger.info("博客业务——进入维护");
-        Member member = (Member) request.getSession().getAttribute(
-                "loginMember");
-        if (member == null) {
-            return PATH + "/conf";
-        }
-        List<Blog> blogList = blogService.selectBlogAllByMember(member);
-        request.setAttribute("blogList", blogList);
         return PATH + "/conf";
     }
 
@@ -73,26 +66,12 @@ public class BlogController {
     }
 
     @RequestMapping("/{blogId}/toUpdateBlog")
-    public String toUpdateBlog(@PathVariable String blogId,
-                               HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public String toUpdateBlog(@PathVariable String blogId,HttpServletRequest request) {
         logger.info("博客业务——进入更新博客页面");
-        if (blogId == null) {
-            response.sendRedirect("conf.hopedo?selectRes=0");
-            return null;
-        } else {
-            Blog editBlog = blogService.selectEntryFromPrimaryKey(Integer
-                    .parseInt(blogId));
-            Member member = (Member) request.getSession().getAttribute(
-                    "loginMember");
-            if (!editBlog.getMemberId().getMemberId()
-                    .equals(member.getMemberId())) {
-                response.sendRedirect("../conf.hopedo?selectRes=0");
-            }
-            request.setAttribute("editBlog", editBlog);
-            return PATH + "/addBlog";
-        }
+        request.setAttribute("editBlogId", blogId);
+        return PATH + "/addBlog";
     }
+
 
     @RequestMapping(value = "/{blogId}", method = RequestMethod.DELETE)
     @ResponseBody
@@ -111,7 +90,7 @@ public class BlogController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
-    public AjaxResponse updateBlog(Blog blog, HttpServletRequest request) {
+    public AjaxResponse updateBlog(@RequestBody Blog blog, HttpServletRequest request) {
         logger.info("博客业务——进入更新博客业务");
         Logger.getLogger(getClass()).info(request.getParameter("blogId"));
         if (blog == null || blog.getBlogId() == null) {
@@ -174,12 +153,15 @@ public class BlogController {
             return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
         } else {
             Logger.getLogger(getClass()).info("将要查看id为" + blogId + "的博客");
-            Blog blog = blogService.selectEntryFromPrimaryKey(Integer
-                    .parseInt(blogId));
-            if (blog == null) {
+            Blog editBlog = blogService.selectEntryFromPrimaryKey(Integer.parseInt(blogId));
+            Member member = (Member) request.getSession().getAttribute(
+                    "loginMember");
+            if (editBlog == null) {
                 return new AjaxResponse(ReturnState.ERROR, "没有该博客对象");
+            } else if (!editBlog.getMemberId().getMemberId().equals(member.getMemberId())) {
+                return new AjaxResponse(ReturnState.ERROR, "您没有编辑其权限");
             } else {
-                return AjaxResponse.getInstanceByResult(blog != null).addAttribute("blog", blog);
+                return AjaxResponse.getInstanceByResult(editBlog != null).addAttribute("blog", editBlog);
             }
         }
     }

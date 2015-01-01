@@ -228,6 +228,7 @@ var RoleTable = function () {
                 return;
             }
             roleService.init();
+            handleEvent();
             toast.info("刷新成功");
         }
 

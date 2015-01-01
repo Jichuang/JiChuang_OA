@@ -1,8 +1,8 @@
 var PostTable = function () {
 
 
-    var roleList = null;
-    var postRoleIds = null;
+    var roleList;
+    var postRoleIds;
 
     var postService = {
         init: function () {
@@ -318,7 +318,7 @@ var PostTable = function () {
 
     }
 
-    var handleEvents = function () {
+    var handleEvent = function () {
         $("#addNewPost").on("click", function () {
             postService.showAddNewPostModal();
         });
@@ -349,7 +349,7 @@ var PostTable = function () {
                 return;
             }
             postService.init();
-            handleEvents();
+            handleEvent();
         }
     };
 }();
