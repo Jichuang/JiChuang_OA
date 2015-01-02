@@ -119,7 +119,7 @@ var BlogTable = function () {
 
             $.ajax({
                 url: basePath + "blog/" + id + ".hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "DELETE",
                 async: false,
                 success: function (data) {
@@ -140,7 +140,7 @@ var BlogTable = function () {
             var id = ($this[0].id).split("deploy")[1];
             $.ajax({
                 url: basePath + "blog/" + id + "/deployBlog.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "PUT",
                 async: false,
                 success: function (data) {
@@ -170,7 +170,7 @@ var BlogTable = function () {
             };
             $.ajax({
                 url: basePath + "blog.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "PUT",
                 data: (data),
                 async: false,
@@ -193,7 +193,7 @@ var BlogTable = function () {
             var table = $("#datatable").dataTable();
             $.ajax({
                 url: basePath + "blog.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {
@@ -239,7 +239,7 @@ var BlogTable = function () {
             }
             $.ajax({
                 url: basePath + "blog/" + editBlogId + ".hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {
@@ -279,7 +279,7 @@ var BlogTable = function () {
             $.ajax({
                 url: basePath + "/blog/" + blogId + ".hopedo",
                 data: (blogId),
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 success: function (data) {
                     var status = data.returnState;

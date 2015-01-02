@@ -9,6 +9,7 @@ import org.jichuang.hope6537.base.service.BaseService;
 import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.base.service.PostService;
 import org.jichuang.hope6537.base.service.RoleService;
+import org.jichuang.hope6537.utils.AESLocker;
 import org.jichuang.hope6537.utils.AjaxResponse;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,17 @@ public class BaseController {
 
     public static final String PATH = AdminPageController.PATH;
     private Logger logger = Logger.getLogger(getClass());
+
+
+    static Member MemberBaseReplace(Member oldMember, Member newMember) {
+        oldMember.setName(newMember.getName());
+        oldMember.setStatus(newMember.getStatus());
+        oldMember.setUsername(newMember.getUsername());
+        oldMember.setPassword((newMember.getPassword() == null || newMember.getPassword().isEmpty()) ?
+                oldMember.getPassword() : AESLocker.Encrypt(newMember.getPassword()));
+        oldMember.setPostId(newMember.getPostId());
+        return oldMember;
+    }
 
     /**
      * 定义AjaxResponse格式的List查询返回通式
@@ -94,6 +106,7 @@ public class BaseController {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
             int res = memberService.insertEntry(member);
+            res += memberService.updateMemberPost(member);
             return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加用户成功");
         }
     }
@@ -106,36 +119,41 @@ public class BaseController {
         if (loginMember == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
+            member = MemberBaseReplace(
+                    memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId)), member);
             int res = memberService.updateMember(member);
-            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加用户成功");
+            res += memberService.updateMemberPost(member);
+            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("更新用户成功");
         }
     }
 
     @RequestMapping(value = "/{memberId}/member", method = RequestMethod.DELETE)
     @ResponseBody
     public AjaxResponse deleteMember(@PathVariable String memberId, HttpServletRequest request) {
-        logger.info("管理员业务——更新新用户");
+        logger.info("管理员业务——删除新用户");
         Member loginMember = (Member) request.getSession().getAttribute("loginMember");
         if (loginMember == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
             int res = memberService.deleteEntryByPrimaryKey(Integer.parseInt(memberId));
-            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加用户成功");
+            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("删除用户成功");
         }
     }
 
     @RequestMapping(value = "/{memberId}/member", method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse getMemberById(@PathVariable String memberId, HttpServletRequest request) {
+        logger.info("管理员业务——查询单体用户");
         Member loginMember = (Member) request.getSession().getAttribute("loginMember");
         if (loginMember == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
             Member member = memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId));
+            List<Post> postList = memberService.getPostsByMember(member);
             return AjaxResponse.
                     getInstanceByResult(member != null)
-                    .addReturnMsg("添加用户成功")
-                    .addAttribute("member", member);
+                    .addAttribute("member", member)
+                    .addAttribute("postList", postList);
         }
     }
 

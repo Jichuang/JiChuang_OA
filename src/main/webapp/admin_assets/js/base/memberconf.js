@@ -7,9 +7,19 @@ var MemberTable = function () {
         return h[0] + "//" + window.location.host + "/" + x[1] + "/";
     }();
 
+
     var MemberService = {
 
+        postDesList: "",
+        allPostList: null,
+        memberPostList: null,
+
         init: function () {
+            MemberService.initTable();
+            MemberService.refresh();
+            MemberService.refreshPost();
+        },
+        initTable: function () {
             function fnFormatDetails(oTable, nTr) {
                 var aData = oTable.fnGetData(nTr);
                 var sOut = '<table>';
@@ -71,13 +81,61 @@ var MemberTable = function () {
             window.location.href = basePath + "member/" + id + "/toShow.hopedo"
         },
         showUpdate: function (e) {
+            MemberService.clearDialog();
             var id = (e[0].id).split("edit")[1];
+            $("#updateMemberId").text(id);
+            $("#updateMemberStatus").show();
+            $("#updateMemberButton").show();
+            $("#addMemberButton").hide();
+            $.ajax({
+                url: "base/" + id + "/member.hopedo",
+                contentType: 'application/json',
+                type: "GET",
+                success: function (data) {
+                    var status = data.returnState;
+                    if (status == "OK") {
+                        toast.success(data.returnMsg);
+                        var member = (data.returnData.member);
+                        var postList = data.returnData.postList;
+                        MemberService.memberPostList = "";
+                        for (var i = 0; i < postList.length; i++) {
+                            MemberService.memberPostList += (postList[i][1] + ",");
+                        }
+                        $("#memberName").val(member.name);
+                        $("#memberUsername").val(member.username);
+                        $("#memberPassword").attr("placeholder", "不修改则留空");
+                        $("#confirmPassword").attr("placeholder", "不修改则留空");
+                        $("#updateMemberStatus").val(member.status);
+                        MemberService.initSelect2();
+                        $("#addMemberModal").modal();
+                    } else {
+                        toast.error(data.returnMsg);
+                    }
+                }
+            })
+        },
+        showAdd: function () {
+            MemberService.clearDialog();
+            $("#addMemberButton").show();
+            $("#updateMemberStatus").hide();
+            $("#updateMemberButton").hide();
+            $("#addMemberModal").modal();
+        },
+        clearDialog: function () {
+            $("#memberName").val(undefined);
+            $("#memberUsername").val(undefined);
+            $("#memberPassword").val(undefined);
+            $("#confirmPassword").val(undefined);
+            $("#memberPosts").children().remove("option");
+            $("#memberPosts").multiSelect("deselect_all");
         },
         refresh: function () {
             var table = $("#datatable").dataTable();
+            //clear form
+            MemberService.clearDialog();
             $.ajax({
                 url: "base/member.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {
@@ -97,10 +155,11 @@ var MemberTable = function () {
                             var line6 = '<a class="show" id ="show'
                                 + list[i].memberId
                                 + '"><button class="btn btn-xs blue" id="toMember"> <i class="icon-search">' +
-                                ' <span style="font-family: Microsoft Yahei;">查看用户详细信息</span></i> </button></a>';
+                                ' <span style="font-family: Microsoft Yahei;">查看详细信息</span></i> </button></a>';
                             var line7 = '<a class="edit" id="edit'
                                 + list[i].memberId
-                                + '"><button class="btn btn-xs green" id="editPost"> <i class="icon-edit"> <span style="font-family: Microsoft Yahei;">编辑职位</span></i> </button></a>';
+                                + '"><button class="btn btn-xs green"> <i class="icon-edit"> ' +
+                                '<span style="font-family: Microsoft Yahei;">编辑基本信息</span></i> </button></a>';
                             table.fnAddData([ line1,
                                 line2, line3,
                                 line4, line5,
@@ -114,16 +173,180 @@ var MemberTable = function () {
         },
         showDelete: function () {
         },
-        updateUser: function () {
+        updateMember: function () {
+            var confirm_password = $("#confirmPassword").val();
+            var data = {
+                name: $("#memberName").val(),
+                username: $("#memberUsername").val(),
+                password: $("#memberPassword").val(),
+                status: $("#updateMemberStatus").val(),
+                postId: JSON.stringify($("#memberPosts").val())
+            }
+            var validateError =
+                data.name == undefined ||
+                    data.username == undefined ||
+                    (data.password != null && data.password != confirm_password);
+            if (validateError) {
+                toast.error("请输入合法数据");
+                return;
+            }
+            console.log(data)
+            $.ajax({
+                url: "base/" + $("#updateMemberId").text() + "/member.hopedo",
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                type: "PUT",
+                success: function (data) {
+                    var status = data.returnState;
+                    if (status == "OK") {
+                        toast.success(data.returnMsg);
+                        $("#addMemberModal").modal("hide");
+                        MemberService.refresh();
+                    } else {
+                        toast.error(data.returnMsg);
+                    }
+                }
+            });
         },
-        deleteUser: function () {
+        deleteMember: function () {
+        },
+        initSelect2: function () {
+            /**
+             * 在list产生之后再执行
+             */
+            $("#memberPosts").children().remove("option");
+
+            if (MemberService.allPostList == undefined) {
+                console.log("no post");
+            } else {
+                if (MemberService.memberPostList == undefined) {
+                    //说明添加
+                    for (var i = 0; i < MemberService.allPostList.length; i++) {
+                        $('#memberPosts').append(
+                            "<option value='" + MemberService.allPostList[i].postId + "'>"
+                                + MemberService.allPostList[i].des + "</option>"
+                        );
+                        MemberService.postDesList += MemberService.allPostList[i].des + ",";
+                    }
+                } else {
+                    //说明更新
+                    var memberPost = MemberService.memberPostList;
+
+                    for (var i = 0; i < MemberService.allPostList.length; i++) {
+                        var allPost = MemberService.allPostList[i];
+                        var selected = "";
+                        //长串使用indexOf来校验短串
+                        if (memberPost.indexOf(allPost.des) != -1) {
+                            selected = "selected = 'selected'";
+                        }
+                        $("#memberPosts").append(
+                            "<option value='" + allPost.postId + "' " + selected + ">" + allPost.des + "</option>"
+                        )
+                    }
+
+
+                }
+            }
+            $('#memberPosts').multiSelect({
+                placeholder: "请选择该用户所具有的权限",
+                allowClear: true,
+                selectableHeader: "<input type='text' class='form-control search-input' autocomplete='off' placeholder='搜索职位...'>",
+                selectionHeader: "<input type='text' class='form-control search-input' autocomplete='off' placeholder='搜索职位...'>",
+                afterInit: function (ms) {
+                    var that = this,
+                        $selectableSearch = that.$selectableUl.prev(),
+                        $selectionSearch = that.$selectionUl.prev(),
+                        selectableSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
+                        selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
+
+                    that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+                        .on('keydown', function (e) {
+                            if (e.which === 40) {
+                                that.$selectableUl.focus();
+                                return false;
+                            }
+                        });
+
+                    that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+                        .on('keydown', function (e) {
+                            if (e.which == 40) {
+                                that.$selectionUl.focus();
+                                return false;
+                            }
+                        });
+                },
+                afterSelect: function () {
+                    this.qs1.cache();
+                    this.qs2.cache();
+                },
+                afterDeselect: function () {
+                    this.qs1.cache();
+                    this.qs2.cache();
+                }
+            });
+        },
+        refreshPost: function () {
+            /**
+             * 产生List
+             */
+            MemberService.clearDialog();
+            MemberService.postDesList = "";
+            $.ajax({
+                url: "base/post.hopedo",
+                contentType: 'application/json',
+                type: "GET",
+                success: function (data) {
+                    var status = data.returnState;
+                    if (status == "OK") {
+                        toast.success("职位刷新成功");
+                        var postList = (data.returnData.postList);
+                        MemberService.allPostList = postList;
+                        /**/
+                        MemberService.initSelect2();
+                    } else {
+                        toast.error(data.returnMsg);
+                    }
+                }
+            })
+        },
+        addMember: function () {
+            var confirm_password = $("#confirmPassword").val();
+            var data = {
+                name: $("#memberName").val(),
+                username: $("#memberUsername").val(),
+                password: $("#memberPassword").val(),
+                postId: JSON.stringify($("#memberPosts").val())
+            }
+            var validateError =
+                data.name == undefined ||
+                    data.username == undefined ||
+                    data.password == undefined ||
+                    data.password != confirm_password;
+            if (validateError) {
+                toast.error("请输入合法数据");
+                return;
+            }
+            $.ajax({
+                url: "base/member.hopedo",
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                type: "POST",
+                success: function (data) {
+                    var status = data.returnState;
+                    if (status == "OK") {
+                        toast.success(data.returnMsg);
+                        $("#addMemberModal").modal("hide");
+                        MemberService.refresh();
+                        MemberService.clearDialog();
+                    } else {
+                        toast.error(data.returnMsg);
+                    }
+                }
+            });
         }
-
-
     }
-
     var handleEvent = function () {
-        $("#reloadTeamTable").on("click", function () {
+        $("#refreshTableButton").on("click", function () {
             MemberService.refresh();
         });
 
@@ -135,6 +358,16 @@ var MemberTable = function () {
             MemberService.showMember($(this));
         });
 
+        $("#showAddMemberButton").on("click", function () {
+            MemberService.showAdd();
+        });
+
+        $("#addMemberButton").on("click", function () {
+            MemberService.addMember();
+        });
+        $("#updateMemberButton").on("click", function () {
+            MemberService.updateMember();
+        })
     }
 
 

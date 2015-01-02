@@ -40,4 +40,8 @@ public interface MemberService extends BaseService<Member> {
 
     List<Post> getPostsByMember(Member member);
 
+    int updateMemberPost(Member member);
+
+    @Override
+    int insertEntry(Member member);
 }

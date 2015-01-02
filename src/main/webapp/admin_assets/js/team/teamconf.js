@@ -68,7 +68,7 @@ var TeamTable = function () {
             var table = $("#datatable").dataTable();
             $.ajax({
                 url: basePath + "team.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {

@@ -36,7 +36,7 @@
         <!-- 页面内容头开始 修改之-->
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                <!-- 开始页面头部信息-->
                 <h3 class="page-title">
                     职位维护
                     <small>Post Config</small>
@@ -59,14 +59,14 @@
                         <i class="icon-angle-right"></i></li>
                     <li><a href="javascript:;">职位维护</a></li>
                 </ul>
-                <!-- END PAGE TITLE & BREADCRUMB-->
+                <!-- 结束页面头部信息-->
             </div>
         </div>
         <!-- 页面内容头结束 -->
         <!-- 页面正文-->
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <!-- 开始页面信息板-->
                 <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
@@ -92,7 +92,7 @@
                         </table>
                     </div>
                 </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
+                <!-- 结束页面信息板-->
             </div>
         </div>
     </div>

@@ -37,7 +37,7 @@
 <!-- 页面内容头开始 修改之-->
 <div class="row">
     <div class="col-md-12">
-        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <!-- 开始页面头部信息-->
         <h3 class="page-title">
             创建新博客
             <small>Add New Blog</small>
@@ -63,7 +63,7 @@
                 <i class="icon-angle-right"></i></li>
             <li><a href="#">博客维护</a></li>
         </ul>
-        <!-- END PAGE TITLE & BREADCRUMB-->
+        <!-- 结束页面头部信息-->
     </div>
 </div>
 <!-- 页面内容头结束 -->

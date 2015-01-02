@@ -73,9 +73,12 @@ var PostTable = function () {
         },
         reloadTable: function () {
             var table = $("#datatable").dataTable();
+            $("#_adminRoles").remove("option");
+            $("#_writeRoles").remove("option");
+            $("#_readRoles").remove("option");
             $.ajax({
                 url: "base/post.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {
@@ -119,7 +122,7 @@ var PostTable = function () {
                 data.roleList = data.roleList.toString();
                 $.ajax({
                     url: "base/" + id + "/post.hopedo",
-                    dataType: "json",
+                    contentType: 'application/json',
                     type: "PUT",
                     data: (data),
                     async: false,
@@ -198,7 +201,7 @@ var PostTable = function () {
             var readRoles = $("#readRoles");
             $.ajax({
                 url: "base/role.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 data: (data),
                 type: "GET",
                 async: false,
@@ -235,7 +238,7 @@ var PostTable = function () {
             $modal.modal();
             $.ajax({
                 url: "base/" + id + "/post.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {
@@ -253,7 +256,7 @@ var PostTable = function () {
                                 roleIds += ",";
                             }
                         }
-                        //这个是这个用户原有的权限
+                        //这个是这个职位原有的权限
                         postRoleIds = roleIds;
                         if (roleList == null) {
                             postService.refreshRole();
@@ -299,7 +302,7 @@ var PostTable = function () {
             var id = $("#editPostId").text();
             $.ajax({
                 url: "base/" + id + "/post.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "DELETE",
                 async: false,
                 success: function (data) {

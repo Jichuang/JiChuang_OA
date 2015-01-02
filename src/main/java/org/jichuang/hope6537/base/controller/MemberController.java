@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.MemberService;
+import org.jichuang.hope6537.utils.AESLocker;
 import org.jichuang.hope6537.utils.AjaxResponse;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,7 @@ public class MemberController {
         if (loginMember == null) {
             response.sendRedirect("../page/login.hopedo?r=null");
         } else {
-            if (loginMember.getPassword().equals(member.getPassword())) {
+            if (AESLocker.Decrypt(loginMember.getPassword()).equals(member.getPassword())) {
                 request.getSession().setAttribute("loginMember", loginMember);
                 response.sendRedirect("../page/index.hopedo");
             } else {

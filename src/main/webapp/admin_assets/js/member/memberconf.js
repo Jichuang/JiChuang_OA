@@ -36,7 +36,7 @@ var MemberConf = function () {
             var id = $("#memberId").text();
             $.ajax({
                 url: "member/" + id + ".hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {
@@ -77,7 +77,7 @@ var MemberConf = function () {
             }
             $.ajax({
                 url: "member/" + $("#memberId").text() + ".hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 data: (data),
                 type: "PUT",
                 async: false,
@@ -106,7 +106,7 @@ var MemberConf = function () {
             else {
                 $.ajax({
                     url: "member/" + $("#memberId").text() + "/updatePassword.hopedo",
-                    dataType: "json",
+                    contentType: 'application/json',
                     data: (data),
                     type: "PUT",
                     async: false,

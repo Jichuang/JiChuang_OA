@@ -95,7 +95,7 @@ var RoleTable = function () {
             $modal.modal();
             $.ajax({
                 url: "base/" + id + "/role.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {
@@ -122,7 +122,7 @@ var RoleTable = function () {
             }
             $.ajax({
                 url: "base/" + id + "/role.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "PUT",
                 data: (data),
                 async: false,
@@ -146,7 +146,7 @@ var RoleTable = function () {
             var id = $("#editRoleId").text();
             $.ajax({
                 url: "base/" + id + "/role.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "DELETE",
                 async: false,
                 success: function (data) {
@@ -166,7 +166,7 @@ var RoleTable = function () {
             var table = $("#datatable").dataTable();
             $.ajax({
                 url: "base/role.hopedo",
-                dataType: "json",
+                contentType: 'application/json',
                 type: "GET",
                 async: false,
                 success: function (data) {

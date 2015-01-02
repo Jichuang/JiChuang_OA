@@ -42,7 +42,7 @@
         <span id="memberId" hidden="hidden"><%=memberId%></span>
         <span id="isEdit" hidden="hidden"><%=isEdit == null ? isEdit : -1%></span>
         <span id="isEdit2" hidden="hidden">${isEdit}</span>
-        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <!-- 开始页面头部信息-->
         <h3 class="page-title">
             个人信息
             <small>Member Profile</small>
@@ -63,7 +63,7 @@
                 <i class="icon-angle-right"></i></li>
             <li><a href="javascript:;">维护个人信息</a></li>
         </ul>
-        <!-- END PAGE TITLE & BREADCRUMB-->
+        <!-- 结束页面头部信息-->
     </div>
 </div>
 <!-- 页面内容头结束 -->

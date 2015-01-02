@@ -33,7 +33,7 @@
         <!-- 页面内容头开始 修改之-->
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                <!-- 开始页面头部信息-->
                 <h3 class="page-title">
                     办公中心
                     <small>Office Center</small>
@@ -58,7 +58,7 @@
                     <li><a href="#">办公处</a> <i class="icon-angle-right"></i></li>
                     <li><a href="#">办公中心</a></li>
                 </ul>
-                <!-- END PAGE TITLE & BREADCRUMB-->
+                <!-- 结束页面头部信息-->
             </div>
         </div>
         <!-- 页面内容头结束 -->

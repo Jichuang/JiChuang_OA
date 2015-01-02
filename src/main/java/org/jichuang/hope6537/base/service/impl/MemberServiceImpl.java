@@ -1,5 +1,6 @@
 package org.jichuang.hope6537.base.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.dao.BaseDao;
 import org.jichuang.hope6537.base.dao.Member_PostDao;
@@ -47,8 +48,16 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
         member.setQa(infos.toJSONString());
         member.setStatus("未认证");
         member.setPassword(AESLocker.Encrypt(member.getPassword()));
-        super.insertEntry(member);
-        return 1;
+        return super.insertEntry(member);
+    }
+
+
+    @Override
+    public int insertEntry(Member member) {
+        member.setDate(DateFormatCalculate.createNowTime());
+        member.setStatus("未认证");
+        member.setPassword(AESLocker.Encrypt(member.getPassword()));
+        return super.insertEntry(member);
     }
 
     public Member selectLoginService(Member member) throws MemberException {
@@ -97,16 +106,43 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
     }
 
     public List<Post> getPostsByMember(Member member) {
-        List<Member_Post> memberPostList = member_postDao.selectEntryByHQL("from Member_Post where memberId = " + member.getMemberId());
-        StringBuffer postIds = new StringBuffer();
-        for (int i = 0; i < memberPostList.size(); i++) {
-            postIds.append(memberPostList.get(i).getPostId().getPostId());
-            if (i < memberPostList.size() - 1) {
-                postIds.append("||");
-            }
-        }
-        String ids = postIds.toString();
-        List<Post> postList = postDao.selectEntryByHQL("from Post where postId = " + ids);
+        String hql = "SELECT p.* FROM post p , member_post mp WHERE mp.postId = p.postId AND mp.memberId = " + member.getMemberId();
+        List<Post> postList = postDao.selectEntryBySQL(hql);
         return postList;
     }
+
+    /**
+     * 业务逻辑很清晰 就是删掉再重新添加
+     *
+     * @param member
+     * @return
+     */
+    @Override
+    public int updateMemberPost(Member member) {
+        if (member == null || member.getPostId() == null) {
+            return -1;
+        } else {
+            int res = 0;
+            List<Member_Post> getPostIds = member_postDao.selectEntryByHQL("from Member_Post where memberId = " + member.getMemberId());
+            if (!(getPostIds == null || getPostIds.isEmpty())) {
+                String sql = "delete from Member_Post where memberId = " + member.getMemberId();
+                res += member_postDao.doQueryBySql(sql);
+            }
+            List<String> postIds = JSONArray.parseArray(member.getPostId(), String.class);
+            StringBuffer sql2 = new StringBuffer().append("insert into Member_Post(memberId,postId) values");
+            int index = 0;
+            for (String postId : postIds) {
+                index++;
+                sql2.append("(").append(member.getMemberId()).append(",").append(postId).append(")");
+                if (index < postIds.size()) {
+                    sql2.append(",");
+                }
+            }
+            res += member_postDao.doQueryBySql(sql2.toString());
+            return res;
+        }
+
+    }
+
+
 }

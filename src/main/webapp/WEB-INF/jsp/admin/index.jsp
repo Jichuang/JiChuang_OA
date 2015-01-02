@@ -35,7 +35,7 @@
 <!-- 页面内容头开始 修改之-->
 <div class="row">
 <div class="col-md-12">
-    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <!-- 开始页面头部信息-->
     <h3 class="page-title">
         早上好！
         <small>WelCome To OA!</small>
@@ -53,7 +53,7 @@
                 class="icon-angle-right"></i></li>
         <li><a href="#">欢迎界面</a> <i class="icon-angle-right"></i></li>
     </ul>
-    <!-- END PAGE TITLE & BREADCRUMB-->
+    <!-- 结束页面头部信息-->
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
     <div class="dashboard-stat blue">
