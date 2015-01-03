@@ -75,7 +75,7 @@
 <div class="tabbable tabbable-custom tabbable-full-width">
 <ul class="nav nav-tabs">
     <li class="active"><a href="#memberinfo" data-toggle="tab">信息总览</a></li>
-    <li><a href="#memberaccount" id = "memberaccountTab" data-toggle="tab">账号设置</a></li>
+    <li><a href="#memberaccount" id="memberaccountTab" data-toggle="tab">账号设置</a></li>
     <li><a href="#teaminfo" data-toggle="tab">项目组信息</a></li>
     <li><a href="#faq" data-toggle="tab">FAQ</a></li>
 </ul>

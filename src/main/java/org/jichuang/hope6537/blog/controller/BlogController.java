@@ -66,7 +66,7 @@ public class BlogController {
     }
 
     @RequestMapping("/{blogId}/toUpdateBlog")
-    public String toUpdateBlog(@PathVariable String blogId,HttpServletRequest request) {
+    public String toUpdateBlog(@PathVariable String blogId, HttpServletRequest request) {
         logger.info("博客业务——进入更新博客页面");
         request.setAttribute("editBlogId", blogId);
         return PATH + "/addBlog";

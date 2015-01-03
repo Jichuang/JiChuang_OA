@@ -2168,13 +2168,13 @@
         return this.map(function () {
             return this.elements ? f.makeArray(this.elements) : this
         }).filter(function () {
-            return this.name && !this.disabled && (this.checked || bK.test(this.nodeName) || bE.test(this.type))
-        }).map(function (a, b) {
-            var c = f(this).val();
-            return c == null ? null : f.isArray(c) ? f.map(c, function (a, c) {
-                return{name: b.name, value: a.replace(bB, "\r\n")}
-            }) : {name: b.name, value: c.replace(bB, "\r\n")}
-        }).get()
+                return this.name && !this.disabled && (this.checked || bK.test(this.nodeName) || bE.test(this.type))
+            }).map(function (a, b) {
+                var c = f(this).val();
+                return c == null ? null : f.isArray(c) ? f.map(c, function (a, c) {
+                    return{name: b.name, value: a.replace(bB, "\r\n")}
+                }) : {name: b.name, value: c.replace(bB, "\r\n")}
+            }).get()
     }}), f.each("ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".split(" "), function (a, b) {
         f.fn[b] = function (a) {
             return this.bind(b, a)
