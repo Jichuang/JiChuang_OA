@@ -26,6 +26,17 @@ import java.util.List;
 @RequestMapping("/base")
 public class BaseController {
 
+    public static boolean memberEnabled(HttpRequestServlet request){
+        if(request == null){
+            return false;
+        }
+        if(request.getSession().getAttribute("loginMember")==null) {
+            return false;
+        }
+        //multi forks
+        return true;
+    }
+
     @Autowired
     private MemberService memberService;
     @Autowired
