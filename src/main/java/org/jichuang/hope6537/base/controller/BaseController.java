@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/base")
 public class BaseController {
 
-    public static boolean memberEnabled(HttpRequestServlet request){
+    public static boolean memberEnabled(HttpServletRequest request){
         if(request == null){
             return false;
         }
