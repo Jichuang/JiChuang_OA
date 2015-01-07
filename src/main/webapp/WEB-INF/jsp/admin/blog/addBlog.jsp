@@ -93,7 +93,7 @@
                             <label>文章内容&nbsp;
                                 <small>可以从Word文档中复制哦！</small>
                             </label>
-                            <textarea class=" form-control" name="content"
+                            <textarea class="form-control" name="content"
                                       id="content" rows="200" cols="50"></textarea>
                         </div>
                         <div class="form-group">
@@ -127,7 +127,7 @@
                             <label>文章标签
                                 <small>以分号为分割</small>
                             </label> <input type="text"
-                                            class="form-control" name="tags" id="tags"
+                                            class="form-control" name="blogTags" id="blogTags"
                                             placeholder="输入新文章的标签...">
                         </div>
                         <div class="form-group">
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="form-actions right">
-                        <button type="submit" class="btn btn-block green">提交新文章</button>
+                        <button id="addBlogButton" type="submit" class="btn btn-block green">提交新文章</button>
                     </div>
                 </form>
 

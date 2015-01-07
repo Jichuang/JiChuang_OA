@@ -299,9 +299,8 @@ var BlogTable = function () {
                 }
             })
         },
-
         newDes: function () {
-            if (!$("#content")[0] == undefined) {
+            if (!($("#content")[0] == undefined)) {
                 if (CKEDITOR.instances['content']) {
                     CKEDITOR.instances['content'].destroy();
                 }
@@ -310,7 +309,7 @@ var BlogTable = function () {
 
         }(),
         editDes: function () {
-            if (!$("#_content")[0] == undefined) {
+            if (!($("#_content")[0] == undefined)) {
                 if (CKEDITOR.instances['_content']) {
                     CKEDITOR.instances['_content'].destroy();
                 }
