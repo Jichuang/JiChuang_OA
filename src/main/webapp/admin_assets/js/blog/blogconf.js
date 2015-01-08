@@ -156,6 +156,34 @@ var BlogTable = function () {
                 }
             })
         },
+
+        addBlog:function(){
+            var data = {
+                title:$("#title").val(),
+                content:$("#content").val(),
+                blogTags:$("#blogTags").val(),
+                blogType:$("#blogType").val()
+            }
+            $.ajax({
+                url:basePath + "/blog/addBlog",
+                data:JSON.stringify(data),
+                contentType:'application/json',
+                type:"POST",
+                success:function(data){
+                    var status = data.returnState;
+                    if(status=="OK"){
+                        toast.success(data.returnMsg);
+                        $("#addBlogButton").hide();
+                        setTimeout(function(){
+                            window.location.href=basePath+"/blog/conf.hopedo";
+                        },1000)
+                    }else{
+                        toast.success(data.returnMsg)
+                    }
+                }
+            });
+        },
+
         updateBlog: function () {
             var _title = $("#_title").val();
             var _content = editDes.getData();
@@ -264,6 +292,8 @@ var BlogTable = function () {
     }
 
     var ShowBlogService = {
+
+
         refreshBlog: function () {
             var frontBlogItem = {
                 title: $("#_title"),

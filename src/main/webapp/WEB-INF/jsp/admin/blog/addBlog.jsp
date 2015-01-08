@@ -132,7 +132,7 @@
                         </div>
                         <div class="form-group">
                             <label>选择文章种类</label> <select class="form-control input-lg"
-                                                          id="type" name="type">
+                                                          id="blogType" name="blogType">
                             <option value="原创资料">原创资料</option>
                             <option value="转载资料">转载资料</option>
                             <option value="体会心得">体会心得</option>
