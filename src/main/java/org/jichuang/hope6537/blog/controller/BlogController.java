@@ -7,6 +7,7 @@ import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.blog.model.Blog;
 import org.jichuang.hope6537.blog.service.BlogService;
 import org.jichuang.hope6537.utils.AjaxResponse;
+import org.jichuang.hope6537.utils.ControllerUtils;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -41,6 +42,16 @@ public class BlogController {
     public String toAddBlog() {
         logger.info("博客业务——进入添加博客页面");
         return PATH + "/addBlog";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxResponse addBlog(@RequestBody Blog blog, HttpServletRequest request) {
+        logger.info("博客业务——进入添加博客业务");
+        if (!ControllerUtils.memberEnabled(request)) {
+            return AjaxResponse.getInstanceByResult(false).addReturnMsg("无效请求");
+        }
+        return AjaxResponse.getInstanceByResult(blogService.insertBlog(blog, ControllerUtils.getLoginMember(request)));
     }
 
     @RequestMapping("/insertBlog")

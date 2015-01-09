@@ -6,6 +6,7 @@ import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.impl.BaseServiceImpl;
 import org.jichuang.hope6537.blog.model.Blog;
 import org.jichuang.hope6537.blog.service.BlogService;
+import org.jichuang.hope6537.utils.ApplicationVar;
 import org.jichuang.hope6537.utils.DateFormatCalculate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -51,6 +52,14 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
             blog.setInfo(infos.toString());
             return super.insertEntry(blog);
         }
+    }
+
+    @Override
+    public boolean insertBlog(Blog blog, Member member) {
+        blog.setMemberId(member);
+        blog.setDate(DateFormatCalculate.createNowTime());
+        blog.setStatus("待审核");
+        return super.insertEntry(blog) == ApplicationVar.EFFECTIVE_LINE_ONE;
     }
 
     public List<Blog> selectBlogAllByMember(Member member) {
