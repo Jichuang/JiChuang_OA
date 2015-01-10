@@ -3,11 +3,14 @@ package org.hope6537.member.test;
 import org.hope6537.utils.SpringHelper;
 import org.jichuang.hope6537.base.service.PostService;
 import org.junit.Test;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+
+@ContextConfiguration("/spring/spring-core.xml")
 public class MemberServiceTest extends SpringHelper {
 
     public MemberServiceTest() {

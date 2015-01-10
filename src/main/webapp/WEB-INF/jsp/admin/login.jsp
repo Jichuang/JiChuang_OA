@@ -1,77 +1,16 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
-
 <!DOCTYPE html>
-<!--
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0
-Version: 1.5.2
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
--->
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en" class="no-js">
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
 <head>
-    <base href="<%=basePath%>">
-    <meta charset="utf-8"/>
     <title>集创OA登录</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="" name="description"/>
-    <meta content="" name="author"/>
-    <meta name="MobileOptimized" content="320">
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="admin_assets/plugins/font-awesome/css/font-awesome.min.css"
-          rel="stylesheet" type="text/css"/>
-    <link href="admin_assets/plugins/bootstrap/css/bootstrap.min.css"
-          rel="stylesheet" type="text/css"/>
-    <link href="admin_assets/plugins/uniform/css/uniform.default.css"
-          rel="stylesheet" type="text/css"/>
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link rel="stylesheet" type="text/css"
-          href="admin_assets/plugins/select2/select2_metro.css"/>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <!-- BEGIN THEME STYLES -->
-    <link href="admin_assets/css/style-metronic.css" rel="stylesheet"
-          type="text/css"/>
-    <link href="admin_assets/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="admin_assets/css/style-responsive.css" rel="stylesheet"
-          type="text/css"/>
-    <link href="admin_assets/css/plugins.css" rel="stylesheet"
-          type="text/css"/>
-    <link href="admin_assets/css/themes/default.css" rel="stylesheet"
-          type="text/css" id="style_color"/>
-    <link href="admin_assets/css/pages/login-soft.css" rel="stylesheet"
-          type="text/css"/>
-    <link href="admin_assets/css/custom.css" rel="stylesheet"
-          type="text/css"/>
-    <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
+    <jsp:include page="template/template_page_head.jsp"/>
 </head>
-</head>
-<!-- BEGIN BODY -->
 <body class="login">
-<!-- BEGIN LOGO -->
 <div class="logo">
     <img src="frontend_assets/img/logo.png" alt=""/>
 </div>
-<!-- END LOGO -->
-<!-- BEGIN LOGIN -->
 <div class="content">
-<!-- BEGIN LOGIN FORM -->
-<form class="login-form" action="member/login.hopedo" method="post">
+<form class="login-form">
     <h3 class="form-title">请输入您的账号密码</h3>
 
     <div class="alert alert-error hide">
@@ -79,13 +18,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <span>请输入账号和密码</span>
     </div>
     <div class="form-group">
-        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
         <label class="control-label visible-ie8 visible-ie9">账号</label>
 
         <div class="input-icon">
             <i class="icon-user"></i> <input
                 class="form-control placeholder-no-fix" type="text"
-                autocomplete="off" placeholder="输入账号" name="username"/>
+                autocomplete="off" placeholder="输入账号" name="username" id="username"/>
         </div>
     </div>
     <div class="form-group">
@@ -93,7 +31,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
         <div class="input-icon">
             <i class="icon-lock"></i> <input
-                class="form-control placeholder-no-fix" type="password"
+                class="form-control placeholder-no-fix" type="password" id="password"
                 autocomplete="off" placeholder="输入密码" name="password"/>
         </div>
     </div>
@@ -101,7 +39,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <label class="checkbox"> <input type="checkbox"
                                         name="remember" value="1"/> 记住我一周
         </label>
-        <button type="submit" class="btn blue pull-right">
+        <button type="button"  class="btn blue pull-right" id="loginButton">
             登录 <i class="m-icon-swapright m-icon-white"></i>
         </button>
     </div>
@@ -119,9 +57,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         </p>
     </div>
 </form>
-<!-- END LOGIN FORM -->
-<!-- BEGIN FORGOT PASSWORD FORM -->
-<form class="forget-form" action="index.html" method="post">
+<form class="forget-form">
     <h3>忘记密码 ?</h3>
 
     <p>请输入您的注册电邮以验证您的身份</p>
@@ -137,15 +73,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <button type="button" id="back-btn" class="btn">
             <i class="m-icon-swapleft"></i> 取消
         </button>
-        <button type="submit" class="btn blue pull-right">
+        <button type="button" class="btn blue pull-right">
             提交 <i class="m-icon-swapright m-icon-white"></i>
         </button>
     </div>
 </form>
-<!-- END FORGOT PASSWORD FORM -->
-<!-- BEGIN REGISTRATION FORM -->
-<form class="register-form" action="member/register.hopedo"
-      method="post">
+<form class="register-form">
 <h3>注册新账号</h3>
 
 <p>请输入您的基本信息</p>
@@ -156,12 +89,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <div class="input-icon">
         <i class="icon-font"></i> <input
             class="form-control placeholder-no-fix" type="text"
-            placeholder="姓名" name="name"/>
+            placeholder="姓名" id="name"/>
     </div>
 </div>
 <div class="form-group">
     <label class="control-label visible-ie8 visible-ie9">性别</label> <select
-        name="sex" id="" class="select2 form-control">
+        id="sex" id="" class="select2 form-control">
     <option value="MALE">男性</option>
     <option value="FEMALE">女性</option>
 </select>
@@ -172,12 +105,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <div class="input-icon">
         <i class="icon-phone"></i> <input
             class="form-control placeholder-no-fix" type="text"
-            placeholder="电话号码" name="phone"/>
+            placeholder="电话号码" id="phone"/>
     </div>
 </div>
 <div class="form-group">
 <label class="control-label visible-ie8 visible-ie9">国家</label> <select
-        name="country" id="select2_sample4" class="select2 form-control">
+        id="country" id="select2_sample4" class="select2 form-control">
 <option value=""></option>
 <option value="AF">Afghanistan</option>
 <option value="AL">Albania</option>
@@ -428,7 +361,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <div class="input-icon">
         <i class="icon-user"></i> <input
             class="form-control placeholder-no-fix" type="text"
-            autocomplete="off" placeholder="注册邮箱" name="username"/>
+            autocomplete="off" placeholder="注册邮箱" id="_username"/>
     </div>
 </div>
 <div class="form-group">
@@ -437,7 +370,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <div class="input-icon">
         <i class="icon-lock"></i> <input
             class="form-control placeholder-no-fix" type="password"
-            autocomplete="off" id="register_password" placeholder="密码"
+            autocomplete="off" id="_password" placeholder="密码"
             name="password"/>
     </div>
 </div>
@@ -448,7 +381,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <div class="input-icon">
             <i class="icon-ok"></i> <input
                 class="form-control placeholder-no-fix" type="password"
-                autocomplete="off" placeholder="请再输入一遍密码" name="rpassword"/>
+                autocomplete="off" placeholder="请再输入一遍密码" id="_rpassword"/>
         </div>
     </div>
 </div>
@@ -463,52 +396,21 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <button id="register-back-btn" type="button" class="btn">
         <i class="m-icon-swapleft"></i> 后退
     </button>
-    <button type="submit" id="register-submit-btn"
-            class="btn blue pull-right">
+    <button type="button"  id="register-submit-btn"
+            class="btn blue pull-right" id="registerButton">
         确认信息并注册 <i class="m-icon-swapright m-icon-white"></i>
     </button>
 </div>
 </form>
-<!-- END REGISTRATION FORM -->
 </div>
-<!-- END LOGIN -->
-<!-- BEGIN COPYRIGHT -->
-<div class="copyright">2014 &copy; Hope6537 ChangChun University
-    JiChuang Team.
+<div class="copyright">2014 &copy; Hope6537 ChangChun University JiChuang Team.
 </div>
-<!-- END COPYRIGHT -->
-<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-<!-- BEGIN CORE PLUGINS -->
-<!--[if lt IE 9]>
-<script src="admin_assets/plugins/respond.min.js"></script>
-<script src="admin_assets/plugins/excanvas.min.js"></script>
-<![endif]-->
-<script src="admin_assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="admin_assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="admin_assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="admin_assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
-        type="text/javascript"></script>
-<script src="admin_assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="admin_assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="admin_assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
-<script src="admin_assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="admin_assets/plugins/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
-<script src="admin_assets/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="admin_assets/plugins/select2/select2.min.js"></script>
-<!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="admin_assets/scripts/app.js" type="text/javascript"></script>
-<script src="admin_assets/scripts/login-soft.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL SCRIPTS -->
-<script>
-    jQuery(document).ready(function () {
-        App.init();
+<jsp:include page="template/template_page_javascript.jsp"/>
+<script src="admin_assets/js/login.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
         Login.init();
     });
 </script>
-<!-- END JAVASCRIPTS -->
 </body>
-<!-- END BODY -->
 </html>

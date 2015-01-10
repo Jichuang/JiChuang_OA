@@ -9,12 +9,12 @@ public interface PostService extends BaseService<Post> {
 
     int insertPost(String des, boolean isID);
 
-    int updateRoles4PostById(String[] roles, String postId);
+    boolean updateRoles4PostById(String[] roles, String postId);
 
     List<Role> selectRolesByPostId(String postId);
 
-    int updateRoles4PostById(Post post, String[] oldRoles, String[] newRoles, String postId);
+    boolean deletePostRoles(String postId);
 
-    int deletePostRoles(String postId);
+    boolean updateRoles4PostById(Post post, String[] oldRoles, String[] newRoles, String postId);
 
 }

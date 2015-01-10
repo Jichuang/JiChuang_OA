@@ -11,11 +11,13 @@ import org.jichuang.hope6537.base.service.PostService;
 import org.jichuang.hope6537.base.service.RoleService;
 import org.jichuang.hope6537.utils.AESLocker;
 import org.jichuang.hope6537.utils.AjaxResponse;
+import org.jichuang.hope6537.utils.ApplicationVar;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -35,6 +37,12 @@ public class BaseController {
 
     public static final String PATH = AdminPageController.PATH;
     private Logger logger = Logger.getLogger(getClass());
+
+
+    @PostConstruct
+    public void initController() {
+        logger.info("===========JiChuang_OA Application Init===========");
+    }
 
 
     static Member MemberBaseReplace(Member oldMember, Member newMember) {
@@ -105,9 +113,9 @@ public class BaseController {
         if (loginMember == null || member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            int res = memberService.insertEntry(member);
-            res += memberService.updateMemberPost(member);
-            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加用户成功");
+            boolean res = memberService.insertEntry(member) > ApplicationVar.EFFECTIVE_LINE_ONE;
+            res = res && memberService.updateMemberPost(member);
+            return AjaxResponse.getInstanceByResult(res).addReturnMsg("添加用户成功");
         }
     }
 
@@ -121,9 +129,9 @@ public class BaseController {
         } else {
             member = MemberBaseReplace(
                     memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId)), member);
-            int res = memberService.updateMember(member);
-            res += memberService.updateMemberPost(member);
-            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("更新用户成功");
+            return AjaxResponse.getInstanceByResult
+                    (memberService.updateMember(member) > ApplicationVar.EFFECTIVE_LINE_ONE && memberService.updateMemberPost(member)).
+                    addReturnMsg("更新用户成功");
         }
     }
 
@@ -267,8 +275,7 @@ public class BaseController {
             String des = request.getParameter("addNewPostDes");
             String[] type = request.getParameter("addNewPostRoles").split(",");
             int postId = postService.insertPost(des, true);
-            int res = postService.updateRoles4PostById(type, postId + "");
-            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("添加职位成功");
+            return AjaxResponse.getInstanceByResult(postService.updateRoles4PostById(type, postId + "")).addReturnMsg("添加职位成功");
         }
 
     }
@@ -306,9 +313,8 @@ public class BaseController {
             post.setStatus(request.getParameter("status"));
             String[] oldRoles = request.getParameter("postRoleIds").split(",");
             String[] newRoles = request.getParameter("roleList").split(",");
-            int res = postService.updateRoles4PostById(post, oldRoles, newRoles, postId);
             //本体更新完了，接下来更新权限集合
-            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("更新权限成功");
+            return AjaxResponse.getInstanceByResult(postService.updateRoles4PostById(post, oldRoles, newRoles, postId)).addReturnMsg("更新权限成功");
         }
     }
 
@@ -322,13 +328,9 @@ public class BaseController {
         if (member == null || postId == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            int pre = postService.deletePostRoles(postId);
-            if (pre <= 0) {
-                return AjaxResponse.getInstanceByResult(false).addReturnMsg("删除职位权限失败，正在回滚");
-            } else {
-                int res = postService.deleteEntryByPrimaryKey(Integer.parseInt(postId));
-                return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("删除职位成功");
-            }
+            boolean res = postService.deletePostRoles(postId);
+            res = res && postService.deleteEntryByPrimaryKey(Integer.parseInt(postId)) > ApplicationVar.EFFECTIVE_LINE_ONE;
+            return AjaxResponse.getInstanceByResult(res);
         }
     }
 
