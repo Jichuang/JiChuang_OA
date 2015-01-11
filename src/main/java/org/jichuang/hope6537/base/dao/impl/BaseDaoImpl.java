@@ -154,4 +154,19 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return list;
     }
 
+    @SuppressWarnings("unchecked")
+    public List<T> selectEntryBySQL(String sql) {
+        List<T> list = new ArrayList<T>();
+        try {
+            list = sessionFactory.getCurrentSession().createSQLQuery(sql).list();
+        } catch (Exception e) {
+            Session session = sessionFactory.openSession();
+            System.err.println("Open Session");
+            list = session.createSQLQuery(sql).list();
+            session.close();
+            System.err.println("Open Session Closed");
+        }
+        return list;
+    }
+
 }

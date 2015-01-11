@@ -9,17 +9,9 @@ import java.util.List;
 
 public interface BlogService extends BaseService<Blog> {
 
-    /**
-     * <p>Describe: 添加博客</p>
-     * <p>DevelopedTime: 2014年11月26日下午4:07:39 </p>
-     * <p>Author:Hope6537</p>
-     *
-     * @param blog
-     * @param member
-     * @return
-     * @see
-     */
     int insertBlog(Blog blog, Member member, JSONObject infos);
+
+    boolean insertBlog(Blog blog, Member member);
 
     List<Blog> selectBlogAllByMember(Member member);
 

@@ -1,46 +1,29 @@
-<%@ page language="java" import="org.jichuang.hope6537.base.model.Member" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-    Member member = (Member) session.getAttribute("loginMember");
-    if (member == null) {
-        response.sendRedirect("../page/login.hopedo");
-    }
     String memberId = (String) request.getAttribute("memberId");
-
+    String isEdit = (String) request.getAttribute("isEdit");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%=basePath%>">
-    <!-- head的include区 -->
-    <jsp:include page="../template/template_page_head.jsp" flush="true"/>
-
+    <%@include file="../template/template_page_head.jsp" %>
     <title>个人信息维护</title>
-    <!-- head的include区 结束  -->
 </head>
 <body class="page-header-fixed page-footer-fixed">
-<!-- 头部顶端菜单栏开始 -->
 <jsp:include page="../template/template_page_header.jsp" flush="true"/>
-<!-- 头部顶端菜单栏结束 -->
 <div class="page-container">
-<!-- 侧面菜单栏开始 -->
 <jsp:include page="../template/template_page_sidebar.jsp" flush="true"/>
-<!-- 侧面菜单栏结束 -->
 <!--========================页面开始处======================== -->
 <div class="page-content">
 <jsp:include page="../template/template_page_modal.jsp" flush="true"/>
 <jsp:include page="../template/template_page_style.jsp" flush="true"/>
-<!-- 页面内容头开始 修改之-->
+
 <div class="row">
     <div class="col-md-12">
         <span id="memberId" hidden="hidden"><%=memberId%></span>
-        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <span id="isEdit" hidden="hidden"><%=isEdit == null ? isEdit : -1%></span>
+        <span id="isEdit2" hidden="hidden">${isEdit}</span>
+
         <h3 class="page-title">
             个人信息
             <small>Member Profile</small>
@@ -61,7 +44,7 @@
                 <i class="icon-angle-right"></i></li>
             <li><a href="javascript:;">维护个人信息</a></li>
         </ul>
-        <!-- END PAGE TITLE & BREADCRUMB-->
+
     </div>
 </div>
 <!-- 页面内容头结束 -->
@@ -72,13 +55,13 @@
 <!--BEGIN TABS-->
 <div class="tabbable tabbable-custom tabbable-full-width">
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab_1_1" data-toggle="tab">信息总览</a></li>
-    <li><a href="#tab_1_3" data-toggle="tab">账号设置</a></li>
-    <li><a href="#tab_1_4" data-toggle="tab">项目组信息</a></li>
-    <li><a href="#tab_1_6" data-toggle="tab">FAQ</a></li>
+    <li class="active"><a href="#memberinfo" data-toggle="tab">信息总览</a></li>
+    <li><a href="#memberaccount" id="memberaccountTab" data-toggle="tab">账号设置</a></li>
+    <li><a href="#teaminfo" data-toggle="tab">项目组信息</a></li>
+    <li><a href="#faq" data-toggle="tab">FAQ</a></li>
 </ul>
 <div class="tab-content">
-<div class="tab-pane active" id="tab_1_1">
+<div class="tab-pane active" id="memberinfo">
 <div class="row">
 <div class="col-md-3">
     <ul class="list-unstyled profile-nav">
@@ -87,7 +70,7 @@
         </li>
         <li><a href="../team/conf.hopedo">查看参与项目组</a></li>
         <li><a href="#">查看个人文件树</a></li>
-        <li><a href="<%=basePath%>/blog/conf.hopedo">查看博客信息</a></li>
+        <li><a href="/blog/conf.hopedo">查看博客信息</a></li>
     </ul>
 </div>
 <div class="col-md-9">
@@ -569,7 +552,7 @@
 </div>
 </div>
 <!--tab_1_2-->
-<div class="tab-pane" id="tab_1_3">
+<div class="tab-pane" id="memberaccount">
     <div class="row profile-account">
         <div class="col-md-3">
             <ul class="ver-inline-menu tabbable margin-bottom-10">
@@ -738,7 +721,7 @@
     </div>
 </div>
 <!--end tab-pane-->
-<div class="tab-pane" id="tab_1_4">
+<div class="tab-pane" id="teaminfo">
     <div class="row">
         <div class="col-md-12">
             <div class="add-portfolio">
@@ -806,7 +789,7 @@
         <li><a data-toggle="tab" href="#tab_3"><i class="icon-plus"></i> Other Questions</a></li>
     </ul>
 </div>
-<div class="col-md-9">
+<div class="col-md-9" id="faq">
 <div class="tab-content">
 <div id="tab_1" class="tab-pane active">
     <div id="accordion1" class="panel-group">
@@ -1290,11 +1273,10 @@
 </div>
 <!-- ======================== 页面结束处======================== -->
 </div>
-<!-- 页面尾端include  -->
 <%@include file="../template/template_page_footer.jsp" %>
-<!-- 页面尾端include 结束  -->
+
 </body>
-<!-- Js核心脚本 -->
+
 <%@include file="../template/template_page_javascript.jsp" %>
 <script type="text/javascript" src="admin_assets/js/member/memberconf.js"></script>
 <script type="text/javascript">
@@ -1304,5 +1286,5 @@
         MemberConf.init();
     });
 </script>
-<!-- Js核心脚本结束 -->
+
 </html>

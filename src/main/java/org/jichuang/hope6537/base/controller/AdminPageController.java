@@ -3,6 +3,8 @@ package org.jichuang.hope6537.base.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/page")
 public class AdminPageController {
@@ -15,7 +17,8 @@ public class AdminPageController {
     }
 
     @RequestMapping("/login")
-    public String toLogin() {
+    public String toLogin(HttpServletRequest request) {
+        request.setAttribute("isLoginPage", "YES");
         return PATH + "/login";
     }
 

@@ -10,11 +10,11 @@ import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -27,66 +27,28 @@ public class MemberController {
     private Logger logger = Logger.getLogger(getClass());
     private static final String PATH = AdminPageController.PATH;
 
-    /**
-     * <p>Describe: 用户注册控制器</p>
-     * <p>DevelopedTime: 2014年10月15日下午1:44:09 </p>
-     * <p>Author:Hope6537</p>
-     *
-     * @param model   模型驱动
-     * @param member  实体类
-     * @param request request请求
-     * @return 最后返回的是URL
-     * @throws MemberException
-     * @see
-     */
-    @RequestMapping("/register")
-    public String memberRegister(Model model, @ModelAttribute Member member,
-                                 HttpServletRequest request) throws MemberException {
-        logger.info("进入用户注册业务");
-        String sex = (String) request.getParameter("sex");
-        String phonenumber = (String) request.getParameter("phone");
-        String country = (String) request.getParameter("country");
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("phonenumber", phonenumber);
-        jsonObject.put("sex", sex);
-        jsonObject.put("country", country);
-        logger.info(member.toString());
-        int res = memberService.insertRegisterService(member, jsonObject);
-        request.setAttribute("insertRes", res);
-        logger.info(member.getName() + "已成功注册");
-        return PATH + "login";
+    public void afterLoginService(HttpServletRequest request, Member member) {
+        HttpSession session = request.getSession();
+        session.setAttribute("loginMember", member);
     }
 
-    /**
-     * <p>Describe: 用户登录控制器</p>
-     * <p>DevelopedTime: 2014年11月26日下午5:10:27 </p>
-     * <p>Author:Hope6537</p>
-     *
-     * @param model
-     * @param member
-     * @param request
-     * @return
-     * @throws MemberException
-     * @throws IOException
-     * @see
-     */
-    @RequestMapping("/login")
-    public void memberLogin(Model model, @ModelAttribute Member member,
-                            HttpServletRequest request, HttpServletResponse response)
-            throws MemberException, IOException {
-        logger.info("进入用户登录业务");
-        Member loginMember = memberService.selectLoginService(member);
-        if (loginMember == null) {
-            response.sendRedirect("../page/login.hopedo?r=null");
-        } else {
-            if (loginMember.getPassword().equals(member.getPassword())) {
-                request.getSession().setAttribute("loginMember", loginMember);
-                response.sendRedirect("../page/index.hopedo");
-            } else {
-                response.sendRedirect("../page/login.hopedo?r=error");
-            }
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxResponse registerMember(@RequestBody Member member, HttpServletRequest request) {
+        logger.info("进入用户注册业务");
+        return AjaxResponse.getInstanceByResult(memberService.insertRegister(member));
+    }
 
+    @RequestMapping("/login")
+    @ResponseBody
+    public AjaxResponse loginMember(@RequestBody Member member, HttpServletRequest request) {
+        logger.info("进入用户登录业务");
+        Member isLogin = memberService.selectLogin(member);
+        if (isLogin != null) {
+            afterLoginService(request, isLogin);
         }
+        return AjaxResponse.getInstanceByResult(isLogin != null);
+
     }
 
     @RequestMapping("/logout")
@@ -118,9 +80,24 @@ public class MemberController {
             return null;
         } else {
             request.setAttribute("memberId", memberId);
+            request.setAttribute("isEdit", "1");
             return PATH + "/member/conf";
         }
     }
+
+    @RequestMapping("{memberId}/toShow")
+    public String toShow(@PathVariable String memberId, HttpServletRequest request, HttpServletResponse response) throws IOException, MemberException {
+        Member member = (Member) request.getSession().getAttribute("loginMember");
+        if (member == null) {
+            response.sendRedirect("../page/login.hopedo");
+            return null;
+        } else {
+            request.setAttribute("memberId", memberId);
+            request.setAttribute("isEdit", "0");
+            return PATH + "/member/conf";
+        }
+    }
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/{memberId}")
     @ResponseBody

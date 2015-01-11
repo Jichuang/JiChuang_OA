@@ -1,4 +1,22 @@
+<%@ page import="org.jichuang.hope6537.base.model.Member" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+    Member member = (Member) session.getAttribute("loginMember");
+    String isLoginPage = (String) request.getAttribute("isLoginPage");
+    if (member == null) {
+        if (isLoginPage != null && !isLoginPage.isEmpty()) {
+            ;
+        } else {
+            response.sendRedirect(basePath + "/page/login.hopedo");
+        }
+    }
+%>
+<base href="<%=basePath%>">
+<meta charset="utf-8"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,6 +24,8 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <meta name="MobileOptimized" content="320">
+<!-- 登陆页 -->
+<link href="admin_assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="admin_assets/js/base/global.js"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="admin_assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>

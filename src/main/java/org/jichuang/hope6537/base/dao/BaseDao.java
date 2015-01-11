@@ -95,6 +95,8 @@ public interface BaseDao<T> {
      */
     List<T> selectEntryByHQL(String hql);
 
+    List<T> selectEntryBySQL(String sql);
+
     int doQueryByHql(String hql);
 
     int doQueryBySql(String sql);

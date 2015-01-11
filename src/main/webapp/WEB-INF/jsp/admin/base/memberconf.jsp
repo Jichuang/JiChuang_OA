@@ -1,42 +1,26 @@
-<%@ page language="java" import="org.jichuang.hope6537.base.model.Member" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-    Member member = (Member) session.getAttribute("loginMember");
-    if (member == null) {
-        response.sendRedirect("../page/login.hopedo");
-    }
-	/* List<Blog> blogList = (List<Blog>) request.getAttribute("blogList"); */
-%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%=basePath%>">
-    <!-- head的include区 -->
-    <jsp:include page="../template/template_page_head.jsp" flush="true"/>
+    <%@include file="../template/template_page_head.jsp" %>
     <title>团队成员维护</title>
-    <!-- head的include区 结束  -->
 </head>
 <body class="page-header-fixed page-footer-fixed">
-<!-- 头部顶端菜单栏开始 -->
+
 <jsp:include page="../template/template_page_header.jsp" flush="true"/>
-<!-- 头部顶端菜单栏结束 -->
+
 <div class="page-container">
-    <!-- 侧面菜单栏开始 -->
+
     <jsp:include page="../template/template_page_sidebar.jsp" flush="true"/>
-    <!-- 侧面菜单栏结束 -->
+
     <!--========================页面开始处======================== -->
     <div class="page-content">
         <jsp:include page="../template/template_page_modal.jsp" flush="true"/>
         <jsp:include page="../template/template_page_style.jsp" flush="true"/>
-        <!-- 页面内容头开始 修改之-->
+
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
                 <h3 class="page-title">
                     团队成员维护
                     <small>Member Config</small>
@@ -49,9 +33,9 @@
                             <span>动作</span> <i class="icon-angle-down"></i>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="team/toAddTeam.hopedo"><i
+                            <li><a href="javascript:;" id="showAddMemberButton"><i
                                     class="icon-edit"></i>添加新成员</a></li>
-                            <li><a href="javascript:;" id="reloadTeamTable"><i
+                            <li><a href="javascript:;" id="refreshTableButton"><i
                                     class="icon-refresh"></i>刷新成员信息</a></li>
                         </ul>
                     </li>
@@ -59,14 +43,13 @@
                         <i class="icon-angle-right"></i></li>
                     <li><a href="javascript:;">团队成员维护</a></li>
                 </ul>
-                <!-- END PAGE TITLE & BREADCRUMB-->
+
             </div>
         </div>
-        <!-- 页面内容头结束 -->
-        <!-- 页面正文-->
+
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
                 <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
@@ -94,18 +77,112 @@
                         </table>
                     </div>
                 </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
+
             </div>
         </div>
     </div>
     <!-- ======================== 页面结束处======================== -->
+
+    <div id="addMemberModal" class="modal container fade in" tabindex="-1" style="height: auto;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title"><i class="icon-pencil"></i> 管理员维护用户信息窗口</h4>
+        </div>
+        <span hidden="hidden" id="updateMemberId"></span>
+
+        <div class="modal-body form" style="height: auto;">
+            <form id="dialogForm" class="form-horizontal">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">登录名<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="hidden" id="userId">
+                                    <input type="text" class="form-control input-medium" placeholder="登录名"
+                                           id="memberUsername">
+                                    <span class="help-block">此名称用于登录</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group last">
+                                <label class="col-md-4 control-label">用户姓名<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-medium" placeholder="用户姓名"
+                                           id="memberName">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">登录密码<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control input-medium" placeholder="登录密码"
+                                           id="memberPassword">
+                                    <span class="help-block" id="passwordHelpBlock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group last">
+                                <label class="col-md-4 control-label">确认密码<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control input-medium" placeholder="确认密码"
+                                           id="confirmPassword">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="postField">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">用户职位<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <select multiple="multiple" class="multi-select" id="memberPosts"
+                                            name="memberPosts[]">
+                                    </select>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group last">
+                                <label class="col-md-4 control-label">用户其他信息<span class="required"> * </span></label>
+
+                                <div class="col-md-8">
+                                    <label class="control-label">更改用户的状态</label>
+                                    <select id="updateMemberStatus" class="form-control input-medium">
+                                        <option value="正常">正常</option>
+                                        <option value="未认证">未认证</option>
+                                        <option value="不可用">不可用</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" id="cancel" class="btn btn-default">取消</button>
+            <button type="button" id="addMemberButton" class="btn blue">添加成员信息</button>
+            <button type="button" id="updateMemberButton" class="btn blue">更新成员信息</button>
+        </div>
+    </div>
 </div>
 
-<!-- 页面尾端include  -->
 <%@include file="../template/template_page_footer.jsp" %>
-<!-- 页面尾端include 结束  -->
+
 </body>
-<!-- Js核心脚本 -->
+
 <%@include file="../template/template_page_javascript.jsp" %>
 <script type="text/javascript" src="admin_assets/js/base/memberconf.js"></script>
 <script type="text/javascript">
@@ -114,5 +191,5 @@
         $("#adminLi").attr("class", "active");
     });
 </script>
-<!-- Js核心脚本结束 -->
+
 </html>

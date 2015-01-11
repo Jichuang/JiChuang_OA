@@ -1,44 +1,20 @@
-<%@ page language="java" import="org.jichuang.hope6537.base.model.Member" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-    Member member = (Member) session.getAttribute("loginMember");
-    if (member == null) {
-        response.sendRedirect("../page/login.hopedo");
-    }
-	/* List<Blog> blogList = (List<Blog>) request.getAttribute("blogList"); */
-%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%=basePath%>">
-    <!-- head的include区 -->
-    <jsp:include page="../template/template_page_head.jsp" flush="true"/>
+    <%@include file="../template/template_page_head.jsp" %>
     <title>权限维护</title>
-    <!-- head的include区 结束  -->
 </head>
 <body class="page-header-fixed page-footer-fixed">
-<!-- 头部顶端菜单栏开始 -->
 <jsp:include page="../template/template_page_header.jsp" flush="true"/>
-<!-- 头部顶端菜单栏结束 -->
 <div class="page-container">
-    <!-- 侧面菜单栏开始 -->
     <jsp:include page="../template/template_page_sidebar.jsp" flush="true"/>
-    <!-- 侧面菜单栏结束 -->
-    <!--========================页面开始处======================== -->
     <div class="page-content">
         <jsp:include page="../template/template_page_modal.jsp" flush="true"/>
         <jsp:include page="../template/template_page_style.jsp" flush="true"/>
-        <!-- 页面内容头开始 修改之-->
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                <h3 class="page-title">
-                    权限维护
+                <h3 class="page-title">权限维护
                     <small>Role Config</small>
                 </h3>
                 <ul class="page-breadcrumb breadcrumb">
@@ -59,14 +35,10 @@
                         <i class="icon-angle-right"></i></li>
                     <li><a href="javascript:;">权限维护</a></li>
                 </ul>
-                <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
         </div>
-        <!-- 页面内容头结束 -->
-        <!-- 页面正文-->
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN EXAMPLE TABLE PORTLET-->
                 <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
@@ -94,23 +66,17 @@
                         </table>
                     </div>
                 </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
         </div>
     </div>
-    <!-- ======================== 页面结束处======================== -->
 </div>
-
 <div id="addNewRoleModal" class="modal fade" tabindex="-1">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
         <h4 class="modal-title">添加新权限</h4>
     </div>
-
-
     <div class="modal-body">
         <p><font color="red"><h4>注意：您正在进行管理操作</h4></font></p>
-
         <div class="form-group">
             <label class="control-label">输入新权限的内容，请确认您填写的信息准确无误。</label>
             <input type="text" class="form-control" name="" id="addNewRoleDes"/>
@@ -123,14 +89,12 @@
                 <option value="只读权限">只读权限</option>
             </select>
         </div>
-
     </div>
     <div class="modal-footer">
         <button type="button" data-dismiss="modal" id="cancel" class="btn btn-default">取消</button>
         <button type="button" id="addNewRoleButton" class="btn blue">添加新权限</button>
     </div>
 </div>
-
 <div id="updateRoleModal" class="modal fade" tabindex="-1">
 
     <span hidden="hidden" id="editRoleId"></span>
@@ -190,11 +154,8 @@
 </div>
 
 
-<!-- 页面尾端include  -->
 <%@include file="../template/template_page_footer.jsp" %>
-<!-- 页面尾端include 结束  -->
 </body>
-<!-- Js核心脚本 -->
 <%@include file="../template/template_page_javascript.jsp" %>
 <script type="text/javascript" src="admin_assets/js/base/roleconf.js"></script>
 <script type="text/javascript">
@@ -203,5 +164,4 @@
         $("#adminLi").attr("class", "active");
     });
 </script>
-<!-- Js核心脚本结束 -->
 </html>

@@ -11,8 +11,17 @@ public class MemberDaoImpl extends BaseDaoImpl<Member> implements MemberDao {
     @SuppressWarnings("unchecked")
     @Override
     public List<Member> selectEntryAll() {
-        return sessionFactory.getCurrentSession().createQuery("from Member")
-                .list();
+        return sessionFactory.getCurrentSession().createQuery("from Member").list();
     }
 
+    @Override
+    public Member selectLogin(Member member) {
+        List<Member> list = super.selectEntryByHQL("from Member where username = '" + member.getUsername() + "'");
+        for (Member selectedMember : list) {
+            if (selectedMember.getPassword().equals(member.getPassword())) {
+                return selectedMember;
+            }
+        }
+        return null;
+    }
 }

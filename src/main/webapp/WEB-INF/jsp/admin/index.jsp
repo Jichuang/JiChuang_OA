@@ -1,41 +1,28 @@
-<%@ page language="java" import="org.jichuang.hope6537.base.model.Member" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-    Member member = (Member) session.getAttribute("loginMember");
-    if (member == null) {
-        response.sendRedirect("../page/login.hopedo");
-    }
-%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%=basePath%>">
-    <!-- head的include区 -->
-    <jsp:include page="template/template_page_head.jsp" flush="true"/>
+    <%@include file="template/template_page_head.jsp" %>
     <title>欢迎进入OA后台系统</title>
     <!-- head的include区 结束  -->
 </head>
 <body class="page-header-fixed page-footer-fixed">
-<!-- 头部顶端菜单栏开始 -->
+
+
 <jsp:include page="template/template_page_header.jsp" flush="true"/>
-<!-- 头部顶端菜单栏结束 -->
+
 <div class="page-container">
-<!-- 侧面菜单栏开始 -->
+
 <jsp:include page="template/template_page_sidebar.jsp" flush="true"/>
-<!-- 侧面菜单栏结束 -->
+
 <!--========================页面开始处======================== -->
 <div class="page-content">
 <jsp:include page="template/template_page_modal.jsp" flush="true"/>
 <jsp:include page="template/template_page_style.jsp" flush="true"/>
-<!-- 页面内容头开始 修改之-->
+
 <div class="row">
 <div class="col-md-12">
-    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
     <h3 class="page-title">
         早上好！
         <small>WelCome To OA!</small>
@@ -53,7 +40,7 @@
                 class="icon-angle-right"></i></li>
         <li><a href="#">欢迎界面</a> <i class="icon-angle-right"></i></li>
     </ul>
-    <!-- END PAGE TITLE & BREADCRUMB-->
+
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
     <div class="dashboard-stat blue">
@@ -774,17 +761,16 @@
 </div>
 <!-- ======================== 页面结束处======================== -->
 </div>
-<!-- 页面尾端include  -->
 <%@include file="template/template_page_footer.jsp" %>
-<!-- 页面尾端include 结束  -->
+
 </body>
-<!-- Js核心脚本 -->
+
 <%@include file="template/template_page_javascript.jsp" %>
 <script type="text/javascript">
     $(document).on("ready", function () {
         $("#indexLi").attr("class", "active");
     });
 </script>
-<!-- Js核心脚本结束 -->
+
 <!-- djhaskdaskdh -->
 </html>
