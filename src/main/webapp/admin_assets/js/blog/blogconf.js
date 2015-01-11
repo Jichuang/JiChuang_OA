@@ -6,8 +6,7 @@ var BlogTable = function () {
         var x = h[1].split("/");
         return h[0] + "//" + window.location.host + "/" + x[1] + "/";
     }();
-    var newDes;
-    var editDes;
+
 
     var BlogService = {
         initTable: function () {
@@ -82,36 +81,6 @@ var BlogTable = function () {
                     }
                 });
         },
-        uploadImage: function (id, name, imagesUl) {
-            $.ajaxFileUpload({
-                url: basePath + '/baseAjax/uploadImage.hopedo',
-                type: 'post',
-                secureuri: false, //一般设置为false
-                fileElementId: id, // 上传文件的id名 不能够添加# 因为它自带前缀
-                dataType: 'json', //返回值类型，一般设置为json、application/json
-                elementIds: name, //传递参数到服务器
-                success: function (data) {
-                    var data = eval(data);
-                    var status = data.returnState;
-                    if (status == "OK") {
-                        toast.success(data.returnMsg);
-                        imagesUl.append('<br/> <li>文件名 <span class="divider">:</span><span class = "imagePath"> '
-                            + data.returnData.path + ' ' +
-                            '</span><a href="javascript:;" class = "insertImage">[插入到文本域中]</a><br/>');
-                    }
-                    else {
-                        toast.error(data.returnMsg);
-                    }
-                },
-                error: function (data, status, e) {
-                    toast.error(e);
-                }
-
-            })
-        },
-        image2Text: function (path, des) {
-            des.insertHtml("<img src='" + path + "'>");
-        },
         deleteBlog: function (e) {
 
             var $this = e;
@@ -128,7 +97,6 @@ var BlogTable = function () {
                         toast.success(data.returnMsg);
                         $("#reload").trigger("click");
                     } else {
-                        console.log("error");
                         toast.error(data.returnMsg);
                     }
 
@@ -149,71 +117,9 @@ var BlogTable = function () {
                         toast.success(data.returnMsg);
                         $("#reload").trigger("click");
                     } else {
-                        console.log("error");
                         toast.error(data.returnMsg);
                     }
 
-                }
-            })
-        },
-
-        addBlog:function(){
-            var data = {
-                title:$("#title").val(),
-                content:$("#content").val(),
-                blogTags:$("#blogTags").val(),
-                blogType:$("#blogType").val()
-            }
-            $.ajax({
-                url:basePath + "/blog/addBlog",
-                data:JSON.stringify(data),
-                contentType:'application/json',
-                type:"POST",
-                success:function(data){
-                    var status = data.returnState;
-                    if(status=="OK"){
-                        toast.success(data.returnMsg);
-                        $("#addBlogButton").hide();
-                        setTimeout(function(){
-                            window.location.href=basePath+"/blog/conf.hopedo";
-                        },1000)
-                    }else{
-                        toast.success(data.returnMsg)
-                    }
-                }
-            });
-        },
-
-        updateBlog: function () {
-            var _title = $("#_title").val();
-            var _content = editDes.getData();
-            var _tags = $("#_tags").val();
-            var _type = $("#_type").val();
-            var data = {
-                blogId: parseInt($("#_blogId").val(), 10),
-                title: _title,
-                content: _content,
-                tags: _tags,
-                type: _type
-            };
-            $.ajax({
-                url: basePath + "blog.hopedo",
-                contentType: 'application/json',
-                type: "PUT",
-                data: (data),
-                async: false,
-                success: function (data) {
-                    var status = data.returnState;
-                    if (status == "OK") {
-                        $("#updateBlogButton").hide();
-                        toast.success(data.returnMsg);
-                        setTimeout(function () {
-                                window.location.href = basePath + "blog/conf.hopedo";
-                            }
-                            , 1000);
-                    } else {
-                        toast.error(data.returnMsg);
-                    }
                 }
             })
         },
@@ -259,41 +165,10 @@ var BlogTable = function () {
                     }
                 }
             })
-        },
-        reloadBlog: function () {
-            var editBlogId = $("#isEdit").text();
-            if (editBlogId == 0 || editBlogId == undefined) {
-                return;
-            }
-            $.ajax({
-                url: basePath + "blog/" + editBlogId + ".hopedo",
-                contentType: 'application/json',
-                type: "GET",
-                async: false,
-                success: function (data) {
-                    var status = data.returnState;
-                    if (status == "OK") {
-                        toast.success(data.returnMsg);
-                        var editBlog = data.returnData.blog;
-                        $("#_blogId").val(editBlog.blogId);
-                        $("#_title").val(editBlog.title);
-                        console.log(editDes);
-                        editDes.setData(editBlog.content);
-                        var info = eval("(" + editBlog.info + ")");
-                        $("#_tags").val(info.blogTag);
-                        $("#_type").val(info.blogType);
-                    } else {
-                        toast.error(data.returnMsg);
-                    }
-                }
-            });
         }
-
     }
 
     var ShowBlogService = {
-
-
         refreshBlog: function () {
             var frontBlogItem = {
                 title: $("#_title"),
@@ -328,25 +203,7 @@ var BlogTable = function () {
                     }
                 }
             })
-        },
-        newDes: function () {
-            if (!($("#content")[0] == undefined)) {
-                if (CKEDITOR.instances['content']) {
-                    CKEDITOR.instances['content'].destroy();
-                }
-                return CKEDITOR.replace('content');
-            }
-
-        }(),
-        editDes: function () {
-            if (!($("#_content")[0] == undefined)) {
-                if (CKEDITOR.instances['_content']) {
-                    CKEDITOR.instances['_content'].destroy();
-                }
-                return CKEDITOR.replace('_content');
-            }
-        }()
-
+        }
     }
 
     var handleEvent = function () {
@@ -356,31 +213,12 @@ var BlogTable = function () {
         $("#datatable").on("click", "a.deploy", function () {
             BlogService.deployBlog($(this));
         });
-        $("#updateBlogButton").click(function () {
-            BlogService.updateBlog();
-        });
+
         $("#reload").on("click", function () {
             BlogService.reloadTable();
         });
-        $("#reloadBlogButton").on("click", function () {
-        })
         $("#refreshBlogItemButton").on("click", function () {
             ShowBlogService.refreshBlog();
-        });
-        $("#updateImageButton").on("click", function () {
-            BlogService.uploadImage("image", "image", $("#images"));
-        });
-        $("#_updateImageButton").on("click", function () {
-            BlogService.uploadImage("_image", "image", $("#_images"));
-        });
-        $("#reloadEditBlog").on("click", function () {
-            BlogService.reloadBlog();
-        })
-
-        $("ul li .insertImage").live("click", function () {
-            var path = $(this).parent().first().children(".imagePath").text();
-            BlogService.image2Text(path, newDes);
-            BlogService.image2Text(path, editDes);
         });
     }
 
@@ -394,13 +232,6 @@ var BlogTable = function () {
                 BlogService.reloadTable();
                 handleEvent();
             }
-        },
-        initBlog: function () {
-            newDes = BlogService.newDes;
-            editDes = BlogService.editDes;
-            BlogService.reloadBlog();
-            handleEvent();
-
         },
         frontInit: function () {
             handleEvent();

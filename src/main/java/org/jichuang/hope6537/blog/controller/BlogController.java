@@ -95,13 +95,6 @@ public class BlogController {
 
     }
 
-    /**
-     * 发布博客按钮
-     *
-     * @param blogId
-     * @param request
-     * @return
-     */
     @RequestMapping(value = "/{blogId}/deployBlog", method = RequestMethod.PUT)
     @ResponseBody
     public AjaxResponse deployBlog(@PathVariable String blogId,
@@ -123,14 +116,6 @@ public class BlogController {
 
     }
 
-    /**
-     * 获得单体博客对象
-     * 以JSON格式传输
-     *
-     * @param blogId
-     * @param request
-     * @return
-     */
     @RequestMapping(value = "/{blogId}", method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse refreshSimpleBlog(@PathVariable String blogId, HttpServletRequest request) {

@@ -124,7 +124,7 @@
                             </div>
                         </div>
                         <div class="form-actions right">
-                            <button id="addBlogButton" type="submit" class="btn btn-block green">提交新文章</button>
+                            <button id="addBlogButton" type="button" class="btn btn-block green">提交新文章</button>
                         </div>
                     </form>
 
@@ -225,7 +225,7 @@
 </body>
 
 <%@include file="../template/template_page_javascript.jsp" %>
-<script type="text/javascript" src="admin_assets/js/blog/blogconf.js"></script>
+<script type="text/javascript" src="admin_assets/js/blog/blog.js"></script>
 <script type="javascript">
     console.log($("#isEdit").text());
 </script>
@@ -241,7 +241,7 @@
             $("#addArea").hide();
             $(".page-title").append("编辑现有博客 <small>Edit Exist Blog</small>");
         }
-        BlogTable.initBlog();
+        Blog.init();
 
     });
 </script>

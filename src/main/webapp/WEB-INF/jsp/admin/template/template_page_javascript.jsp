@@ -12,6 +12,7 @@
 <script src="admin_assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
         type="text/javascript"></script>
+<script type="text/javascript" src="admin_assets/plugins/ckeditor/ckeditor.js"></script>
 <script src="admin_assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="admin_assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
@@ -27,7 +28,6 @@
 <script type="text/javascript" src="admin_assets/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/jquery-multi-select/js/jquery.quicksearch.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/fuelux/js/spinner.min.js"></script>
-<script type="text/javascript" src="admin_assets/plugins/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/select2/select2.min.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>

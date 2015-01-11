@@ -24,7 +24,7 @@
             <div class="input-icon">
                 <i class="icon-user"></i> <input
                     class="form-control placeholder-no-fix" type="text"
-                    autocomplete="off" placeholder="输入账号" name="username" id="username"/>
+                    autocomplete="off" placeholder="输入账号" name="username" id="username" value="hope6537@qq.com"/>
             </div>
         </div>
         <div class="form-group">
@@ -33,7 +33,7 @@
             <div class="input-icon">
                 <i class="icon-lock"></i> <input
                     class="form-control placeholder-no-fix" type="password" id="password"
-                    autocomplete="off" placeholder="输入密码" name="password"/>
+                    autocomplete="off" placeholder="输入密码" name="password" value="4236537"/>
             </div>
         </div>
         <div class="form-actions">
