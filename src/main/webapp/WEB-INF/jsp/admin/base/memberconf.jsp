@@ -140,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="postField">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-md-4 control-label">用户职位<span class="required"> * </span></label>

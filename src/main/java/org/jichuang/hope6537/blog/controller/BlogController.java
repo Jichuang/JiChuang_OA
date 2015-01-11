@@ -12,12 +12,9 @@ import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -52,28 +49,6 @@ public class BlogController {
             return AjaxResponse.getInstanceByResult(false).addReturnMsg("无效请求");
         }
         return AjaxResponse.getInstanceByResult(blogService.insertBlog(blog, ControllerUtils.getLoginMember(request)));
-    }
-
-    @RequestMapping("/insertBlog")
-    @ResponseBody
-    public void addBlog(Model model, @ModelAttribute Blog blog,
-                        HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        logger.info("博客业务——进入添加博客业务");
-        Member member = (Member) request.getSession().getAttribute(
-                "loginMember");
-        JSONObject infos = new JSONObject();
-        String blogType = request.getParameter("type");
-        String blogTags = request.getParameter("tags");
-        infos.put("blogTag", blogTags.toString());
-        infos.put("blogType", blogType);
-        int res = blogService.insertBlog(blog, member, infos);
-        request.setAttribute("insertRes", res);
-        if (res != 0) {
-            response.sendRedirect("conf.hopedo?res=1");
-        } else {
-            response.sendRedirect("conf.hopedo?res=0");
-        }
     }
 
     @RequestMapping("/{blogId}/toUpdateBlog")

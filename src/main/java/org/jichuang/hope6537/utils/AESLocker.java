@@ -82,18 +82,6 @@ public class AESLocker {
 
     }
 
-    /**
-     * <p>Describe: 对字符串进行加密操作</p>
-     * <p>Using: </p>
-     * <p>How To Work: </p>
-     * <p>DevelopedTime: 2014年10月12日下午3:20:15 </p>
-     * <p>Author:Hope6537</p>
-     *
-     * @param sSrc
-     * @return
-     * @throws Exception
-     * @see
-     */
     public static String Encrypt(String sSrc) {
         return Encrypt(sSrc, null);
     }

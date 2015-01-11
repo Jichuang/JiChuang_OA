@@ -10,6 +10,7 @@ public interface MemberService extends BaseService<Member> {
     boolean insertRegister(Member member);
 
     public Member selectLogin(Member member);
+
     int updateMember(Member member);
 
     int updatePassword(Member member);

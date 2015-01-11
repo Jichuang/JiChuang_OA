@@ -10,8 +10,8 @@ var Login = function () {
         return true;
     }
 
-    function validateRegisterMember(data) {
-        if (data.username == "" || data.password == "" || data.rpassword != data.password || data.name == "") {
+    function validateRegisterMember(data, rpassword) {
+        if (data.username == "" || data.password == "" || rpassword != data.password || data.name == "") {
             return false;
         }
         return true;
@@ -51,15 +51,13 @@ var Login = function () {
             });
         },
         register: function () {
-
             var member = {
                 username: $("#_username").val(),
                 password: $("#_password").val(),
-                rpassword: $("#_rpassword").val(),
                 name: $("#name").val(),
                 info: ""
             }
-            if (!validateRegisterMember(member)) {
+            if (!validateRegisterMember(member, $("#_rpassword").val())) {
                 toast.error("请填写基本信息")
                 return;
             }
@@ -133,8 +131,6 @@ var Login = function () {
         $("#select2_sample4").select2({
             placeholder: '<i class="icon-map-marker"></i>&nbsp;Select a Country',
             allowClear: true,
-            formatResult: format,
-            formatSelection: format,
             escapeMarkup: function (m) {
                 return m;
             }

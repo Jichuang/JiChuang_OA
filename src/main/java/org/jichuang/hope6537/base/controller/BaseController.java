@@ -102,7 +102,7 @@ public class BaseController {
         if (loginMember == null || member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            boolean res = memberService.insertEntry(member) > ApplicationVar.EFFECTIVE_LINE_ONE;
+            boolean res = memberService.insertEntry(member) == ApplicationVar.EFFECTIVE_LINE_ONE;
             res = res && memberService.updateMemberPost(member);
             return AjaxResponse.getInstanceByResult(res).addReturnMsg("添加用户成功");
         }
@@ -119,7 +119,7 @@ public class BaseController {
             member = MemberBaseReplace(
                     memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId)), member);
             return AjaxResponse.getInstanceByResult
-                    (memberService.updateMember(member) > ApplicationVar.EFFECTIVE_LINE_ONE && memberService.updateMemberPost(member)).
+                    (memberService.updateMember(member) == ApplicationVar.EFFECTIVE_LINE_ONE && memberService.updateMemberPost(member)).
                     addReturnMsg("更新用户成功");
         }
     }
@@ -207,17 +207,14 @@ public class BaseController {
 
     @RequestMapping(value = "/{roleId}/role", method = RequestMethod.PUT)
     @ResponseBody
-    public AjaxResponse updateRoleById(@PathVariable String roleId, HttpServletRequest request) throws MemberException {
+    public AjaxResponse updateRoleById(@PathVariable String roleId, @RequestBody Role role, HttpServletRequest request) throws MemberException {
         logger.info("管理员业务——更新单体权限");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
         if (member == null || roleId == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            Role role = roleService.selectEntryFromPrimaryKey(Integer.parseInt(roleId));
-            role.setDes(request.getParameter("des"));
-            role.setType(request.getParameter("type"));
-            role.setStatus(request.getParameter("status"));
+            role.setRoleId(Integer.parseInt(roleId));
             int res = roleService.updateEntryByObject(role);
             return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("更新权限成功");
         }
@@ -290,7 +287,7 @@ public class BaseController {
 
     @RequestMapping(value = "/{postId}/post", method = RequestMethod.PUT)
     @ResponseBody
-    public AjaxResponse updatePostById(@PathVariable String postId, HttpServletRequest request) throws MemberException {
+    public AjaxResponse updatePostById(@PathVariable String postId, HttpServletRequest request) {
         logger.info("管理员业务——更新单体职位");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
@@ -318,7 +315,7 @@ public class BaseController {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
             boolean res = postService.deletePostRoles(postId);
-            res = res && postService.deleteEntryByPrimaryKey(Integer.parseInt(postId)) > ApplicationVar.EFFECTIVE_LINE_ONE;
+            res = res && postService.deleteEntryByPrimaryKey(Integer.parseInt(postId)) == ApplicationVar.EFFECTIVE_LINE_ONE;
             return AjaxResponse.getInstanceByResult(res);
         }
     }

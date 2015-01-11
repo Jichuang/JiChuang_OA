@@ -83,6 +83,7 @@ var MemberTable = function () {
         showUpdate: function (e) {
             MemberService.clearDialog();
             var id = (e[0].id).split("edit")[1];
+            $("#postField").show();
             $("#updateMemberId").text(id);
             $("#updateMemberStatus").show();
             $("#updateMemberButton").show();
@@ -116,6 +117,7 @@ var MemberTable = function () {
         },
         showAdd: function () {
             MemberService.clearDialog();
+            $("#postField").hide();
             $("#addMemberButton").show();
             $("#updateMemberStatus").hide();
             $("#updateMemberButton").hide();
@@ -317,6 +319,7 @@ var MemberTable = function () {
                 password: $("#memberPassword").val(),
                 postId: JSON.stringify($("#memberPosts").val())
             }
+            console.log(data);
             var validateError =
                 data.name == undefined ||
                     data.username == undefined ||

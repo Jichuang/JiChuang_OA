@@ -122,7 +122,7 @@ var PostTable = function () {
                 data.roleList = data.roleList.toString();
                 $.ajax({
                     url: "base/" + id + "/post.hopedo",
-                    contentType: 'application/json',
+                    dataType: 'json',
                     type: "PUT",
                     data: (data),
                     async: false,

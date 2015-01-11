@@ -124,7 +124,7 @@ var RoleTable = function () {
                 url: "base/" + id + "/role.hopedo",
                 contentType: 'application/json',
                 type: "PUT",
-                data: (data),
+                data: JSON.stringify(data),
                 async: false,
                 success: function (data) {
                     var status = data.returnState;
@@ -139,7 +139,7 @@ var RoleTable = function () {
             })
         },
         deleteConfirm: function () {
-            var $modal = $('#addNewRoleModal');
+            var $modal = $('#confrimModal');
             $modal.modal();
         },
         deleteRole: function () {
