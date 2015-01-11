@@ -1,6 +1,5 @@
 package org.jichuang.hope6537.base.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.dao.MemberDao;
 import org.jichuang.hope6537.base.dao.Member_PostDao;
 import org.jichuang.hope6537.base.dao.PostDao;
@@ -42,7 +41,8 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
         return memberDao.insertEntry(member);
     }
 
-    public boolean selectLogin(Member member) {
+    public Member selectLogin(Member member) {
+        member.Encrypt();
         return memberDao.selectLogin(member);
     }
 

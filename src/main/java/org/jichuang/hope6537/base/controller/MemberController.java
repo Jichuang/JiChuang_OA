@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -26,6 +27,11 @@ public class MemberController {
     private Logger logger = Logger.getLogger(getClass());
     private static final String PATH = AdminPageController.PATH;
 
+    public void afterLoginService(HttpServletRequest request, Member member) {
+        HttpSession session = request.getSession();
+        session.setAttribute("loginMember", member);
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public AjaxResponse registerMember(@RequestBody Member member, HttpServletRequest request) {
@@ -37,7 +43,11 @@ public class MemberController {
     @ResponseBody
     public AjaxResponse loginMember(@RequestBody Member member, HttpServletRequest request) {
         logger.info("进入用户登录业务");
-        return AjaxResponse.getInstanceByResult(memberService.selectLogin(member));
+        Member isLogin = memberService.selectLogin(member);
+        if (isLogin != null) {
+            afterLoginService(request, isLogin);
+        }
+        return AjaxResponse.getInstanceByResult(isLogin != null);
 
     }
 

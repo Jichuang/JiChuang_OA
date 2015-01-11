@@ -127,6 +127,7 @@ var TeamTable = function () {
                 return;
             }
             TeamService.init();
+            TeamService.refreshTable();
             handleEvent();
         }
     };

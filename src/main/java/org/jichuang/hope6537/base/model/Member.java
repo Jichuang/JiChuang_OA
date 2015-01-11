@@ -94,7 +94,6 @@ public class Member implements Serializable {
      */
     public void Encrypt() {
         password = AESLocker.Encrypt(password);
-        System.out.println("Locking");
     }
 
     private String postId;

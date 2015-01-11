@@ -15,13 +15,13 @@ public class MemberDaoImpl extends BaseDaoImpl<Member> implements MemberDao {
     }
 
     @Override
-    public boolean selectLogin(Member member) {
+    public Member selectLogin(Member member) {
         List<Member> list = super.selectEntryByHQL("from Member where username = '" + member.getUsername() + "'");
         for (Member selectedMember : list) {
             if (selectedMember.getPassword().equals(member.getPassword())) {
-                return true;
+                return selectedMember;
             }
         }
-        return false;
+        return null;
     }
 }

@@ -6,7 +6,7 @@ var Team = function () {
         var x = h[1].split("/");
         return h[0] + "//" + window.location.host + "/" + x[1] + "/";
     }();
-    var newDes = CKEDITOR.replace('newdes')
+    var newDes = CKEDITOR.replace('newDes')
     var editDes = CKEDITOR.replace("_des");
     var editTeam = null;
     var newData = {

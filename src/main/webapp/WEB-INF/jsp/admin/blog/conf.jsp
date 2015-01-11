@@ -1,22 +1,7 @@
-<%@page import="org.jichuang.hope6537.base.model.Member" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-    Member member = (Member) session.getAttribute("loginMember");
-    if (member == null) {
-        response.sendRedirect("../page/login.hopedo");
-    }
-	/* List<Blog> blogList = (List<Blog>) request.getAttribute("blogList"); */
-%>
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%=basePath%>">
     <!-- head的include区 -->
     <jsp:include page="../template/template_page_head.jsp" flush="true"/>
 
@@ -24,21 +9,21 @@
     <!-- head的include区 结束  -->
 </head>
 <body class="page-header-fixed page-footer-fixed">
-<!-- 头部顶端菜单栏开始 -->
+
 <jsp:include page="../template/template_page_header.jsp" flush="true"/>
-<!-- 头部顶端菜单栏结束 -->
+
 <div class="page-container">
-    <!-- 侧面菜单栏开始 -->
+
     <jsp:include page="../template/template_page_sidebar.jsp" flush="true"/>
-    <!-- 侧面菜单栏结束 -->
+
     <!--========================页面开始处======================== -->
     <div class="page-content">
         <jsp:include page="../template/template_page_modal.jsp" flush="true"/>
         <jsp:include page="../template/template_page_style.jsp" flush="true"/>
-        <!-- 页面内容头开始 修改之-->
+
         <div class="row">
             <div class="col-md-12">
-                <!-- 开始页面头部信息-->
+
                 <h3 class="page-title">
                     博客维护
                     <small>Blog Config</small>
@@ -61,15 +46,14 @@
                         <i class="icon-angle-right"></i></li>
                     <li><a href="javascript:;">博客维护</a></li>
                 </ul>
-                <!-- 结束页面头部信息-->
+
             </div>
         </div>
-        <!-- 页面内容头结束 -->
-        <!-- 页面正文-->
+
         <div class="row">
             <div class="col-md-12">
 
-                <!-- 开始页面信息板-->
+
                 <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
@@ -98,7 +82,7 @@
                         </table>
                     </div>
                 </div>
-                <!-- 结束页面信息板-->
+
             </div>
         </div>
         <!-- 页面正文结束-->
@@ -106,11 +90,10 @@
     </div>
     <!-- ======================== 页面结束处======================== -->
 </div>
-<!-- 页面尾端include  -->
 <%@include file="../template/template_page_footer.jsp" %>
-<!-- 页面尾端include 结束  -->
+
 </body>
-<!-- Js核心脚本 -->
+
 <%@include file="../template/template_page_javascript.jsp" %>
 <script type="text/javascript" src="admin_assets/js/blog/blogconf.js"></script>
 <script type="text/javascript">
@@ -119,5 +102,5 @@
         BlogTable.init();
     });
 </script>
-<!-- Js核心脚本结束 -->
+
 </html>

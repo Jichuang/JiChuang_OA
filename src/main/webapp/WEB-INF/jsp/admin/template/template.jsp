@@ -748,7 +748,7 @@
     <!-- BEGIN PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
-            <!-- 开始页面头部信息-->
+
             <h3 class="page-title">
                 Blank Page
                 <small>blank page</small>
@@ -774,7 +774,7 @@
                 </li>
                 <li><a href="#">Blank Page</a></li>
             </ul>
-            <!-- 结束页面头部信息-->
+
         </div>
     </div>
     <!-- END PAGE HEADER-->

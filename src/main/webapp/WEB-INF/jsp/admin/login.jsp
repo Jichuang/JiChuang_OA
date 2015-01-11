@@ -39,7 +39,7 @@
         <label class="checkbox"> <input type="checkbox"
                                         name="remember" value="1"/> 记住我一周
         </label>
-        <button type="button"  class="btn blue pull-right" id="loginButton">
+        <button type="button" class="btn blue pull-right" id="loginButton">
             登录 <i class="m-icon-swapright m-icon-white"></i>
         </button>
     </div>
@@ -396,7 +396,7 @@
     <button id="register-back-btn" type="button" class="btn">
         <i class="m-icon-swapleft"></i> 后退
     </button>
-    <button type="button"  id="register-submit-btn"
+    <button type="button" id="register-submit-btn"
             class="btn blue pull-right" id="registerButton">
         确认信息并注册 <i class="m-icon-swapright m-icon-white"></i>
     </button>

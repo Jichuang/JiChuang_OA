@@ -1,6 +1,5 @@
 package org.jichuang.hope6537.base.service;
 
-import com.alibaba.fastjson.JSONObject;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.model.Post;
 
@@ -10,9 +9,7 @@ public interface MemberService extends BaseService<Member> {
 
     boolean insertRegister(Member member);
 
-
-    public boolean selectLogin(Member member);
-
+    public Member selectLogin(Member member);
     int updateMember(Member member);
 
     int updatePassword(Member member);

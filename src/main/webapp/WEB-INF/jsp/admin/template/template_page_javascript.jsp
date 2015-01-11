@@ -82,5 +82,11 @@
     jQuery(document).ready(function () {
         App.init();
         Index.init();
+        Index.initCalendar(); // init index page's custom scripts
+        Index.initCharts(); // init index page's custom scripts
+        Index.initChat();
+        Index.initMiniCharts();
+        Index.initDashboardDaterange();
+        Tasks.initDashboardWidget();
     });
 </script>
