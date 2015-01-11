@@ -8,8 +8,10 @@
     Member member = (Member) session.getAttribute("loginMember");
     String isLoginPage = (String) request.getAttribute("isLoginPage");
     if (member == null) {
-        if (isLoginPage == null) {
-            response.sendRedirect("../page/login.hopedo");
+        if (isLoginPage != null && !isLoginPage.isEmpty()) {
+            ;
+        } else {
+            response.sendRedirect(basePath + "/page/login.hopedo");
         }
     }
 %>

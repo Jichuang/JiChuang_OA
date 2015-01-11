@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="../template/template_page_head.jsp" flush="true"/>
+    <%@include file="../template/template_page_head.jsp" %>
     <title>个人信息维护</title>
 </head>
 <body class="page-header-fixed page-footer-fixed">

@@ -14,7 +14,7 @@
 <head>
     <base href="<%=basePath%>">
     <!-- head的include区 -->
-    <jsp:include page="template/template_page_head.jsp" flush="true"/>
+    <%@include file="template/template_page_head.jsp" %>
     <title>hope6537</title>
     <!-- head的include区 结束  -->
 </head>

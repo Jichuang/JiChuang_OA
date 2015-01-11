@@ -77,6 +77,13 @@
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/address/address.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/wysihtml5/wysihtml5.js"></script>
 
+<script src="admin_assets/js/cryptico/aes.js"></script>
+<script src="admin_assets/js/cryptico/api.js"></script>
+<script src="admin_assets/js/cryptico/cryptico.js"></script>
+<script src="admin_assets/js/cryptico/hash.js"></script>
+<script src="admin_assets/js/cryptico/jsbn.js"></script>
+<script src="admin_assets/js/cryptico/random.js"></script>
+<script src="admin_assets/js/cryptico/rsa.js"></script>
 <script src="admin_assets/scripts/form-editable.js"></script>
 <script>
     jQuery(document).ready(function () {

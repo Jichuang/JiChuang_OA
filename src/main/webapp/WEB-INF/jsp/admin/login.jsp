@@ -3,7 +3,8 @@
 <head>
     <title>集创OA登录</title>
     <link rel="shortcut icon" href="favicon.ico"/>
-    <jsp:include page="template/template_page_head.jsp"/>
+    <%@include file="template/template_page_head.jsp" %>
+    "/>
 </head>
 <body class="login">
 <div class="logo">

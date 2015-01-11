@@ -6,16 +6,8 @@ import javax.crypto.spec.SecretKeySpec;
 public class AESLocker {
 
     public static void main(String[] args) throws Exception {
-        /*
-         * 16:18:01 ---> 16:19:02 ---> 16:18 if(throws){16:19}
-		 */
-        String time = System.currentTimeMillis() / 1000000 + "000000000";
-        System.out.println(time.length());
-        String orderStr = "赵鹏";
-        String str1 = Encrypt(orderStr);
-        System.out.println(str1);
-        String str2 = Decrypt(str1);
-        System.out.println(str2);
+        String str = "4236537";
+        System.out.println(AESLocker.Encrypt(str));
     }
 
     private static String Decrypt(String sSrc, String sKey) {
@@ -58,7 +50,6 @@ public class AESLocker {
      * <p>Author:Hope6537</p>
      *
      * @param sSrc
-     * @param sKey
      * @return
      * @throws Exception
      * @see
@@ -99,7 +90,6 @@ public class AESLocker {
      * <p>Author:Hope6537</p>
      *
      * @param sSrc
-     * @param sKey
      * @return
      * @throws Exception
      * @see

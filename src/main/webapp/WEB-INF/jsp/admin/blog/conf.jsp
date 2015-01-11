@@ -3,7 +3,7 @@
 <html>
 <head>
     <!-- head的include区 -->
-    <jsp:include page="../template/template_page_head.jsp" flush="true"/>
+    <%@include file="../template/template_page_head.jsp" %>
 
     <title>博客维护</title>
     <!-- head的include区 结束  -->

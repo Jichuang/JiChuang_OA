@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="../template/template_page_head.jsp" flush="true"/>
+    <%@include file="../template/template_page_head.jsp" %>
     <title>添加新博客</title>
 </head>
 <body class="page-header-fixed page-footer-fixed">

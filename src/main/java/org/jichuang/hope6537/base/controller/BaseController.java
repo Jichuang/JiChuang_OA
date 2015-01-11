@@ -17,13 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Created by Zhaopeng-Rabook on 14-12-23.
- */
 @Controller
 @RequestMapping("/base")
 public class BaseController {
@@ -37,13 +33,6 @@ public class BaseController {
 
     public static final String PATH = AdminPageController.PATH;
     private Logger logger = Logger.getLogger(getClass());
-
-
-    @PostConstruct
-    public void initController() {
-        logger.info("===========JiChuang_OA Application Init===========");
-    }
-
 
     static Member MemberBaseReplace(Member oldMember, Member newMember) {
         oldMember.setName(newMember.getName());

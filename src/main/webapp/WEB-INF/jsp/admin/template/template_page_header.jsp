@@ -132,7 +132,7 @@
                     <li><a href="javascript:;" id="trigger_fullscreen"><i
                             class="icon-move"></i> 全屏幕</a></li>
                     <li><a href="extra_lock.html"><i class="icon-lock"></i> 锁屏</a></li>
-                    <li><a href="login.html"><i class="icon-key"></i> 登出</a></li>
+                    <li><a href="member/logout.hopedo"><i class="icon-key"></i> 登出</a></li>
                 </ul>
             </li>
             <!-- 用户登录信息结束 -->

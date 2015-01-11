@@ -1,13 +1,13 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-结束页面信息板
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="template/template_page_head.jsp" flush="true"/>
+    <%@include file="template/template_page_head.jsp" %>
     <title>欢迎进入OA后台系统</title>
     <!-- head的include区 结束  -->
 </head>
 <body class="page-header-fixed page-footer-fixed">
+
 
 <jsp:include page="template/template_page_header.jsp" flush="true"/>
 
