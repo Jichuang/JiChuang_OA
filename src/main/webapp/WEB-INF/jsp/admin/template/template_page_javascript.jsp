@@ -77,6 +77,20 @@
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/address/address.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/wysihtml5/wysihtml5.js"></script>
 
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
+
 <script src="admin_assets/js/cryptico/aes.js"></script>
 <script src="admin_assets/js/cryptico/api.js"></script>
 <script src="admin_assets/js/cryptico/cryptico.js"></script>

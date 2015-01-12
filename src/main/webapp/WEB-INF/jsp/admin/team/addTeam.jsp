@@ -55,32 +55,173 @@
 <!-- 页面内容头结束 -->
 <!-- 页面正文-->
 <div class="row">
-    <div class="col-md-12" id="addArea">
-        <div class="portlet box blue">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="icon-globe"></i>Create New Team
+<div class="col-md-12" id="addArea">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-globe"></i>Create New Team
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="reload"></a> <a
+                    href="javascript:;" class="remove"></a>
+            </div>
+        </div>
+        <div class="portlet-body">
+
+
+            <div class="form-body">
+                <div class="form-group">
+                    <label>项目组名称</label>
+                    <input type="text" class="form-control input-lg" name="title" id="title"
+                           placeholder="输入新项目组的名称...">
                 </div>
-                <div class="tools">
-                    <a href="javascript:;" class="reload"></a> <a
-                        href="javascript:;" class="remove"></a>
+                <div class="form-group">
+                    <label>项目组描述&nbsp;
+                        <small>可以从Word文档中复制哦！</small>
+                    </label>
+                    <textarea class="form-control" name="newDes"
+                              id="newDes" rows="200" cols="50"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>插入图片
+                        <small>上传后使用链接到编辑器提交链接来显示图片</small>
+                    </label>
+
+                    <div class="confirm-group">
+                        <ul class="breadcrumb" id="images">
+                            <li>
+                                上传过的图片链接，点击插入或者点击编辑器中的插入按钮输入链接皆可插入图片
+                            </li>
+                            <br/>
+                        </ul>
+
+                    </div>
+                </div>
+                <form id="uploadImageForm" enctype="multipart/form-data">
+                    <div class="form-group" style="margin-bottom: 50px;">
+                        <label class="col-md-3 control-label btn btn-primary"
+                               id="updateImageButton">上传当前图片<br/>
+                        </label>
+
+                        <div class="col-md-9">
+                            <input type="file" id="image" name="image">
+
+                            <p class="help-block">在本地选择要上传的图片，点击提交图片按钮</p>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="portlet-body col-md-8" style="padding-left: 0px;">
+                    <label>项目组展示图片
+                        <small>多重图片上传</small>
+                    </label>
+
+                    <div class="col-md-12" style="padding-left: 0px;">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">上传注意</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li>图片要小于 <strong>5 MB</strong>
+                                    </li>
+                                    <li>只能上传(<strong>JPG, GIF, PNG</strong>)格式的图片
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <form id="fileupload" method="POST"
+                              enctype="multipart/form-data">
+                            <div class="row fileupload-buttonbar">
+                                <div class="col-lg-7">
+                        <span class="btn green fileinput-button">
+                        <i class="icon-plus"></i>
+                        <span>添加新图片</span>
+                        <input type="file" name="files[]" multiple>
+                        </span>
+                                    <button type="submit" class="btn blue start">
+                                        <i class="icon-upload"></i>
+                                        <span>开始上传</span>
+                                    </button>
+                                    <button type="reset" class="btn yellow cancel">
+                                        <i class="icon-ban-circle"></i>
+                                        <span>取消上传</span>
+                                    </button>
+                                    <button type="button" class="btn red delete">
+                                        <i class="icon-trash"></i>
+                                        <span>删除该图片</span>
+                                    </button>
+                                    <input type="checkbox" class="toggle">
+                                    <span class="fileupload-loading"></span>
+                                </div>
+                                <div class="col-lg-5 fileupload-progress fade">
+                                    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                         aria-valuemax="100">
+                                        <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                                    </div>
+                                    <div class="progress-extended">&nbsp;</div>
+                                </div>
+                            </div>
+                            <table role="presentation" class="table table-striped clearfix">
+                                <tbody class="files"></tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="portlet-body col-md-4" style=" padding-left: 0px;">
+                    <label>团队成员信息</label>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label>项目组种类</label>
+                    <select class="form-control input-lg" id="teamType" name="teamType">
+                        <option value="1">1</option>
+                    </select>
                 </div>
             </div>
-            <div class="portlet-body">
+            <div class="form-actions right">
+                <button type="submit" class="btn btn-block green" id="addTeamButton">创建新项目组</button>
+            </div>
 
+        </div>
+    </div>
 
+</div>
+
+<div class="col-md-12" id="updateArea">
+    <div class="portlet box red">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-globe"></i>Edit Exist Team
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="reload"></a> <a
+                    href="javascript:;" class="remove"></a>
+            </div>
+        </div>
+        <div class="portlet-body">
+
+            <!-- 两个编辑器的分界线 -->
+            <form id="updateBlogForm">
                 <div class="form-body">
+
+                    <input type="hidden" name="blogId" id="_blogId" value=""/>
+
                     <div class="form-group">
                         <label>项目组名称</label>
-                        <input type="text" class="form-control input-lg" name="title" id="title"
-                               placeholder="输入新项目组的名称...">
+                        <input type="text" class="form-control input-lg" name="title" id="_title" value=""
+                               placeholder="输入新文章的标题...">
                     </div>
                     <div class="form-group">
                         <label>项目组描述&nbsp;
                             <small>可以从Word文档中复制哦！</small>
                         </label>
-                        <textarea class="form-control" name="newDes"
-                                  id="newDes" rows="200" cols="50"></textarea>
+                        <textarea class="form-control" name="_des"
+                                  id="_des" rows="200" cols="50">
+                        </textarea>
                     </div>
                     <div class="form-group">
                         <label>插入图片
@@ -88,7 +229,7 @@
                         </label>
 
                         <div class="confirm-group">
-                            <ul class="breadcrumb" id="images">
+                            <ul class="breadcrumb" id="_images">
                                 <li>
                                     上传过的图片链接，点击插入或者点击编辑器中的插入按钮输入链接皆可插入图片
                                 </li>
@@ -97,151 +238,47 @@
 
                         </div>
                     </div>
-                    <form id="uploadImageForm" enctype="multipart/form-data">
+                    <form id="_uploadImageForm" enctype="multipart/form-data">
                         <div class="form-group" style="margin-bottom: 50px;">
                             <label class="col-md-3 control-label btn btn-primary"
-                                   id="updateImageButton">上传当前图片<br/>
+                                   id="_updateImageButton">上传当前图片<br/>
                             </label>
 
                             <div class="col-md-9">
-                                <input type="file" id="image" name="image">
+                                <input type="file" id="_image" name="image">
 
                                 <p class="help-block">在本地选择要上传的图片，点击提交图片按钮</p>
                             </div>
                         </div>
                     </form>
+
+                    <div class="portlet-body col-md-6" style="padding-left: 0px;">
+                        <label>项目组展示图片</label>
+                    </div>
+
+                    <div class="portlet-body col-md-6" style=" padding-left: 0px;">
+                        <label>团队成员信息</label>
+                    </div>
+
+
                     <div class="form-group">
                         <label>项目组种类</label>
-                        <select class="form-control input-lg" id="teamType" name="teamType">
-                            <option value="1">1</option>
+                        <select class="form-control input-lg" id="_teamType" name="_teamType">
+                            <option value="1" selected="selected">1</option>
                         </select>
                     </div>
                 </div>
+
+
                 <div class="form-actions right">
-                    <button type="submit" class="btn btn-block green" id="addTeamButton">创建新项目组</button>
+                    <button type="button" id="updateTeamButton" class="btn btn-block green">提交修改</button>
                 </div>
+            </form>
 
-            </div>
         </div>
-
     </div>
 
-    <div class="col-md-12" id="updateArea">
-        <div class="portlet box red">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="icon-globe"></i>Edit Exist Team
-                </div>
-                <div class="tools">
-                    <a href="javascript:;" class="reload"></a> <a
-                        href="javascript:;" class="remove"></a>
-                </div>
-            </div>
-            <div class="portlet-body">
-
-                <!-- 两个编辑器的分界线 -->
-                <form id="updateBlogForm">
-                    <div class="form-body">
-
-                        <input type="hidden" name="blogId" id="_blogId" value=""/>
-
-                        <div class="form-group">
-                            <label>项目组名称</label>
-                            <input type="text" class="form-control input-lg" name="title" id="_title" value=""
-                                   placeholder="输入新文章的标题...">
-                        </div>
-                        <div class="form-group">
-                            <label>项目组描述&nbsp;
-                                <small>可以从Word文档中复制哦！</small>
-                            </label>
-                            <textarea class="form-control" name="_des"
-                                      id="_des" rows="200" cols="50">
-                            </textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>插入图片
-                                <small>上传后使用链接到编辑器提交链接来显示图片</small>
-                            </label>
-
-                            <div class="confirm-group">
-                                <ul class="breadcrumb" id="_images">
-                                    <li>
-                                        上传过的图片链接，点击插入或者点击编辑器中的插入按钮输入链接皆可插入图片
-                                    </li>
-                                    <br/>
-                                </ul>
-
-                            </div>
-                        </div>
-                        <form id="_uploadImageForm" enctype="multipart/form-data">
-                            <div class="form-group" style="margin-bottom: 50px;">
-                                <label class="col-md-3 control-label btn btn-primary"
-                                       id="_updateImageButton">上传当前图片<br/>
-                                </label>
-
-                                <div class="col-md-9">
-                                    <input type="file" id="_image" name="image">
-
-                                    <p class="help-block">在本地选择要上传的图片，点击提交图片按钮</p>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="portlet-body col-md-6" style="padding-left: 0px;">
-                            <label>成员信息</label>
-                            <table class="table table-striped table-bordered table-hover"
-                                   id="datatable">
-                                <thead>
-                                <tr>
-                                    <th>成员编号</th>
-                                    <th>成员姓名</th>
-                                    <th>成员加入日期</th>
-                                    <th>对成员操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="portlet-body col-md-6" style=" padding-left: 0px;">
-                            <label>成员信息</label>
-                            <table class="table table-striped table-bordered table-hover"
-                                   id="_datatable">
-                                <thead>
-                                <tr>
-                                    <th>成员编号</th>
-                                    <th>成员姓名</th>
-                                    <th>成员加入日期</th>
-                                    <th>对成员操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label>项目组种类</label>
-                            <select class="form-control input-lg" id="_teamType" name="_teamType">
-                                <option value="1" selected="selected">1</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="form-actions right">
-                        <button type="button" id="updateTeamButton" class="btn btn-block green">提交修改</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-
-    </div>
+</div>
 </div>
 <!-- 页面正文结束-->
 <!-- full width -->
@@ -290,6 +327,87 @@
         }
     });
 </script>
+
+<script id="template-upload" type="text/x-tmpl">
+      {% for (var i=0, file; file=o.files[i]; i++) { %}
+          <tr class="template-upload fade">
+              <td>
+                  <span class="preview"></span>
+              </td>
+              <td>
+                  <p class="name">{%=file.name%}</p>
+                  {% if (file.error) { %}
+                      <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+                  {% } %}
+              </td>
+              <td>
+                  <p class="size">{%=o.formatFileSize(file.size)%}</p>
+                  {% if (!o.files.error) { %}
+                      <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                      <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                      </div>
+                  {% } %}
+              </td>
+              <td>
+                  {% if (!o.files.error && !i && !o.options.autoUpload) { %}
+                      <button class="btn blue start">
+                          <i class="icon-upload"></i>
+                          <span>Start</span>
+                      </button>
+                  {% } %}
+                  {% if (!i) { %}
+                      <button class="btn red cancel">
+                          <i class="icon-ban-circle"></i>
+                          <span>Cancel</span>
+                      </button>
+                  {% } %}
+              </td>
+          </tr>
+      {% } %}
+   </script>
+<script id="template-download" type="text/x-tmpl">
+      {% for (var i=0, file; file=o.files[i]; i++) { %}
+          <tr class="template-download fade">
+              <td>
+                  <span class="preview">
+                      {% if (file.thumbnailUrl) { %}
+                          <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                      {% } %}
+                  </span>
+              </td>
+              <td>
+                  <p class="name">
+                      {% if (file.url) { %}
+                          <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                      {% } else { %}
+                          <span>{%=file.name%}</span>
+                      {% } %}
+                  </p>
+                  {% if (file.error) { %}
+                      <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+                  {% } %}
+              </td>
+              <td>
+                  <span class="size">{%=o.formatFileSize(file.size)%}</span>
+              </td>
+              <td>
+                  {% if (file.deleteUrl) { %}
+                      <button class="btn red delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                          <i class="icon-trash"></i>
+                          <span>Delete</span>
+                      </button>
+                      <input type="checkbox" name="delete" value="1" class="toggle">
+                  {% } else { %}
+                      <button class="btn yellow cancel">
+                          <i class="icon-ban-circle"></i>
+                          <span>Cancel</span>
+                      </button>
+                  {% } %}
+              </td>
+          </tr>
+      {% } %}
+   </script>
+
 
 </html>
 

@@ -28,6 +28,7 @@
 <link href="admin_assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="admin_assets/js/base/global.js"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="admin_assets/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet"/>
 <link href="admin_assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>

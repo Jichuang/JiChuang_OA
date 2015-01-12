@@ -191,6 +191,43 @@ var Team = function () {
                     toast.error(data);
                 }
             });
+        },
+        initMutliUpload: function () {
+            $('#fileupload').fileupload({
+                url: 'assets/plugins/jquery-file-upload/server/php/'
+            });
+
+            $('#fileupload').fileupload(
+                'option',
+                'redirect',
+                window.location.href.replace(
+                    /\/[^\/]*$/,
+                    '/cors/result.html?%s'
+                )
+            );
+            $('#fileupload').fileupload('option', {
+                url: $('#fileupload').fileupload('option', 'url'),
+                disableImageResize: /Android(?!.*Chrome)|Opera/
+                    .test(window.navigator.userAgent),
+                maxFileSize: 5000000,
+                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+            });
+            if ($.support.cors) {
+                $.ajax({
+                    url: 'assets/plugins/jquery-file-upload/server/php/',
+                    type: 'HEAD'
+                }).fail(function () {
+                        $('<div class="alert alert-danger"/>')
+                            .text('Upload server currently unavailable - ' +
+                                new Date())
+                            .appendTo('#fileupload');
+                    });
+            }
+            $('#fileupload').fileupload({
+                autoUpload: false,
+                url: 'assets/plugins/jquery-file-upload/server/php/'
+            });
+            App.initUniform('.fileupload-toggle-checkbox');
         }
     }
 
@@ -222,6 +259,7 @@ var Team = function () {
 
     return {
         init: function () {
+            TeamService.initMutliUpload();
             handleEvent();
         },
         refresh: function () {

@@ -9,6 +9,7 @@ import org.jichuang.hope6537.team.service.TeamService;
 import org.jichuang.hope6537.team.service.TeamTypeService;
 import org.jichuang.hope6537.utils.AjaxResponse;
 import org.jichuang.hope6537.utils.ReturnState;
+import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -48,6 +49,14 @@ public class TeamController {
         request.setAttribute("isEdit", 1);
         request.setAttribute("teamId", teamId);
         return PATH + "/team/addTeam";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getFront")
+    @ResponseBody
+    public AjaxResponse getTeamListByFront() {
+        logger.info("项目组业务——前台查询所有的项目组");
+        List<Team> list = teamService.selectTeamListByStatus(Status.正常);
+        return AjaxResponse.getInstanceByResult(list != null).addAttribute("teamList", list);
     }
 
     @RequestMapping(method = RequestMethod.PUT)

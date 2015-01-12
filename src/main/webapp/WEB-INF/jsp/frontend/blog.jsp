@@ -142,37 +142,4 @@
 <jsp:include page="template/template_footer.jsp"/>
 </body>
 <jsp:include page="template/template_script.jsp"/>
-<script type="text/javascript"
-        src="frontend_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-<!-- <script type="text/javascript">
-	$(document).on("ready", function() {
-		$("#blogShow").show();
-		$("#blogEdit").hide();
-	});
-
-	$("#newBlog").on(
-			"click",
-			function() {
-				console.log($(this).text());
-				if ($(this).text() == "退出撰写") {
-					$("#blogShow").show();
-					$("#title").text("团队博客");
-					$("#blogEdit").hide();
-					$("#newBlog").text("写新文章 ").append(
-							"<i class='m-icon-big-swapright m-icon-white'>")
-							.attr("class",
-									"btn blue btn-block btn-lg m-icon-big");
-				} else {
-					$("#blogShow").hide();
-					$("#title").text("博客撰写");
-					$("#blogEdit").show();
-
-					$("#newBlog").text("退出撰写").append(
-							"<i class='m-icon-big-swapleft m-icon-white'>")
-							.attr("class",
-									"btn red btn-block btn-lg m-icon-big");
-				}
-
-			});
-</script> -->
 </html>

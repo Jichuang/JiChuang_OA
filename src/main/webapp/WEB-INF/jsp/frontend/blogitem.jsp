@@ -64,75 +64,6 @@
                     <li><i class="icon-tags"></i><span id="blogTags"></span>
                     </li>
                 </ul>
-                <!-- 前台评论以后再加 -->
-                <!-- <div class="media">
-                    <h3>Comments</h3>
-                    <a href="#" class="pull-left"> <img
-                        src="frontend_assets/img/people/img1-small.jpg" alt=""
-                        class="media-object">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            Media heading <span>5 hours ago / <a href="#">Reply</a></span>
-                        </h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce
-                            dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                            nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-                            malesuada magna mollis euismod. Donec sed odio dui.</p>
-                        <hr>
-                        Nested media object
-                        <div class="media">
-                            <a href="#" class="pull-left"> <img
-                                src="frontend_assets/img/people/img2-small.jpg" alt=""
-                                class="media-object">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Media heading <span>17 hours ago / <a href="#">Reply</a></span>
-                                </h4>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce
-                                    dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                                    nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-                                    malesuada magna mollis euismod. Donec sed odio dui.</p>
-                            </div>
-                        </div>
-                        end media
-                        <hr>
-                        <div class="media">
-                            <a href="#" class="pull-left"> <img
-                                src="frontend_assets/img/people/img3-small.jpg" alt=""
-                                class="media-object">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Media heading <span>2 days ago / <a href="#">Reply</a></span>
-                                </h4>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce
-                                    dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                                    nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-                                    malesuada magna mollis euismod. Donec sed odio dui.</p>
-                            </div>
-                        </div>
-                        end media
-                    </div>
-                </div>
-                end media
-                <div class="media">
-                    <a href="#" class="pull-left"> <img
-                        src="frontend_assets/img/people/img4-small.jpg" alt=""
-                        class="media-object">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            Media heading <span>July 25,2013 / <a href="#">Reply</a></span>
-                        </h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce
-                            dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                            nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-                            malesuada magna mollis euismod. Donec sed odio dui.</p>
-                    </div>
-                </div>
-                end media -->
                 <hr>
                 <div class="post-comment">
                     <h3>添加评论</h3>
@@ -157,23 +88,18 @@
                     </form>
                 </div>
             </div>
-            <!-- END LEFT SIDEBAR -->
-
-            <!-- BEGIN RIGHT SIDEBAR -->
             <jsp:include page="template/template_blog_right.jsp"></jsp:include>
-            <!-- END RIGHT SIDEBAR -->
         </div>
-        <!-- END BEGIN BLOG -->
     </div>
-    <!-- END CONTAINER -->
-
 </div>
-<!-- END BEGIN PAGE CONTAINER -->
-
-
-<!--
-     内容结束 -->
+<!-- 内容结束 -->
 <jsp:include page="template/template_footer.jsp"/>
 </body>
 <jsp:include page="template/template_script.jsp"/>
+<script src="frontend_assets/scripts/blog.js"></script>
+<script>
+    $(document).ready(function () {
+        FrontBlog.init();
+    })
+</script>
 </html>
