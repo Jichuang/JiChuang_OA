@@ -194,38 +194,19 @@ var Team = function () {
         },
         initMutliUpload: function () {
             $('#fileupload').fileupload({
-                url: 'assets/plugins/jquery-file-upload/server/php/'
-            });
-
-            $('#fileupload').fileupload(
-                'option',
-                'redirect',
-                window.location.href.replace(
-                    /\/[^\/]*$/,
-                    '/cors/result.html?%s'
-                )
-            );
-            $('#fileupload').fileupload('option', {
-                url: $('#fileupload').fileupload('option', 'url'),
-                disableImageResize: /Android(?!.*Chrome)|Opera/
-                    .test(window.navigator.userAgent),
-                maxFileSize: 5000000,
-                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
-            });
-            if ($.support.cors) {
-                $.ajax({
-                    url: 'assets/plugins/jquery-file-upload/server/php/',
-                    type: 'HEAD'
-                }).fail(function () {
-                        $('<div class="alert alert-danger"/>')
-                            .text('Upload server currently unavailable - ' +
-                                new Date())
-                            .appendTo('#fileupload');
+                url: 'baseAjax/multiUpload.hopedo',
+                done: function (e, data) {
+                    $.each(data.result, function (index, file) {
+                        $('<p/>').text(file.name + ' uploaded').appendTo($("body"));
                     });
-            }
-            $('#fileupload').fileupload({
-                autoUpload: false,
-                url: 'assets/plugins/jquery-file-upload/server/php/'
+                },
+                progressall: function (e, data) {//设置上传进度事件的回调函数
+                    var progress = parseInt(data.loaded / data.total * 5, 10);
+                    $('#progress .bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                }
             });
             App.initUniform('.fileupload-toggle-checkbox');
         }

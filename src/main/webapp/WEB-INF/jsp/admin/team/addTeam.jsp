@@ -67,8 +67,6 @@
             </div>
         </div>
         <div class="portlet-body">
-
-
             <div class="form-body">
                 <div class="form-group">
                     <label>项目组名称</label>
@@ -119,24 +117,26 @@
                     <div class="col-md-12" style="padding-left: 0px;">
                         <div class="panel panel-success">
                             <div class="panel-heading">
-                                <h3 class="panel-title">上传注意</h3>
+                                <h4 class="panel-title">上传注意事项</h4>
                             </div>
                             <div class="panel-body">
                                 <ul>
-                                    <li>图片要小于 <strong>5 MB</strong>
+                                    <li>文件上传大小最大为5MB
                                     </li>
                                     <li>只能上传(<strong>JPG, GIF, PNG</strong>)格式的图片
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <form id="fileupload" method="POST"
+                        <form id="fileupload" action="${basePath}/baseAjax/multiUpload.hopedo" method="POST"
                               enctype="multipart/form-data">
+                            <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
                             <div class="row fileupload-buttonbar">
                                 <div class="col-lg-7">
+                                    <!-- The fileinput-button span is used to style the file input field as button -->
                         <span class="btn green fileinput-button">
                         <i class="icon-plus"></i>
-                        <span>添加新图片</span>
+                        <span>添加文件</span>
                         <input type="file" name="files[]" multiple>
                         </span>
                                     <button type="submit" class="btn blue start">
@@ -149,7 +149,7 @@
                                     </button>
                                     <button type="button" class="btn red delete">
                                         <i class="icon-trash"></i>
-                                        <span>删除该图片</span>
+                                        <span>删除文件</span>
                                     </button>
                                     <input type="checkbox" class="toggle">
                                     <span class="fileupload-loading"></span>
@@ -167,6 +167,7 @@
                             </table>
                         </form>
                     </div>
+
                 </div>
                 <br/>
 
@@ -304,30 +305,19 @@
 <!-- ======================== 页面结束处======================== -->
 </div>
 <%@include file="../template/template_page_footer.jsp" %>
-
-</body>
-
 <%@include file="../template/template_page_javascript.jsp" %>
-<script type="text/javascript" src="admin_assets/js/team/teamconf.js"></script>
-<script type="text/javascript" src="admin_assets/js/team/team.js"></script>
-<script type="text/javascript">
-    $(document).on("ready", function () {
-        $("#teamLi").attr("class", "active");
-        Team.init();
-        var isEdit = $("#isEdit").text();
-        $(".page-title").text("");
-        if (isEdit == "1") {
-            $("#addArea").hide();
-            $(".page-title").append("编辑现有项目组 <small>Edit Exist Team</small>");
-            Team.refresh();
-        } else {
-            $("#updateArea").hide();
-            $(".page-title").append("创建新项目组 <small>Create New Team</small>");
-            Team.refreshTeamTypeForAdd();
-        }
-    });
-</script>
-
+<script src="admin_assets/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/vendor/tmpl.min.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/vendor/load-image.min.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-audio.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-video.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+<script src="admin_assets/plugins/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
 <script id="template-upload" type="text/x-tmpl">
       {% for (var i=0, file; file=o.files[i]; i++) { %}
           <tr class="template-upload fade">
@@ -364,7 +354,8 @@
               </td>
           </tr>
       {% } %}
-   </script>
+
+</script>
 <script id="template-download" type="text/x-tmpl">
       {% for (var i=0, file; file=o.files[i]; i++) { %}
           <tr class="template-download fade">
@@ -401,13 +392,42 @@
                       <button class="btn yellow cancel">
                           <i class="icon-ban-circle"></i>
                           <span>Cancel</span>
-                      </button>
+
                   {% } %}
               </td>
           </tr>
       {% } %}
-   </script>
+                      </button>
 
 
+
+
+
+
+
+
+
+
+
+</script>
+<script type="text/javascript" src="admin_assets/js/team/team.js"></script>
+<script type="text/javascript">
+    $(document).on("ready", function () {
+        $("#teamLi").attr("class", "active");
+        Team.init();
+        var isEdit = $("#isEdit").text();
+        $(".page-title").text("");
+        if (isEdit == "1") {
+            $("#addArea").hide();
+            $(".page-title").append("编辑现有项目组 <small>Edit Exist Team</small>");
+            Team.refresh();
+        } else {
+            $("#updateArea").hide();
+            $(".page-title").append("创建新项目组 <small>Create New Team</small>");
+            Team.refreshTeamTypeForAdd();
+        }
+    });
+</script>
+</body>
 </html>
 
