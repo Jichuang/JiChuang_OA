@@ -61,7 +61,11 @@ public class BaseAjaxController {
         } catch (IOException e) {
             return new AjaxResponse(ReturnState.ERROR, "上传失败，发生错误").addAttribute("Exception", e.getMessage());
         }
-        return AjaxResponse.getInstanceByResult(true).addAttribute("files", serverPath + "/" + fileName);
+        return AjaxResponse.getInstanceByResult(true)
+                .addAttribute("path", serverPath + "/" + fileName)
+                .addAttribute("originName", multipartFile.getOriginalFilename())
+                .addAttribute("name", fileName)
+                .addAttribute("size", (multipartFile.getSize() / 1024.0 + "").substring(0, 6) + "K");
     }
 
     private String getUploadFileName(MultipartFile multipartFile) {

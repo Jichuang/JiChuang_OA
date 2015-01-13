@@ -196,17 +196,23 @@ var Team = function () {
             $('#fileupload').fileupload({
                 url: 'baseAjax/multiUpload.hopedo',
                 done: function (e, data) {
-                    $.each(data.result, function (index, file) {
-                        $('<p/>').text(file.name + ' uploaded').appendTo($("body"));
-                    });
+                    var result = data.result;
+                    var uploadFile = result.returnData;
+                    var img = new Image();
+                    img.src = uploadFile.path;
+                    var tableItem =
+                        '<tr class="template-upload fade in"> ' +
+                            '<td> <span class="preview"><img src="' + uploadFile.path + '"  width="80px;" height="60px;"/></span> </td> ' +
+                            '<td> <p class="name">' + uploadFile.originName + '</p> </td> ' +
+                            '<td> <p class="size">' + uploadFile.size + '</p> ' +
+                            '<button class="btn green" disabled=""> <i class="icon-ok"></i><span>上传成功</span> </button></td> ' +
+                            '<td> <button class="btn red" disabled=""> <i class="icon-trash"></i><span>删除</span> </button> </td>' +
+                            '</tr>';
+                    if (globalFunction.returnResult(result)) {
+                        $(".files").empty();
+                        $(".completeFiles").append(tableItem);
+                    }
                 },
-                progressall: function (e, data) {//设置上传进度事件的回调函数
-                    var progress = parseInt(data.loaded / data.total * 5, 10);
-                    $('#progress .bar').css(
-                        'width',
-                        progress + '%'
-                    );
-                }
             });
             App.initUniform('.fileupload-toggle-checkbox');
         }

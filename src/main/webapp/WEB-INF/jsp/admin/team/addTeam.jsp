@@ -147,10 +147,6 @@
                                         <i class="icon-ban-circle"></i>
                                         <span>取消上传</span>
                                     </button>
-                                    <button type="button" class="btn red delete">
-                                        <i class="icon-trash"></i>
-                                        <span>删除文件</span>
-                                    </button>
                                     <input type="checkbox" class="toggle">
                                     <span class="fileupload-loading"></span>
                                 </div>
@@ -164,6 +160,8 @@
                             </div>
                             <table role="presentation" class="table table-striped clearfix">
                                 <tbody class="files"></tbody>
+                                <tbody class="completeFiles"></tbody>
+                                <tbody class="failedFiles"></tbody>
                             </table>
                         </form>
                     </div>
@@ -342,19 +340,18 @@
                   {% if (!o.files.error && !i && !o.options.autoUpload) { %}
                       <button class="btn blue start">
                           <i class="icon-upload"></i>
-                          <span>Start</span>
+                          <span>开始上传</span>
                       </button>
                   {% } %}
                   {% if (!i) { %}
                       <button class="btn red cancel">
                           <i class="icon-ban-circle"></i>
-                          <span>Cancel</span>
+                          <span>取消上传</span>
                       </button>
                   {% } %}
               </td>
           </tr>
       {% } %}
-
 </script>
 <script id="template-download" type="text/x-tmpl">
       {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -398,16 +395,6 @@
           </tr>
       {% } %}
                       </button>
-
-
-
-
-
-
-
-
-
-
 
 </script>
 <script type="text/javascript" src="admin_assets/js/team/team.js"></script>
