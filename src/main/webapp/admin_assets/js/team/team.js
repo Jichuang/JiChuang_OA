@@ -7,20 +7,31 @@ var Team = function () {
         return h[0] + "//" + window.location.host + "/" + x[1] + "/";
     }();
     var newDes = CKEDITOR.replace('newDes')
-    var editDes = CKEDITOR.replace("_des");
     var editTeam = null;
     var newData = {
+        teamId: "",
         name: $("#title").val(),
         des: newDes.getData(),
-        teamType: $("teamType").val()
-    }
-    var editData = {
-        teamId: $("#teamId").text(),
-        name: $("#_title").val(),
-        des: editDes.getData(),
-        teamType: $("#_teamType").val()
+        teamType: $("teamType").val(),
+        //注意 这里需要添加image的信息
+        image: ""
     }
     var image = $("#image").val();
+
+    function handleMutliFileUpload(Tbody, dataName) {
+        var images = Tbody.children();
+        var returnJSON = "[";
+        for (var i = 0; i < images.length; i++) {
+            var imageInfo = ($(images[i]).data(dataName));
+            returnJSON += imageInfo;
+            if (i < images.length - 1) {
+                returnJSON += ",";
+            }
+        }
+        returnJSON += "]";
+        return returnJSON;
+    }
+
     var TeamService = {
         uploadImage: function (id, name, imagesUl) {
             $.ajaxFileUpload({
@@ -56,13 +67,11 @@ var Team = function () {
             newData.name = $("#title").val();
             newData.des = newDes.getData();
             newData.teamType = $("#teamType").val();
-            editData.teamId = $("#teamId").text();
-            editData.name = $("#_title").val();
-            editData.des = editDes.getData();
-            editData.teamType = $("#_teamType").val()
+            newData.teamId = $("#teamId").text();
         },
         addTeam: function () {
             TeamService.refreshTeamData();
+            newData.image += handleMutliFileUpload($(".completeFiles"), "imageinfo");
             $.ajax({
                 url: basePath + 'team.hopedo',
                 type: 'POST',
@@ -76,7 +85,6 @@ var Team = function () {
                         setTimeout(function () {
                             window.location.href = basePath + "/team/conf.hopedo";
                         }, 2000)
-
                     } else {
                         toast.error(data.returnMsg);
                     }
@@ -128,9 +136,9 @@ var Team = function () {
                         var team = data.returnData.team;
                         editTeam = team;
                         $("#oldTeamName").text(team.name);
-                        editData.name = $("#_title").val(team.name);
-                        editData.des = editDes.setData(team.des);
-                        editData.teamType = $("#_teamType").find(team.teamTypeId.name).attr("selected", "selected");
+                        newData.name = $("#title").val(team.name);
+                        newData.des = newDes.setData(team.des);
+                        newData.teamType = $("#teamType").find(team.teamTypeId.name).attr("selected", "selected");
                     } else {
                         toast.error(data.returnMsg);
                     }
@@ -169,10 +177,11 @@ var Team = function () {
         },
         updateTeam: function () {
             TeamService.refreshTeamData();
+            newData.image += handleMutliFileUpload($(".completeFiles"), "imageinfo");
             $.ajax({
                 url: basePath + 'team.hopedo',
                 type: 'PUT',
-                data: (editData),
+                data: (newData),
                 dataType: 'JSON',
                 success: function (data) {
                     var status = data.returnState;
@@ -192,7 +201,7 @@ var Team = function () {
                 }
             });
         },
-        initMutliUpload: function () {
+        initMultiUpload: function () {
             $('#fileupload').fileupload({
                 url: 'baseAjax/multiUpload.hopedo',
                 done: function (e, data) {
@@ -200,19 +209,24 @@ var Team = function () {
                     var uploadFile = result.returnData;
                     var img = new Image();
                     img.src = uploadFile.path;
+                    var imageInfo = {
+                        originName: uploadFile.originName,
+                        size: uploadFile.size,
+                        path: uploadFile.path
+                    }
                     var tableItem =
-                        '<tr class="template-upload fade in"> ' +
+                        '<tr class="template-upload fade in" data-imageinfo =\' ' + JSON.stringify(imageInfo) + ' \'> ' +
                             '<td> <span class="preview"><img src="' + uploadFile.path + '"  width="80px;" height="60px;"/></span> </td> ' +
                             '<td> <p class="name">' + uploadFile.originName + '</p> </td> ' +
                             '<td> <p class="size">' + uploadFile.size + '</p> ' +
                             '<button class="btn green" disabled=""> <i class="icon-ok"></i><span>上传成功</span> </button></td> ' +
                             '<td> <button class="btn red" disabled=""> <i class="icon-trash"></i><span>删除</span> </button> </td>' +
                             '</tr>';
-                    if (globalFunction.returnResult(result)) {
+                    if (globalFunction.returnResult(result, "", false)) {
                         $(".files").empty();
                         $(".completeFiles").append(tableItem);
                     }
-                },
+                }
             });
             App.initUniform('.fileupload-toggle-checkbox');
         }
@@ -228,9 +242,6 @@ var Team = function () {
         $("#updateImageButton").on("click", function () {
             TeamService.uploadImage("image", "image", $("#images"));
         });
-        $("#_updateImageButton").on("click", function () {
-            TeamService.uploadImage("_image", "image", $("#_images"));
-        });
         $("#deleteTeam").live("click", function () {
             TeamService.deleteTeam();
         })
@@ -240,17 +251,34 @@ var Team = function () {
         $("ul li .insertImage").live("click", function () {
             var path = $(this).parent().first().children(".imagePath").text();
             TeamService.image2Text(path, newDes);
-            TeamService.image2Text(path, editDes);
         });
     }
 
     return {
         init: function () {
-            TeamService.initMutliUpload();
+            $("#teamLi").attr("class", "active");
+            var isEdit = $("#isEdit").text();
+            $(".page-title").text("");
+            if (isEdit == "1") {
+                //编辑模式
+                $(".page-title").append("编辑现有项目组 <small>Edit Exist Team</small>");
+                $("#typeTitle").append("Edit Exist Team");
+                $("#boxColor").attr("class", "portlet box red")
+                $("#addTeamButton").hide();
+                Team.refresh();
+            } else {
+                //添加模式
+                $("#deleteTeamLi").hide();
+                $(".page-title").append("创建新项目组 <small>Create New Team</small>");
+                $("#typeTitle").append("Create New Team");
+                $("#updateTeamButton").hide();
+                Team.refreshTeamTypeForAdd();
+            }
+            TeamService.initMultiUpload();
             handleEvent();
         },
         refresh: function () {
-            TeamService.refreshTeamType($("#_teamType"));
+            TeamService.refreshTeamType($("#teamType"));
             TeamService.refreshTeam();
         },
         refreshTeamTypeForAdd: function () {

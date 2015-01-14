@@ -108,6 +108,7 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
         Team newTeam = this.selectEntryFromPrimaryKey(team.getTeamId());
         newTeam.setName(team.getName());
         newTeam.setDes(team.getDes());
+        newTeam.setImage(team.getImage());
         newTeam.setTeamTypeId(teamTypeDao.selectEntryFromPrimaryKey(Integer.parseInt(newTeamTypeId)));
         try {
             List<Member_Team> list = member_teamDao.selectEntryByHQL("from Member_Team where teamId ="

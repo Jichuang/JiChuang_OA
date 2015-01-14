@@ -13,13 +13,15 @@ var basePath = function () {
 
 var globalFunction = {
 
-    returnResult: function (data, message) {
+    returnResult: function (data, message, binding) {
         var messageNull = message == "" || message == undefined;
         if (data.returnState == "OK") {
-            toast.success(messageNull ? data.returnMsg : message);
+            if (binding != false)
+                toast.success(messageNull ? data.returnMsg : message);
             return true;
         } else {
-            toast.success(messageNull ? data.returnMsg : message);
+            if (binding != false)
+                toast.success(messageNull ? data.returnMsg : message);
             return false;
         }
     }
