@@ -70,22 +70,15 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
         return blogList;
     }
 
-    public int updateBlog(Blog blog, JSONObject infos) {
+    public int updateBlog(Blog blog) {
         if (blog == null) {
             throw new NullPointerException("博客对象为空");
-        }
-        if (blog.getTitle() == null || blog.getTitle().isEmpty()) {
-            throw new NullPointerException("博客没有标题");
-        }
-        if (blog.getContent() == null || blog.getContent().isEmpty()) {
-            throw new NullPointerException("博客没有内容");
         } else {
             Blog oldBlog = this.selectEntryFromPrimaryKey(blog.getBlogId());
             oldBlog.setContent(blog.getContent());
             oldBlog.setTitle(blog.getTitle());
-            // 不设置日期
             oldBlog.setStatus("待审核");
-            oldBlog.setInfo(infos.toString());
+            oldBlog.setInfo(blog.getInfo());
             return this.updateEntryByObject(oldBlog);
         }
     }

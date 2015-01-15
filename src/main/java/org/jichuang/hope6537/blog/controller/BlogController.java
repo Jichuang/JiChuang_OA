@@ -84,12 +84,7 @@ public class BlogController {
         } else {
             Logger.getLogger(getClass()).info(
                     "将要修改id为" + blog.getBlogId() + "的博客");
-            JSONObject infos = new JSONObject();
-            String blogType = request.getParameter("type");
-            String blogTags = request.getParameter("tags");
-            infos.put("blogTag", blogTags.toString());
-            infos.put("blogType", blogType);
-            int res = blogService.updateBlog(blog, infos);
+            int res = blogService.updateBlog(blog);
             return AjaxResponse.getInstanceByResult(res == 1);
         }
 

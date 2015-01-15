@@ -15,5 +15,5 @@ public interface BlogService extends BaseService<Blog> {
 
     List<Blog> selectBlogAllByMember(Member member);
 
-    int updateBlog(Blog blog, JSONObject infos);
+    int updateBlog(Blog blog);
 }

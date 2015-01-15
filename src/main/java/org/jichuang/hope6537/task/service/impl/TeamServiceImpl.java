@@ -104,12 +104,12 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
     }
 
     @Override
-    public int updateTeam(Team team, Member member, String newTeamTypeId) {
+    public int updateTeam(Team team, Member member) {
         Team newTeam = this.selectEntryFromPrimaryKey(team.getTeamId());
         newTeam.setName(team.getName());
         newTeam.setDes(team.getDes());
         newTeam.setImage(team.getImage());
-        newTeam.setTeamTypeId(teamTypeDao.selectEntryFromPrimaryKey(Integer.parseInt(newTeamTypeId)));
+        newTeam.setTeamTypeId(teamTypeDao.selectEntryFromPrimaryKey(team.getTeamTypeId()));
         try {
             List<Member_Team> list = member_teamDao.selectEntryByHQL("from Member_Team where teamId ="
                     + team.getTeamId() + " and memberId = " + member.getMemberId());

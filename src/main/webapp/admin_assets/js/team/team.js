@@ -12,7 +12,7 @@ var Team = function () {
         teamId: "",
         name: $("#title").val(),
         des: newDes.getData(),
-        teamType: $("teamType").val(),
+        teamTypeId: $("teamType").val(),
         //注意 这里需要添加image的信息
         image: ""
     }
@@ -39,7 +39,7 @@ var Team = function () {
                 type: 'post',
                 secureuri: false, //一般设置为false
                 fileElementId: id, // 上传文件的id名 不能够添加# 因为它自带前缀
-                dataType: 'json', //返回值类型，一般设置为json、application/json
+                contentType: 'application/json', //返回值类型，一般设置为json、application/json
                 elementIds: name, //传递参数到服务器
                 success: function (data) {
                     var data = eval(data);
@@ -47,8 +47,8 @@ var Team = function () {
                     if (status == "OK") {
                         toast.success(data.returnMsg);
                         imagesUl.append('<br/> <li>文件名 <span class="divider">:</span><span class = "imagePath"> '
-                            + data.returnData.path + ' ' +
-                            '</span><a href="javascript:;" class = "insertImage">[插入到文本域中]</a><br/>');
+                        + data.returnData.path + ' ' +
+                        '</span><a href="javascript:;" class = "insertImage">[插入到文本域中]</a><br/>');
                     }
                     else {
                         toast.error(data.returnMsg);
@@ -66,17 +66,17 @@ var Team = function () {
         refreshTeamData: function () {
             newData.name = $("#title").val();
             newData.des = newDes.getData();
-            newData.teamType = $("#teamType").val();
+            newData.teamTypeId = $("#teamType").val();
             newData.teamId = $("#teamId").text();
         },
         addTeam: function () {
             TeamService.refreshTeamData();
-            newData.image += handleMutliFileUpload($(".completeFiles"), "imageinfo");
+            newData.image = handleMutliFileUpload($(".completeFiles"), "imageinfo");
             $.ajax({
                 url: basePath + 'team.hopedo',
                 type: 'POST',
-                dataType: 'json',
-                data: (newData),
+                contentType: 'application/json',
+                data: JSON.stringify(newData),
                 success: function (data) {
                     var status = data.returnState;
                     if (status == "OK") {
@@ -100,7 +100,7 @@ var Team = function () {
             $.ajax({
                 url: basePath + 'teamType.hopedo',
                 type: 'GET',
-                dataType: 'json',
+                contentType: 'application/json',
                 success: function (data) {
                     var status = data.returnState;
                     if (status == "OK") {
@@ -108,7 +108,7 @@ var Team = function () {
                         var teamTypeList = data.returnData.teamTypeList;
                         for (var i = 0; i < teamTypeList.length; i++) {
                             teamTypeSelection.append('<option value="' + teamTypeList[i].teamTypeId + '">'
-                                + teamTypeList[i].name + '</option>');
+                            + teamTypeList[i].name + '</option>');
                         }
                     } else {
                         toast.error(data.returnMsg);
@@ -128,7 +128,7 @@ var Team = function () {
                 url: basePath + 'team/' + teamId + '.hopedo',
                 type: 'GET',
                 data: (data),
-                dataType: 'json',
+                contentType: 'application/json',
                 success: function (data) {
                     var status = data.returnState;
                     if (status == "OK") {
@@ -138,7 +138,7 @@ var Team = function () {
                         $("#oldTeamName").text(team.name);
                         newData.name = $("#title").val(team.name);
                         newData.des = newDes.setData(team.des);
-                        newData.teamType = $("#teamType").find(team.teamTypeId.name).attr("selected", "selected");
+                        newData.teamTypeId = $("#teamType").find(team.teamTypeId.name).attr("selected", "selected");
                     } else {
                         toast.error(data.returnMsg);
                     }
@@ -158,7 +158,7 @@ var Team = function () {
                     $.ajax({
                         url: basePath + 'team/' + $("#teamId").text() + '.hopedo',
                         type: 'DELETE',
-                        dataType: 'json',
+                        contentType: 'application/json',
                         success: function (data) {
                             var status = data.returnState;
                             if (status == "OK") {
@@ -177,12 +177,13 @@ var Team = function () {
         },
         updateTeam: function () {
             TeamService.refreshTeamData();
-            newData.image += handleMutliFileUpload($(".completeFiles"), "imageinfo");
+            newData.image = handleMutliFileUpload($(".completeFiles"), "imageinfo");
+            console.log(newData);
             $.ajax({
                 url: basePath + 'team.hopedo',
                 type: 'PUT',
-                data: (newData),
-                dataType: 'JSON',
+                data: JSON.stringify(newData),
+                contentType: 'application/json',
                 success: function (data) {
                     var status = data.returnState;
                     if (status == "OK") {
@@ -216,12 +217,12 @@ var Team = function () {
                     }
                     var tableItem =
                         '<tr class="template-upload fade in" data-imageinfo =\' ' + JSON.stringify(imageInfo) + ' \'> ' +
-                            '<td> <span class="preview"><img src="' + uploadFile.path + '"  width="80px;" height="60px;"/></span> </td> ' +
-                            '<td> <p class="name">' + uploadFile.originName + '</p> </td> ' +
-                            '<td> <p class="size">' + uploadFile.size + '</p> ' +
-                            '<button class="btn green" disabled=""> <i class="icon-ok"></i><span>上传成功</span> </button></td> ' +
-                            '<td> <button class="btn red" disabled=""> <i class="icon-trash"></i><span>删除</span> </button> </td>' +
-                            '</tr>';
+                        '<td> <span class="preview"><img src="' + uploadFile.path + '"  width="80px;" height="60px;"/></span> </td> ' +
+                        '<td> <p class="name">' + uploadFile.originName + '</p> </td> ' +
+                        '<td> <p class="size">' + uploadFile.size + '</p> ' +
+                        '<button class="btn green" disabled=""> <i class="icon-ok"></i><span>上传成功</span> </button></td> ' +
+                        '<td> <button class="btn red" disabled=""> <i class="icon-trash"></i><span>删除</span> </button> </td>' +
+                        '</tr>';
                     if (globalFunction.returnResult(result, "", false)) {
                         $(".files").empty();
                         $(".completeFiles").append(tableItem);

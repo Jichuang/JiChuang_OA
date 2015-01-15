@@ -18,7 +18,7 @@ public interface TeamService extends BaseService<Team> {
 
     int deleteTeam(String teamId, Member member);
 
-    int updateTeam(Team team, Member member, String newTeamTypeId);
+    int updateTeam(Team team, Member member);
 
 
 }

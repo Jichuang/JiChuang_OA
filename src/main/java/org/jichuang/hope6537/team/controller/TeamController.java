@@ -13,7 +13,6 @@ import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,16 +60,15 @@ public class TeamController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
-    public AjaxResponse updateTeamById(Model model, @ModelAttribute Team team, HttpServletRequest request) {
+    public AjaxResponse updateTeamById(@RequestBody Team team, HttpServletRequest request) {
         logger.info("项目组业务——更新当前单体项目组");
         Member member = (Member) request.getSession().getAttribute("loginMember");
-        String newTeamTypeId = request.getParameter("teamType");
         if (team == null) {
             return new AjaxResponse(ReturnState.ERROR, "没有对应的項目組");
         } else if (member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            int res = teamService.updateTeam(team, member, newTeamTypeId);
+            int res = teamService.updateTeam(team, member);
             logger.info("项目组业务——更新当前单体项目组完成");
             return AjaxResponse.getInstanceByResult(res > -1).addReturnMsg("修改项目组成功");
         }
@@ -101,7 +99,7 @@ public class TeamController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public AjaxResponse addTeam(Model model, @ModelAttribute Team team, HttpServletRequest request) {
+    public AjaxResponse addTeam(@RequestBody Team team, HttpServletRequest request) {
         logger.info("项目组业务——添加新项目组");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
