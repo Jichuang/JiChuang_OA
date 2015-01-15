@@ -62,12 +62,11 @@ var Login = function () {
                 return;
             }
             toast.info("正在注册中，请稍候……");
-            member.info = {
+            member.info = JSON.stringify({
                 sex: $("#sex").val(),
                 phone: $("#phone").val(),
                 country: $("#country").val()
-
-            }
+            });
             $.ajax({
                 url: basePath + 'member/register.hopedo',
                 type: 'POST',
@@ -142,7 +141,7 @@ var Login = function () {
         });
     }
 
-    return{
+    return {
 
         init: function () {
             handleEvent();
