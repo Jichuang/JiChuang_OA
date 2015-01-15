@@ -2,22 +2,23 @@ package org.jichuang.hope6537.task.service.impl;
 
 
 import com.alibaba.fastjson.JSONObject;
-import org.jichuang.hope6537.base.dao.BaseDao;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.impl.BaseServiceImpl;
 import org.jichuang.hope6537.team.dao.Member_TeamDao;
+import org.jichuang.hope6537.team.dao.TeamDao;
 import org.jichuang.hope6537.team.dao.TeamTypeDao;
 import org.jichuang.hope6537.team.model.Member_Team;
 import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.team.model.TeamType;
 import org.jichuang.hope6537.team.service.TeamService;
+import org.jichuang.hope6537.utils.ApplicationVar;
 import org.jichuang.hope6537.utils.DateFormatCalculate;
 import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Service("teamService")
@@ -26,11 +27,7 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
 
     // 使用这种方式能够有效的环节AutoWired无法识别bean的问题
     @Autowired
-    @Qualifier("teamDao")
-    @Override
-    public void setDao(BaseDao<Team> dao) {
-        super.setDao(dao);
-    }
+    private TeamDao teamDao;
 
     @Autowired
     private TeamTypeDao teamTypeDao;
@@ -38,41 +35,33 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
     @Autowired
     private Member_TeamDao member_teamDao;
 
+    private boolean teamIsEditable4Member(Serializable teamId, Serializable memberId) {
+        if (!(teamId != null && memberId != null)) {
+            return false;
+        }
+        List<Team> teamListOfMember = dao.selectEntryBySQL("select t.* from Team t , Member_Team mt , Member m where m.memberId = mt.memberId and mt.teamId = t.teamId and t.teamId = " + teamId + " and m.memberId = " + memberId);
+        if (teamListOfMember.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
 
     @Override
     public List<Team> selectTeamListByMember(Member member) throws MemberException {
-        if (member == null) {
-            throw new MemberException("用户对象为空");
-        } else {
-            List<Member_Team> member_teams = member_teamDao.selectEntryByHQL("from Member_Team where memberId = " + member.getMemberId());
-            StringBuffer ids = new StringBuffer();
-            for (int i = 0; i < member_teams.size(); i++) {
-                ids.append(" teamId = ");
-                ids.append(member_teams.get(i).getTeamId().getTeamId());
-                if (i < member_teams.size() - 1) {
-                    ids.append(" OR ");
-                }
-            }
-            String hql = "from Team where " + ids.toString();
-            List<Team> teamList = dao.selectEntryByHQL(hql);
-            return teamList;
-        }
+        return teamDao.selectTeamListByMember(member);
     }
 
 
     @Override
     public List<Team> selectTeamListByStatus(Status status) {
-        if (status == null) {
-            return null;
-        } else {
-            return this.selectEntryByHQL("from Team where status = '" + status + "'");
-        }
+        return teamDao.selectTeamListByStatus(status);
     }
 
     @Override
-    public int insertTeam(Team team, Member member, String teamTypeId) {
+    public int insertTeam(Team team, Member member) {
         JSONObject info = new JSONObject();
-        TeamType teamType = teamTypeDao.selectEntryFromPrimaryKey(Integer.parseInt(teamTypeId));
+        TeamType teamType = teamTypeDao.selectEntryFromPrimaryKey(team.getTeamTypeId().getTeamTypeId());
         info.put("version", "0.1-SNAPSHOT");
         team.setTeamTypeId(teamType);
         team.setDate(DateFormatCalculate.createNowTime());
@@ -89,37 +78,19 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
 
     @Override
     public int deleteTeam(String teamId, Member member) {
-        try {
-            List<Member_Team> list = member_teamDao.selectEntryByHQL("from Member_Team where teamId = " + teamId + " and memberId = " + member.getMemberId());
-            if (list == null || list.isEmpty()) {
-                return -1;
-            } else {
-                int res1 = member_teamDao.doQueryByHql("delete from Member_Team where teamId =" + teamId);
-                int res2 = this.deleteEntryByPrimaryKey(Integer.parseInt(teamId));
-                return res1 + res2;
-            }
-        } catch (Exception e) {
-            return 0;
-        }
+        return teamDao.deleteTeam(teamId, member);
     }
 
     @Override
     public int updateTeam(Team team, Member member) {
+        if (!teamIsEditable4Member(team.getTeamId(), member.getMemberId())) {
+            return ApplicationVar.EFFECTIVE_LINE_ZERO;
+        }
         Team newTeam = this.selectEntryFromPrimaryKey(team.getTeamId());
         newTeam.setName(team.getName());
         newTeam.setDes(team.getDes());
         newTeam.setImage(team.getImage());
-        newTeam.setTeamTypeId(teamTypeDao.selectEntryFromPrimaryKey(team.getTeamTypeId()));
-        try {
-            List<Member_Team> list = member_teamDao.selectEntryByHQL("from Member_Team where teamId ="
-                    + team.getTeamId() + " and memberId = " + member.getMemberId());
-            if (list == null || list.isEmpty()) {
-                return -1;
-            } else {
-                return this.updateEntryByObject(newTeam);
-            }
-        } catch (Exception e) {
-            return -1;
-        }
+        return updateEntryByObject(newTeam);
     }
+
 }

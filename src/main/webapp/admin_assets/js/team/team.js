@@ -12,7 +12,9 @@ var Team = function () {
         teamId: "",
         name: $("#title").val(),
         des: newDes.getData(),
-        teamTypeId: $("teamType").val(),
+        teamTypeId: {
+            teamTypeId: $("#teamTypeId")
+        },
         //注意 这里需要添加image的信息
         image: ""
     }
@@ -66,8 +68,8 @@ var Team = function () {
         refreshTeamData: function () {
             newData.name = $("#title").val();
             newData.des = newDes.getData();
-            newData.teamTypeId = $("#teamType").val();
             newData.teamId = $("#teamId").text();
+            newData.teamTypeId.teamTypeId = $("#teamType").val();
         },
         addTeam: function () {
             TeamService.refreshTeamData();
@@ -138,7 +140,7 @@ var Team = function () {
                         $("#oldTeamName").text(team.name);
                         newData.name = $("#title").val(team.name);
                         newData.des = newDes.setData(team.des);
-                        newData.teamTypeId = $("#teamType").find(team.teamTypeId.name).attr("selected", "selected");
+                        newData.teamTypeId.teamTypeId = $("#teamType").find(team.teamTypeId.name).attr("selected", "selected");
                     } else {
                         toast.error(data.returnMsg);
                     }
@@ -182,8 +184,8 @@ var Team = function () {
             $.ajax({
                 url: basePath + 'team.hopedo',
                 type: 'PUT',
-                data: JSON.stringify(newData),
                 contentType: 'application/json',
+                data: JSON.stringify(newData),
                 success: function (data) {
                     var status = data.returnState;
                     if (status == "OK") {

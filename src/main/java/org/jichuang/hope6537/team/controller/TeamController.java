@@ -8,6 +8,7 @@ import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.team.service.TeamService;
 import org.jichuang.hope6537.team.service.TeamTypeService;
 import org.jichuang.hope6537.utils.AjaxResponse;
+import org.jichuang.hope6537.utils.ApplicationVar;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +71,7 @@ public class TeamController {
         } else {
             int res = teamService.updateTeam(team, member);
             logger.info("项目组业务——更新当前单体项目组完成");
-            return AjaxResponse.getInstanceByResult(res > -1).addReturnMsg("修改项目组成功");
+            return AjaxResponse.getInstanceByResult(res > ApplicationVar.EFFECTIVE_LINE_ZERO).addReturnMsg("修改项目组成功");
         }
     }
 
@@ -109,9 +110,8 @@ public class TeamController {
         if (member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            String teamTypeId = request.getParameter("teamType");
-            int res = teamService.insertTeam(team, member, teamTypeId);
-            return AjaxResponse.getInstanceByResult(res > 0);
+            int res = teamService.insertTeam(team, member);
+            return AjaxResponse.getInstanceByResult(res > ApplicationVar.EFFECTIVE_LINE_ZERO);
         }
     }
 
@@ -125,7 +125,7 @@ public class TeamController {
             return new AjaxResponse(ReturnState.ERROR, "无效操作");
         } else {
             int res = teamService.deleteTeam(teamId, member);
-            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("删除成功");
+            return AjaxResponse.getInstanceByResult(res > ApplicationVar.EFFECTIVE_LINE_ZERO).addReturnMsg("删除成功");
         }
 
     }
