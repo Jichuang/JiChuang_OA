@@ -40,8 +40,8 @@ public class PostServiceImpl extends BaseServiceImpl<Post> implements
     }
 
     @Override
-    public boolean updateRoles4PostById(Post post, String[] oldRoles, String[] newRoles, String postId) {
-        return postDao.updateRoles4PostById(post, oldRoles, newRoles, postId);
+    public boolean updateRoles4PostById(Post post) {
+        return postDao.updateRoles4PostById(post);
     }
 
     @Override

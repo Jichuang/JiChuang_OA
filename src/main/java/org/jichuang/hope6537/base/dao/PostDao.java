@@ -9,7 +9,7 @@ public interface PostDao extends BaseDao<Post> {
 
     List<Post> getPostsByMember(Member member);
 
-    public boolean updateRoles4PostById(Post post, String[] oldRoles, String[] newRoles, String postId);
+    public boolean updateRoles4PostById(Post post);
 
     public boolean updateRoles4PostById(String[] roles, String postId);
 

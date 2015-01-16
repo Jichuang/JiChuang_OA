@@ -40,19 +40,10 @@ public class Team implements Serializable {
     private Integer teamId;
     @Column(name = "name")
     private String name;
-    @Column(name = "image", length = 255)
+    @Column(name = "image", length = 1000)
     private String image;
-    @Column(name = "des", length = 255)
+    @Column(name = "des", length = 1000)
     private String des;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Column(name = "status", length = 50)
     private String status;
     @Column(name = "date")
@@ -117,6 +108,14 @@ public class Team implements Serializable {
 
     public void setTeamTypeId(TeamType teamTypeId) {
         this.teamTypeId = teamTypeId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 

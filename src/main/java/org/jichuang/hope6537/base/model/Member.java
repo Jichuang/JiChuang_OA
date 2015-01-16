@@ -96,6 +96,7 @@ public class Member implements Serializable {
         password = AESLocker.Encrypt(password);
     }
 
+    @Transient
     private String postId;
 
     public String getPostId() {

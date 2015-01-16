@@ -2,7 +2,60 @@ var PostTable = function () {
 
 
     var roleList;
-    var postRoleIds;
+
+    /**
+     * roleDesList 正常
+     * @param data
+     */
+    function selectTheRoles(data) {
+        //得到当前职位
+        var post = data.returnData.post;
+        $("#editPostId").text(post.postId);
+        $("#updatePostDes").val(post.des);
+        $("#updatePostStatus").val(post.status);
+        //得到当前职位的权限集合
+        var postRoleList = data.returnData.roleList;
+        var roleDesList = "";
+        //然后组合成js的数组
+        for (var i = 0; i < postRoleList.length; i++) {
+            roleDesList += postRoleList[i][1];
+            if (i < postRoleList.length - 1) {
+                roleDesList += ",";
+            }
+        }
+        //这个是这个职位原有的权限
+        if (roleList == null) {
+            postService.refreshRole();
+        }
+        //刪除原有的option选项
+        $("#_adminRoles").empty();
+        $("#_writeRoles").empty();
+        $("#_readRoles").empty();
+        //让原来的选项不被选择
+        $("#updateRolePost").multiSelect("deselect_all");
+        $("#_adminRoles").attr("label", "1、\u7BA1\u7406\u5458\u6743\u9650");
+        $("#_writeRoles").attr("label", "2、\u8BFB\u5199\u6743\u9650");
+        $("#_readRoles").attr("label", "3、\u53EA\u8BFB\u6743\u9650");
+        for (var i = 0; i < roleList.length; i++) {
+            var roleType = roleList[i].type;
+            var selected = "";
+            var roleId = roleList[i].roleId;
+            var des = roleList[i].des;
+            if (roleDesList.indexOf(des) != -1) {
+                selected = "selected = 'selected'";
+            }
+            if (roleType == "管理员权限") {
+                $("#_adminRoles").append("<option value = " + roleId + " " + selected + " >" + des + "</option>");
+            }
+            if (roleType == "读写权限") {
+                $("#_writeRoles").append("<option value = " + roleId + " " + selected + ">" + des + "</option>");
+            }
+            if (roleType == "只读权限") {
+                $("#_readRoles").append("<option value = " + roleId + " " + selected + ">" + des + "</option>");
+            }
+        }
+        postService.initMultiSelect();
+    }
 
     var postService = {
         init: function () {
@@ -10,6 +63,11 @@ var PostTable = function () {
             postService.reloadTable();
             postService.initSelect2();
             postService.refreshRole();
+        },
+        initMultiSelect: function () {
+            $('#updateRolePost').multiSelect({
+                selectableOptgroup: true
+            });
         },
         initTable: function () {
             /* 格式化下拉栏菜单 */
@@ -39,15 +97,15 @@ var PostTable = function () {
                 "aoColumnDefs": [
                     {
                         "bSortable": false,
-                        "aTargets": [ 0 ]
+                        "aTargets": [0]
                     }
                 ],
                 "aaSorting": [
-                    [ 1, 'asc' ]
+                    [1, 'asc']
                 ],
                 "aLengthMenu": [
-                    [ 5, 15, 20, -1 ],
-                    [ 5, 15, 20, "All" ]
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "All"]
                 ],
                 "iDisplayLength": 10
             });
@@ -98,7 +156,7 @@ var PostTable = function () {
                                 + list[i].postId
                                 + '"><button class="btn btn-xs blue" id="editTeam"> <i class="icon-edit">' +
                                 ' <span style="font-family: Microsoft Yahei;">编辑职位信息</span></i> </button></a>';
-                            table.fnAddData([ line1, line2, line4, line5, line7 ]);
+                            table.fnAddData([line1, line2, line4, line5, line7]);
                         }
                     } else {
                         toast.error(data.returnMsg);
@@ -107,24 +165,21 @@ var PostTable = function () {
             })
         },
         updatePost: function () {
-            var id = $("#editPostId").text();
             var data = {
+                postId: $("#editPostId").text(),
                 des: $("#updatePostDes").val(),
                 status: $("#updatePostStatus").val(),
-                //这个是新权限 new
-                roleList: $("#updateRolePost").val(),
-                //这个是这个用户原有的权限 old
-                postRoleIds: postRoleIds
+                roleId: $("#updateRolePost").val()
             }
-            if (data.roleList == null || data.roleList == "") {
+            if (data.roleId == null || data.roleId == "") {
                 toast.error("至少要有一个权限")
             } else {
-                data.roleList = data.roleList.toString();
+                data.roleId = data.roleId.toString();
                 $.ajax({
-                    url: "base/" + id + "/post.hopedo",
-                    dataType: 'json',
+                    url: "base/post.hopedo",
+                    contentType: 'application/json',
                     type: "PUT",
-                    data: (data),
+                    data: JSON.stringify(data),
                     async: false,
                     success: function (data) {
                         var status = data.returnState;
@@ -132,7 +187,6 @@ var PostTable = function () {
                             toast.info("职位修改成功");
                             postService.reloadTable();
                             $('#updatePostModal').modal('hide')
-                            postRoleIds = null;
                         } else {
                             toast.error(data.returnMsg);
                         }
@@ -167,30 +221,10 @@ var PostTable = function () {
             });
         },
         initSelect2: function () {
-
             $('#addNewPostRoles').select2({
                 placeholder: "请选择该职位拥有的权限",
                 allowClear: true
             });
-
-            function movieFormatResult(movie) {
-                var markup = "<table class='movie-result'><tr>";
-                if (movie.posters !== undefined && movie.posters.thumbnail !== undefined) {
-                    markup += "<td valign='top'><img src='" + movie.posters.thumbnail + "'/></td>";
-                }
-                markup += "<td valign='top'><h5>" + movie.title + "</h5>";
-                if (movie.critics_consensus !== undefined) {
-                    markup += "<div class='movie-synopsis'>" + movie.critics_consensus + "</div>";
-                } else if (movie.synopsis !== undefined) {
-                    markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
-                }
-                markup += "</td></tr></table>"
-                return markup;
-            }
-
-            function movieFormatSelection(movie) {
-                return movie.title;
-            }
         },
         refreshRole: function () {
             var data = {
@@ -236,6 +270,7 @@ var PostTable = function () {
             var id = (e[0].id).split("edit")[1];
             var $modal = $('#updatePostModal');
             $modal.modal();
+
             $.ajax({
                 url: "base/" + id + "/post.hopedo",
                 contentType: 'application/json',
@@ -244,51 +279,7 @@ var PostTable = function () {
                 success: function (data) {
                     var status = data.returnState;
                     if (status == "OK") {
-                        //toast.success("查询成功");
-                        var post = data.returnData.post;
-                        var postRoleList = data.returnData.roleList;
-                        $("#editPostId").text(post.postId);
-                        $("#updatePostDes").val(post.des);
-                        var roleIds = "";
-                        for (var i = 0; i < postRoleList.length; i++) {
-                            roleIds += postRoleList[i][0];
-                            if (i < postRoleList.length - 1) {
-                                roleIds += ",";
-                            }
-                        }
-                        //这个是这个职位原有的权限
-                        postRoleIds = roleIds;
-                        if (roleList == null) {
-                            postService.refreshRole();
-                        }
-                        $("#_adminRoles").remove("option");
-                        $("#_writeRoles").remove("option");
-                        $("#_readRoles").remove("option");
-                        for (var i = 0; i < roleList.length; i++) {
-                            var roleType = roleList[i].type;
-                            var selected = "";
-                            var roleId = roleList[i].roleId;
-                            if (roleIds.indexOf(roleId) != -1) {
-                                selected = "selected = 'selected'";
-                            }
-                            var des = roleList[i].des;
-                            $("#_adminRoles").attr("label", "1、\u7BA1\u7406\u5458\u6743\u9650");
-                            $("#_writeRoles").attr("label", "2、\u8BFB\u5199\u6743\u9650");
-                            $("#_readRoles").attr("label", "3、\u53EA\u8BFB\u6743\u9650");
-                            if (roleType == "管理员权限") {
-                                $("#_adminRoles").append("<option value = " + roleId + " " + selected + " >" + des + "</option>");
-                            }
-                            if (roleType == "读写权限") {
-                                $("#_writeRoles").append("<option value = " + roleId + " " + selected + ">" + des + "</option>");
-                            }
-                            if (roleType == "只读权限") {
-                                $("#_readRoles").append("<option value = " + roleId + " " + selected + ">" + des + "</option>");
-                            }
-                        }
-                        $('#updateRolePost').multiSelect({
-                            selectableOptgroup: true
-                        });
-                        $("#updatePostStatus").val(post.status);
+                        selectTheRoles(data);
                     } else {
                         toast.error(data.returnMsg);
                     }

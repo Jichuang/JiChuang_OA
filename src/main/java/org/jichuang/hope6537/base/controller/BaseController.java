@@ -285,22 +285,16 @@ public class BaseController {
     }
 
 
-    @RequestMapping(value = "/{postId}/post", method = RequestMethod.PUT)
+    @RequestMapping(value = "/post", method = RequestMethod.PUT)
     @ResponseBody
-    public AjaxResponse updatePostById(@PathVariable String postId, HttpServletRequest request) {
+    public AjaxResponse updatePostById(@RequestBody Post post, HttpServletRequest request) {
         logger.info("管理员业务——更新单体职位");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
-        if (member == null || postId == null) {
+        if (member == null || post == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            Post post = postService.selectEntryFromPrimaryKey(Integer.parseInt(postId));
-            post.setDes(request.getParameter("des"));
-            post.setStatus(request.getParameter("status"));
-            String[] oldRoles = request.getParameter("postRoleIds").split(",");
-            String[] newRoles = request.getParameter("roleList").split(",");
-            //本体更新完了，接下来更新权限集合
-            return AjaxResponse.getInstanceByResult(postService.updateRoles4PostById(post, oldRoles, newRoles, postId)).addReturnMsg("更新权限成功");
+            return AjaxResponse.getInstanceByResult(postService.updateRoles4PostById(post)).addReturnMsg("更新权限成功");
         }
     }
 

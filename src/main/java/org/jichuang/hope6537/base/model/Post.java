@@ -33,6 +33,17 @@ public class Post implements Serializable {
     @Column(name = "status", length = 50)
     private String status;
 
+    @Transient
+    private String roleId;
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
     public Integer getPostId() {
         return postId;
     }
