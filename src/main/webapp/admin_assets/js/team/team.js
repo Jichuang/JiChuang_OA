@@ -31,7 +31,7 @@ var Team = function () {
                 returnJSON += ",";
             }
         }
-        if (newImages.length > 0) {
+        if (oldImages.length > 0 && newImages.length > 0) {
             returnJSON += ",";
         }
         for (var i = 0; i < newImages.length; i++) {
@@ -74,7 +74,7 @@ var Team = function () {
                 type: 'post',
                 secureuri: false, //一般设置为false
                 fileElementId: id, // 上传文件的id名 不能够添加# 因为它自带前缀
-                contentType: 'application/json', //返回值类型，一般设置为json、application/json
+                dataType: 'json', //返回值类型，一般设置为json、application/json
                 elementIds: name, //传递参数到服务器
                 success: function (data) {
                     var data = eval(data);
@@ -89,8 +89,8 @@ var Team = function () {
                         toast.error(data.returnMsg);
                     }
                 },
-                error: function (data, status, e) {
-                    toast.error(e);
+                error: function (data) {
+                    toast.error(data);
                 }
 
             })
