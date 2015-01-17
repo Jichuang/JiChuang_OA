@@ -20,18 +20,51 @@ var Team = function () {
     }
     var image = $("#image").val();
 
-    function handleMutliFileUpload(Tbody, dataName) {
-        var images = Tbody.children();
+    function handleMultiFileUpload(oldTbody, newTbody, dataName) {
+        var oldImages = oldTbody.children();
+        var newImages = newTbody.children();
         var returnJSON = "[";
-        for (var i = 0; i < images.length; i++) {
-            var imageInfo = ($(images[i]).data(dataName));
+        for (var i = 0; i < oldImages.length; i++) {
+            var imageInfo = ($(oldImages[i]).data(dataName));
             returnJSON += imageInfo;
-            if (i < images.length - 1) {
+            if (i < oldImages.length - 1) {
+                returnJSON += ",";
+            }
+        }
+        if (newImages.length > 0) {
+            returnJSON += ",";
+        }
+        for (var i = 0; i < newImages.length; i++) {
+            var imageInfo = ($(newImages[i]).data(dataName));
+            returnJSON += imageInfo;
+            if (i < newImages.length - 1) {
                 returnJSON += ",";
             }
         }
         returnJSON += "]";
         return returnJSON;
+    }
+
+    function initEditImage(targetTable, imageStr) {
+        targetTable.empty();
+        var tableItem = "";
+        var imageList = JSON.parse(imageStr);
+        for (var i = 0; i < imageList.length; i++) {
+            var imageInfo = {
+                originName: imageList[i].originName,
+                size: imageList[i].size,
+                path: imageList[i].path
+            }
+            tableItem +=
+                '<tr class="template-upload fade in" data-imageinfo =\' ' + JSON.stringify(imageInfo) + ' \'> ' +
+                '<td> <span class="preview"><img src="' + imageInfo.path + '"  width="80px;" height="60px;"/></span> </td> ' +
+                '<td> <p class="name">' + imageInfo.originName + '</p> </td> ' +
+                '<td> <p class="size">' + imageInfo.size + '</p> ' +
+                '<button class="btn green" disabled=""> <i class="icon-ok"></i><span>上传成功</span> </button></td> ' +
+                '<td><span class="btn red deleteImage"><i class="icon-trash"></i>删除</span></td>' +
+                '</tr>';
+        }
+        targetTable.append(tableItem);
     }
 
     var TeamService = {
@@ -62,6 +95,9 @@ var Team = function () {
 
             })
         },
+        deleteImage: function (table) {
+            console.log(table.parent().parent().remove());
+        },
         image2Text: function (path, des) {
             des.insertHtml("<img src='" + path + "'>");
         },
@@ -73,7 +109,7 @@ var Team = function () {
         },
         addTeam: function () {
             TeamService.refreshTeamData();
-            newData.image = handleMutliFileUpload($(".completeFiles"), "imageinfo");
+            newData.image = handleMultiFileUpload($(".oldFiles"), $(".completeFiles"), "imageinfo");
             $.ajax({
                 url: basePath + 'team.hopedo',
                 type: 'POST',
@@ -141,6 +177,7 @@ var Team = function () {
                         newData.name = $("#title").val(team.name);
                         newData.des = newDes.setData(team.des);
                         newData.teamTypeId.teamTypeId = $("#teamType").find(team.teamTypeId.name).attr("selected", "selected");
+                        initEditImage($(".oldFiles"), team.image);
                     } else {
                         toast.error(data.returnMsg);
                     }
@@ -179,8 +216,7 @@ var Team = function () {
         },
         updateTeam: function () {
             TeamService.refreshTeamData();
-            newData.image = handleMutliFileUpload($(".completeFiles"), "imageinfo");
-            console.log(newData);
+            newData.image = handleMultiFileUpload($(".oldFiles"), $(".completeFiles"), "imageinfo");
             $.ajax({
                 url: basePath + 'team.hopedo',
                 type: 'PUT',
@@ -194,7 +230,6 @@ var Team = function () {
                         setTimeout(function () {
                             window.location.href = basePath + "/team/conf.hopedo";
                         }, 2000)
-
                     } else {
                         toast.error(data.returnMsg);
                     }
@@ -223,7 +258,7 @@ var Team = function () {
                         '<td> <p class="name">' + uploadFile.originName + '</p> </td> ' +
                         '<td> <p class="size">' + uploadFile.size + '</p> ' +
                         '<button class="btn green" disabled=""> <i class="icon-ok"></i><span>上传成功</span> </button></td> ' +
-                        '<td> <button class="btn red" disabled=""> <i class="icon-trash"></i><span>删除</span> </button> </td>' +
+                        '<td><span class="btn red deleteImage"><i class="icon-trash"></i>删除</span></td>' +
                         '</tr>';
                     if (globalFunction.returnResult(result, "", false)) {
                         $(".files").empty();
@@ -251,6 +286,9 @@ var Team = function () {
         $("#refreshTeam").on("click", function () {
             TeamService.refreshTeam();
         });
+        $("#imageTable .deleteImage").live("click", function () {
+            TeamService.deleteImage($(this));
+        })
         $("ul li .insertImage").live("click", function () {
             var path = $(this).parent().first().children(".imagePath").text();
             TeamService.image2Text(path, newDes);

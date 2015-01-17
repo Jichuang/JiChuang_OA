@@ -159,10 +159,11 @@
                                                     <div class="progress-extended">&nbsp;</div>
                                                 </div>
                                             </div>
-                                            <table role="presentation" class="table table-striped clearfix">
+                                            <table role="presentation" id="imageTable"
+                                                   class="table table-striped clearfix">
                                                 <tbody class="files"></tbody>
                                                 <tbody class="completeFiles"></tbody>
-                                                <tbody class="failedFiles"></tbody>
+                                                <tbody class="oldFiles"></tbody>
                                             </table>
                                         </form>
                                     </div>
@@ -274,6 +275,7 @@
 
 
 
+
     </script>
     <script id="template-download" type="text/x-tmpl">
       {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -317,6 +319,7 @@
           </tr>
       {% } %}
                       </button>
+
 
 
 
