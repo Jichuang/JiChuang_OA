@@ -2,6 +2,7 @@ package org.jichuang.hope6537.task.service.impl;
 
 
 import com.alibaba.fastjson.JSONObject;
+import org.jichuang.hope6537.base.dao.MemberDao;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.impl.BaseServiceImpl;
@@ -12,7 +13,7 @@ import org.jichuang.hope6537.team.model.Member_Team;
 import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.team.model.TeamType;
 import org.jichuang.hope6537.team.service.TeamService;
-import org.jichuang.hope6537.utils.ApplicationVar;
+import org.jichuang.hope6537.utils.ApplicationConstant;
 import org.jichuang.hope6537.utils.DateFormatCalculate;
 import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
     @Autowired
     private Member_TeamDao member_teamDao;
 
+    @Autowired
+    private MemberDao memberDao;
+
     private boolean teamIsEditable4Member(Serializable teamId, Serializable memberId) {
         if (!(teamId != null && memberId != null)) {
             return false;
@@ -56,6 +60,11 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
     @Override
     public List<Team> selectTeamListByStatus(Status status) {
         return teamDao.selectTeamListByStatus(status);
+    }
+
+    @Override
+    public List<Member> selectMemberOfTeam(Team team) {
+        return memberDao.selectMemberListByTeam(team);
     }
 
     @Override
@@ -84,7 +93,7 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
     @Override
     public int updateTeam(Team team, Member member) {
         if (!teamIsEditable4Member(team.getTeamId(), member.getMemberId())) {
-            return ApplicationVar.EFFECTIVE_LINE_ZERO;
+            return ApplicationConstant.EFFECTIVE_LINE_ZERO;
         }
         Team newTeam = this.selectEntryFromPrimaryKey(team.getTeamId());
         newTeam.setName(team.getName());

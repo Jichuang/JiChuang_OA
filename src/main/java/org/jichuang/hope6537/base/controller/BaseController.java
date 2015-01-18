@@ -11,7 +11,7 @@ import org.jichuang.hope6537.base.service.PostService;
 import org.jichuang.hope6537.base.service.RoleService;
 import org.jichuang.hope6537.utils.AESLocker;
 import org.jichuang.hope6537.utils.AjaxResponse;
-import org.jichuang.hope6537.utils.ApplicationVar;
+import org.jichuang.hope6537.utils.ApplicationConstant;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -102,8 +102,7 @@ public class BaseController {
         if (loginMember == null || member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            boolean res = memberService.insertEntry(member) == ApplicationVar.EFFECTIVE_LINE_ONE;
-            res = res && memberService.updateMemberPost(member);
+            boolean res = memberService.insertEntry(member) == ApplicationConstant.EFFECTIVE_LINE_ONE;
             return AjaxResponse.getInstanceByResult(res).addReturnMsg("添加用户成功");
         }
     }
@@ -119,7 +118,7 @@ public class BaseController {
             member = MemberBaseReplace(
                     memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId)), member);
             return AjaxResponse.getInstanceByResult
-                    (memberService.updateMember(member) == ApplicationVar.EFFECTIVE_LINE_ONE && memberService.updateMemberPost(member)).
+                    (memberService.updateMember(member) == ApplicationConstant.EFFECTIVE_LINE_ONE && memberService.updateMemberPost(member)).
                     addReturnMsg("更新用户成功");
         }
     }
@@ -309,7 +308,7 @@ public class BaseController {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
             boolean res = postService.deletePostRoles(postId);
-            res = res && postService.deleteEntryByPrimaryKey(Integer.parseInt(postId)) == ApplicationVar.EFFECTIVE_LINE_ONE;
+            res = res && postService.deleteEntryByPrimaryKey(Integer.parseInt(postId)) == ApplicationConstant.EFFECTIVE_LINE_ONE;
             return AjaxResponse.getInstanceByResult(res);
         }
     }

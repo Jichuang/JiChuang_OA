@@ -267,7 +267,11 @@ var Team = function () {
                 }
             });
             App.initUniform('.fileupload-toggle-checkbox');
+        },
+        refreshMemberOfTeam: function () {
+            
         }
+
     }
 
     var handleEvent = function () {

@@ -5,11 +5,9 @@ import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.team.dao.TeamDao;
 import org.jichuang.hope6537.team.model.Team;
-import org.jichuang.hope6537.utils.ApplicationVar;
 import org.jichuang.hope6537.utils.Status;
 import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Repository("teamDao")

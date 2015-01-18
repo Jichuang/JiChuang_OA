@@ -3,7 +3,7 @@ package org.jichuang.hope6537.base.dao.impl;
 import org.jichuang.hope6537.base.dao.PostDao;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.model.Post;
-import org.jichuang.hope6537.utils.ApplicationVar;
+import org.jichuang.hope6537.utils.ApplicationConstant;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class PostDaoImpl extends BaseDaoImpl<Post> implements PostDao {
         }
         this.doQueryBySql(insertSql.toString());
         int updateEntryRes = this.updateEntryByObject(post);
-        return updateEntryRes == ApplicationVar.EFFECTIVE_LINE_ONE;
+        return updateEntryRes == ApplicationConstant.EFFECTIVE_LINE_ONE;
     }
 
     @Override
@@ -56,13 +56,13 @@ public class PostDaoImpl extends BaseDaoImpl<Post> implements PostDao {
         }
         String sql = hql.toString();
         int res = this.doQueryBySql(sql);
-        return res > ApplicationVar.EFFECTIVE_LINE_ZERO;
+        return res > ApplicationConstant.EFFECTIVE_LINE_ZERO;
     }
 
 
     @Override
     public boolean deletePostRoles(String postId) {
         int res = doQueryBySql("delete from post_role where postId = " + postId);
-        return res > ApplicationVar.EFFECTIVE_LINE_ZERO;
+        return res > ApplicationConstant.EFFECTIVE_LINE_ZERO;
     }
 }

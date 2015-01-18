@@ -8,7 +8,7 @@ import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.model.Post;
 import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.utils.AESLocker;
-import org.jichuang.hope6537.utils.ApplicationVar;
+import org.jichuang.hope6537.utils.ApplicationConstant;
 import org.jichuang.hope6537.utils.DateFormatCalculate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
         member.setDate(DateFormatCalculate.createNowTime());
         member.setStatus("未认证");
         member.setPassword(AESLocker.Encrypt(member.getPassword()));
-        return memberDao.insertEntry(member) == ApplicationVar.EFFECTIVE_LINE_ONE;
+        return memberDao.insertEntry(member) == ApplicationConstant.EFFECTIVE_LINE_ONE;
     }
 
     @Override
@@ -66,6 +66,11 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
 
     public List<Post> getPostsByMember(Member member) {
         return postDao.getPostsByMember(member);
+    }
+
+    @Override
+    public List<Member> selectMemberListByName(String name) {
+        return selectMemberListByName(name);
     }
 
     @Override
