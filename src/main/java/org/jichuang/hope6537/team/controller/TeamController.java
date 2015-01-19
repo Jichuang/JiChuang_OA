@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.jichuang.hope6537.base.controller.AdminPageController;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.team.model.Member_Team;
 import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.team.service.TeamService;
 import org.jichuang.hope6537.team.service.TeamTypeService;
@@ -75,6 +76,23 @@ public class TeamController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{teamId}/queryMember")
+    @ResponseBody
+    public AjaxResponse refreshMemberOfTeam(@PathVariable String teamId, HttpServletRequest request) {
+        logger.info("項目組業務——查詢當前項目組下成員");
+        Member member = (Member) request.getSession().getAttribute("loginMember");
+        if (!ApplicationConstant.notNull(member)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超時");
+        }
+        if (!ApplicationConstant.notNull(teamId)) {
+            return new AjaxResponse(ReturnState.ERROR, "没有对应的項目組");
+        } else {
+            Team team = teamService.selectEntryFromPrimaryKey(Integer.parseInt(teamId));
+            List<Member_Team> objectList = teamService.selectMember_Team(team);
+            return AjaxResponse.getInstanceByResult(ApplicationConstant.notNull(objectList)).addAttribute("list", objectList);
+        }
+    }
+
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -142,7 +160,7 @@ public class TeamController {
             List<Member> memberList = teamService.selectMemberOfTeam(team);
             return AjaxResponse.getInstanceByResult(team != null)
                     .addAttribute("team", team)
-                    .addAttribute("memberList",memberList);
+                    .addAttribute("memberList", memberList);
         }
     }
 }

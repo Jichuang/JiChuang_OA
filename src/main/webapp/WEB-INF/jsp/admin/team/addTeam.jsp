@@ -101,8 +101,10 @@
                                                 <label class="col-md-3 control-label btn btn-primary"
                                                        id="updateImageButton">上传当前图片<br/>
                                                 </label>
+
                                                 <div class="col-md-9">
                                                     <input type="file" id="image" name="image">
+
                                                     <p class="help-block">在本地选择要上传的图片，点击提交图片按钮</p>
                                                 </div>
                                             </div>
@@ -190,6 +192,16 @@
                                             </div>
                                         </div>
                                         <div class="portlet-body">
+                                            <div>
+                                                <p class="help-block">请输入待添加成员姓名</p>
+                                                <input type="text"
+                                                       id="memberNameQuery"
+                                                       class="form-control input-large"
+                                                       data-provide="typeahead"
+                                                       data-items="4"
+                                                       data-source="[&quot;Alabama&quot;,&quot; Support <support@demo.com> &quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Dakota&quot;,&quot;North Carolina&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;]"/>
+                                            </div>
+                                            <br/>
                                             <div class="table-responsive">
                                                 <table class="table table-striped table-bordered table-advance table-hover">
                                                     <thead>
@@ -200,47 +212,7 @@
                                                         <th>动作</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td class="highlight">
-                                                            <div class="success"></div>
-                                                            <a href="#">RedBull</a>
-                                                        </td>
-                                                        <td class="hidden-xs">Mike Nilson</td>
-                                                        <td>2560.60$</td>
-                                                        <td><a href="#" class="btn default btn-xs purple"><i
-                                                                class="icon-edit"></i> Edit</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="highlight">
-                                                            <div class="info"></div>
-                                                            <a href="#">Google</a>
-                                                        </td>
-                                                        <td class="hidden-xs">Adam Larson</td>
-                                                        <td>560.60$</td>
-                                                        <td><a href="#" class="btn default btn-xs black"><i
-                                                                class="icon-trash"></i> Delete</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="highlight">
-                                                            <div class="important"></div>
-                                                            <a href="#">Apple</a>
-                                                        </td>
-                                                        <td class="hidden-xs">Daniel Kim</td>
-                                                        <td>3460.60$</td>
-                                                        <td><a href="#" class="btn default btn-xs purple"><i
-                                                                class="icon-edit"></i> Edit</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="highlight">
-                                                            <div class="warning"></div>
-                                                            <a href="#">Microsoft</a>
-                                                        </td>
-                                                        <td class="hidden-xs">Nick</td>
-                                                        <td>2560.60$</td>
-                                                        <td><a href="#" class="btn default btn-xs blue"><i
-                                                                class="icon-share"></i> Share</a></td>
-                                                    </tr>
+                                                    <tbody id="memberTable">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -352,6 +324,10 @@
 
 
 
+
+
+
+
     </script>
     <script id="template-download" type="text/x-tmpl">
       {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -395,6 +371,10 @@
           </tr>
       {% } %}
                       </button>
+
+
+
+
 
 
 

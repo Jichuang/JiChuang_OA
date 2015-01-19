@@ -133,6 +133,53 @@ var Team = function () {
 
             });
         },
+        memberNameQuery: function () {
+            $("#memberNameQuery").focus().autocomplete("/ajax/Account", {
+                formatItem: function (row, i, max) {
+                    var obj = eval("(" + row + ")"); //转换成js对象
+                    return obj.Text;
+                },
+                formatResult: function (row) {
+                    var obj = eval("(" + row + ")"); //转换成js对象
+                    return obj.Text;
+                }
+            }).result(function (event, item) {
+                var obj = eval("(" + item + ")"); //转换成js对象
+                $("#link").attr("href", obj.url)
+                ;
+            });
+        },
+        refreshMemberOfTeam: function () {
+            $("#memberTable").empty();
+            var teamId = $("#teamId").text();
+            $.ajax({
+                url: basePath + 'team/' + teamId + '/queryMember.hopedo',
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    if (globalFunction.returnResult(data)) {
+                        var list = data.returnData.list;
+                        var str = "";
+                        for (var i = 0; i < list.length; i++) {
+                            var memberName = list[i].memberId.name;
+                            var memberAccount = list[i].memberId.username;
+                            var status = list[i].status;
+                            str += '<tr>' +
+                            ' <td class="highlight"> <div class="success"></div> <a href="#">' + memberName + '</a> </td> ' +
+                            '<td class="hidden-xs">' + memberAccount + '</td> ' +
+                            '<td>' + status + '</td> ' +
+                            '<td><a href="#" class="btn default btn-xs purple"><i class="icon-edit"></i>编辑</a></td> </tr>';
+                        }
+                        $("#memberTable").append(str);
+                    } else {
+                        toast.error(data.returnMsg);
+                    }
+                },
+                error: function (data) {
+                    toast.error(data);
+                }
+            });
+        },
         refreshTeamType: function (teamTypeSelection) {
             teamTypeSelection.empty();
             $.ajax({
@@ -268,9 +315,6 @@ var Team = function () {
             });
             App.initUniform('.fileupload-toggle-checkbox');
         },
-        refreshMemberOfTeam: function () {
-            
-        }
 
     }
 
@@ -325,6 +369,7 @@ var Team = function () {
         refresh: function () {
             TeamService.refreshTeamType($("#teamType"));
             TeamService.refreshTeam();
+            TeamService.refreshMemberOfTeam();
         },
         refreshTeamTypeForAdd: function () {
             TeamService.refreshTeamType($("#teamType"));

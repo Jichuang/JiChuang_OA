@@ -77,6 +77,7 @@
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/address/address.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/wysihtml5/wysihtml5.js"></script>
 <script src="admin_assets/js/base/global.js"></script>
+<script src="admin_assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js"></script>
 <script src="admin_assets/js/cryptico/aes.js"></script>
 <script src="admin_assets/js/cryptico/api.js"></script>
 <script src="admin_assets/js/cryptico/cryptico.js"></script>

@@ -63,6 +63,11 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
     }
 
     @Override
+    public List<Member_Team> selectMember_Team(Team team) {
+        return member_teamDao.selectEntryByHQL("select mt from Member_Team mt, Member m  where mt.memberId = m.memberId and teamId = " + team.getTeamId());
+    }
+
+    @Override
     public List<Member> selectMemberOfTeam(Team team) {
         return memberDao.selectMemberListByTeam(team);
     }
