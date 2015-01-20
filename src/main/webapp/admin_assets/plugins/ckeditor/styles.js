@@ -31,8 +31,8 @@ CKEDITOR.stylesSet.add('default', [
      { name: 'Address',			element: 'address' },
      */
 
-    { name: 'Italic Title', element: 'h2', styles: { 'font-style': 'italic' } },
-    { name: 'Subtitle', element: 'h3', styles: { 'color': '#aaa', 'font-style': 'italic' } },
+    {name: 'Italic Title', element: 'h2', styles: {'font-style': 'italic'}},
+    {name: 'Subtitle', element: 'h3', styles: {'color': '#aaa', 'font-style': 'italic'}},
     {
         name: 'Special Container',
         element: 'div',
@@ -57,39 +57,39 @@ CKEDITOR.stylesSet.add('default', [
      { name: 'Superscript',		element: 'sup' },
      */
 
-    { name: 'Marker: Yellow', element: 'span', styles: { 'background-color': 'Yellow' } },
-    { name: 'Marker: Green', element: 'span', styles: { 'background-color': 'Lime' } },
+    {name: 'Marker: Yellow', element: 'span', styles: {'background-color': 'Yellow'}},
+    {name: 'Marker: Green', element: 'span', styles: {'background-color': 'Lime'}},
 
-    { name: 'Big', element: 'big' },
-    { name: 'Small', element: 'small' },
-    { name: 'Typewriter', element: 'tt' },
+    {name: 'Big', element: 'big'},
+    {name: 'Small', element: 'small'},
+    {name: 'Typewriter', element: 'tt'},
 
-    { name: 'Computer Code', element: 'code' },
-    { name: 'Keyboard Phrase', element: 'kbd' },
-    { name: 'Sample Text', element: 'samp' },
-    { name: 'Variable', element: 'var' },
+    {name: 'Computer Code', element: 'code'},
+    {name: 'Keyboard Phrase', element: 'kbd'},
+    {name: 'Sample Text', element: 'samp'},
+    {name: 'Variable', element: 'var'},
 
-    { name: 'Deleted Text', element: 'del' },
-    { name: 'Inserted Text', element: 'ins' },
+    {name: 'Deleted Text', element: 'del'},
+    {name: 'Inserted Text', element: 'ins'},
 
-    { name: 'Cited Work', element: 'cite' },
-    { name: 'Inline Quotation', element: 'q' },
+    {name: 'Cited Work', element: 'cite'},
+    {name: 'Inline Quotation', element: 'q'},
 
-    { name: 'Language: RTL', element: 'span', attributes: { 'dir': 'rtl' } },
-    { name: 'Language: LTR', element: 'span', attributes: { 'dir': 'ltr' } },
+    {name: 'Language: RTL', element: 'span', attributes: {'dir': 'rtl'}},
+    {name: 'Language: LTR', element: 'span', attributes: {'dir': 'ltr'}},
 
     /* Object Styles */
 
     {
         name: 'Styled image (left)',
         element: 'img',
-        attributes: { 'class': 'left' }
+        attributes: {'class': 'left'}
     },
 
     {
         name: 'Styled image (right)',
         element: 'img',
-        attributes: { 'class': 'right' }
+        attributes: {'class': 'right'}
     },
 
     {
@@ -106,7 +106,7 @@ CKEDITOR.stylesSet.add('default', [
         }
     },
 
-    { name: 'Borderless Table', element: 'table', styles: { 'border-style': 'hidden', 'background-color': '#E6E6FA' } },
-    { name: 'Square Bulleted List', element: 'ul', styles: { 'list-style-type': 'square' } }
+    {name: 'Borderless Table', element: 'table', styles: {'border-style': 'hidden', 'background-color': '#E6E6FA'}},
+    {name: 'Square Bulleted List', element: 'ul', styles: {'list-style-type': 'square'}}
 ]);
 

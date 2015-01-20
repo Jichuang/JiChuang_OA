@@ -218,18 +218,18 @@
 
         // representation for dateAddRemove
         this._milliseconds = milliseconds +
-            seconds * 1e3 + // 1000
-            minutes * 6e4 + // 1000 * 60
-            hours * 36e5; // 1000 * 60 * 60
+        seconds * 1e3 + // 1000
+        minutes * 6e4 + // 1000 * 60
+        hours * 36e5; // 1000 * 60 * 60
         // Because of dateAddRemove treats 24 hours as different from a
         // day when working around DST, we need to store them separately
         this._days = days +
-            weeks * 7;
+        weeks * 7;
         // It is impossible translate months into days without knowing
         // which months you are are talking about, so we have to store
         // it separately.
         this._months = months +
-            years * 12;
+        years * 12;
 
         // The following code bubbles up values, see the tests for
         // examples of what that means.
@@ -568,7 +568,7 @@
      ************************************/
 
 
-        // get the regex to find the next token
+    // get the regex to find the next token
     function getParseRegexForToken(token) {
         switch (token) {
             case 'DDDD':
@@ -853,7 +853,7 @@
      ************************************/
 
 
-        // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
+    // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
     function substituteTimeAgo(string, number, withoutSuffix, isFuture, lang) {
         return lang.relativeTime(number || 1, !!withoutSuffix, string, isFuture);
     }
@@ -886,13 +886,13 @@
      ************************************/
 
 
-        // firstDayOfWeek       0 = sun, 6 = sat
-        //                      the day of the week that starts the week
-        //                      (usually sunday or monday)
-        // firstDayOfWeekOfYear 0 = sun, 6 = sat
-        //                      the first week is the week that contains the first
-        //                      of this day of the week
-        //                      (eg. ISO weeks use thursday (4))
+    // firstDayOfWeek       0 = sun, 6 = sat
+    //                      the day of the week that starts the week
+    //                      (usually sunday or monday)
+    // firstDayOfWeekOfYear 0 = sun, 6 = sat
+    //                      the first week is the week that contains the first
+    //                      of this day of the week
+    //                      (eg. ISO weeks use thursday (4))
     function weekOfYear(mom, firstDayOfWeek, firstDayOfWeekOfYear) {
         var end = firstDayOfWeekOfYear - firstDayOfWeek,
             daysToDayOfWeek = firstDayOfWeekOfYear - mom.day();
@@ -1182,13 +1182,13 @@
 
         isDST: function () {
             return (this.zone() < moment([this.year()]).zone() ||
-                this.zone() < moment([this.year(), 5]).zone());
+            this.zone() < moment([this.year(), 5]).zone());
         },
 
         day: function (input) {
             var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
             return input == null ? day :
-                this.add({ d: input - day });
+                this.add({d: input - day});
         },
 
         startOf: function (units) {

@@ -76,9 +76,9 @@
                 if (this._videoElement.canPlayType &&
                     this._videoElement.canPlayType(file.type) &&
                     ($.type(options.maxFileSize) !== 'number' ||
-                        file.size <= options.maxFileSize) &&
+                    file.size <= options.maxFileSize) &&
                     (!options.fileTypes ||
-                        options.fileTypes.test(file.type))) {
+                    options.fileTypes.test(file.type))) {
                     url = loadImage.createObjectURL(file);
                     if (url) {
                         video = this._videoElement.cloneNode(false);

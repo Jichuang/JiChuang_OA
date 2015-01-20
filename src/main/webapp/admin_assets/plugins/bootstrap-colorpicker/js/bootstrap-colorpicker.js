@@ -357,8 +357,7 @@
         });
     };
 
-    $.fn.colorpicker.defaults = {
-    };
+    $.fn.colorpicker.defaults = {};
 
     $.fn.colorpicker.Constructor = Colorpicker;
 
@@ -387,7 +386,7 @@
             },
 
             'hex': function () {
-                return  this.color.toHex();
+                return this.color.toHex();
             }
         },
 
@@ -427,8 +426,8 @@
             H = (C === 0 ? null :
                 V == r ? (g - b) / C :
                     V == g ? (b - r) / C + 2 :
-                        (r - g) / C + 4
-                );
+                    (r - g) / C + 4
+            );
             H = ((H + 360) % 6) * 60 / 360;
             S = C === 0 ? 0 : C / V;
             return {h: H || 1, s: S, b: V, a: a || 1};
@@ -481,10 +480,10 @@
                 re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
                 parse: function (execResult) {
                     return [
-                        execResult[ 1 ],
-                        execResult[ 2 ],
-                        execResult[ 3 ],
-                        execResult[ 4 ]
+                        execResult[1],
+                        execResult[2],
+                        execResult[3],
+                        execResult[4]
                     ];
                 }
             },
@@ -495,7 +494,7 @@
                         2.55 * execResult[1],
                         2.55 * execResult[2],
                         2.55 * execResult[3],
-                        execResult[ 4 ]
+                        execResult[4]
                     ];
                 }
             },
@@ -503,9 +502,9 @@
                 re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
                 parse: function (execResult) {
                     return [
-                        parseInt(execResult[ 1 ], 16),
-                        parseInt(execResult[ 2 ], 16),
-                        parseInt(execResult[ 3 ], 16)
+                        parseInt(execResult[1], 16),
+                        parseInt(execResult[2], 16),
+                        parseInt(execResult[3], 16)
                     ];
                 }
             },
@@ -513,9 +512,9 @@
                 re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,
                 parse: function (execResult) {
                     return [
-                        parseInt(execResult[ 1 ] + execResult[ 1 ], 16),
-                        parseInt(execResult[ 2 ] + execResult[ 2 ], 16),
-                        parseInt(execResult[ 3 ] + execResult[ 3 ], 16)
+                        parseInt(execResult[1] + execResult[1], 16),
+                        parseInt(execResult[2] + execResult[2], 16),
+                        parseInt(execResult[3] + execResult[3], 16)
                     ];
                 }
             },
@@ -533,11 +532,11 @@
             }
         ],
         template: '<div class="colorpicker dropdown-menu">' +
-            '<div class="colorpicker-saturation"><i><b></b></i></div>' +
-            '<div class="colorpicker-hue"><i></i></div>' +
-            '<div class="colorpicker-alpha"><i></i></div>' +
-            '<div class="colorpicker-color"><div /></div>' +
-            '</div>'
+        '<div class="colorpicker-saturation"><i><b></b></i></div>' +
+        '<div class="colorpicker-hue"><i></i></div>' +
+        '<div class="colorpicker-alpha"><i></i></div>' +
+        '<div class="colorpicker-color"><div /></div>' +
+        '</div>'
     };
 
 }(window.jQuery)

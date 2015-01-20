@@ -1,6 +1,5 @@
 package org.jichuang.hope6537.blog.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.jichuang.hope6537.base.controller.AdminPageController;
 import org.jichuang.hope6537.base.model.Member;

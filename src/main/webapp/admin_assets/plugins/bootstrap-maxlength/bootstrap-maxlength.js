@@ -224,16 +224,28 @@
 
                 switch (options.placement) {
                     case 'bottom':
-                        maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2});
+                        maxLengthIndicator.css({
+                            top: pos.top + pos.height,
+                            left: pos.left + pos.width / 2 - actualWidth / 2
+                        });
                         break;
                     case 'top':
-                        maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2});
+                        maxLengthIndicator.css({
+                            top: pos.top - actualHeight,
+                            left: pos.left + pos.width / 2 - actualWidth / 2
+                        });
                         break;
                     case 'left':
-                        maxLengthIndicator.css({top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth});
+                        maxLengthIndicator.css({
+                            top: pos.top + pos.height / 2 - actualHeight / 2,
+                            left: pos.left - actualWidth
+                        });
                         break;
                     case 'right':
-                        maxLengthIndicator.css({top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width});
+                        maxLengthIndicator.css({
+                            top: pos.top + pos.height / 2 - actualHeight / 2,
+                            left: pos.left + pos.width
+                        });
                         break;
                     case 'bottom-right':
                         maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width});
@@ -245,10 +257,16 @@
                         maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left - outerWidth});
                         break;
                     case 'bottom-left':
-                        maxLengthIndicator.css({top: pos.top + currentInput.outerHeight(), left: pos.left - outerWidth});
+                        maxLengthIndicator.css({
+                            top: pos.top + currentInput.outerHeight(),
+                            left: pos.left - outerWidth
+                        });
                         break;
                     case 'centered-right':
-                        maxLengthIndicator.css({top: pos.top + (actualHeight / 2), left: pos.left + inputOuter - outerWidth - 3});
+                        maxLengthIndicator.css({
+                            top: pos.top + (actualHeight / 2),
+                            left: pos.left + inputOuter - outerWidth - 3
+                        });
                         break;
                 }
             }

@@ -86,7 +86,7 @@
                     file = data.files[data.index];
                 if ($.type(options.maxNumberOfFiles) === 'number' &&
                     (settings.getNumberOfFiles() || 0) + data.files.length >
-                        options.maxNumberOfFiles) {
+                    options.maxNumberOfFiles) {
                     file.error = settings.i18n('maxNumberOfFiles');
                 } else if (options.acceptFileTypes && !(options.acceptFileTypes.test(file.type) ||
                     options.acceptFileTypes.test(file.name))) {

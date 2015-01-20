@@ -43,15 +43,15 @@ var MemberTable = function () {
                 "aoColumnDefs": [
                     {
                         "bSortable": false,
-                        "aTargets": [ 0 ]
+                        "aTargets": [0]
                     }
                 ],
                 "aaSorting": [
-                    [ 1, 'asc' ]
+                    [1, 'asc']
                 ],
                 "aLengthMenu": [
-                    [ 5, 15, 20, -1 ],
-                    [ 5, 15, 20, "All" ]
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "All"]
                 ],
                 "iDisplayLength": 10
             });
@@ -162,10 +162,10 @@ var MemberTable = function () {
                                 + list[i].memberId
                                 + '"><button class="btn btn-xs green"> <i class="icon-edit"> ' +
                                 '<span style="font-family: Microsoft Yahei;">编辑基本信息</span></i> </button></a>';
-                            table.fnAddData([ line1,
+                            table.fnAddData([line1,
                                 line2, line3,
                                 line4, line5,
-                                line6 , line7 ]);
+                                line6, line7]);
                         }
                     } else {
                         toast.error(data.returnMsg);
@@ -186,8 +186,8 @@ var MemberTable = function () {
             }
             var validateError =
                 data.name == undefined ||
-                    data.username == undefined ||
-                    (data.password != null && data.password != confirm_password);
+                data.username == undefined ||
+                (data.password != null && data.password != confirm_password);
             if (validateError) {
                 toast.error("请输入合法数据");
                 return;
@@ -226,7 +226,7 @@ var MemberTable = function () {
                     for (var i = 0; i < MemberService.allPostList.length; i++) {
                         $('#memberPosts').append(
                             "<option value='" + MemberService.allPostList[i].postId + "'>"
-                                + MemberService.allPostList[i].des + "</option>"
+                            + MemberService.allPostList[i].des + "</option>"
                         );
                         MemberService.postDesList += MemberService.allPostList[i].des + ",";
                     }
@@ -322,9 +322,9 @@ var MemberTable = function () {
             console.log(data);
             var validateError =
                 data.name == undefined ||
-                    data.username == undefined ||
-                    data.password == undefined ||
-                    data.password != confirm_password;
+                data.username == undefined ||
+                data.password == undefined ||
+                data.password != confirm_password;
             if (validateError) {
                 toast.error("请输入合法数据");
                 return;

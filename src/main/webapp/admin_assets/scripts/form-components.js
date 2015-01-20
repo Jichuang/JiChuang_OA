@@ -337,8 +337,8 @@ var FormComponents = function () {
                         },
                         dataType: "jsonp"
                     }).done(function (data) {
-                            callback(data);
-                        });
+                        callback(data);
+                    });
                 }
             },
             formatResult: movieFormatResult, // omitted for brevity, see the source of this page
@@ -453,8 +453,8 @@ var FormComponents = function () {
                         },
                         dataType: "jsonp"
                     }).done(function (data) {
-                            callback(data);
-                        });
+                        callback(data);
+                    });
                 }
             },
             formatResult: movieFormatResult, // omitted for brevity, see the source of this page

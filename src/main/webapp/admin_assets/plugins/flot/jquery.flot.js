@@ -51,9 +51,9 @@
         };
         G.toString = function () {
             if (G.a >= 1) {
-                return"rgb(" + [G.r, G.g, G.b].join(",") + ")"
+                return "rgb(" + [G.r, G.g, G.b].join(",") + ")"
             } else {
-                return"rgba(" + [G.r, G.g, G.b, G.a].join(",") + ")"
+                return "rgba(" + [G.r, G.g, G.b, G.a].join(",") + ")"
             }
         };
         G.normalize = function () {
@@ -114,7 +114,51 @@
             return C(E[0], E[1], E[2])
         }
     };
-    var A = {aqua: [0, 255, 255], azure: [240, 255, 255], beige: [245, 245, 220], black: [0, 0, 0], blue: [0, 0, 255], brown: [165, 42, 42], cyan: [0, 255, 255], darkblue: [0, 0, 139], darkcyan: [0, 139, 139], darkgrey: [169, 169, 169], darkgreen: [0, 100, 0], darkkhaki: [189, 183, 107], darkmagenta: [139, 0, 139], darkolivegreen: [85, 107, 47], darkorange: [255, 140, 0], darkorchid: [153, 50, 204], darkred: [139, 0, 0], darksalmon: [233, 150, 122], darkviolet: [148, 0, 211], fuchsia: [255, 0, 255], gold: [255, 215, 0], green: [0, 128, 0], indigo: [75, 0, 130], khaki: [240, 230, 140], lightblue: [173, 216, 230], lightcyan: [224, 255, 255], lightgreen: [144, 238, 144], lightgrey: [211, 211, 211], lightpink: [255, 182, 193], lightyellow: [255, 255, 224], lime: [0, 255, 0], magenta: [255, 0, 255], maroon: [128, 0, 0], navy: [0, 0, 128], olive: [128, 128, 0], orange: [255, 165, 0], pink: [255, 192, 203], purple: [128, 0, 128], violet: [128, 0, 128], red: [255, 0, 0], silver: [192, 192, 192], white: [255, 255, 255], yellow: [255, 255, 0]}
+    var A = {
+        aqua: [0, 255, 255],
+        azure: [240, 255, 255],
+        beige: [245, 245, 220],
+        black: [0, 0, 0],
+        blue: [0, 0, 255],
+        brown: [165, 42, 42],
+        cyan: [0, 255, 255],
+        darkblue: [0, 0, 139],
+        darkcyan: [0, 139, 139],
+        darkgrey: [169, 169, 169],
+        darkgreen: [0, 100, 0],
+        darkkhaki: [189, 183, 107],
+        darkmagenta: [139, 0, 139],
+        darkolivegreen: [85, 107, 47],
+        darkorange: [255, 140, 0],
+        darkorchid: [153, 50, 204],
+        darkred: [139, 0, 0],
+        darksalmon: [233, 150, 122],
+        darkviolet: [148, 0, 211],
+        fuchsia: [255, 0, 255],
+        gold: [255, 215, 0],
+        green: [0, 128, 0],
+        indigo: [75, 0, 130],
+        khaki: [240, 230, 140],
+        lightblue: [173, 216, 230],
+        lightcyan: [224, 255, 255],
+        lightgreen: [144, 238, 144],
+        lightgrey: [211, 211, 211],
+        lightpink: [255, 182, 193],
+        lightyellow: [255, 255, 224],
+        lime: [0, 255, 0],
+        magenta: [255, 0, 255],
+        maroon: [128, 0, 0],
+        navy: [0, 0, 128],
+        olive: [128, 128, 0],
+        orange: [255, 165, 0],
+        pink: [255, 192, 203],
+        purple: [128, 0, 128],
+        violet: [128, 0, 128],
+        red: [255, 0, 0],
+        silver: [192, 192, 192],
+        white: [255, 255, 255],
+        yellow: [255, 255, 0]
+    }
 })(jQuery);
 
 // the actual Flot code
@@ -143,7 +187,7 @@
             element = document.createElement("canvas");
             element.className = cls;
 
-            $(element).css({ direction: "ltr", position: "absolute", left: 0, top: 0 })
+            $(element).css({direction: "ltr", position: "absolute", left: 0, top: 0})
                 .appendTo(container);
 
             // If HTML5 Canvas isn't available, fall back to [Ex|Flash]canvas
@@ -172,10 +216,10 @@
         var devicePixelRatio = window.devicePixelRatio || 1,
             backingStoreRatio =
                 context.webkitBackingStorePixelRatio ||
-                    context.mozBackingStorePixelRatio ||
-                    context.msBackingStorePixelRatio ||
-                    context.oBackingStorePixelRatio ||
-                    context.backingStorePixelRatio || 1;
+                context.mozBackingStorePixelRatio ||
+                context.msBackingStorePixelRatio ||
+                context.oBackingStorePixelRatio ||
+                context.backingStorePixelRatio || 1;
 
         this.pixelRatio = devicePixelRatio / backingStoreRatio;
 
@@ -689,7 +733,7 @@
             eventHolder = null, // jQuery object that events should be bound to
             ctx = null, octx = null,
             xaxes = [], yaxes = [],
-            plotOffset = { left: 0, right: 0, top: 0, bottom: 0},
+            plotOffset = {left: 0, right: 0, top: 0, bottom: 0},
             plotWidth = 0, plotHeight = 0,
             hooks = {
                 processOptions: [],
@@ -1157,9 +1201,9 @@
 
             for (i = 0; i < series.length; ++i) {
                 s = series[i];
-                s.datapoints = { points: [] };
+                s.datapoints = {points: []};
 
-                executeHooks(hooks.processRawData, [ s, s.data, s.datapoints ]);
+                executeHooks(hooks.processRawData, [s, s.data, s.datapoints]);
             }
 
             // first pass: clean and copy data
@@ -1172,12 +1216,12 @@
                 if (!format) {
                     format = [];
                     // find out how to copy
-                    format.push({ x: true, number: true, required: true });
-                    format.push({ y: true, number: true, required: true });
+                    format.push({x: true, number: true, required: true});
+                    format.push({y: true, number: true, required: true});
 
                     if (s.bars.show || (s.lines.show && s.lines.fill)) {
                         var autoscale = !!((s.bars.show && s.bars.zero) || (s.lines.show && s.lines.zero));
-                        format.push({ y: true, number: true, required: false, defaultValue: 0, autoscale: autoscale });
+                        format.push({y: true, number: true, required: false, defaultValue: 0, autoscale: autoscale});
                         if (s.bars.horizontal) {
                             delete format[format.length - 1].y;
                             format[format.length - 1].x = true;
@@ -1275,7 +1319,7 @@
             for (i = 0; i < series.length; ++i) {
                 s = series[i];
 
-                executeHooks(hooks.processDatapoints, [ s, s.datapoints]);
+                executeHooks(hooks.processDatapoints, [s, s.datapoints]);
             }
 
             // second pass: find datamax/datamin for auto-scaling
@@ -1533,10 +1577,10 @@
 
                 if (pos == "bottom") {
                     plotOffset.bottom += lh + axisMargin;
-                    axis.box = { top: surface.height - plotOffset.bottom, height: lh };
+                    axis.box = {top: surface.height - plotOffset.bottom, height: lh};
                 }
                 else {
-                    axis.box = { top: plotOffset.top + axisMargin, height: lh };
+                    axis.box = {top: plotOffset.top + axisMargin, height: lh};
                     plotOffset.top += lh + axisMargin;
                 }
             }
@@ -1544,12 +1588,12 @@
                 lw += padding;
 
                 if (pos == "left") {
-                    axis.box = { left: plotOffset.left + axisMargin, width: lw };
+                    axis.box = {left: plotOffset.left + axisMargin, width: lw};
                     plotOffset.left += lw + axisMargin;
                 }
                 else {
                     plotOffset.right += lw + axisMargin;
-                    axis.box = { left: surface.width - plotOffset.right, width: lw };
+                    axis.box = {left: surface.width - plotOffset.right, width: lw};
                 }
             }
 
@@ -1578,7 +1622,7 @@
             // inside the canvas and isn't clipped off
 
             var minMargin = options.grid.minBorderMargin,
-                margins = { x: 0, y: 0 }, i, axis;
+                margins = {x: 0, y: 0}, i, axis;
 
             // check stuff from the plot (FIXME: this should just read
             // a value from the series, otherwise it's impossible to
@@ -1894,7 +1938,7 @@
                 if (label == null)
                     label = axis.tickFormatter(v, axis);
                 if (!isNaN(v))
-                    axis.ticks.push({ v: v, label: label });
+                    axis.ticks.push({v: v, label: label});
             }
         }
 
@@ -1974,7 +2018,7 @@
                 to = tmp;
             }
 
-            return { from: from, to: to, axis: axis };
+            return {from: from, to: to, axis: axis};
         }
 
         function drawBackground() {
@@ -2122,7 +2166,7 @@
                     xoff = yoff = 0;
 
                     if (isNaN(v) || v < axis.min || v > axis.max
-                        // skip those lying on the axes if we got a border
+                            // skip those lying on the axes if we got a border
                         || (t == "full"
                         && ((typeof bw == "object" && bw[axis.position] > 0) || bw > 0)
                         && (v == axis.min || v == axis.max)))
@@ -2790,7 +2834,7 @@
                     entries.sort(function (a, b) {
                         return a.label == b.label ? 0 : (
                             (a.label < b.label) != ascending ? 1 : -1   // Logical XOR
-                            );
+                        );
                     });
                 }
             }
@@ -2810,7 +2854,7 @@
 
                 fragments.push(
                     '<td class="legendColorBox"><div style="border:1px solid ' + options.legend.labelBoxBorderColor + ';padding:1px"><div style="width:4px;height:0;border:5px solid ' + entry.color + ';overflow:hidden"></div></div></td>' +
-                        '<td class="legendLabel">' + entry.label + '</td>'
+                    '<td class="legendLabel">' + entry.label + '</td>'
                 );
             }
 
@@ -2929,9 +2973,9 @@
 
                         // for a bar graph, the cursor must be inside the bar
                         if (series[i].bars.horizontal ?
-                            (mx <= Math.max(b, x) && mx >= Math.min(b, x) &&
+                                (mx <= Math.max(b, x) && mx >= Math.min(b, x) &&
                                 my >= y + barLeft && my <= y + barRight) :
-                            (mx >= x + barLeft && mx <= x + barRight &&
+                                (mx >= x + barLeft && mx <= x + barRight &&
                                 my >= Math.min(b, y) && my <= Math.max(b, y)))
                             item = [i, j / ps];
                     }
@@ -2943,10 +2987,12 @@
                 j = item[1];
                 ps = series[i].datapoints.pointsize;
 
-                return { datapoint: series[i].datapoints.points.slice(j * ps, (j + 1) * ps),
+                return {
+                    datapoint: series[i].datapoints.points.slice(j * ps, (j + 1) * ps),
                     dataIndex: j,
                     series: series[i],
-                    seriesIndex: i };
+                    seriesIndex: i
+                };
             }
 
             return null;
@@ -2981,7 +3027,7 @@
             var offset = eventHolder.offset(),
                 canvasX = event.pageX - offset.left - plotOffset.left,
                 canvasY = event.pageY - offset.top - plotOffset.top,
-                pos = canvasToAxisCoords({ left: canvasX, top: canvasY });
+                pos = canvasToAxisCoords({left: canvasX, top: canvasY});
 
             pos.pageX = event.pageX;
             pos.pageY = event.pageY;
@@ -3008,7 +3054,7 @@
                     highlight(item.series, item.datapoint, eventname);
             }
 
-            placeholder.trigger(eventname, [ pos, item ]);
+            placeholder.trigger(eventname, [pos, item]);
         }
 
         function triggerRedrawOverlay() {
@@ -3055,7 +3101,7 @@
 
             var i = indexOfHighlight(s, point);
             if (i == -1) {
-                highlights.push({ series: s, point: point, auto: auto });
+                highlights.push({series: s, point: point, auto: auto});
 
                 triggerRedrawOverlay();
             }

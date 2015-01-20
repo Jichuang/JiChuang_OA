@@ -40,11 +40,11 @@ var FormFileUpload = function () {
                     url: 'admin_assets/plugins/jquery-file-upload/server/php/',
                     type: 'HEAD'
                 }).fail(function () {
-                        $('<div class="alert alert-danger"/>')
-                            .text('Upload server currently unavailable - ' +
-                                new Date())
-                            .appendTo('#fileupload');
-                    });
+                    $('<div class="alert alert-danger"/>')
+                        .text('Upload server currently unavailable - ' +
+                        new Date())
+                        .appendTo('#fileupload');
+                });
             }
 
             ////////////////////

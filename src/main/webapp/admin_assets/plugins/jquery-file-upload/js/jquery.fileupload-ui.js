@@ -89,22 +89,22 @@
                 data.process(function () {
                     return $this.fileupload('process', data);
                 }).always(function () {
-                        data.context = that._renderUpload(files).data('data', data);
-                        that._renderPreviews(data);
-                        options.filesContainer[
-                            options.prependFiles ? 'prepend' : 'append'
-                            ](data.context);
-                        that._forceReflow(data.context);
-                        that._transition(data.context).done(
-                            function () {
-                                if ((that._trigger('added', e, data) !== false) &&
-                                    (options.autoUpload || data.autoUpload) &&
-                                    data.autoUpload !== false && !data.files.error) {
-                                    data.submit();
-                                }
+                    data.context = that._renderUpload(files).data('data', data);
+                    that._renderPreviews(data);
+                    options.filesContainer[
+                        options.prependFiles ? 'prepend' : 'append'
+                        ](data.context);
+                    that._forceReflow(data.context);
+                    that._transition(data.context).done(
+                        function () {
+                            if ((that._trigger('added', e, data) !== false) &&
+                                (options.autoUpload || data.autoUpload) &&
+                                data.autoUpload !== false && !data.files.error) {
+                                data.submit();
                             }
-                        );
-                    });
+                        }
+                    );
+                });
             },
             // Callback for the start of each file upload request:
             send: function (e, data) {
@@ -117,13 +117,13 @@
                     // the progress to 100%, showing the full animated bar:
                     data.context
                         .find('.progress').addClass(
-                            !$.support.transition && 'progress-animated'
-                        )
+                        !$.support.transition && 'progress-animated'
+                    )
                         .attr('aria-valuenow', 100)
                         .children().first().css(
-                            'width',
-                            '100%'
-                        );
+                        'width',
+                        '100%'
+                    );
                 }
                 return that._trigger('sent', e, data);
             },
@@ -139,7 +139,7 @@
                 if (data.context) {
                     data.context.each(function (index) {
                         var file = files[index] ||
-                        {error: 'Empty file upload result'};
+                            {error: 'Empty file upload result'};
                         deferred = that._addFinishedDeferreds();
                         that._transition($(this)).done(
                             function () {
@@ -185,7 +185,7 @@
                         if (data.errorThrown !== 'abort') {
                             var file = data.files[index];
                             file.error = file.error || data.errorThrown ||
-                                true;
+                            true;
                             deferred = that._addFinishedDeferreds();
                             that._transition($(this)).done(
                                 function () {
@@ -244,9 +244,9 @@
                         $(this).find('.progress')
                             .attr('aria-valuenow', progress)
                             .children().first().css(
-                                'width',
-                                progress + '%'
-                            );
+                            'width',
+                            progress + '%'
+                        );
                     });
                 }
             },
@@ -267,9 +267,9 @@
                     .find('.progress')
                     .attr('aria-valuenow', progress)
                     .children().first().css(
-                        'width',
-                        progress + '%'
-                    );
+                    'width',
+                    progress + '%'
+                );
             },
             // Callback for uploads start, equivalent to the global ajaxStart event:
             start: function (e) {

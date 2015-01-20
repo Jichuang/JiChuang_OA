@@ -15,10 +15,9 @@ import java.util.List;
 @RequestMapping("/frontpage")
 @Scope(value = "prototype")
 public class FrontPageController {
+    public static final String PATH = "frontend/";
     @Autowired
     private BlogService blogService;
-
-    public static final String PATH = "frontend/";
 
     @RequestMapping(value = "/aboutus"/* , method = RequestMethod.GET */)
     public String toAboutUs(HttpServletRequest request) {

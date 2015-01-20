@@ -16,7 +16,7 @@
             console.log('code coverage data is NOT available');
         }
 
-        return { 'key': key, 'lines': lines };
+        return {'key': key, 'lines': lines};
     };
 
     QUnit.done = function (t) {

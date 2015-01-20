@@ -151,9 +151,9 @@ var GMaps = (function (global) {
             map_center = new google.maps.LatLng(options.lat, options.lng),
             zoomControl = options.zoomControl || true,
             zoomControlOpt = options.zoomControlOpt || {
-                style: 'DEFAULT',
-                position: 'TOP_LEFT'
-            },
+                    style: 'DEFAULT',
+                    position: 'TOP_LEFT'
+                },
             zoomControlStyle = zoomControlOpt.style || 'DEFAULT',
             zoomControlPosition = zoomControlOpt.position || 'TOP_LEFT',
             panControl = options.panControl || true,

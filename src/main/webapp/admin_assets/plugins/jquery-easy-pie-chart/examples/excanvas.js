@@ -112,9 +112,9 @@ if (!document.createElement('canvas').getContext) {
                     ss.owningElement.id = 'ex_canvas_';
                     ss.cssText = 'canvas{display:inline-block;overflow:hidden;' +
                         // default size is 300x150 in Gecko and Opera
-                        'text-align:left;width:300px;height:150px}' +
-                        'g_vml_\\:*{behavior:url(#default#VML)}' +
-                        'g_o_\\:*{behavior:url(#default#VML)}';
+                    'text-align:left;width:300px;height:150px}' +
+                    'g_vml_\\:*{behavior:url(#default#VML)}' +
+                    'g_o_\\:*{behavior:url(#default#VML)}';
 
                 }
 
@@ -403,14 +403,16 @@ if (!document.createElement('canvas').getContext) {
             var pStart = this.getCoords_(xStart, yStart);
             var pEnd = this.getCoords_(xEnd, yEnd);
 
-            this.currentPath_.push({type: arcType,
+            this.currentPath_.push({
+                type: arcType,
                 x: p.x,
                 y: p.y,
                 radius: aRadius,
                 xStart: pStart.x,
                 yStart: pStart.y,
                 xEnd: pEnd.x,
-                yEnd: pEnd.y});
+                yEnd: pEnd.y
+            });
 
         };
 
@@ -902,9 +904,11 @@ if (!document.createElement('canvas').getContext) {
 
         CanvasGradient_.prototype.addColorStop = function (aOffset, aColor) {
             aColor = processStyle(aColor);
-            this.colors_.push({offset: aOffset,
+            this.colors_.push({
+                offset: aOffset,
                 color: aColor.color,
-                alpha: aColor.alpha});
+                alpha: aColor.alpha
+            });
         };
 
         function CanvasPattern_() {

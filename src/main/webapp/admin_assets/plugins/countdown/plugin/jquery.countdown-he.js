@@ -8,6 +8,7 @@
         compactLabels: ['שנ', 'ח', 'שב', 'י'],
         whichLabels: null,
         digits: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-        timeSeparator: ':', isRTL: true};
+        timeSeparator: ':', isRTL: true
+    };
     $.countdown.setDefaults($.countdown.regional['he']);
 })(jQuery);

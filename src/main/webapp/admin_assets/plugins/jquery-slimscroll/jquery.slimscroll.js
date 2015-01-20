@@ -191,7 +191,7 @@
                     });
 
                 // set position
-                var posCss = (o.position == 'right') ? { right: o.distance } : { left: o.distance };
+                var posCss = (o.position == 'right') ? {right: o.distance} : {left: o.distance};
                 rail.css(posCss);
                 bar.css(posCss);
 
@@ -204,7 +204,7 @@
 
                 // make it draggable and no longer dependent on the jqueryUI
                 if (o.railDraggable) {
-                    bar.bind("mousedown",function (e) {
+                    bar.bind("mousedown", function (e) {
                         var $doc = $(document);
                         isDragg = true;
                         t = parseFloat(bar.css('top'));
@@ -223,10 +223,10 @@
                         });
                         return false;
                     }).bind("selectstart.slimscroll", function (e) {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            return false;
-                        });
+                        e.stopPropagation();
+                        e.preventDefault();
+                        return false;
+                    });
                 }
 
                 // on rail over
@@ -281,7 +281,7 @@
                 // check start position
                 if (o.start === 'bottom') {
                     // scroll content to bottom
-                    bar.css({ top: me.outerHeight() - bar.outerHeight() });
+                    bar.css({top: me.outerHeight() - bar.outerHeight()});
                     scrollContent(0, true);
                 }
                 else if (o.start !== 'top') {
@@ -347,7 +347,7 @@
                         delta = (y > 0) ? Math.ceil(delta) : Math.floor(delta);
 
                         // scroll the scrollbar
-                        bar.css({ top: delta + 'px' });
+                        bar.css({top: delta + 'px'});
                     }
 
                     // calculate actual scroll amount
@@ -358,7 +358,7 @@
                         delta = y;
                         var offsetTop = delta / me[0].scrollHeight * me.outerHeight();
                         offsetTop = Math.min(Math.max(offsetTop, 0), maxTop);
-                        bar.css({ top: offsetTop + 'px' });
+                        bar.css({top: offsetTop + 'px'});
                     }
 
                     // scroll content
@@ -388,11 +388,11 @@
                 function getBarHeight() {
                     // calculate scrollbar height and make sure it is not too small
                     barHeight = Math.max((me.outerHeight() / me[0].scrollHeight) * me.outerHeight(), minBarHeight);
-                    bar.css({ height: barHeight + 'px' });
+                    bar.css({height: barHeight + 'px'});
 
                     // hide scrollbar if content is not long enough
                     var display = barHeight == me.outerHeight() ? 'none' : 'block';
-                    bar.css({ display: display });
+                    bar.css({display: display});
                 }
 
                 function showBar() {

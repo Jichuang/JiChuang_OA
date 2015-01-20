@@ -69,7 +69,7 @@
 
     function init(plot) {
         // position of crosshair in pixels
-        var crosshair = { x: -1, y: -1, locked: false };
+        var crosshair = {x: -1, y: -1, locked: false};
 
         plot.setCrosshair = function setCrosshair(pos) {
             if (!pos)

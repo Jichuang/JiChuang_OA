@@ -9,12 +9,12 @@ module.exports = function (grunt) {
 
         meta: {
             banner: '/*!\n' +
-                ' * GMaps.js v<%= pkg.version %>\n' +
-                ' * <%= pkg.homepage %>\n' +
-                ' *\n' +
-                ' * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author %>\n' +
-                ' * Released under the <%= pkg.license %> License.\n' +
-                ' */\n\n'
+            ' * GMaps.js v<%= pkg.version %>\n' +
+            ' * <%= pkg.homepage %>\n' +
+            ' *\n' +
+            ' * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author %>\n' +
+            ' * Released under the <%= pkg.license %> License.\n' +
+            ' */\n\n'
         },
 
         concat: {

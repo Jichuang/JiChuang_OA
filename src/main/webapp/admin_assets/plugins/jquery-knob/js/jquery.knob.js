@@ -96,8 +96,8 @@
 
                     // UI
                     cursor: (this.$.data('cursor') === true && 30)
-                        || this.$.data('cursor')
-                        || 0,
+                    || this.$.data('cursor')
+                    || 0,
                     thickness: this.$.data('thickness') || 0.35,
                     lineCap: this.$.data('linecap') || 'butt',
                     width: this.$.data('width') || 200,
@@ -173,26 +173,26 @@
 
             // hdpi support
             this.scale = (window.devicePixelRatio || 1) /
-                (
-                    this.c.webkitBackingStorePixelRatio ||
-                        this.c.mozBackingStorePixelRatio ||
-                        this.c.msBackingStorePixelRatio ||
-                        this.c.oBackingStorePixelRatio ||
-                        this.c.backingStorePixelRatio || 1
-                    );
+            (
+            this.c.webkitBackingStorePixelRatio ||
+            this.c.mozBackingStorePixelRatio ||
+            this.c.msBackingStorePixelRatio ||
+            this.c.oBackingStorePixelRatio ||
+            this.c.backingStorePixelRatio || 1
+            );
 
             // detects relative width / height
             this.relativeWidth = ((this.o.width % 1 !== 0)
-                && this.o.width.indexOf('%'));
+            && this.o.width.indexOf('%'));
             this.relativeHeight = ((this.o.height % 1 !== 0)
-                && this.o.height.indexOf('%'));
+            && this.o.height.indexOf('%'));
 
             this.relative = (this.relativeWidth || this.relativeHeight);
 
             // wraps all elements in a div
             this.$div = $('<div style="'
-                + (this.o.inline ? 'display:inline;' : '')
-                + '"></div>');
+            + (this.o.inline ? 'display:inline;' : '')
+            + '"></div>');
 
             this.$.wrap(this.$div).before(this.$c);
             this.$div = this.$.parent();
@@ -232,11 +232,11 @@
             if (this.relative) {
                 var w = this.relativeWidth
                         ? this.$div.parent().width()
-                        * parseInt(this.o.width) / 100
+                    * parseInt(this.o.width) / 100
                         : this.$div.parent().width(),
                     h = this.relativeHeight
                         ? this.$div.parent().height()
-                        * parseInt(this.o.height) / 100
+                    * parseInt(this.o.height) / 100
                         : this.$div.parent().height();
 
                 // apply relative
@@ -298,8 +298,8 @@
 
                 if (
                     s.cH
-                        && (s.cH(v) === false)
-                    ) return;
+                    && (s.cH(v) === false)
+                ) return;
 
 
                 s.change(s._validate(v));
@@ -322,8 +322,8 @@
 
                     if (
                         s.rH
-                            && (s.rH(s.cv) === false)
-                        ) return;
+                        && (s.rH(s.cv) === false)
+                    ) return;
 
                     s.val(s.cv);
                 }
@@ -340,8 +340,8 @@
 
                 if (
                     s.cH
-                        && (s.cH(v) === false)
-                    ) return;
+                    && (s.cH(v) === false)
+                ) return;
 
                 s.change(s._validate(v));
                 s._draw();
@@ -362,8 +362,8 @@
 
                         if (
                             s.eH
-                                && (s.eH() === false)
-                            ) return;
+                            && (s.eH() === false)
+                        ) return;
 
                         s.cancel();
                     }
@@ -376,8 +376,8 @@
 
                     if (
                         s.rH
-                            && (s.rH(s.cv) === false)
-                        ) return;
+                        && (s.rH(s.cv) === false)
+                    ) return;
 
                     s.val(s.cv);
                 }
@@ -543,7 +543,7 @@
             }
 
             ret = ~~(0.5 + (a * (this.o.max - this.o.min) / this.angleArc))
-                + this.o.min;
+            + this.o.min;
 
             this.o.stopper
             && (ret = max(min(ret, this.o.max), this.o.min));
@@ -563,8 +563,8 @@
 
                     if (
                         s.cH
-                            && (s.cH(v) === false)
-                        ) return;
+                        && (s.cH(v) === false)
+                    ) return;
 
                     s.val(v);
                 }
@@ -586,9 +586,9 @@
                     if (isNaN(kval)) {
 
                         (kc !== 13)         // enter
-                            && (kc !== 8)       // bs
-                            && (kc !== 9)       // tab
-                            && (kc !== 189)     // -
+                        && (kc !== 8)       // bs
+                        && (kc !== 9)       // tab
+                        && (kc !== 189)     // -
                         && e.preventDefault();
 
                         // arrows
@@ -641,8 +641,8 @@
 
             if (
                 this.v < this.o.min
-                    || this.v > this.o.max
-                ) this.v = this.o.min;
+                || this.v > this.o.max
+            ) this.v = this.o.min;
 
             this.$.val(this.v);
             this.w2 = this.w / 2;
@@ -667,14 +667,26 @@
             this.endAngle = 1.5 * Math.PI + this.angleOffset + this.angleArc;
 
             var s = max(
-                String(Math.abs(this.o.max)).length
-                , String(Math.abs(this.o.min)).length
-                , 2
-            ) + 2;
+                    String(Math.abs(this.o.max)).length
+                    , String(Math.abs(this.o.min)).length
+                    , 2
+                ) + 2;
 
             this.o.displayInput
-                && this.i.css({
-                'width': ((this.w / 2 + 4) >> 0) + 'px', 'height': ((this.w / 3) >> 0) + 'px', 'position': 'absolute', 'vertical-align': 'middle', 'margin-top': ((this.w / 3) >> 0) + 'px', 'margin-left': '-' + ((this.w * 3 / 4 + 2) >> 0) + 'px', 'border': 0, 'background': 'none', 'font': this.o.fontWeight + ' ' + ((this.w / s) >> 0) + 'px ' + this.o.font, 'text-align': 'center', 'color': this.o.inputColor || this.o.fgColor, 'padding': '0px', '-webkit-appearance': 'none'
+            && this.i.css({
+                'width': ((this.w / 2 + 4) >> 0) + 'px',
+                'height': ((this.w / 3) >> 0) + 'px',
+                'position': 'absolute',
+                'vertical-align': 'middle',
+                'margin-top': ((this.w / 3) >> 0) + 'px',
+                'margin-left': '-' + ((this.w * 3 / 4 + 2) >> 0) + 'px',
+                'border': 0,
+                'background': 'none',
+                'font': this.o.fontWeight + ' ' + ((this.w / s) >> 0) + 'px ' + this.o.font,
+                'text-align': 'center',
+                'color': this.o.inputColor || this.o.fgColor,
+                'padding': '0px',
+                '-webkit-appearance': 'none'
             })
             || this.i.css({
                 'width': '0px', 'visibility': 'hidden'
@@ -704,7 +716,7 @@
             c.lineCap = this.lineCap;
 
             this.o.cursor
-                && (sat = eat - this.cursorExt)
+            && (sat = eat - this.cursorExt)
             && (eat = eat + this.cursorExt);
 
             c.beginPath();
@@ -716,7 +728,7 @@
                 ea = this.startAngle + this.angle(this.v);
                 sa = this.startAngle;
                 this.o.cursor
-                    && (sa = ea - this.cursorExt)
+                && (sa = ea - this.cursorExt)
                 && (ea = ea + this.cursorExt);
 
                 c.beginPath();

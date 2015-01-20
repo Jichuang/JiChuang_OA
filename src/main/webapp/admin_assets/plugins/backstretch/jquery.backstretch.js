@@ -74,7 +74,15 @@
         wrap: {
             left: 0, top: 0, overflow: 'hidden', margin: 0, padding: 0, height: '100%', width: '100%', zIndex: -999999
         }, img: {
-            position: 'absolute', display: 'none', margin: 0, padding: 0, border: 'none', width: 'auto', height: 'auto', maxWidth: 'none', zIndex: -999999
+            position: 'absolute',
+            display: 'none',
+            margin: 0,
+            padding: 0,
+            border: 'none',
+            width: 'auto',
+            height: 'auto',
+            maxWidth: 'none',
+            zIndex: -999999
         }
     };
 
@@ -115,7 +123,9 @@
                 , zIndex = this.$container.css('zIndex');
 
             this.$container.css({
-                position: position === 'static' ? 'relative' : position, zIndex: zIndex === 'auto' ? 0 : zIndex, background: 'none'
+                position: position === 'static' ? 'relative' : position,
+                zIndex: zIndex === 'auto' ? 0 : zIndex,
+                background: 'none'
             });
 
             // Needs a higher z-index
@@ -292,37 +302,37 @@
             , platform = navigator.platform
         // Rendering engine is Webkit, and capture major version
             , wkmatch = ua.match(/AppleWebKit\/([0-9]+)/)
-            , wkversion = !!wkmatch && wkmatch[ 1 ]
+            , wkversion = !!wkmatch && wkmatch[1]
             , ffmatch = ua.match(/Fennec\/([0-9]+)/)
-            , ffversion = !!ffmatch && ffmatch[ 1 ]
+            , ffversion = !!ffmatch && ffmatch[1]
             , operammobilematch = ua.match(/Opera Mobi\/([0-9]+)/)
-            , omversion = !!operammobilematch && operammobilematch[ 1 ]
+            , omversion = !!operammobilematch && operammobilematch[1]
             , iematch = ua.match(/MSIE ([0-9]+)/)
-            , ieversion = !!iematch && iematch[ 1 ];
+            , ieversion = !!iematch && iematch[1];
 
         return !(
             // iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
-            ((platform.indexOf("iPhone") > -1 || platform.indexOf("iPad") > -1 || platform.indexOf("iPod") > -1 ) && wkversion && wkversion < 534) ||
+        ((platform.indexOf("iPhone") > -1 || platform.indexOf("iPad") > -1 || platform.indexOf("iPod") > -1 ) && wkversion && wkversion < 534) ||
 
-                // Opera Mini
-                (window.operamini && ({}).toString.call(window.operamini) === "[object OperaMini]") ||
-                (operammobilematch && omversion < 7458) ||
+            // Opera Mini
+        (window.operamini && ({}).toString.call(window.operamini) === "[object OperaMini]") ||
+        (operammobilematch && omversion < 7458) ||
 
-                //Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
-                (ua.indexOf("Android") > -1 && wkversion && wkversion < 533) ||
+            //Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
+        (ua.indexOf("Android") > -1 && wkversion && wkversion < 533) ||
 
-                // Firefox Mobile before 6.0 -
-                (ffversion && ffversion < 6) ||
+            // Firefox Mobile before 6.0 -
+        (ffversion && ffversion < 6) ||
 
-                // WebOS less than 3
-                ("palmGetResource" in window && wkversion && wkversion < 534) ||
+            // WebOS less than 3
+        ("palmGetResource" in window && wkversion && wkversion < 534) ||
 
-                // MeeGo
-                (ua.indexOf("MeeGo") > -1 && ua.indexOf("NokiaBrowser/8.5.0") > -1) ||
+            // MeeGo
+        (ua.indexOf("MeeGo") > -1 && ua.indexOf("NokiaBrowser/8.5.0") > -1) ||
 
-                // IE6
-                (ieversion && ieversion <= 6)
-            );
+            // IE6
+        (ieversion && ieversion <= 6)
+        );
     }());
 
 }(jQuery, window));

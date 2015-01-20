@@ -81,7 +81,7 @@
     }
 
     function F() {
-        return!A && z("6.0.65") && (e.win || e.mac) && !(e.wk && 312 > e.wk)
+        return !A && z("6.0.65") && (e.win || e.mac) && !(e.wk && 312 > e.wk)
     }
 
     function G(a, b, c, f) {
@@ -132,7 +132,7 @@
         if (g)if (typeof a.id == i && (a.id = c), e.ie && e.win) {
             var o = "", h;
             for (h in a)a[h] != Object.prototype[h] && ("data" == h.toLowerCase() ? b.movie = a[h] : "styleclass" == h.toLowerCase() ? o += ' class="' + a[h] + '"' : "classid" != h.toLowerCase() && (o += " " +
-                h + '="' + a[h] + '"'));
+            h + '="' + a[h] + '"'));
             h = "";
             for (var j in b)b[j] != Object.prototype[j] && (h += '<param name="' + j + '" value="' + b[j] + '" />');
             g.outerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"' + o + ">" + h + "</object>";
@@ -192,7 +192,7 @@
                 c = c && "string" == typeof c ? c : "screen";
                 f && (K = l = null);
                 if (!l || K != c)f = d.createElement("style"), f.setAttribute("type", "text/css"), f.setAttribute("media", c), l = g.appendChild(f),
-                    e.ie && (e.win && typeof d.styleSheets != i && 0 < d.styleSheets.length) && (l = d.styleSheets[d.styleSheets.length - 1]), K = c;
+                e.ie && (e.win && typeof d.styleSheets != i && 0 < d.styleSheets.length) && (l = d.styleSheets[d.styleSheets.length - 1]), K = c;
                 e.ie && e.win ? l && typeof l.addRule == r && l.addRule(a, b) : l && typeof d.createTextNode != i && l.appendChild(d.createTextNode(a + " {" + b + "}"))
             }
         }
@@ -223,7 +223,7 @@
                     e = [parseInt(h[0], 10), parseInt(h[1], 10), parseInt(h[2], 10)]
             } catch (k) {
             }
-            return{w3: a, pv: e, wk: b, ie: g, win: f, mac: c}
+            return {w3: a, pv: e, wk: b, ie: g, win: f, mac: c}
         }();
     (function () {
         e.w3 && ((typeof d.readyState != i && "complete" == d.readyState || typeof d.readyState == i && (d.getElementsByTagName("body")[0] || d.body)) && u(), s || (typeof d.addEventListener != i && d.addEventListener("DOMContentLoaded", u, !1), e.ie && e.win && (d.attachEvent("onreadystatechange", function () {
@@ -254,69 +254,71 @@
             swfobject = null
         })
     })();
-    return{registerObject: function (a, b, c, f) {
-        if (e.w3 && a && b) {
-            var d = {};
-            d.id = a;
-            d.swfVersion = b;
-            d.expressInstall = c;
-            d.callbackFn =
-                f;
-            p[p.length] = d;
-            t(a, !1)
-        } else f && f({success: !1, id: a})
-    }, getObjectById: function (a) {
-        if (e.w3)return E(a)
-    }, embedSWF: function (a, b, c, d, g, o, h, j, k, m) {
-        var n = {success: !1, id: b};
-        e.w3 && !(e.wk && 312 > e.wk) && a && b && c && d && g ? (t(b, !1), L(function () {
-            c += "";
-            d += "";
-            var e = {};
-            if (k && typeof k === r)for (var l in k)e[l] = k[l];
-            e.data = a;
-            e.width = c;
-            e.height = d;
-            l = {};
-            if (j && typeof j === r)for (var p in j)l[p] = j[p];
-            if (h && typeof h === r)for (var q in h)l.flashvars = typeof l.flashvars != i ? l.flashvars + ("&" + q + "=" + h[q]) : q + "=" + h[q];
-            if (z(g))p = J(e, l, b), e.id ==
+    return {
+        registerObject: function (a, b, c, f) {
+            if (e.w3 && a && b) {
+                var d = {};
+                d.id = a;
+                d.swfVersion = b;
+                d.expressInstall = c;
+                d.callbackFn =
+                    f;
+                p[p.length] = d;
+                t(a, !1)
+            } else f && f({success: !1, id: a})
+        }, getObjectById: function (a) {
+            if (e.w3)return E(a)
+        }, embedSWF: function (a, b, c, d, g, o, h, j, k, m) {
+            var n = {success: !1, id: b};
+            e.w3 && !(e.wk && 312 > e.wk) && a && b && c && d && g ? (t(b, !1), L(function () {
+                c += "";
+                d += "";
+                var e = {};
+                if (k && typeof k === r)for (var l in k)e[l] = k[l];
+                e.data = a;
+                e.width = c;
+                e.height = d;
+                l = {};
+                if (j && typeof j === r)for (var p in j)l[p] = j[p];
+                if (h && typeof h === r)for (var q in h)l.flashvars = typeof l.flashvars != i ? l.flashvars + ("&" + q + "=" + h[q]) : q + "=" + h[q];
+                if (z(g))p = J(e, l, b), e.id ==
                 b && t(b, !0), n.success = !0, n.ref = p; else {
-                if (o && F()) {
-                    e.data = o;
-                    G(e, l, b, m);
-                    return
+                    if (o && F()) {
+                        e.data = o;
+                        G(e, l, b, m);
+                        return
+                    }
+                    t(b, !0)
                 }
-                t(b, !0)
+                m && m(n)
+            })) : m && m(n)
+        }, switchOffAutoHideShow: function () {
+            R = !1
+        }, ua: e, getFlashPlayerVersion: function () {
+            return {major: e.pv[0], minor: e.pv[1], release: e.pv[2]}
+        }, hasFlashPlayerVersion: z, createSWF: function (a, b, c) {
+            if (e.w3)return J(a, b, c)
+        }, showExpressInstall: function (a, b, c, d) {
+            e.w3 && F() && G(a, b, c, d)
+        }, removeSWF: function (a) {
+            e.w3 && P(a)
+        }, createCSS: function (a, b, c, d) {
+            e.w3 && Q(a, b, c, d)
+        }, addDomLoadEvent: L, addLoadEvent: M, getQueryParamValue: function (a) {
+            var b =
+                d.location.search || d.location.hash;
+            if (b) {
+                /\?/.test(b) && (b = b.split("?")[1]);
+                if (null == a)return S(b);
+                for (var b = b.split("&"), c = 0; c < b.length; c++)if (b[c].substring(0, b[c].indexOf("=")) == a)return S(b[c].substring(b[c].indexOf("=") + 1))
             }
-            m && m(n)
-        })) : m && m(n)
-    }, switchOffAutoHideShow: function () {
-        R = !1
-    }, ua: e, getFlashPlayerVersion: function () {
-        return{major: e.pv[0], minor: e.pv[1], release: e.pv[2]}
-    }, hasFlashPlayerVersion: z, createSWF: function (a, b, c) {
-        if (e.w3)return J(a, b, c)
-    }, showExpressInstall: function (a, b, c, d) {
-        e.w3 && F() && G(a, b, c, d)
-    }, removeSWF: function (a) {
-        e.w3 && P(a)
-    }, createCSS: function (a, b, c, d) {
-        e.w3 && Q(a, b, c, d)
-    }, addDomLoadEvent: L, addLoadEvent: M, getQueryParamValue: function (a) {
-        var b =
-            d.location.search || d.location.hash;
-        if (b) {
-            /\?/.test(b) && (b = b.split("?")[1]);
-            if (null == a)return S(b);
-            for (var b = b.split("&"), c = 0; c < b.length; c++)if (b[c].substring(0, b[c].indexOf("=")) == a)return S(b[c].substring(b[c].indexOf("=") + 1))
+            return ""
+        }, expressInstallCallback: function () {
+            if (A) {
+                var a = n(O);
+                a && w && (a.parentNode.replaceChild(w, a), B && (t(B, !0), e.ie && e.win && (w.style.display = "block")), H && H(N));
+                A = !1
+            }
         }
-        return""
-    }, expressInstallCallback: function () {
-        if (A) {
-            var a = n(O);
-            a && w && (a.parentNode.replaceChild(w, a), B && (t(B, !0), e.ie && e.win && (w.style.display = "block")), H && H(N));
-            A = !1
-        }
-    }}
+    }
 }();

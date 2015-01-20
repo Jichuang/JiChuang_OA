@@ -18,10 +18,10 @@
                 re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
                 parse: function (execResult) {
                     return [
-                        execResult[ 1 ],
-                        execResult[ 2 ],
-                        execResult[ 3 ],
-                        execResult[ 4 ]
+                        execResult[1],
+                        execResult[2],
+                        execResult[3],
+                        execResult[4]
                     ];
                 }
             },
@@ -32,7 +32,7 @@
                         2.55 * execResult[1],
                         2.55 * execResult[2],
                         2.55 * execResult[3],
-                        execResult[ 4 ]
+                        execResult[4]
                     ];
                 }
             },
@@ -40,9 +40,9 @@
                 re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
                 parse: function (execResult) {
                     return [
-                        parseInt(execResult[ 1 ], 16),
-                        parseInt(execResult[ 2 ], 16),
-                        parseInt(execResult[ 3 ], 16)
+                        parseInt(execResult[1], 16),
+                        parseInt(execResult[2], 16),
+                        parseInt(execResult[3], 16)
                     ];
                 }
             },
@@ -50,9 +50,9 @@
                 re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,
                 parse: function (execResult) {
                     return [
-                        parseInt(execResult[ 1 ] + execResult[ 1 ], 16),
-                        parseInt(execResult[ 2 ] + execResult[ 2 ], 16),
-                        parseInt(execResult[ 3 ] + execResult[ 3 ], 16)
+                        parseInt(execResult[1] + execResult[1], 16),
+                        parseInt(execResult[2] + execResult[2], 16),
+                        parseInt(execResult[3] + execResult[3], 16)
                     ];
                 }
             },
@@ -148,7 +148,7 @@
     spaces.hsla.props.alpha = rgbaspace.alpha;
 
     function clamp(value, prop, alwaysAllowEmpty) {
-        var type = propTypes[ prop.type ] || {},
+        var type = propTypes[prop.type] || {},
             allowEmpty = prop.empty || alwaysAllowEmpty;
 
         if (allowEmpty && value == null) {
@@ -186,15 +186,15 @@
                 values = match && parser.parse(match),
                 parsed,
                 spaceName = parser.space || "rgba",
-                cache = spaces[ spaceName ].cache;
+                cache = spaces[spaceName].cache;
 
 
             if (values) {
-                parsed = inst[ spaceName ](values);
+                parsed = inst[spaceName](values);
 
                 // if this was an rgba parse the assignment might happen twice
                 // oh well....
-                inst[ cache ] = parsed[ cache ];
+                inst[cache] = parsed[cache];
                 rgba = inst._rgba = parsed._rgba;
 
                 // exit each( stringParsers ) here because we matched
@@ -214,7 +214,7 @@
         }
 
         // named colors / default - filter back through parse function
-        if (string = colors[ string ]) {
+        if (string = colors[string]) {
             return string;
         }
     }
@@ -223,7 +223,7 @@
         constructor: color,
         parse: function (red, green, blue, alpha) {
             if (red === undefined) {
-                this._rgba = [ null, null, null, null ];
+                this._rgba = [null, null, null, null];
                 return this;
             }
             if (red instanceof jQuery || red.nodeType) {
@@ -238,7 +238,7 @@
 
             // more than 1 argument specified - assume ( red, green, blue, alpha )
             if (green !== undefined) {
-                red = [ red, green, blue, alpha ];
+                red = [red, green, blue, alpha];
                 type = "array";
             }
 
@@ -248,7 +248,7 @@
 
             if (type === "array") {
                 each(rgbaspace, function (key, prop) {
-                    rgba[ prop.idx ] = clamp(red[ prop.idx ], prop);
+                    rgba[prop.idx] = clamp(red[prop.idx], prop);
                 });
                 return this;
             }
@@ -256,8 +256,8 @@
             if (type === "object") {
                 if (red instanceof color) {
                     each(spaces, function (spaceName, space) {
-                        if (red[ space.cache ]) {
-                            inst[ space.cache ] = red[ space.cache ].slice();
+                        if (red[space.cache]) {
+                            inst[space.cache] = red[space.cache].slice();
                         }
                     });
                 } else {
@@ -266,19 +266,19 @@
                             var cache = space.cache;
 
                             // if the cache doesn't exist, and we know how to convert
-                            if (!inst[ cache ] && space.to) {
+                            if (!inst[cache] && space.to) {
 
                                 // if the value was null, we don't need to copy it
                                 // if the key was alpha, we don't need to copy it either
-                                if (red[ key ] == null || key === "alpha") {
+                                if (red[key] == null || key === "alpha") {
                                     return;
                                 }
-                                inst[ cache ] = space.to(inst._rgba);
+                                inst[cache] = space.to(inst._rgba);
                             }
 
                             // this is the only case where we allow nulls for ALL properties.
                             // call clamp with alwaysAllowEmpty
-                            inst[ cache ][ prop.idx ] = clamp(red[ key ], prop, true);
+                            inst[cache][prop.idx] = clamp(red[key], prop, true);
                         });
                     });
                 }
@@ -291,13 +291,13 @@
                 myself = this;
 
             each(spaces, function (_, space) {
-                var isCache = is[ space.cache ],
+                var isCache = is[space.cache],
                     localCache;
                 if (isCache) {
-                    localCache = myself[ space.cache ] || space.to && space.to(myself._rgba) || [];
+                    localCache = myself[space.cache] || space.to && space.to(myself._rgba) || [];
                     each(space.props, function (_, prop) {
-                        if (isCache[ prop.idx ] != null) {
-                            same = ( isCache[ prop.idx ] === localCache[ prop.idx ] );
+                        if (isCache[prop.idx] != null) {
+                            same = ( isCache[prop.idx] === localCache[prop.idx] );
                             return same;
                         }
                     });
@@ -310,7 +310,7 @@
             var used = [],
                 inst = this;
             each(spaces, function (spaceName, space) {
-                if (inst[ space.cache ]) {
+                if (inst[space.cache]) {
                     used.push(spaceName);
                 }
             });
@@ -319,16 +319,16 @@
         transition: function (other, distance) {
             var end = color(other),
                 spaceName = end._space(),
-                space = spaces[ spaceName ],
-                start = this[ space.cache ] || space.to(this._rgba),
+                space = spaces[spaceName],
+                start = this[space.cache] || space.to(this._rgba),
                 result = start.slice();
 
-            end = end[ space.cache ];
+            end = end[space.cache];
             each(space.props, function (key, prop) {
                 var index = prop.idx,
-                    startValue = start[ index ],
-                    endValue = end[ index ],
-                    type = propTypes[ prop.type ] || {};
+                    startValue = start[index],
+                    endValue = end[index],
+                    type = propTypes[prop.type] || {};
 
                 // if null, don't override start value
                 if (endValue === null) {
@@ -336,7 +336,7 @@
                 }
                 // if null - use end
                 if (startValue === null) {
-                    result[ index ] = endValue;
+                    result[index] = endValue;
                 } else {
                     if (type.mod) {
                         if (endValue - startValue > type.mod / 2) {
@@ -345,14 +345,14 @@
                             startValue -= type.mod;
                         }
                     }
-                    result[ prop.idx ] = clamp(( endValue - startValue ) * distance + startValue, prop);
+                    result[prop.idx] = clamp(( endValue - startValue ) * distance + startValue, prop);
                 }
             });
-            return this[ spaceName ](result);
+            return this[spaceName](result);
         },
         blend: function (opaque) {
             // if we are already opaque - return ourself
-            if (this._rgba[ 3 ] === 1) {
+            if (this._rgba[3] === 1) {
                 return this;
             }
 
@@ -361,7 +361,7 @@
                 blend = color(opaque)._rgba;
 
             return color(jQuery.map(rgb, function (v, i) {
-                return ( 1 - a ) * blend[ i ] + a * v;
+                return ( 1 - a ) * blend[i] + a * v;
             }));
         },
         toRgbaString: function () {
@@ -370,7 +370,7 @@
                     return v == null ? ( i > 2 ? 1 : 0 ) : v;
                 });
 
-            if (rgba[ 3 ] === 1) {
+            if (rgba[3] === 1) {
                 rgba.pop();
                 prefix = "rgb(";
             }
@@ -391,7 +391,7 @@
                     return v;
                 });
 
-            if (hsla[ 3 ] === 1) {
+            if (hsla[3] === 1) {
                 hsla.pop();
                 prefix = "hsl(";
             }
@@ -405,15 +405,15 @@
                 rgba.push(~~( alpha * 255 ));
             }
 
-            return "#" + jQuery.map(rgba,function (v, i) {
+            return "#" + jQuery.map(rgba, function (v, i) {
 
-                // default to 0 when nulls exist
-                v = ( v || 0 ).toString(16);
-                return v.length === 1 ? "0" + v : v;
-            }).join("");
+                    // default to 0 when nulls exist
+                    v = ( v || 0 ).toString(16);
+                    return v.length === 1 ? "0" + v : v;
+                }).join("");
         },
         toString: function () {
-            return this._rgba[ 3 ] === 0 ? "transparent" : this.toRgbaString();
+            return this._rgba[3] === 0 ? "transparent" : this.toRgbaString();
         }
     };
     color.fn.parse.prototype = color.fn;
@@ -436,13 +436,13 @@
     }
 
     spaces.hsla.to = function (rgba) {
-        if (rgba[ 0 ] == null || rgba[ 1 ] == null || rgba[ 2 ] == null) {
-            return [ null, null, null, rgba[ 3 ] ];
+        if (rgba[0] == null || rgba[1] == null || rgba[2] == null) {
+            return [null, null, null, rgba[3]];
         }
-        var r = rgba[ 0 ] / 255,
-            g = rgba[ 1 ] / 255,
-            b = rgba[ 2 ] / 255,
-            a = rgba[ 3 ],
+        var r = rgba[0] / 255,
+            g = rgba[1] / 255,
+            b = rgba[2] / 255,
+            a = rgba[3],
             max = Math.max(r, g, b),
             min = Math.min(r, g, b),
             diff = max - min,
@@ -467,17 +467,17 @@
         } else {
             s = diff / ( 2 - add );
         }
-        return [ Math.round(h) % 360, s, l, a == null ? 1 : a ];
+        return [Math.round(h) % 360, s, l, a == null ? 1 : a];
     };
 
     spaces.hsla.from = function (hsla) {
-        if (hsla[ 0 ] == null || hsla[ 1 ] == null || hsla[ 2 ] == null) {
-            return [ null, null, null, hsla[ 3 ] ];
+        if (hsla[0] == null || hsla[1] == null || hsla[2] == null) {
+            return [null, null, null, hsla[3]];
         }
-        var h = hsla[ 0 ] / 360,
-            s = hsla[ 1 ],
-            l = hsla[ 2 ],
-            a = hsla[ 3 ],
+        var h = hsla[0] / 360,
+            s = hsla[1],
+            l = hsla[2],
+            a = hsla[3],
             q = l <= 0.5 ? l * ( 1 + s ) : l + s - l * s,
             p = 2 * l - q,
             r, g, b;
@@ -498,32 +498,32 @@
             from = space.from;
 
         // makes rgba() and hsla()
-        color.fn[ spaceName ] = function (value) {
+        color.fn[spaceName] = function (value) {
 
             // generate a cache for this space if it doesn't exist
-            if (to && !this[ cache ]) {
-                this[ cache ] = to(this._rgba);
+            if (to && !this[cache]) {
+                this[cache] = to(this._rgba);
             }
             if (value === undefined) {
-                return this[ cache ].slice();
+                return this[cache].slice();
             }
 
             var type = jQuery.type(value),
                 arr = ( type === "array" || type === "object" ) ? value : arguments,
-                local = this[ cache ].slice(),
+                local = this[cache].slice(),
                 ret;
 
             each(props, function (key, prop) {
-                var val = arr[ type === "object" ? key : prop.idx ];
+                var val = arr[type === "object" ? key : prop.idx];
                 if (val == null) {
-                    val = local[ prop.idx ];
+                    val = local[prop.idx];
                 }
-                local[ prop.idx ] = clamp(val, prop);
+                local[prop.idx] = clamp(val, prop);
             });
 
             if (from) {
                 ret = color(from(local));
-                ret[ cache ] = local;
+                ret[cache] = local;
                 return ret;
             } else {
                 return color(local);
@@ -533,14 +533,14 @@
         // makes red() green() blue() alpha() hue() saturation() lightness()
         each(props, function (key, prop) {
             // alpha is included in more than one space
-            if (color.fn[ key ]) {
+            if (color.fn[key]) {
                 return;
             }
-            color.fn[ key ] = function (value) {
+            color.fn[key] = function (value) {
                 var vtype = jQuery.type(value),
                     fn = ( key === 'alpha' ? ( this._hsla ? 'hsla' : 'rgba' ) : spaceName ),
-                    local = this[ fn ](),
-                    cur = local[ prop.idx ],
+                    local = this[fn](),
+                    cur = local[prop.idx],
                     match;
 
                 if (vtype === "undefined") {
@@ -557,31 +557,31 @@
                 if (vtype === "string") {
                     match = rplusequals.exec(value);
                     if (match) {
-                        value = cur + parseFloat(match[ 2 ]) * ( match[ 1 ] === "+" ? 1 : -1 );
+                        value = cur + parseFloat(match[2]) * ( match[1] === "+" ? 1 : -1 );
                     }
                 }
-                local[ prop.idx ] = value;
-                return this[ fn ](local);
+                local[prop.idx] = value;
+                return this[fn](local);
             };
         });
     });
 
     // add .fx.step functions
     each(stepHooks, function (i, hook) {
-        jQuery.cssHooks[ hook ] = {
+        jQuery.cssHooks[hook] = {
             set: function (elem, value) {
                 var parsed, backgroundColor, curElem;
 
                 if (jQuery.type(value) !== 'string' || ( parsed = stringParse(value) )) {
                     value = color(parsed || value);
-                    if (!support.rgba && value._rgba[ 3 ] !== 1) {
+                    if (!support.rgba && value._rgba[3] !== 1) {
                         curElem = hook === "backgroundColor" ? elem.parentNode : elem;
                         do {
                             backgroundColor = jQuery.curCSS(curElem, "backgroundColor");
                         } while (
-                            ( backgroundColor === "" || backgroundColor === "transparent" ) &&
-                                ( curElem = curElem.parentNode ) &&
-                                curElem.style
+                        ( backgroundColor === "" || backgroundColor === "transparent" ) &&
+                        ( curElem = curElem.parentNode ) &&
+                        curElem.style
                             );
 
                         value = value.blend(backgroundColor && backgroundColor !== "transparent" ?
@@ -591,16 +591,16 @@
 
                     value = value.toRgbaString();
                 }
-                elem.style[ hook ] = value;
+                elem.style[hook] = value;
             }
         };
-        jQuery.fx.step[ hook ] = function (fx) {
+        jQuery.fx.step[hook] = function (fx) {
             if (!fx.colorInit) {
                 fx.start = color(fx.elem, hook);
                 fx.end = color(fx.end);
                 fx.colorInit = true;
             }
-            jQuery.cssHooks[ hook ].set(fx.elem, fx.start.transition(fx.end, fx.pos));
+            jQuery.cssHooks[hook].set(fx.elem, fx.start.transition(fx.end, fx.pos));
         };
     });
 
@@ -660,7 +660,7 @@
         silver: "#c0c0c0",
         white: "#ffffff",
         yellow: "#ffff00",
-        transparent: [ null, null, null, 0 ],
+        transparent: [null, null, null, 0],
         _default: "#ffffff"
     };
 })(jQuery);

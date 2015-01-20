@@ -37,6 +37,21 @@ public class News {
 
     private String newstitle;
 
+    public News(Integer newsid, String newsdes, String newsdate,
+                String newsstatus, Member newsmid, String newsinfo) {
+        super();
+        this.newsid = newsid;
+        this.newsdes = newsdes;
+        this.newsdate = newsdate;
+        this.newsstatus = newsstatus;
+        this.newsmid = newsmid;
+        this.newsinfo = newsinfo;
+    }
+
+    public News() {
+
+    }
+
     public Integer getNewsid() {
         return newsid;
     }
@@ -91,21 +106,6 @@ public class News {
                 + ", newsdate=" + newsdate + ", newsstatus=" + newsstatus
                 + ", newsmid=" + newsmid.toString() + ", newsinfo=" + newsinfo
                 + "]";
-    }
-
-    public News(Integer newsid, String newsdes, String newsdate,
-                String newsstatus, Member newsmid, String newsinfo) {
-        super();
-        this.newsid = newsid;
-        this.newsdes = newsdes;
-        this.newsdate = newsdate;
-        this.newsstatus = newsstatus;
-        this.newsmid = newsmid;
-        this.newsinfo = newsinfo;
-    }
-
-    public News() {
-
     }
 
     public String getNewstitle() {

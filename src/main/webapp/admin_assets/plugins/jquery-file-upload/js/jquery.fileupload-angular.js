@@ -56,7 +56,7 @@
                     } else if (data.errorThrown ||
                         data.textStatus === 'error') {
                         data.files[0].error = data.errorThrown ||
-                            data.textStatus;
+                        data.textStatus;
                     }
                 },
                 add: function (e, data) {
@@ -99,7 +99,7 @@
                                 );
                                 if (file.$submit &&
                                     (scope.option('autoUpload') ||
-                                        data.autoUpload) &&
+                                    data.autoUpload) &&
                                     data.autoUpload !== false) {
                                     file.$submit();
                                 }
@@ -267,13 +267,15 @@
                 // the options provided via "data-"-parameters,
                 // as well as those given via options object:
                 $element.fileupload(angular.extend(
-                        {scope: function () {
+                    {
+                        scope: function () {
                             return $scope;
-                        }},
-                        fileUpload.defaults
-                    )).on('fileuploadadd',function (e, data) {
-                        data.scope = $scope.option('scope');
-                    }).on([
+                        }
+                    },
+                    fileUpload.defaults
+                )).on('fileuploadadd', function (e, data) {
+                    data.scope = $scope.option('scope');
+                }).on([
                     'fileuploadadd',
                     'fileuploadsubmit',
                     'fileuploadsend',
@@ -298,20 +300,20 @@
                     'fileuploadprocessfail',
                     'fileuploadprocessalways',
                     'fileuploadprocessstop'
-                ].join(' '),function (e, data) {
-                        if ($scope.$emit(e.type, data).defaultPrevented) {
-                            e.preventDefault();
+                ].join(' '), function (e, data) {
+                    if ($scope.$emit(e.type, data).defaultPrevented) {
+                        e.preventDefault();
+                    }
+                }).on('remove', function () {
+                    // Remove upload methods from the scope,
+                    // when the widget is removed:
+                    var method;
+                    for (method in uploadMethods) {
+                        if (uploadMethods.hasOwnProperty(method)) {
+                            delete $scope[method];
                         }
-                    }).on('remove', function () {
-                        // Remove upload methods from the scope,
-                        // when the widget is removed:
-                        var method;
-                        for (method in uploadMethods) {
-                            if (uploadMethods.hasOwnProperty(method)) {
-                                delete $scope[method];
-                            }
-                        }
-                    });
+                    }
+                });
                 // Observe option changes:
                 $scope.$watch(
                     $attrs.fileUpload,

@@ -43,7 +43,7 @@
             }
         } catch (e) {
             var msg = ( e.name == undefined ? e : e.name + ': ' + e.message );
-            $(document).trigger('xmlParseError', [ msg ]);
+            $(document).trigger('xmlParseError', [msg]);
             return undefined;
         }
         return xmlDoc;
@@ -301,7 +301,7 @@
         if (requestSettings.type.toUpperCase() === "GET") {
             if (!CALLBACK_REGEX.test(requestSettings.url)) {
                 requestSettings.url += (/\?/.test(requestSettings.url) ? "&" : "?") +
-                    (requestSettings.jsonp || "callback") + "=?";
+                (requestSettings.jsonp || "callback") + "=?";
             }
         } else if (!requestSettings.data || !CALLBACK_REGEX.test(requestSettings.data)) {
             requestSettings.data = (requestSettings.data ? requestSettings.data + "&" : "") + (requestSettings.jsonp || "callback") + "=?";
@@ -359,15 +359,15 @@
 
 
         // Handle JSONP-style loading
-        window[ jsonp ] = window[ jsonp ] || function (tmp) {
+        window[jsonp] = window[jsonp] || function (tmp) {
             data = tmp;
             jsonpSuccess(requestSettings, mockHandler);
             jsonpComplete(requestSettings, mockHandler);
             // Garbage collect
-            window[ jsonp ] = undefined;
+            window[jsonp] = undefined;
 
             try {
-                delete window[ jsonp ];
+                delete window[jsonp];
             } catch (e) {
             }
 

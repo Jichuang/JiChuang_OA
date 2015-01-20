@@ -144,15 +144,15 @@
                 if (($.type(options.maxFileSize) === 'number' &&
                     file.size > options.maxFileSize) ||
                     (options.fileTypes && !options.fileTypes.test(file.type)) || !loadImage(
-                    file,
-                    function (img) {
-                        if (img.src) {
-                            data.img = img;
-                        }
-                        dfd.resolveWith(that, [data]);
-                    },
-                    options
-                )) {
+                        file,
+                        function (img) {
+                            if (img.src) {
+                                data.img = img;
+                            }
+                            dfd.resolveWith(that, [data]);
+                        },
+                        options
+                    )) {
                     return data;
                 }
                 return dfd.promise();
@@ -231,8 +231,8 @@
                 if (data.canvas.mozGetAsFile) {
                     callback(data.canvas.mozGetAsFile(
                         (/^image\/(jpeg|png)$/.test(file.type) && name) ||
-                            ((name && name.replace(/\..+$/, '')) ||
-                                'blob') + '.png',
+                        ((name && name.replace(/\..+$/, '')) ||
+                        'blob') + '.png',
                         file.type
                     ));
                 } else if (data.canvas.toBlob) {

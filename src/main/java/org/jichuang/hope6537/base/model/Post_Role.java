@@ -10,6 +10,12 @@ public class Post_Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", length = 50)
     private Integer id;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Post.class)
+    @JoinColumn(name = "postId")
+    private Post postId;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Role.class)
+    @JoinColumn(name = "roleId")
+    private Role roleId;
 
     public Integer getId() {
         return id;
@@ -18,13 +24,6 @@ public class Post_Role {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Post.class)
-    @JoinColumn(name = "postId")
-    private Post postId;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Role.class)
-    @JoinColumn(name = "roleId")
-    private Role roleId;
 
     public Post getPostId() {
         return postId;

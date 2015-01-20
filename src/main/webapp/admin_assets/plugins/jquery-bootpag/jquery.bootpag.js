@@ -52,7 +52,7 @@
             $page.removeClass('disabled');
             lp = page - 1 < 1 ? 1 :
                 settings.leaps && page - 1 >= settings.maxVisible ?
-                    Math.floor((page - 1) / maxV) * maxV : page - 1;
+                Math.floor((page - 1) / maxV) * maxV : page - 1;
             $page
                 .first()
                 .toggleClass('disabled', page === 1)
@@ -63,7 +63,7 @@
 
             lp = page + 1 > settings.total ? settings.total :
                 settings.leaps && page + 1 < settings.total - settings.maxVisible ?
-                    vis + settings.maxVisible + step : page + 1;
+                vis + settings.maxVisible + step : page + 1;
 
             $page
                 .last()

@@ -12,6 +12,12 @@ public class Member_Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", length = 50)
     private Integer id;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Member.class)
+    @JoinColumn(name = "memberId")
+    private Member memberId;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Post.class)
+    @JoinColumn(name = "postId")
+    private Post postId;
 
     public Integer getId() {
         return id;
@@ -20,14 +26,6 @@ public class Member_Post {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Member.class)
-    @JoinColumn(name = "memberId")
-    private Member memberId;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Post.class)
-    @JoinColumn(name = "postId")
-    private Post postId;
-
 
     public Post getPostId() {
         return postId;

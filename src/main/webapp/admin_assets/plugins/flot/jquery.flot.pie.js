@@ -567,7 +567,7 @@
         function isPointInPoly(poly, pt) {
             for (var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)
                 ((poly[i][1] <= pt[1] && pt[1] < poly[j][1]) || (poly[j][1] <= pt[1] && pt[1] < poly[i][1]))
-                    && (pt[0] < (poly[j][0] - poly[i][0]) * (pt[1] - poly[i][1]) / (poly[j][1] - poly[i][1]) + poly[i][0])
+                && (pt[0] < (poly[j][0] - poly[i][0]) * (pt[1] - poly[i][1]) / (poly[j][1] - poly[i][1]) + poly[i][0])
                 && (c = !c);
             return c;
         }
@@ -686,7 +686,7 @@
 
             // trigger any hover bind events
 
-            var pos = { pageX: e.pageX, pageY: e.pageY };
+            var pos = {pageX: e.pageX, pageY: e.pageY};
             target.trigger(eventname, [pos, item]);
         }
 
@@ -698,7 +698,7 @@
             var i = indexOfHighlight(s);
 
             if (i == -1) {
-                highlights.push({ series: s, auto: auto });
+                highlights.push({series: s, auto: auto});
                 plot.triggerRedrawOverlay();
             } else if (!auto) {
                 highlights[i].auto = false;

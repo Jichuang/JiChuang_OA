@@ -4,7 +4,7 @@
  */
 CKEDITOR.dialog.add("scaytcheck", function (j) {
     function w() {
-        return"undefined" != typeof document.forms["optionsbar_" + a] ? document.forms["optionsbar_" + a].options : []
+        return "undefined" != typeof document.forms["optionsbar_" + a] ? document.forms["optionsbar_" + a].options : []
     }
 
     function x(b, a) {
@@ -38,49 +38,72 @@ CKEDITOR.dialog.add("scaytcheck", function (j) {
     g = j.lang.scayt;
     var z =
         [
-            {id: "options", label: g.optionsTab, elements: [
-                {type: "html", id: "options", html: '<form name="optionsbar_' + a + '"><div class="inner_options">\t<div class="messagebox"></div>\t<div style="display:none;">\t\t<input type="checkbox" name="options"  id="allCaps_' + a + '" />\t\t<label for="allCaps" id="label_allCaps_' + a + '"></label>\t</div>\t<div style="display:none;">\t\t<input name="options" type="checkbox"  id="ignoreDomainNames_' + a + '" />\t\t<label for="ignoreDomainNames" id="label_ignoreDomainNames_' + a + '"></label>\t</div>\t<div style="display:none;">\t<input name="options" type="checkbox"  id="mixedCase_' +
-                    a + '" />\t\t<label for="mixedCase" id="label_mixedCase_' + a + '"></label>\t</div>\t<div style="display:none;">\t\t<input name="options" type="checkbox"  id="mixedWithDigits_' + a + '" />\t\t<label for="mixedWithDigits" id="label_mixedWithDigits_' + a + '"></label>\t</div></div></form>'}
-            ]},
-            {id: "langs", label: g.languagesTab, elements: [
-                {type: "html", id: "langs", html: '<form name="languagesbar_' + a + '"><div class="inner_langs">\t<div class="messagebox"></div>\t   <div style="float:left;width:45%;margin-left:5px;" id="scayt_lcol_' +
-                    a + '" ></div>   <div style="float:left;width:45%;margin-left:15px;" id="scayt_rcol_' + a + '"></div></div></form>'}
-            ]},
-            {id: "dictionaries", label: g.dictionariesTab, elements: [
-                {type: "html", style: "", id: "dictionaries", html: '<form name="dictionarybar_' + a + '"><div class="inner_dictionary" style="text-align:left; white-space:normal; width:320px; overflow: hidden;">\t<div style="margin:5px auto; width:80%;white-space:normal; overflow:hidden;" id="dic_message_' + a + '"> </div>\t<div style="margin:5px auto; width:80%;white-space:normal;">        <span class="cke_dialog_ui_labeled_label" >Dictionary name</span><br>\t\t<span class="cke_dialog_ui_labeled_content" >\t\t\t<div class="cke_dialog_ui_input_text">\t\t\t\t<input id="dic_name_' +
+            {
+                id: "options", label: g.optionsTab, elements: [
+                {
+                    type: "html",
+                    id: "options",
+                    html: '<form name="optionsbar_' + a + '"><div class="inner_options">\t<div class="messagebox"></div>\t<div style="display:none;">\t\t<input type="checkbox" name="options"  id="allCaps_' + a + '" />\t\t<label for="allCaps" id="label_allCaps_' + a + '"></label>\t</div>\t<div style="display:none;">\t\t<input name="options" type="checkbox"  id="ignoreDomainNames_' + a + '" />\t\t<label for="ignoreDomainNames" id="label_ignoreDomainNames_' + a + '"></label>\t</div>\t<div style="display:none;">\t<input name="options" type="checkbox"  id="mixedCase_' +
+                    a + '" />\t\t<label for="mixedCase" id="label_mixedCase_' + a + '"></label>\t</div>\t<div style="display:none;">\t\t<input name="options" type="checkbox"  id="mixedWithDigits_' + a + '" />\t\t<label for="mixedWithDigits" id="label_mixedWithDigits_' + a + '"></label>\t</div></div></form>'
+                }
+            ]
+            },
+            {
+                id: "langs", label: g.languagesTab, elements: [
+                {
+                    type: "html",
+                    id: "langs",
+                    html: '<form name="languagesbar_' + a + '"><div class="inner_langs">\t<div class="messagebox"></div>\t   <div style="float:left;width:45%;margin-left:5px;" id="scayt_lcol_' +
+                    a + '" ></div>   <div style="float:left;width:45%;margin-left:15px;" id="scayt_rcol_' + a + '"></div></div></form>'
+                }
+            ]
+            },
+            {
+                id: "dictionaries", label: g.dictionariesTab, elements: [
+                {
+                    type: "html",
+                    style: "",
+                    id: "dictionaries",
+                    html: '<form name="dictionarybar_' + a + '"><div class="inner_dictionary" style="text-align:left; white-space:normal; width:320px; overflow: hidden;">\t<div style="margin:5px auto; width:80%;white-space:normal; overflow:hidden;" id="dic_message_' + a + '"> </div>\t<div style="margin:5px auto; width:80%;white-space:normal;">        <span class="cke_dialog_ui_labeled_label" >Dictionary name</span><br>\t\t<span class="cke_dialog_ui_labeled_content" >\t\t\t<div class="cke_dialog_ui_input_text">\t\t\t\t<input id="dic_name_' +
                     a + '" type="text" class="cke_dialog_ui_input_text"/>\t\t</div></span></div>\t\t<div style="margin:5px auto; width:80%;white-space:normal;">\t\t\t<a style="display:none;" class="cke_dialog_ui_button" href="javascript:void(0)" id="dic_create_' + a + '">\t\t\t\t</a>\t\t\t<a  style="display:none;" class="cke_dialog_ui_button" href="javascript:void(0)" id="dic_delete_' + a + '">\t\t\t\t</a>\t\t\t<a  style="display:none;" class="cke_dialog_ui_button" href="javascript:void(0)" id="dic_rename_' + a + '">\t\t\t\t</a>\t\t\t<a  style="display:none;" class="cke_dialog_ui_button" href="javascript:void(0)" id="dic_restore_' +
-                    a + '">\t\t\t\t</a>\t\t</div>\t<div style="margin:5px auto; width:95%;white-space:normal;" id="dic_info_' + a + '"></div></div></form>'}
-            ]},
-            {id: "about", label: g.aboutTab, elements: [
+                    a + '">\t\t\t\t</a>\t\t</div>\t<div style="margin:5px auto; width:95%;white-space:normal;" id="dic_info_' + a + '"></div></div></form>'
+                }
+            ]
+            },
+            {
+                id: "about", label: g.aboutTab, elements: [
                 {type: "html", id: "about", style: "margin: 5px 5px;", html: '<div id="scayt_about_' + a + '"></div>'}
-            ]}
-        ], B = {title: g.title, minWidth: 360, minHeight: 220, onShow: function () {
-        var b = this;
-        b.data = j.fire("scaytDialog", {});
-        b.options = b.data.scayt_control.option();
-        b.chosed_lang = b.sLang = b.data.scayt_control.sLang;
-        if (!b.data || !b.data.scayt || !b.data.scayt_control)alert("Error loading application service"),
-            b.hide(); else {
-            var a = 0;
-            s ? b.data.scayt.getCaption(j.langCode || "en", function (e) {
-                0 < a++ || (h = e, A.apply(b), y.apply(b), s = !1)
-            }) : y.apply(b);
-            b.selectPage(b.data.tab)
-        }
-    }, onOk: function () {
-        var a = this.data.scayt_control;
-        a.option(this.options);
-        a.setLang(this.chosed_lang);
-        a.refresh()
-    }, onCancel: function () {
-        var b = w(), f;
-        for (f in b)b[f].checked = !1;
-        b = "undefined" != typeof document.forms["languagesbar_" + a] ? document.forms["languagesbar_" + a].scayt_lang : [];
-        x(b, "")
-    }, contents: t};
+            ]
+            }
+        ], B = {
+        title: g.title, minWidth: 360, minHeight: 220, onShow: function () {
+            var b = this;
+            b.data = j.fire("scaytDialog", {});
+            b.options = b.data.scayt_control.option();
+            b.chosed_lang = b.sLang = b.data.scayt_control.sLang;
+            if (!b.data || !b.data.scayt || !b.data.scayt_control)alert("Error loading application service"),
+                b.hide(); else {
+                var a = 0;
+                s ? b.data.scayt.getCaption(j.langCode || "en", function (e) {
+                    0 < a++ || (h = e, A.apply(b), y.apply(b), s = !1)
+                }) : y.apply(b);
+                b.selectPage(b.data.tab)
+            }
+        }, onOk: function () {
+            var a = this.data.scayt_control;
+            a.option(this.options);
+            a.setLang(this.chosed_lang);
+            a.refresh()
+        }, onCancel: function () {
+            var b = w(), f;
+            for (f in b)b[f].checked = !1;
+            b = "undefined" != typeof document.forms["languagesbar_" + a] ? document.forms["languagesbar_" + a].scayt_lang : [];
+            x(b, "")
+        }, contents: t
+    };
     CKEDITOR.plugins.scayt.getScayt(j);
     for (g = 0; g < l.length; g++)1 ==
-        l[g] && (t[t.length] = z[g]);
+    l[g] && (t[t.length] = z[g]);
     1 == l[2] && (u = 1);
     var A = function () {
         function b(b) {
@@ -92,13 +115,13 @@ CKEDITOR.dialog.add("scaytcheck", function (j) {
             } catch (C) {
                 n(" Dictionary error. ")
             }
-            return!0
+            return !0
         }
 
         var k = this, e = k.data.scayt.getLangList(), d = ["dic_create", "dic_delete", "dic_rename", "dic_restore"], g = [], i = [], c;
         if (u) {
             for (c = 0; c < d.length; c++)g[c] = d[c] + "_" + a, f.getById(g[c]).setHtml('<span class="cke_dialog_ui_button">' +
-                h["button_" + d[c]] + "</span>");
+            h["button_" + d[c]] + "</span>");
             f.getById("dic_info_" + a).setHtml(h.dic_info)
         }
         if (1 == l[0])for (c in v)d = "label_" + v[c], g = f.getById(d + "_" + a), "undefined" != typeof g && ("undefined" != typeof h[d] && "undefined" != typeof k.options[v[c]]) && (g.setHtml(h[d]), g.getParent().$.style.display = "block");
@@ -116,55 +139,57 @@ CKEDITOR.dialog.add("scaytcheck", function (j) {
             });
             d.append(e);
             d.append(c);
-            return{lang: b[a], code: a, radio: d}
+            return {lang: b[a], code: a, radio: d}
         };
         if (1 == l[1]) {
             for (c in e.rtl)i[i.length] = d(c, e.ltr);
             for (c in e.ltr)i[i.length] = d(c, e.ltr);
             i.sort(function (a, b) {
                 return b.lang >
-                    a.lang ? -1 : 1
+                a.lang ? -1 : 1
             });
             e = f.getById("scayt_lcol_" + a);
             d = f.getById("scayt_rcol_" + a);
             for (c = 0; c < i.length; c++)(c < i.length / 2 ? e : d).append(i[c].radio)
         }
-        var j = {dic_create: function (a, b, c) {
-            var d = c[0] + "," + c[1], e = h.err_dic_create, f = h.succ_dic_create;
-            window.scayt.createUserDictionary(b, function (a) {
-                q(d);
-                p(c[1]);
-                f = f.replace("%s", a.dname);
-                o(f)
-            }, function (a) {
-                e = e.replace("%s", a.dname);
-                n(e + "( " + (a.message || "") + ")")
-            })
-        }, dic_rename: function (a, b) {
-            var c = h.err_dic_rename || "", d = h.succ_dic_rename || "";
-            window.scayt.renameUserDictionary(b,
-                function (a) {
-                    d = d.replace("%s", a.dname);
-                    r(b);
-                    o(d)
+        var j = {
+            dic_create: function (a, b, c) {
+                var d = c[0] + "," + c[1], e = h.err_dic_create, f = h.succ_dic_create;
+                window.scayt.createUserDictionary(b, function (a) {
+                    q(d);
+                    p(c[1]);
+                    f = f.replace("%s", a.dname);
+                    o(f)
                 }, function (a) {
-                    c = c.replace("%s", a.dname);
-                    r(b);
-                    n(c + "( " + (a.message || "") + " )")
+                    e = e.replace("%s", a.dname);
+                    n(e + "( " + (a.message || "") + ")")
                 })
-        }, dic_delete: function (a, b, c) {
-            var d = c[0] + "," + c[1], e = h.err_dic_delete, f = h.succ_dic_delete;
-            window.scayt.deleteUserDictionary(function (a) {
-                f = f.replace("%s", a.dname);
-                q(d);
-                p(c[0]);
-                r("");
-                o(f)
-            }, function (a) {
-                e = e.replace("%s", a.dname);
-                n(e)
-            })
-        }};
+            }, dic_rename: function (a, b) {
+                var c = h.err_dic_rename || "", d = h.succ_dic_rename || "";
+                window.scayt.renameUserDictionary(b,
+                    function (a) {
+                        d = d.replace("%s", a.dname);
+                        r(b);
+                        o(d)
+                    }, function (a) {
+                        c = c.replace("%s", a.dname);
+                        r(b);
+                        n(c + "( " + (a.message || "") + " )")
+                    })
+            }, dic_delete: function (a, b, c) {
+                var d = c[0] + "," + c[1], e = h.err_dic_delete, f = h.succ_dic_delete;
+                window.scayt.deleteUserDictionary(function (a) {
+                    f = f.replace("%s", a.dname);
+                    q(d);
+                    p(c[0]);
+                    r("");
+                    o(f)
+                }, function (a) {
+                    e = e.replace("%s", a.dname);
+                    n(e)
+                })
+            }
+        };
         j.dic_restore = k.dic_restore || function (a, b, c) {
             var d = c[0] + "," + c[1], e = h.err_dic_restore, f = h.succ_dic_restore;
             window.scayt.restoreUserDictionary(b, function (a) {

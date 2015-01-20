@@ -10,6 +10,7 @@
             return (amount > 1 ? 0 : 1);
         },
         digits: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-        timeSeparator: ':', isRTL: false};
+        timeSeparator: ':', isRTL: false
+    };
     $.countdown.setDefaults($.countdown.regional['fr']);
 })(jQuery);

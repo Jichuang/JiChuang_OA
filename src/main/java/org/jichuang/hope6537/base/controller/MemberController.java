@@ -24,10 +24,10 @@ import java.util.List;
 @Scope("prototype")
 public class MemberController {
 
+    private static final String PATH = AdminPageController.PATH;
     @Autowired
     private MemberService memberService;
     private Logger logger = Logger.getLogger(getClass());
-    private static final String PATH = AdminPageController.PATH;
 
     public void afterLoginService(HttpServletRequest request, Member member) {
         HttpSession session = request.getSession();

@@ -12,12 +12,12 @@ var TableManaged = function () {
             // begin first table
             $('#sample_1').dataTable({
                 "aoColumns": [
-                    { "bSortable": false },
+                    {"bSortable": false},
                     null,
-                    { "bSortable": false },
+                    {"bSortable": false},
                     null,
-                    { "bSortable": false },
-                    { "bSortable": false }
+                    {"bSortable": false},
+                    {"bSortable": false}
                 ],
                 "aLengthMenu": [
                     [5, 15, 20, -1],

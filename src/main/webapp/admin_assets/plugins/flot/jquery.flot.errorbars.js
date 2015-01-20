@@ -67,8 +67,24 @@
         series: {
             points: {
                 errorbars: null, //should be 'x', 'y' or 'xy'
-                xerr: { err: 'x', show: null, asymmetric: null, upperCap: null, lowerCap: null, color: null, radius: null},
-                yerr: { err: 'y', show: null, asymmetric: null, upperCap: null, lowerCap: null, color: null, radius: null}
+                xerr: {
+                    err: 'x',
+                    show: null,
+                    asymmetric: null,
+                    upperCap: null,
+                    lowerCap: null,
+                    color: null,
+                    radius: null
+                },
+                yerr: {
+                    err: 'y',
+                    show: null,
+                    asymmetric: null,
+                    upperCap: null,
+                    lowerCap: null,
+                    color: null,
+                    radius: null
+                }
             }
         }
     };
@@ -79,8 +95,8 @@
 
         // x,y values
         var format = [
-            { x: true, number: true, required: true },
-            { y: true, number: true, required: true }
+            {x: true, number: true, required: true},
+            {y: true, number: true, required: true}
         ];
 
         var errors = series.points.errorbars;
@@ -88,18 +104,18 @@
         if (errors == 'x' || errors == 'xy') {
             // lower / upper error
             if (series.points.xerr.asymmetric) {
-                format.push({ x: true, number: true, required: true });
-                format.push({ x: true, number: true, required: true });
+                format.push({x: true, number: true, required: true});
+                format.push({x: true, number: true, required: true});
             } else
-                format.push({ x: true, number: true, required: true });
+                format.push({x: true, number: true, required: true});
         }
         if (errors == 'y' || errors == 'xy') {
             // lower / upper error
             if (series.points.yerr.asymmetric) {
-                format.push({ y: true, number: true, required: true });
-                format.push({ y: true, number: true, required: true });
+                format.push({y: true, number: true, required: true});
+                format.push({y: true, number: true, required: true});
             } else
-                format.push({ y: true, number: true, required: true });
+                format.push({y: true, number: true, required: true});
         }
         datapoints.format = format;
     }

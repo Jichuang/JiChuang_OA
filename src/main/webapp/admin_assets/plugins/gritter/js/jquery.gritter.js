@@ -237,7 +237,7 @@
                 e.animate({
                     opacity: 0
                 }, fade_out_speed, function () {
-                    e.animate({ height: 0 }, 300, function () {
+                    e.animate({height: 0}, 300, function () {
                         Gritter._countRemoveWrapper(unique_id, e, manual_close);
                     })
                 })
@@ -308,7 +308,7 @@
         _restoreItemIfFading: function (e, unique_id) {
 
             clearTimeout(this['_int_id_' + unique_id]);
-            e.stop().css({ opacity: '', height: '' });
+            e.stop().css({opacity: '', height: ''});
 
         },
 

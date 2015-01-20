@@ -48,6 +48,32 @@ public class Judge implements Serializable {
 
     private String jinfo;
 
+    public Judge(Integer jid, String jdes, Member jfrom, Member jto,
+                 String jstatus, String jstartdate, String jenddate) {
+        super();
+        this.jid = jid;
+        this.jdes = jdes;
+        this.jfrom = jfrom;
+        this.jto = jto;
+        this.jstatus = jstatus;
+        this.jstartdate = jstartdate;
+        this.jenddate = jenddate;
+    }
+
+    public Judge(String jdes, Member jfrom, Member jto, String jstatus,
+                 String jstartdate, String jenddate) {
+        super();
+        this.jdes = jdes;
+        this.jfrom = jfrom;
+        this.jto = jto;
+        this.jstatus = jstatus;
+        this.jstartdate = jstartdate;
+        this.jenddate = jenddate;
+    }
+
+    public Judge() {
+    }
+
     public Integer getJid() {
         return jid;
     }
@@ -102,32 +128,6 @@ public class Judge implements Serializable {
 
     public void setJenddate(String jenddate) {
         this.jenddate = jenddate;
-    }
-
-    public Judge(Integer jid, String jdes, Member jfrom, Member jto,
-                 String jstatus, String jstartdate, String jenddate) {
-        super();
-        this.jid = jid;
-        this.jdes = jdes;
-        this.jfrom = jfrom;
-        this.jto = jto;
-        this.jstatus = jstatus;
-        this.jstartdate = jstartdate;
-        this.jenddate = jenddate;
-    }
-
-    public Judge(String jdes, Member jfrom, Member jto, String jstatus,
-                 String jstartdate, String jenddate) {
-        super();
-        this.jdes = jdes;
-        this.jfrom = jfrom;
-        this.jto = jto;
-        this.jstatus = jstatus;
-        this.jstartdate = jstartdate;
-        this.jenddate = jenddate;
-    }
-
-    public Judge() {
     }
 
     @Override

@@ -8,7 +8,9 @@
             , all = $(document)
         // Create a map of touch and mouse actions
             , actions = {
-                start: 'mousedown' + namespace + ' touchstart' + namespace, move: 'mousemove' + namespace + ' touchmove' + namespace, end: 'mouseup' + namespace + ' touchend' + namespace
+                start: 'mousedown' + namespace + ' touchstart' + namespace,
+                move: 'mousemove' + namespace + ' touchmove' + namespace,
+                end: 'mouseup' + namespace + ' touchend' + namespace
             }
         // Make a copy of the current val function.
             , $VAL = $.fn.val
@@ -130,7 +132,7 @@
                 y = e.pageY;
             }
 
-            return { pass: jQueryEvent.data, e: e, x: x, y: y, t: [touch, mouse, pointer] };
+            return {pass: jQueryEvent.data, e: e, x: x, y: y, t: [touch, mouse, pointer]};
 
         }
 
@@ -218,9 +220,9 @@
                      */, "connect": {
                         t: function (o, q) {
                             return (   q === true
-                                || q === false
-                                || ( q === 'lower' && o.handles === 1)
-                                || ( q === 'upper' && o.handles === 1));
+                            || q === false
+                            || ( q === 'lower' && o.handles === 1)
+                            || ( q === 'upper' && o.handles === 1));
                         }
                     }
                     /*	Connect.
@@ -501,7 +503,7 @@
 
             // Trigger the 'slide' event, pass the target so that it is 'this'.
             call(
-                [ event.pass.base.data('options').slide ]
+                [event.pass.base.data('options').slide]
                 , event.pass.base.data('target')
             );
 
@@ -551,7 +553,7 @@
                 startEvent: event, position: position, base: event.pass.base, handle: handle
             }, move);
 
-            all.on(actions.end, { base: event.pass.base, handle: handle }, end);
+            all.on(actions.end, {base: event.pass.base, handle: handle}, end);
 
             // Prevent text selection when dragging the handles.
             // This doesn't prevent the browser defaulting to the I like cursor.
@@ -564,7 +566,7 @@
         function selfEnd(event) {
             // Trigger the end handler. Supply correct data using a
             // fake object that contains all required information;
-            end({ data: { base: event.data.base, handle: event.data.handle } });
+            end({data: {base: event.data.base, handle: event.data.handle}});
             // Stop propagation so that the tap handler doesn't interfere;
             event.stopPropagation();
         }
@@ -638,7 +640,7 @@
 
             // Trigger the 'slide' event, pass the target so that it is 'this'.
             call(
-                [ handle.data('nui').options.slide ]
+                [handle.data('nui').options.slide]
                 , base.data('target')
             );
 
@@ -742,8 +744,8 @@
                     // These events are only bound to the visual handle element,
                     // not the 'real' origin element.
                     handle.children()
-                        .on(actions.start, { base: base, handle: handle }, start)
-                        .on(actions.end, { base: base, handle: handle }, selfEnd);
+                        .on(actions.start, {base: base, handle: handle}, start)
+                        .on(actions.end, {base: base, handle: handle}, selfEnd);
 
                     // Make sure every handle has access to all primary
                     // variables. Can't uses jQuery's .data( obj ) structure
@@ -751,9 +753,9 @@
                     handle.data('nui', {
                         target: target, decimals: decimals, options: options, base: base, style: style, number: i
                     }).data('store', store(
-                            handle
-                            , options.S
-                        ));
+                        handle
+                        , options.S
+                    ));
 
                     // Attach a function to the native DOM element,
                     // since jQuery wont let me get the current value in percentages.
@@ -778,7 +780,7 @@
                 });
 
                 // The tap event.
-                base.on(actions.end, { base: base, handles: handles }, tap);
+                base.on(actions.end, {base: base, handles: handles}, tap);
 
             });
 

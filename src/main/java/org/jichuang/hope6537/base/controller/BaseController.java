@@ -24,14 +24,13 @@ import java.util.List;
 @RequestMapping("/base")
 public class BaseController {
 
+    public static final String PATH = AdminPageController.PATH;
     @Autowired
     private MemberService memberService;
     @Autowired
     private PostService postService;
     @Autowired
     private RoleService roleService;
-
-    public static final String PATH = AdminPageController.PATH;
     private Logger logger = Logger.getLogger(getClass());
 
     static Member MemberBaseReplace(Member oldMember, Member newMember) {

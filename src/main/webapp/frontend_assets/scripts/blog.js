@@ -52,7 +52,7 @@ var FrontBlog = function () {
         });
     }
 
-    return{
+    return {
         init: function () {
             handleEvent();
             ShowBlogService.refreshBlog();

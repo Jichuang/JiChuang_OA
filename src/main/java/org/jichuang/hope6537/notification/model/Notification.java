@@ -47,6 +47,10 @@ public class Notification implements Serializable {
     public Notification() {
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     public Integer getNotificationId() {
         return notificationId;
     }
@@ -77,9 +81,5 @@ public class Notification implements Serializable {
 
     public void setInfo(String info) {
         this.info = info;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 }

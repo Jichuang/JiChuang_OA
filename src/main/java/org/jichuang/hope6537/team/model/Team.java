@@ -54,6 +54,17 @@ public class Team implements Serializable {
     @JoinColumn(name = "teamTypeId")
     private TeamType teamTypeId;
 
+    public Team() {
+    }
+
+    public Team(String name, String image, String des, String date, String info) {
+        this.name = name;
+        this.image = image;
+        this.des = des;
+        this.date = date;
+        this.info = info;
+    }
+
     public Integer getTeamId() {
         return teamId;
     }
@@ -116,18 +127,6 @@ public class Team implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-
-    public Team() {
-    }
-
-    public Team(String name, String image, String des, String date, String info) {
-        this.name = name;
-        this.image = image;
-        this.des = des;
-        this.date = date;
-        this.info = info;
     }
 
     @Override

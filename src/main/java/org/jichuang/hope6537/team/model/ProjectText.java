@@ -31,24 +31,29 @@ public class ProjectText implements Serializable {
      * <p>Using: </p>
      */
     private static final long serialVersionUID = -59933759423405196L;
+    private Integer ptid;
+    private Member ptmid;
+    private Team pttid;
+    private String pttitle;
+    private String ptcont;
+    private String ptstatus;
+    private String ptinfo;
 
     public ProjectText() {
 
     }
 
-    private Integer ptid;
-
-    private Member ptmid;
-
-    private Team pttid;
-
-    private String pttitle;
-
-    private String ptcont;
-
-    private String ptstatus;
-
-    private String ptinfo;
+    public ProjectText(Integer ptid, Member ptmid, Team pttid, String pttitle,
+                       String ptcont, String ptstatus, String ptinfo) {
+        super();
+        this.ptid = ptid;
+        this.ptmid = ptmid;
+        this.pttid = pttid;
+        this.pttitle = pttitle;
+        this.ptcont = ptcont;
+        this.ptstatus = ptstatus;
+        this.ptinfo = ptinfo;
+    }
 
     public Integer getPtid() {
         return ptid;
@@ -111,18 +116,6 @@ public class ProjectText implements Serializable {
         return "ProjectText [ptid=" + ptid + ", ptmid=" + ptmid + ", pttid="
                 + pttid + ", pttitle=" + pttitle + ", ptcont=" + ptcont
                 + ", ptstatus=" + ptstatus + ", ptinfo=" + ptinfo + "]";
-    }
-
-    public ProjectText(Integer ptid, Member ptmid, Team pttid, String pttitle,
-                       String ptcont, String ptstatus, String ptinfo) {
-        super();
-        this.ptid = ptid;
-        this.ptmid = ptmid;
-        this.pttid = pttid;
-        this.pttitle = pttitle;
-        this.ptcont = ptcont;
-        this.ptstatus = ptstatus;
-        this.ptinfo = ptinfo;
     }
 
 

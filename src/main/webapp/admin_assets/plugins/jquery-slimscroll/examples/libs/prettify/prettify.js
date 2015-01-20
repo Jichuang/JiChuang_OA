@@ -68,46 +68,46 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
     // and to defeat aggressive optimizers that fold large string constants.
     var FLOW_CONTROL_KEYWORDS = ["break,continue,do,else,for,if,return,while"];
     var C_KEYWORDS = [FLOW_CONTROL_KEYWORDS, "auto,case,char,const,default," +
-        "double,enum,extern,float,goto,int,long,register,short,signed,sizeof," +
-        "static,struct,switch,typedef,union,unsigned,void,volatile"];
+    "double,enum,extern,float,goto,int,long,register,short,signed,sizeof," +
+    "static,struct,switch,typedef,union,unsigned,void,volatile"];
     var COMMON_KEYWORDS = [C_KEYWORDS, "catch,class,delete,false,import," +
-        "new,operator,private,protected,public,this,throw,true,try,typeof"];
+    "new,operator,private,protected,public,this,throw,true,try,typeof"];
     var CPP_KEYWORDS = [COMMON_KEYWORDS, "alignof,align_union,asm,axiom,bool," +
-        "concept,concept_map,const_cast,constexpr,decltype," +
-        "dynamic_cast,explicit,export,friend,inline,late_check," +
-        "mutable,namespace,nullptr,reinterpret_cast,static_assert,static_cast," +
-        "template,typeid,typename,using,virtual,where"];
+    "concept,concept_map,const_cast,constexpr,decltype," +
+    "dynamic_cast,explicit,export,friend,inline,late_check," +
+    "mutable,namespace,nullptr,reinterpret_cast,static_assert,static_cast," +
+    "template,typeid,typename,using,virtual,where"];
     var JAVA_KEYWORDS = [COMMON_KEYWORDS,
         "abstract,boolean,byte,extends,final,finally,implements,import," +
-            "instanceof,null,native,package,strictfp,super,synchronized,throws," +
-            "transient"];
+        "instanceof,null,native,package,strictfp,super,synchronized,throws," +
+        "transient"];
     var CSHARP_KEYWORDS = [JAVA_KEYWORDS,
         "as,base,by,checked,decimal,delegate,descending,dynamic,event," +
-            "fixed,foreach,from,group,implicit,in,interface,internal,into,is,lock," +
-            "object,out,override,orderby,params,partial,readonly,ref,sbyte,sealed," +
-            "stackalloc,string,select,uint,ulong,unchecked,unsafe,ushort,var"];
+        "fixed,foreach,from,group,implicit,in,interface,internal,into,is,lock," +
+        "object,out,override,orderby,params,partial,readonly,ref,sbyte,sealed," +
+        "stackalloc,string,select,uint,ulong,unchecked,unsafe,ushort,var"];
     var COFFEE_KEYWORDS = "all,and,by,catch,class,else,extends,false,finally," +
         "for,if,in,is,isnt,loop,new,no,not,null,of,off,on,or,return,super,then," +
         "true,try,unless,until,when,while,yes";
     var JSCRIPT_KEYWORDS = [COMMON_KEYWORDS,
         "debugger,eval,export,function,get,null,set,undefined,var,with," +
-            "Infinity,NaN"];
+        "Infinity,NaN"];
     var PERL_KEYWORDS = "caller,delete,die,do,dump,elsif,eval,exit,foreach,for," +
         "goto,if,import,last,local,my,next,no,our,print,package,redo,require," +
         "sub,undef,unless,until,use,wantarray,while,BEGIN,END";
     var PYTHON_KEYWORDS = [FLOW_CONTROL_KEYWORDS, "and,as,assert,class,def,del," +
-        "elif,except,exec,finally,from,global,import,in,is,lambda," +
-        "nonlocal,not,or,pass,print,raise,try,with,yield," +
-        "False,True,None"];
+    "elif,except,exec,finally,from,global,import,in,is,lambda," +
+    "nonlocal,not,or,pass,print,raise,try,with,yield," +
+    "False,True,None"];
     var RUBY_KEYWORDS = [FLOW_CONTROL_KEYWORDS, "alias,and,begin,case,class," +
-        "def,defined,elsif,end,ensure,false,in,module,next,nil,not,or,redo," +
-        "rescue,retry,self,super,then,true,undef,unless,until,when,yield," +
-        "BEGIN,END"];
+    "def,defined,elsif,end,ensure,false,in,module,next,nil,not,or,redo," +
+    "rescue,retry,self,super,then,true,undef,unless,until,when,yield," +
+    "BEGIN,END"];
     var SH_KEYWORDS = [FLOW_CONTROL_KEYWORDS, "case,done,elif,esac,eval,fi," +
-        "function,in,local,set,then,until"];
+    "function,in,local,set,then,until"];
     var ALL_KEYWORDS = [
         CPP_KEYWORDS, CSHARP_KEYWORDS, JSCRIPT_KEYWORDS, PERL_KEYWORDS +
-            PYTHON_KEYWORDS, RUBY_KEYWORDS, SH_KEYWORDS];
+        PYTHON_KEYWORDS, RUBY_KEYWORDS, SH_KEYWORDS];
     var C_TYPES = /^(DIR|FILE|vector|(de|priority_)?queue|list|stack|(const_)?iterator|(multi)?(set|map)|bitset|u?(int|float)\d*)/;
 
     // token style names.  correspond to css classes
@@ -227,7 +227,7 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
             if (regex.ignoreCase) {
                 ignoreCase = true;
             } else if (/[a-z]/i.test(regex.source.replace(
-                /\\u[0-9a-f]{4}|\\x[0-9a-f]{2}|\\[^ux]/gi, ''))) {
+                    /\\u[0-9a-f]{4}|\\x[0-9a-f]{2}|\\[^ux]/gi, ''))) {
                 needToFoldCase = true;
                 ignoreCase = false;
                 break;
@@ -276,12 +276,12 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
             var charsetParts = charSet.substring(1, charSet.length - 1).match(
                 new RegExp(
                     '\\\\u[0-9A-Fa-f]{4}'
-                        + '|\\\\x[0-9A-Fa-f]{2}'
-                        + '|\\\\[0-3][0-7]{0,2}'
-                        + '|\\\\[0-7]{1,2}'
-                        + '|\\\\[\\s\\S]'
-                        + '|-'
-                        + '|[^-\\\\]',
+                    + '|\\\\x[0-9A-Fa-f]{2}'
+                    + '|\\\\[0-3][0-7]{0,2}'
+                    + '|\\\\[0-7]{1,2}'
+                    + '|\\\\[\\s\\S]'
+                    + '|-'
+                    + '|[^-\\\\]',
                     'g'));
             var groups = [];
             var ranges = [];
@@ -357,15 +357,15 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
             var parts = regex.source.match(
                 new RegExp(
                     '(?:'
-                        + '\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]'  // a character set
-                        + '|\\\\u[A-Fa-f0-9]{4}'  // a unicode escape
-                        + '|\\\\x[A-Fa-f0-9]{2}'  // a hex escape
-                        + '|\\\\[0-9]+'  // a back-reference or octal escape
-                        + '|\\\\[^ux0-9]'  // other escape sequence
-                        + '|\\(\\?[:!=]'  // start of a non-capturing group
-                        + '|[\\(\\)\\^]'  // start/emd of a group, or line start
-                        + '|[^\\x5B\\x5C\\(\\)\\^]+'  // run of other characters
-                        + ')',
+                    + '\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]'  // a character set
+                    + '|\\\\u[A-Fa-f0-9]{4}'  // a unicode escape
+                    + '|\\\\x[A-Fa-f0-9]{2}'  // a hex escape
+                    + '|\\\\[0-9]+'  // a back-reference or octal escape
+                    + '|\\\\[^ux0-9]'  // other escape sequence
+                    + '|\\(\\?[:!=]'  // start of a non-capturing group
+                    + '|[\\(\\)\\^]'  // start/emd of a group, or line start
+                    + '|[^\\x5B\\x5C\\(\\)\\^]+'  // run of other characters
+                    + ')',
                     'g'));
             var n = parts.length;
 
@@ -852,15 +852,15 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
                 // A regular expression literal starts with a slash that is
                 // not followed by * or / so that it is not confused with
                 // comments.
-                '/(?=[^/*])'
-                    // and then contains any number of raw characters,
-                    + '(?:[^/\\x5B\\x5C]'
-                    // escape sequences (\x5C),
-                    + '|\\x5C[\\s\\S]'
-                    // or non-nesting character sets (\x5B\x5D);
-                    + '|\\x5B(?:[^\\x5C\\x5D]|\\x5C[\\s\\S])*(?:\\x5D|$))+'
-                    // finally closed by a /.
-                    + '/');
+            '/(?=[^/*])'
+                // and then contains any number of raw characters,
+            + '(?:[^/\\x5B\\x5C]'
+                // escape sequences (\x5C),
+            + '|\\x5C[\\s\\S]'
+                // or non-nesting character sets (\x5B\x5D);
+            + '|\\x5B(?:[^\\x5C\\x5D]|\\x5C[\\s\\S])*(?:\\x5D|$))+'
+                // finally closed by a /.
+            + '/');
             fallthroughStylePatterns.push(
                 ['lang-regex',
                     new RegExp('^' + REGEXP_PRECEDER_PATTERN + '(' + REGEX_LITERAL + ')')
@@ -890,14 +890,14 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
                 new RegExp(
                     '^(?:'
                         // A hex number
-                        + '0x[a-f0-9]+'
+                    + '0x[a-f0-9]+'
                         // or an octal or decimal number,
-                        + '|(?:\\d(?:_\\d+)*\\d*(?:\\.\\d*)?|\\.\\d\\+)'
+                    + '|(?:\\d(?:_\\d+)*\\d*(?:\\.\\d*)?|\\.\\d\\+)'
                         // possibly in scientific notation
-                        + '(?:e[+\\-]?\\d+)?'
-                        + ')'
+                    + '(?:e[+\\-]?\\d+)?'
+                    + ')'
                         // with an optional modifier like UL for unsigned long
-                        + '[a-z]*', 'i'),
+                    + '[a-z]*', 'i'),
                 null, '0123456789'],
             // Don't treat escaped quotes in bash as starting strings.  See issue 144.
             [PR_PLAIN, /^\\[\s\S]?/, null],
@@ -1142,7 +1142,7 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
             var textNode = spans[spanIndex + 1];
             var styledText;
             if (textNode.nodeType !== 1  // Don't muck with <BR>s or <LI>s
-                // Don't introduce spans around empty text nodes.
+                    // Don't introduce spans around empty text nodes.
                 && (styledText = source.substring(sourceIndex, end))) {
                 // This may seem bizarre, and it is.  Emitting LF on IE causes the
                 // code to display with spaces instead of line breaks.
@@ -1391,9 +1391,11 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
 
         var clock = Date;
         if (!clock['now']) {
-            clock = { 'now': function () {
-                return +(new Date);
-            } };
+            clock = {
+                'now': function () {
+                    return +(new Date);
+                }
+            };
         }
 
         // The loop is broken into a series of continuations to make sure that we
@@ -1406,7 +1408,7 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
 
         function doWork() {
             var endTime = (window['PR_SHOULD_USE_CONTINUATION'] ?
-                clock['now']() + 250 /* ms */ :
+            clock['now']() + 250 /* ms */ :
                 Infinity);
             for (; k < elements.length && clock['now']() < endTime; k++) {
                 var cs = elements[k];

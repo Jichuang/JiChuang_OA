@@ -26,12 +26,10 @@ import java.util.List;
  */
 public class BaseDaoImpl<T> implements BaseDao<T> {
 
-    private Class<?> clz;
-
-    private Logger logger = Logger.getLogger(getClass() + "DataBase Service");
-
     @Autowired(required = true)
     protected SessionFactory sessionFactory;
+    private Class<?> clz;
+    private Logger logger = Logger.getLogger(getClass() + "DataBase Service");
 
     public BaseDaoImpl() {
         ParameterizedType type = (ParameterizedType) this.getClass()

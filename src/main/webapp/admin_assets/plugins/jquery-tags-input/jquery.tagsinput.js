@@ -105,8 +105,8 @@
                         title: 'Removing tag',
                         text: 'x'
                     }).click(function () {
-                            return $('#' + id).removeTag(escape(value));
-                        })
+                        return $('#' + id).removeTag(escape(value));
+                    })
                 ).insertBefore('#' + id + '_addTag');
 
                 tagslist.push(value);
@@ -182,7 +182,7 @@
             minChars: 0,
             width: '300px',
             height: '100px',
-            autocomplete: {selectFirst: false },
+            autocomplete: {selectFirst: false},
             'hide': true,
             'delimiter': ',',
             'unique': true,
@@ -281,7 +281,10 @@
                         var d = $(this).attr('data-default');
                         if ($(event.data.fake_input).val() != '' && $(event.data.fake_input).val() != d) {
                             if ((event.data.minChars <= $(event.data.fake_input).val().length) && (!event.data.maxChars || (event.data.maxChars >= $(event.data.fake_input).val().length)))
-                                $(event.data.real_input).addTag($(event.data.fake_input).val(), {focus: true, unique: (settings.unique)});
+                                $(event.data.real_input).addTag($(event.data.fake_input).val(), {
+                                    focus: true,
+                                    unique: (settings.unique)
+                                });
                         } else {
                             $(event.data.fake_input).val($(event.data.fake_input).attr('data-default'));
                             $(event.data.fake_input).css('color', settings.placeholderColor);
@@ -295,7 +298,10 @@
                     if (event.which == event.data.delimiter.charCodeAt(0) || event.which == 13) {
                         event.preventDefault();
                         if ((event.data.minChars <= $(event.data.fake_input).val().length) && (!event.data.maxChars || (event.data.maxChars >= $(event.data.fake_input).val().length)))
-                            $(event.data.real_input).addTag($(event.data.fake_input).val(), {focus: true, unique: (settings.unique)});
+                            $(event.data.real_input).addTag($(event.data.fake_input).val(), {
+                                focus: true,
+                                unique: (settings.unique)
+                            });
                         $(event.data.fake_input).resetAutosize(settings);
                         return false;
                     } else if (event.data.autosize) {

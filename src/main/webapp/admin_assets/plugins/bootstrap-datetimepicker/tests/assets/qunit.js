@@ -60,7 +60,7 @@
                     });
                 }
                 config.previousModule = this.module;
-                config.moduleStats = { all: 0, bad: 0 };
+                config.moduleStats = {all: 0, bad: 0};
                 runLoggingCallbacks('moduleStart', QUnit, {
                     name: this.module
                 });
@@ -197,7 +197,7 @@
 
                 var a = document.createElement("a");
                 a.innerHTML = "Rerun";
-                a.href = QUnit.url({ filter: getText([b]).replace(/\([^)]+\)$/, "").replace(/(^\s*|\s*$)/g, "") });
+                a.href = QUnit.url({filter: getText([b]).replace(/\([^)]+\)$/, "").replace(/(^\s*|\s*$)/g, "")});
 
                 addEvent(b, "click", function () {
                     var next = b.nextSibling.nextSibling,
@@ -211,7 +211,7 @@
                         target = target.parentNode;
                     }
                     if (window.location && target.nodeName.toLowerCase() === "strong") {
-                        window.location = QUnit.url({ filter: getText([target]).replace(/\([^)]+\)$/, "").replace(/(^\s*|\s*$)/g, "") });
+                        window.location = QUnit.url({filter: getText([target]).replace(/\([^)]+\)$/, "").replace(/(^\s*|\s*$)/g, "")});
                     }
                 });
 
@@ -501,19 +501,19 @@
 
 // Load paramaters
     (function () {
-        var location = window.location || { search: "", protocol: "file:" },
+        var location = window.location || {search: "", protocol: "file:"},
             params = location.search.slice(1).split("&"),
             length = params.length,
             urlParams = {},
             current;
 
-        if (params[ 0 ]) {
+        if (params[0]) {
             for (var i = 0; i < length; i++) {
-                current = params[ i ].split("=");
-                current[ 0 ] = decodeURIComponent(current[ 0 ]);
+                current = params[i].split("=");
+                current[0] = decodeURIComponent(current[0]);
                 // allow just a key to turn on a flag, e.g., test.html?noglobals
-                current[ 1 ] = current[ 1 ] ? decodeURIComponent(current[ 1 ]) : true;
-                urlParams[ current[ 0 ] ] = current[ 1 ];
+                current[1] = current[1] ? decodeURIComponent(current[1]) : true;
+                urlParams[current[0]] = current[1];
             }
         }
 
@@ -538,8 +538,8 @@
         // Initialize the configuration options
         init: function () {
             extend(config, {
-                stats: { all: 0, bad: 0 },
-                moduleStats: { all: 0, bad: 0 },
+                stats: {all: 0, bad: 0},
+                moduleStats: {all: 0, bad: 0},
                 started: +new Date(),
                 updateRate: 1000,
                 blocking: false,
@@ -554,10 +554,10 @@
             if (qunit) {
                 qunit.innerHTML =
                     '<h1 id="qunit-header">' + escapeInnerText(document.title) + '</h1>' +
-                        '<h2 id="qunit-banner"></h2>' +
-                        '<div id="qunit-testrunner-toolbar"></div>' +
-                        '<h2 id="qunit-userAgent"></h2>' +
-                        '<ol id="qunit-tests"></ol>';
+                    '<h2 id="qunit-banner"></h2>' +
+                    '<div id="qunit-testrunner-toolbar"></div>' +
+                    '<h2 id="qunit-userAgent"></h2>' +
+                    '<ol id="qunit-tests"></ol>';
             }
 
             var tests = id("qunit-tests"),
@@ -713,7 +713,7 @@
                     continue;
                 }
                 querystring += encodeURIComponent(key) + "=" +
-                    encodeURIComponent(params[ key ]) + "&";
+                encodeURIComponent(params[key]) + "&";
             }
             return window.location.pathname + querystring.slice(0, -1);
         },
@@ -771,10 +771,10 @@
         }
         var banner = id("qunit-header");
         if (banner) {
-            banner.innerHTML = '<a href="' + QUnit.url({ filter: undefined }) + '"> ' + banner.innerHTML + '</a> ' + urlConfigHtml;
+            banner.innerHTML = '<a href="' + QUnit.url({filter: undefined}) + '"> ' + banner.innerHTML + '</a> ' + urlConfigHtml;
             addEvent(banner, "change", function (event) {
                 var params = {};
-                params[ event.target.name ] = event.target.checked ? true : undefined;
+                params[event.target.name] = event.target.checked ? true : undefined;
                 window.location = QUnit.url(params);
             });
         }
@@ -1123,8 +1123,8 @@
         }
 
         var getProto = Object.getPrototypeOf || function (obj) {
-            return obj.__proto__;
-        };
+                return obj.__proto__;
+            };
 
         var callbacks = (function () {
 
@@ -1158,11 +1158,11 @@
 
                 "regexp": function (b, a) {
                     return QUnit.objectType(b) === "regexp" &&
-                        // the regex itself
+                            // the regex itself
                         a.source === b.source &&
-                        // and its modifers
+                            // and its modifers
                         a.global === b.global &&
-                        // (gmi) ...
+                            // (gmi) ...
                         a.ignoreCase === b.ignoreCase &&
                         a.multiline === b.multiline;
                 },
@@ -1273,7 +1273,7 @@
                     QUnit.objectType(a) !== QUnit.objectType(b)) {
                     return false; // don't lose time with error prone cases
                 } else {
-                    return bindCallbacks(a, callbacks, [ b, a ]);
+                    return bindCallbacks(a, callbacks, [b, a]);
                 }
 
                 // apply transition with (1..n) arguments
@@ -1313,7 +1313,7 @@
             if (!arr) {
                 return pre + post;
             }
-            return [ pre, inner + arr, base + post ].join(s);
+            return [pre, inner + arr, base + post].join(s);
         }
 
         function array(arr, stack) {
@@ -1330,8 +1330,8 @@
 
         var jsDump = {
             parse: function (obj, type, stack) { //type is used mostly internally, you can fix a (custom)type in advance
-                stack = stack || [ ];
-                var parser = this.parsers[ type || this.typeOf(obj) ];
+                stack = stack || [];
+                var parser = this.parsers[type || this.typeOf(obj)];
                 type = typeof parser;
                 var inStack = inArray(obj, stack);
                 if (inStack != -1) {
@@ -1366,11 +1366,11 @@
                 } else if (obj.nodeType) {
                     type = "node";
                 } else if (
-                // native arrays
-                    toString.call(obj) === "[object Array]" ||
-                        // NodeList objects
-                        ( typeof obj.length === "number" && typeof obj.item !== "undefined" && ( obj.length ? obj.item(0) === obj[0] : ( obj.item(0) === null && typeof obj[0] === "undefined" ) ) )
-                    ) {
+                    // native arrays
+                toString.call(obj) === "[object Array]" ||
+                    // NodeList objects
+                ( typeof obj.length === "number" && typeof obj.item !== "undefined" && ( obj.length ? obj.item(0) === obj[0] : ( obj.item(0) === null && typeof obj[0] === "undefined" ) ) )
+                ) {
                     type = "array";
                 } else {
                     type = typeof obj;
@@ -1421,14 +1421,14 @@
                     }
                     ret += '(';
 
-                    ret = [ ret, QUnit.jsDump.parse(fn, 'functionArgs'), '){'].join('');
+                    ret = [ret, QUnit.jsDump.parse(fn, 'functionArgs'), '){'].join('');
                     return join(ret, QUnit.jsDump.parse(fn, 'functionCode'), '}');
                 },
                 array: array,
                 nodelist: array,
                 'arguments': array,
                 object: function (map, stack) {
-                    var ret = [ ], keys, key, val, i;
+                    var ret = [], keys, key, val, i;
                     QUnit.jsDump.up();
                     if (Object.keys) {
                         keys = Object.keys(map);
@@ -1440,8 +1440,8 @@
                     }
                     keys.sort();
                     for (i = 0; i < keys.length; i++) {
-                        key = keys[ i ];
-                        val = map[ key ];
+                        key = keys[i];
+                        val = map[key];
                         ret.push(QUnit.jsDump.parse(key, 'key') + ': ' + QUnit.jsDump.parse(val, undefined, stack));
                     }
                     QUnit.jsDump.down();
@@ -1523,7 +1523,7 @@
         }
 
         for (var i = 0, length = array.length; i < length; i++) {
-            if (array[ i ] === elem) {
+            if (array[i] === elem) {
                 return i;
             }
         }
@@ -1682,5 +1682,5 @@
 
 // get at whatever the global object is, like window in browsers
 }((function () {
-        return this;
-    }.call())));
+    return this;
+}.call())));

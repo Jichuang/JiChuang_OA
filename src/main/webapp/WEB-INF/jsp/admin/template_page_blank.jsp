@@ -1,4 +1,4 @@
-<%@ page language="java" import="org.jichuang.hope6537.base.model.Member" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"

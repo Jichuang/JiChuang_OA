@@ -265,9 +265,9 @@
                         // Clicked outside the datepicker, hide it
                         if (!(
                             this.element.is(e.target) ||
-                                this.element.find(e.target).length ||
-                                this.picker.is(e.target) ||
-                                this.picker.find(e.target).length
+                            this.element.find(e.target).length ||
+                            this.picker.is(e.target) ||
+                            this.picker.find(e.target).length
                             )) {
                             this.hide();
                         }
@@ -326,11 +326,11 @@
 
             if (
                 this.o.forceParse &&
-                    (
-                        this.isInput && this.element.val() ||
-                            this.hasInput && this.element.find('input').val()
-                        )
+                (
+                this.isInput && this.element.val() ||
+                this.hasInput && this.element.find('input').val()
                 )
+            )
                 this.setValue();
             this._trigger('hide');
         },
@@ -421,8 +421,8 @@
                 scrollTop = $window.scrollTop();
 
             var zIndex = parseInt(this.element.parents().filter(function () {
-                return $(this).css('z-index') != 'auto';
-            }).first().css('z-index')) + 10;
+                    return $(this).css('z-index') != 'auto';
+                }).first().css('z-index')) + 10;
             var offset = this.component ? this.component.parent().offset() : this.element.offset();
             var height = this.component ? this.component.outerHeight(true) : this.element.outerHeight(false);
             var width = this.component ? this.component.outerWidth(true) : this.element.outerWidth(false);
@@ -431,7 +431,7 @@
 
             this.picker.removeClass(
                 'datepicker-orient-top datepicker-orient-bottom ' +
-                    'datepicker-orient-right datepicker-orient-left'
+                'datepicker-orient-right datepicker-orient-left'
             );
 
             if (this.o.orientation.x !== 'auto') {
@@ -1358,38 +1358,38 @@
             return date.join('');
         },
         headTemplate: '<thead>' +
-            '<tr>' +
-            '<th class="prev"><i class="icon-angle-left"></i></th>' +
-            '<th colspan="5" class="datepicker-switch"></th>' +
-            '<th class="next"><i class="icon-angle-right"></i></th>' +
-            '</tr>' +
-            '</thead>',
+        '<tr>' +
+        '<th class="prev"><i class="icon-angle-left"></i></th>' +
+        '<th colspan="5" class="datepicker-switch"></th>' +
+        '<th class="next"><i class="icon-angle-right"></i></th>' +
+        '</tr>' +
+        '</thead>',
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
         footTemplate: '<tfoot><tr><th colspan="7" class="today"></th></tr><tr><th colspan="7" class="clear"></th></tr></tfoot>'
     };
     DPGlobal.template = '<div class="datepicker">' +
-        '<div class="datepicker-days">' +
-        '<table class=" table-condensed">' +
-        DPGlobal.headTemplate +
-        '<tbody></tbody>' +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datepicker-months">' +
-        '<table class="table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datepicker-years">' +
-        '<table class="table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '</div>';
+    '<div class="datepicker-days">' +
+    '<table class=" table-condensed">' +
+    DPGlobal.headTemplate +
+    '<tbody></tbody>' +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datepicker-months">' +
+    '<table class="table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datepicker-years">' +
+    '<table class="table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '</div>';
 
     $.fn.datepicker.DPGlobal = DPGlobal;
 

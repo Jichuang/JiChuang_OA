@@ -33,11 +33,6 @@ public class Blog implements Serializable {
      * <p>Using: </p>
      */
     private static final long serialVersionUID = -3801905772606042564L;
-
-    public Blog() {
-
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "blogId", length = 50)
@@ -55,6 +50,9 @@ public class Blog implements Serializable {
     private String status;
     @Column(name = "info", length = 50)
     private String info;
+    public Blog() {
+
+    }
 
     public Integer getBlogId() {
         return blogId;

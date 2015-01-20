@@ -114,7 +114,7 @@
     ;
     ;
 
-    var fc = $.fullCalendar = { version: "1.6.1" };
+    var fc = $.fullCalendar = {version: "1.6.1"};
     var fcViews = fc.views = {};
 
 
@@ -704,11 +704,11 @@
             if (sections) {
                 element = $("<table class='fc-header' style='width:100%'/>")
                     .append(
-                        $("<tr/>")
-                            .append(renderSection('left'))
-                            .append(renderSection('center'))
-                            .append(renderSection('right'))
-                    );
+                    $("<tr/>")
+                        .append(renderSection('left'))
+                        .append(renderSection('center'))
+                        .append(renderSection('right'))
+                );
                 return element;
             }
         }
@@ -751,13 +751,13 @@
                                 var text = smartProperty(options.buttonText, buttonName); // why are we using smartProperty here?
                                 var button = $(
                                     "<span class='fc-button fc-button-" + buttonName + " " + tm + "-state-default'>" +
-                                        (icon ?
-                                            "<span class='fc-icon-wrap'>" +
-                                                "<span class='ui-icon ui-icon-" + icon + "'/>" +
-                                                "</span>" :
-                                            text
-                                            ) +
-                                        "</span>"
+                                    (icon ?
+                                    "<span class='fc-icon-wrap'>" +
+                                    "<span class='ui-icon ui-icon-" + icon + "'/>" +
+                                    "</span>" :
+                                        text
+                                    ) +
+                                    "</span>"
                                 )
                                     .click(function () {
                                         if (!button.hasClass(tm + '-state-disabled')) {
@@ -873,8 +873,8 @@
 
 
         // locals
-        var stickySource = { events: [] };
-        var sources = [ stickySource ];
+        var stickySource = {events: []};
+        var sources = [stickySource];
         var rangeStart, rangeEnd;
         var currentFetchID = 0;
         var pendingSourceCnt = 0;
@@ -1026,10 +1026,10 @@
 
         function _addEventSource(source) {
             if ($.isFunction(source) || $.isArray(source)) {
-                source = { events: source };
+                source = {events: source};
             }
             else if (typeof source == 'string') {
-                source = { url: source };
+                source = {url: source};
             }
             if (typeof source == 'object') {
                 normalizeSource(source);
@@ -1977,22 +1977,22 @@
         var optionColor = opt('eventColor');
         var backgroundColor =
             event.backgroundColor ||
-                eventColor ||
-                source.backgroundColor ||
-                sourceColor ||
-                opt('eventBackgroundColor') ||
-                optionColor;
+            eventColor ||
+            source.backgroundColor ||
+            sourceColor ||
+            opt('eventBackgroundColor') ||
+            optionColor;
         var borderColor =
             event.borderColor ||
-                eventColor ||
-                source.borderColor ||
-                sourceColor ||
-                opt('eventBorderColor') ||
-                optionColor;
+            eventColor ||
+            source.borderColor ||
+            sourceColor ||
+            opt('eventBorderColor') ||
+            optionColor;
         var textColor =
             event.textColor ||
-                source.textColor ||
-                opt('eventTextColor');
+            source.textColor ||
+            opt('eventTextColor');
         var statements = [];
         if (backgroundColor) {
             statements.push('background-color:' + backgroundColor);
@@ -2009,7 +2009,7 @@
 
     function applyAll(functions, thisObj, args) {
         if ($.isFunction(functions)) {
-            functions = [ functions ];
+            functions = [functions];
         }
         if (functions) {
             var i;
@@ -2335,8 +2335,8 @@
             var cell;
 
             html += "<table class='fc-border-separate' style='width:100%' cellspacing='0'>" +
-                "<thead>" +
-                "<tr>";
+            "<thead>" +
+            "<tr>";
 
             if (showWeekNumbers) {
                 html += "<th class='fc-week-number " + headerClass + "'/>";
@@ -2348,16 +2348,16 @@
             }
 
             html += "</tr>" +
-                "</thead>" +
-                "<tbody>";
+            "</thead>" +
+            "<tbody>";
 
             for (i = 0; i < rowCnt; i++) {
                 html += "<tr class='fc-week'>";
 
                 if (showWeekNumbers) {
                     html += "<td class='fc-week-number " + contentClass + "'>" +
-                        "<div/>" +
-                        "</td>";
+                    "<div/>" +
+                    "</td>";
                 }
 
                 for (j = 0; j < colCnt; j++) {
@@ -2377,24 +2377,24 @@
                     }
 
                     html += "<td" +
-                        " class='" + cellClasses.join(' ') + "'" +
-                        " data-date='" + formatDate(cellDate, 'yyyy-MM-dd') + "'" +
-                        ">" +
-                        "<div>";
+                    " class='" + cellClasses.join(' ') + "'" +
+                    " data-date='" + formatDate(cellDate, 'yyyy-MM-dd') + "'" +
+                    ">" +
+                    "<div>";
                     if (showNumbers) {
                         html += "<div class='fc-day-number'>" + cellDate.getDate() + "</div>";
                     }
                     html += "<div class='fc-day-content'>" +
-                        "<div style='position:relative'>&nbsp;</div>" +
-                        "</div>" +
-                        "</div>" +
-                        "</td>";
+                    "<div style='position:relative'>&nbsp;</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</td>";
                 }
 
                 html += "</tr>";
             }
             html += "</tbody>" +
-                "</table>";
+            "</table>";
 
             lockHeight(); // the unlock happens later, in setHeight()...
             if (table) {
@@ -3149,8 +3149,8 @@
 
             s =
                 "<table style='width:100%' class='fc-agenda-days fc-border-separate' cellspacing='0'>" +
-                    "<thead>" +
-                    "<tr>";
+                "<thead>" +
+                "<tr>";
 
             if (showWeekNumbers) {
                 s += "<th class='fc-agenda-axis fc-week-number " + headerClass + "'/>";
@@ -3165,26 +3165,26 @@
             }
             s +=
                 "<th class='fc-agenda-gutter " + headerClass + "'>&nbsp;</th>" +
-                    "</tr>" +
-                    "</thead>" +
-                    "<tbody>" +
-                    "<tr>" +
-                    "<th class='fc-agenda-axis " + headerClass + "'>&nbsp;</th>";
+                "</tr>" +
+                "</thead>" +
+                "<tbody>" +
+                "<tr>" +
+                "<th class='fc-agenda-axis " + headerClass + "'>&nbsp;</th>";
             for (i = 0; i < colCnt; i++) {
                 s +=
                     "<td class='fc- fc-col" + i + ' ' + contentClass + "'>" + // fc- needed for setDayID
-                        "<div>" +
-                        "<div class='fc-day-content'>" +
-                        "<div style='position:relative'>&nbsp;</div>" +
-                        "</div>" +
-                        "</div>" +
-                        "</td>";
+                    "<div>" +
+                    "<div class='fc-day-content'>" +
+                    "<div style='position:relative'>&nbsp;</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</td>";
             }
             s +=
                 "<td class='fc-agenda-gutter " + contentClass + "'>&nbsp;</td>" +
-                    "</tr>" +
-                    "</tbody>" +
-                    "</table>";
+                "</tr>" +
+                "</tbody>" +
+                "</table>";
             dayTable = $(s).appendTo(element);
             dayHead = dayTable.find('thead');
             dayHeadCells = dayHead.find('th').slice(1, -1);
@@ -3212,14 +3212,14 @@
 
                 s =
                     "<table style='width:100%' class='fc-agenda-allday' cellspacing='0'>" +
-                        "<tr>" +
-                        "<th class='" + headerClass + " fc-agenda-axis'>" + opt('allDayText') + "</th>" +
-                        "<td>" +
-                        "<div class='fc-day-content'><div style='position:relative'/></div>" +
-                        "</td>" +
-                        "<th class='" + headerClass + " fc-agenda-gutter'>&nbsp;</th>" +
-                        "</tr>" +
-                        "</table>";
+                    "<tr>" +
+                    "<th class='" + headerClass + " fc-agenda-axis'>" + opt('allDayText') + "</th>" +
+                    "<td>" +
+                    "<div class='fc-day-content'><div style='position:relative'/></div>" +
+                    "</td>" +
+                    "<th class='" + headerClass + " fc-agenda-gutter'>&nbsp;</th>" +
+                    "</tr>" +
+                    "</table>";
                 allDayTable = $(s).appendTo(slotLayer);
                 allDayRow = allDayTable.find('tr');
 
@@ -3230,8 +3230,8 @@
 
                 slotLayer.append(
                     "<div class='fc-agenda-divider " + headerClass + "'>" +
-                        "<div class='fc-agenda-divider-inner'/>" +
-                        "</div>"
+                    "<div class='fc-agenda-divider-inner'/>" +
+                    "</div>"
                 );
 
             } else {
@@ -3254,7 +3254,7 @@
 
             s =
                 "<table class='fc-agenda-slots' style='width:100%' cellspacing='0'>" +
-                    "<tbody>";
+                "<tbody>";
             d = zeroDate();
             maxd = addMinutes(cloneDate(d), maxMinute);
             addMinutes(d, minMinute);
@@ -3263,19 +3263,19 @@
                 minutes = d.getMinutes();
                 s +=
                     "<tr class='fc-slot" + i + ' ' + (!minutes ? '' : 'fc-minor') + "'>" +
-                        "<th class='fc-agenda-axis " + headerClass + "'>" +
-                        ((!slotNormal || !minutes) ? formatDate(d, opt('axisFormat')) : '&nbsp;') +
-                        "</th>" +
-                        "<td class='" + contentClass + "'>" +
-                        "<div style='position:relative'>&nbsp;</div>" +
-                        "</td>" +
-                        "</tr>";
+                    "<th class='fc-agenda-axis " + headerClass + "'>" +
+                    ((!slotNormal || !minutes) ? formatDate(d, opt('axisFormat')) : '&nbsp;') +
+                    "</th>" +
+                    "<td class='" + contentClass + "'>" +
+                    "<div style='position:relative'>&nbsp;</div>" +
+                    "</td>" +
+                    "</tr>";
                 addMinutes(d, opt('slotMinutes'));
                 slotCnt++;
             }
             s +=
                 "</tbody>" +
-                    "</table>";
+                "</table>";
             slotTable = $(s).appendTo(slotContent);
             slotTableFirstInner = slotTable.find('div:first');
 
@@ -3989,8 +3989,8 @@
                     }
                 }
                 left = leftmost +                                  // leftmost possible
-                    (availWidth / (levelI + forward + 1) * levelI) // indentation
-                        * dis + (rtl ? availWidth - outerWidth : 0);   // rtl
+                (availWidth / (levelI + forward + 1) * levelI) // indentation
+                * dis + (rtl ? availWidth - outerWidth : 0);   // rtl
                 seg.top = top;
                 seg.left = left;
                 seg.outerWidth = outerWidth;
@@ -4093,17 +4093,17 @@
             }
             html +=
                 " class='" + classes.join(' ') + "'" +
-                    " style='position:absolute;z-index:8;top:" + seg.top + "px;left:" + seg.left + "px;" + skinCss + "'" +
-                    ">" +
-                    "<div class='fc-event-inner'>" +
-                    "<div class='fc-event-time'>" +
-                    htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) +
-                    "</div>" +
-                    "<div class='fc-event-title'>" +
-                    htmlEscape(event.title) +
-                    "</div>" +
-                    "</div>" +
-                    "<div class='fc-event-bg'></div>";
+                " style='position:absolute;z-index:8;top:" + seg.top + "px;left:" + seg.left + "px;" + skinCss + "'" +
+                ">" +
+                "<div class='fc-event-inner'>" +
+                "<div class='fc-event-time'>" +
+                htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) +
+                "</div>" +
+                "<div class='fc-event-title'>" +
+                htmlEscape(event.title) +
+                "</div>" +
+                "</div>" +
+                "<div class='fc-event-bg'></div>";
             if (seg.isEnd && isEventResizable(event)) {
                 html +=
                     "<div class='ui-resizable-handle ui-resizable-s'>=</div>";
@@ -4186,7 +4186,7 @@
                                             eventElement,
                                             snapHeight * Math.round(
                                                 (event.end ? ((event.end - event.start) / MINUTE_MS) : opt('defaultEventMinutes')) /
-                                                    snapMinutes
+                                                snapMinutes
                                             )
                                         );
                                         eventElement.draggable('option', 'grid', [colWidth, 1]);
@@ -4219,9 +4219,9 @@
                         var minuteDelta = 0;
                         if (!allDay) {
                             minuteDelta = Math.round((eventElement.offset().top - getBodyContent().offset().top) / snapHeight)
-                                * snapMinutes
-                                + minMinute
-                                - (event.start.getHours() * 60 + event.start.getMinutes());
+                            * snapMinutes
+                            + minMinute
+                            - (event.start.getHours() * 60 + event.start.getMinutes());
                         }
                         eventDrop(this, event, dayDelta, minuteDelta, allDay, ev, ui);
                     }
@@ -4828,23 +4828,23 @@
                 }
                 html +=
                     " class='" + classes.join(' ') + "'" +
-                        " style='position:absolute;z-index:8;left:" + left + "px;" + skinCss + "'" +
-                        ">" +
-                        "<div class='fc-event-inner'>";
+                    " style='position:absolute;z-index:8;left:" + left + "px;" + skinCss + "'" +
+                    ">" +
+                    "<div class='fc-event-inner'>";
                 if (!event.allDay && seg.isStart) {
                     html +=
                         "<span class='fc-event-time'>" +
-                            htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) +
-                            "</span>";
+                        htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) +
+                        "</span>";
                 }
                 html +=
                     "<span class='fc-event-title'>" + htmlEscape(event.title) + "</span>" +
-                        "</div>";
+                    "</div>";
                 if (seg.isEnd && isEventResizable(event)) {
                     html +=
                         "<div class='ui-resizable-handle ui-resizable-" + (rtl ? 'w' : 'e') + "'>" +
-                            "&nbsp;&nbsp;&nbsp;" + // makes hit area a lot better for IE6/7
-                            "</div>";
+                        "&nbsp;&nbsp;&nbsp;" + // makes hit area a lot better for IE6/7
+                        "</div>";
                 }
                 html +=
                     "</" + (url ? "a" : "div" ) + ">";
@@ -5209,7 +5209,7 @@
                 hoverListener.start(function (cell, origCell) { // TODO: maybe put cellDate/cellIsAllDay info in cell
                     clearSelection();
                     if (cell && cellIsAllDay(cell)) {
-                        dates = [ cellDate(origCell), cellDate(cell) ].sort(cmp);
+                        dates = [cellDate(origCell), cellDate(cell)].sort(cmp);
                         renderSelection(dates[0], dates[1], true);
                     } else {
                         dates = null;
@@ -5303,7 +5303,7 @@
                     break;
                 }
             }
-            return (r >= 0 && c >= 0) ? { row: r, col: c } : null;
+            return (r >= 0 && c >= 0) ? {row: r, col: c} : null;
         };
 
 

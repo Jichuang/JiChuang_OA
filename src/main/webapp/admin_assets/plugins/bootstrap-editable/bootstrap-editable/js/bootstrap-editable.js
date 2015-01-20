@@ -274,7 +274,11 @@
                     if(params.newValue === 'username') {...}
                 });
                      **/
-                    this.$div.triggerHandler('save', {newValue: newValue, submitValue: submitValue, response: response});
+                    this.$div.triggerHandler('save', {
+                        newValue: newValue,
+                        submitValue: submitValue,
+                        response: response
+                    });
                 }, this))
                 .fail($.proxy(function (xhr) {
                     this.isSaving = false;
@@ -604,18 +608,18 @@
      Classes 'form-group' and 'editable-error-block' must always present!
      */
     $.fn.editableform.template = '<form class="form-inline editableform">' +
-        '<div class="form-group">' +
-        '<div><div class="editable-input"></div><div class="editable-buttons"></div></div>' +
-        '<div class="editable-error-block"></div>' +
-        '</div>' +
-        '</form>';
+    '<div class="form-group">' +
+    '<div><div class="editable-input"></div><div class="editable-buttons"></div></div>' +
+    '<div class="editable-error-block"></div>' +
+    '</div>' +
+    '</form>';
 
     //loading div
     $.fn.editableform.loading = '<div class="editableform-loading"></div>';
 
     //buttons
     $.fn.editableform.buttons = '<button type="submit" class="editable-submit">ok</button>' +
-        '<button type="button" class="editable-cancel">cancel</button>';
+    '<button type="button" class="editable-cancel">cancel</button>';
 
     //error class attached to form-group
     $.fn.editableform.errorGroupClass = 'has-error';
@@ -784,9 +788,9 @@
                 } else {
                     /*jslint eqeq: true*/
                     if (isValArray) {
-                        if ($.grep(value,function (v) {
-                            return v == (o && typeof o === 'object' ? valueProp(o) : o);
-                        }).length) {
+                        if ($.grep(value, function (v) {
+                                return v == (o && typeof o === 'object' ? valueProp(o) : o);
+                            }).length) {
                             result.push(o);
                         }
                     } else {
@@ -2047,10 +2051,10 @@
                     }
 
                     $.ajax($.extend({
-                            url: config.url,
-                            data: values,
-                            type: 'POST'
-                        }, config.ajaxOptions))
+                        url: config.url,
+                        data: values,
+                        type: 'POST'
+                    }, config.ajaxOptions))
                         .success(function (response) {
                             //successful response 200 OK
                             if (typeof config.success === 'function') {
@@ -3191,9 +3195,9 @@
 
             for (var i = 0; i < this.sourceData.length; i++) {
                 $label = $('<label>').append($('<input>', {
-                        type: 'checkbox',
-                        value: this.sourceData[i].value
-                    }))
+                    type: 'checkbox',
+                    value: this.sourceData[i].value
+                }))
                     .append($('<span>').text(' ' + this.sourceData[i].text));
 
                 $('<div>').append($label).appendTo(this.$tpl);
@@ -3627,12 +3631,12 @@
                 //some default ajax params
                 if (!options.select2.ajax.data) {
                     options.select2.ajax.data = function (term) {
-                        return { query: term };
+                        return {query: term};
                     };
                 }
                 if (!options.select2.ajax.results) {
                     options.select2.ajax.results = function (data) {
-                        return {results: data };
+                        return {results: data};
                     };
                 }
                 options.select2.ajax.url = source;
@@ -4513,7 +4517,7 @@
 
     //buttons
     $.fn.editableform.buttons = '<button type="submit" class="btn blue editable-submit"><i class="icon-ok icon-white"></i></button>' +
-        '<button type="button" class="btn default editable-cancel"><i class="icon-remove"></i></button>';
+    '<button type="button" class="btn default editable-cancel"><i class="icon-remove"></i></button>';
 
     //error classes
     $.fn.editableform.errorGroupClass = 'has-error';
@@ -4609,7 +4613,7 @@
                     //  .detach()
                     //vitalets: remove any placement class because otherwise they dont influence on re-positioning of visible popover
                     .removeClass('top right bottom left')
-                    .css({ top: 0, left: 0, display: 'block' });
+                    .css({top: 0, left: 0, display: 'block'});
                 //  .insertAfter(this.$element);
 
                 pos = this.getPosition(inside);
@@ -4921,9 +4925,9 @@
                         // Clicked outside the datepicker, hide it
                         if (!(
                             this.element.is(e.target) ||
-                                this.element.find(e.target).size() ||
-                                this.picker.is(e.target) ||
-                                this.picker.find(e.target).size()
+                            this.element.find(e.target).size() ||
+                            this.picker.is(e.target) ||
+                            this.picker.find(e.target).size()
                             )) {
                             this.hide();
                         }
@@ -4982,11 +4986,11 @@
 
             if (
                 this.o.forceParse &&
-                    (
-                        this.isInput && this.element.val() ||
-                            this.hasInput && this.element.find('input').val()
-                        )
+                (
+                this.isInput && this.element.val() ||
+                this.hasInput && this.element.find('input').val()
                 )
+            )
                 this.setValue();
             this._trigger('hide');
         },
@@ -5058,8 +5062,8 @@
         place: function () {
             if (this.isInline) return;
             var zIndex = parseInt(this.element.parents().filter(function () {
-                return $(this).css('z-index') != 'auto';
-            }).first().css('z-index')) + 10;
+                    return $(this).css('z-index') != 'auto';
+                }).first().css('z-index')) + 10;
             var offset = this.component ? this.component.parent().offset() : this.element.offset();
             var height = this.component ? this.component.outerHeight(true) : this.element.outerHeight(true);
             this.picker.css({
@@ -5920,38 +5924,38 @@
             return date.join('');
         },
         headTemplate: '<thead>' +
-            '<tr>' +
-            '<th class="prev"><i class="icon-angle-left"/></th>' +
-            '<th colspan="5" class="datepicker-switch"></th>' +
-            '<th class="next"><i class="icon-angle-right"/></th>' +
-            '</tr>' +
-            '</thead>',
+        '<tr>' +
+        '<th class="prev"><i class="icon-angle-left"/></th>' +
+        '<th colspan="5" class="datepicker-switch"></th>' +
+        '<th class="next"><i class="icon-angle-right"/></th>' +
+        '</tr>' +
+        '</thead>',
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
         footTemplate: '<tfoot><tr><th colspan="7" class="today"></th></tr><tr><th colspan="7" class="clear"></th></tr></tfoot>'
     };
     DPGlobal.template = '<div class="datepicker">' +
-        '<div class="datepicker-days">' +
-        '<table class=" table-condensed">' +
-        DPGlobal.headTemplate +
-        '<tbody></tbody>' +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datepicker-months">' +
-        '<table class="table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datepicker-years">' +
-        '<table class="table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '</div>';
+    '<div class="datepicker-days">' +
+    '<table class=" table-condensed">' +
+    DPGlobal.headTemplate +
+    '<tbody></tbody>' +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datepicker-months">' +
+    '<table class="table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datepicker-years">' +
+    '<table class="table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '</div>';
 
     $.fn.datepicker.DPGlobal = DPGlobal;
 

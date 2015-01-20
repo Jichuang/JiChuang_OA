@@ -49,6 +49,22 @@ public class Version implements Serializable {
 
     private String vstatus;
 
+    public Version(Integer vid, Version vbefore, String vpath, String vdate,
+                   Member vmid, Team vtid, String vinfo) {
+        super();
+        this.vid = vid;
+        this.vbefore = vbefore;
+        this.vpath = vpath;
+        this.vdate = vdate;
+        this.vmid = vmid;
+        this.vtid = vtid;
+        this.vinfo = vinfo;
+    }
+
+    public Version() {
+
+    }
+
     public Integer getVid() {
         return vid;
     }
@@ -110,22 +126,6 @@ public class Version implements Serializable {
         return "Version [vid=" + vid + ", vbefore=" + vbefore + ", vpath="
                 + vpath + ", vdate=" + vdate + ", vmid=" + vmid + ", vtid="
                 + vtid + ", vinfo=" + vinfo + "]";
-    }
-
-    public Version(Integer vid, Version vbefore, String vpath, String vdate,
-                   Member vmid, Team vtid, String vinfo) {
-        super();
-        this.vid = vid;
-        this.vbefore = vbefore;
-        this.vpath = vpath;
-        this.vdate = vdate;
-        this.vmid = vmid;
-        this.vtid = vtid;
-        this.vinfo = vinfo;
-    }
-
-    public Version() {
-
     }
 
     public String getVstatus() {

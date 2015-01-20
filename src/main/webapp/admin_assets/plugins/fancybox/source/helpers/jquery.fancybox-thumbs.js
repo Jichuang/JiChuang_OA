@@ -62,7 +62,7 @@
 
             //Load each thumbnail
             $.each(obj.group, function (i) {
-                var href = thumbSource(obj.group[ i ]);
+                var href = thumbSource(obj.group[i]);
 
                 if (!href) {
                     return;
@@ -123,7 +123,7 @@
             }
 
             //Increase bottom margin to give space for thumbs
-            obj.margin[ opts.position === 'top' ? 0 : 2 ] += ((opts.height) + 15);
+            obj.margin[opts.position === 'top' ? 0 : 2] += ((opts.height) + 15);
         },
 
         afterShow: function (opts, obj) {

@@ -22,30 +22,38 @@
             }
 
             var data = [
-                { data: generate(0, 10, function (x) {
-                    return Math.sqrt(x);
-                }), xaxis: 1, yaxis: 1 },
-                { data: generate(0, 10, function (x) {
-                    return Math.sin(x);
-                }), xaxis: 1, yaxis: 2 },
-                { data: generate(0, 10, function (x) {
-                    return Math.cos(x);
-                }), xaxis: 1, yaxis: 3 },
-                { data: generate(2, 10, function (x) {
-                    return Math.tan(x);
-                }), xaxis: 2, yaxis: 4 }
+                {
+                    data: generate(0, 10, function (x) {
+                        return Math.sqrt(x);
+                    }), xaxis: 1, yaxis: 1
+                },
+                {
+                    data: generate(0, 10, function (x) {
+                        return Math.sin(x);
+                    }), xaxis: 1, yaxis: 2
+                },
+                {
+                    data: generate(0, 10, function (x) {
+                        return Math.cos(x);
+                    }), xaxis: 1, yaxis: 3
+                },
+                {
+                    data: generate(2, 10, function (x) {
+                        return Math.tan(x);
+                    }), xaxis: 2, yaxis: 4
+                }
             ];
 
             var plot = $.plot("#placeholder", data, {
                 xaxes: [
-                    { position: 'bottom' },
-                    { position: 'top'}
+                    {position: 'bottom'},
+                    {position: 'top'}
                 ],
                 yaxes: [
-                    { position: 'left' },
-                    { position: 'left' },
-                    { position: 'right' },
-                    { position: 'left' }
+                    {position: 'left'},
+                    {position: 'left'},
+                    {position: 'right'},
+                    {position: 'left'}
                 ]
             });
 
@@ -60,14 +68,14 @@
                 $("<div class='axisTarget' style='position:absolute; left:" + box.left + "px; top:" + box.top + "px; width:" + box.width + "px; height:" + box.height + "px'></div>")
                         .data("axis.direction", axis.direction)
                         .data("axis.n", axis.n)
-                        .css({ backgroundColor: "#f00", opacity: 0, cursor: "pointer" })
+                        .css({backgroundColor: "#f00", opacity: 0, cursor: "pointer"})
                         .appendTo(plot.getPlaceholder())
                         .hover(
                         function () {
-                            $(this).css({ opacity: 0.10 })
+                            $(this).css({opacity: 0.10})
                         },
                         function () {
-                            $(this).css({ opacity: 0 })
+                            $(this).css({opacity: 0})
                         }
                 )
                         .click(function () {

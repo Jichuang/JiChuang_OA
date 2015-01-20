@@ -76,9 +76,9 @@
                 if (this._audioElement.canPlayType &&
                     this._audioElement.canPlayType(file.type) &&
                     ($.type(options.maxFileSize) !== 'number' ||
-                        file.size <= options.maxFileSize) &&
+                    file.size <= options.maxFileSize) &&
                     (!options.fileTypes ||
-                        options.fileTypes.test(file.type))) {
+                    options.fileTypes.test(file.type))) {
                     url = loadImage.createObjectURL(file);
                     if (url) {
                         audio = this._audioElement.cloneNode(false);

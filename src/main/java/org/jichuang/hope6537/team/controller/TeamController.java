@@ -25,12 +25,12 @@ import java.util.List;
 @Scope("prototype")
 public class TeamController {
 
+    private static final String PATH = AdminPageController.PATH;
     @Autowired
     private TeamService teamService;
     @Autowired
     private TeamTypeService teamTypeService;
     private Logger logger = Logger.getLogger(getClass());
-    private static final String PATH = AdminPageController.PATH;
 
     @RequestMapping("/conf")
     public String toTeam() {

@@ -82,7 +82,7 @@ describe("multiSelect", function () {
         describe('init', function () {
             describe('with selectableOptgroup option set to false', function () {
                 beforeEach(function () {
-                    optgroupSelect.multiSelect({ selectableOptgroup: false });
+                    optgroupSelect.multiSelect({selectableOptgroup: false});
                     optgroupMsContainer = optgroupSelect.next();
                     optgroupLabels = optgroupMsContainer.find('.ms-selectable .ms-optgroup-label');
                 });
@@ -100,7 +100,7 @@ describe("multiSelect", function () {
 
             describe('with selectableOptgroup option set to true', function () {
                 beforeEach(function () {
-                    optgroupSelect.multiSelect({ selectableOptgroup: true });
+                    optgroupSelect.multiSelect({selectableOptgroup: true});
                     optgroupMsContainer = optgroupSelect.next();
                     optgroupLabels = optgroupMsContainer.find('.ms-selectable .ms-optgroup-label');
                 });

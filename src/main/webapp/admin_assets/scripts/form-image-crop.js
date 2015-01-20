@@ -90,7 +90,7 @@ var FormImageCrop = function () {
         $('#demo4').Jcrop({
             bgFade: true,
             bgOpacity: .2,
-            setSelect: [ 60, 70, 540, 330 ]
+            setSelect: [60, 70, 540, 330]
         }, function () {
             jcrop_api = this;
         });
@@ -155,9 +155,9 @@ var FormImageCrop = function () {
         for (i in ac) {
             $('#anim_buttons .btn-group')
                 .append(
-                    create_btn(a_count++).click(animHandler(ac[i])),
-                    ' '
-                );
+                create_btn(a_count++).click(animHandler(ac[i])),
+                ' '
+            );
         }
 
         $('#anim_buttons .btn-group').append(
@@ -204,7 +204,7 @@ var FormImageCrop = function () {
             return function (e) {
                 $(e.target).closest('.btn-group').find('.active').removeClass('active');
                 $(e.target).addClass('active');
-                var opt = { };
+                var opt = {};
                 opt[k] = v;
                 jcrop_api.setOptions(opt);
                 return false;
@@ -285,7 +285,7 @@ var FormImageCrop = function () {
         // buggy behavior, it's recommended that you in some way trap
         // the onRelease callback if you use allowSelect: false
         function releaseCheck() {
-            jcrop_api.setOptions({ allowSelect: true });
+            jcrop_api.setOptions({allowSelect: true});
             $('#can_click').attr('checked', false);
             App.updateUniform('#can_click');
         };
@@ -341,7 +341,7 @@ var FormImageCrop = function () {
                 .find('button.active').not(this).removeClass('active');
 
             jcrop_api.setImage('admin_assets/plugins/jcrop/demos/demo_files/sago.jpg');
-            jcrop_api.setOptions({ bgOpacity: .6 });
+            jcrop_api.setOptions({bgOpacity: .6});
             return false;
         });
         $('#img2').click(function (e) {
@@ -349,7 +349,7 @@ var FormImageCrop = function () {
                 .find('button.active').not(this).removeClass('active');
 
             jcrop_api.setImage('admin_assets/plugins/jcrop/demos/demo_files/pool.jpg');
-            jcrop_api.setOptions({ bgOpacity: .6 });
+            jcrop_api.setOptions({bgOpacity: .6});
             return false;
         });
         $('#img3').click(function (e) {
@@ -373,29 +373,29 @@ var FormImageCrop = function () {
         // This matches the default initial state of Jcrop
 
         $('#can_click').change(function (e) {
-            jcrop_api.setOptions({ allowSelect: !!this.checked });
+            jcrop_api.setOptions({allowSelect: !!this.checked});
             jcrop_api.focus();
         });
         $('#can_move').change(function (e) {
-            jcrop_api.setOptions({ allowMove: !!this.checked });
+            jcrop_api.setOptions({allowMove: !!this.checked});
             jcrop_api.focus();
         });
         $('#can_size').change(function (e) {
-            jcrop_api.setOptions({ allowResize: !!this.checked });
+            jcrop_api.setOptions({allowResize: !!this.checked});
             jcrop_api.focus();
         });
         $('#ar_lock').change(function (e) {
             jcrop_api.setOptions(this.checked ?
-            { aspectRatio: 4 / 3 } : { aspectRatio: 0 });
+            {aspectRatio: 4 / 3} : {aspectRatio: 0});
             jcrop_api.focus();
         });
         $('#size_lock').change(function (e) {
             jcrop_api.setOptions(this.checked ? {
-                minSize: [ 80, 80 ],
-                maxSize: [ 350, 350 ]
+                minSize: [80, 80],
+                maxSize: [350, 350]
             } : {
-                minSize: [ 0, 0 ],
-                maxSize: [ 0, 0 ]
+                minSize: [0, 0],
+                maxSize: [0, 0]
             });
             jcrop_api.focus();
         });
@@ -413,7 +413,7 @@ var FormImageCrop = function () {
         }, function () {
             api = this;
             api.setSelect([130, 65, 130 + 350, 65 + 285]);
-            api.setOptions({ bgFade: true });
+            api.setOptions({bgFade: true});
             api.ui.selection.addClass('jcrop-selection');
         });
 
@@ -428,11 +428,11 @@ var FormImageCrop = function () {
                     api.ui.holder.addClass(c);
                     switch (c) {
                         case 'jcrop-light':
-                            api.setOptions({ bgColor: 'white', bgOpacity: 0.5 });
+                            api.setOptions({bgColor: 'white', bgOpacity: 0.5});
                             break;
 
                         case 'jcrop-dark':
-                            api.setOptions({ bgColor: 'black', bgOpacity: 0.4 });
+                            api.setOptions({bgColor: 'black', bgOpacity: 0.4});
                             break;
 
                         case 'jcrop-normal':

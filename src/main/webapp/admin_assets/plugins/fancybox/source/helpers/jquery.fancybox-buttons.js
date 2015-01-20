@@ -39,7 +39,7 @@
             }
 
             //Increase top margin to give space for buttons
-            obj.margin[ opts.position === 'bottom' ? 2 : 0 ] += 30;
+            obj.margin[opts.position === 'bottom' ? 2 : 0] += 30;
         },
 
         onPlayStart: function () {

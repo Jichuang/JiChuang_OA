@@ -781,8 +781,8 @@
                 };
 
             function resizeShades(w, h) {
-                shades.left.css({ height: px(h) });
-                shades.right.css({ height: px(h) });
+                shades.left.css({height: px(h)});
+                shades.right.css({height: px(h)});
             }
 
             function updateAuto() {
@@ -1571,8 +1571,8 @@
         }
 
         function interfaceUpdate(alt) //{{{
-            // This method tweaks the interface based on options object.
-            // Called when options are changed and at end of initialization.
+        // This method tweaks the interface based on options object.
+        // Called when options are changed and at end of initialization.
         {
             if (options.allowResize) {
                 if (alt) {

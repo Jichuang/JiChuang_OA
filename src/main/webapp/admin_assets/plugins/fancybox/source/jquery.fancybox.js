@@ -37,7 +37,7 @@
             var value = parseInt(orig, 10) || 0;
 
             if (dim && isPercentage(orig)) {
-                value = F.getViewport()[ dim ] / 100 * value;
+                value = F.getViewport()[dim] / 100 * value;
             }
 
             return Math.ceil(value);
@@ -88,7 +88,7 @@
 
             ajax: {
                 dataType: 'html',
-                headers: { 'X-fancyBox': true }
+                headers: {'X-fancyBox': true}
             },
             iframe: {
                 scrolling: 'auto',
@@ -340,7 +340,7 @@
                     selector: selector
                 });
 
-                group[ i ] = obj;
+                group[i] = obj;
             });
 
             // Extend the defaults
@@ -415,7 +415,7 @@
 
                 F.wrap.stop(true, true).removeClass('fancybox-opened');
 
-                F.transitions[ F.current.closeMethod ]();
+                F.transitions[F.current.closeMethod]();
             }
         },
 
@@ -502,7 +502,7 @@
 
             index = getScalar(index);
 
-            F.direction = direction || current.direction[ (index >= current.index ? 'next' : 'prev') ];
+            F.direction = direction || current.direction[(index >= current.index ? 'next' : 'prev')];
             F.router = router || 'jumpto';
 
             if (current.loop) {
@@ -513,7 +513,7 @@
                 index = index % current.group.length;
             }
 
-            if (current.group[ index ] !== undefined) {
+            if (current.group[index] !== undefined) {
                 F.cancel();
 
                 F._start(index);
@@ -686,15 +686,15 @@
                     // Ignore key combinations and key events within form elements
                     if (!e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey && !(target && (target.type || $(target).is('[contenteditable]')))) {
                         $.each(keys, function (i, val) {
-                            if (current.group.length > 1 && val[ code ] !== undefined) {
-                                F[ i ](val[ code ]);
+                            if (current.group.length > 1 && val[code] !== undefined) {
+                                F[i](val[code]);
 
                                 e.preventDefault();
                                 return false;
                             }
 
                             if ($.inArray(code, val) > -1) {
-                                F[ i ]();
+                                F[i]();
 
                                 e.preventDefault();
                                 return false;
@@ -780,7 +780,7 @@
                 padding;
 
             index = getScalar(index);
-            obj = F.group[ index ] || null;
+            obj = F.group[index] || null;
 
             if (!obj) {
                 return false;
@@ -859,7 +859,7 @@
                 if (F.current && F.router && F.router !== 'jumpto') {
                     F.current.index = index;
 
-                    return F[ F.router ](F.direction);
+                    return F[F.router](F.direction);
                 }
 
                 return false;
@@ -890,7 +890,7 @@
             });
 
             $.each(["Top", "Right", "Bottom", "Left"], function (i, v) {
-                coming.skin.css('padding' + v, getValue(coming.padding[ i ]));
+                coming.skin.css('padding' + v, getValue(coming.padding[i]));
             });
 
             F.trigger('onReady');
@@ -1035,7 +1035,7 @@
                 i;
 
             for (i = 1; i <= cnt; i += 1) {
-                item = group[ (current.index + i ) % len ];
+                item = group[(current.index + i ) % len];
 
                 if (item.type === 'image' && item.href) {
                     new Image().src = item.href;
@@ -1157,10 +1157,10 @@
                 $('.fancybox-wrap').not(current.wrap).stop(true).trigger('onReset').remove();
 
             } else if (previous.prevMethod) {
-                F.transitions[ previous.prevMethod ]();
+                F.transitions[previous.prevMethod]();
             }
 
-            F.transitions[ F.isOpened ? current.nextMethod : current.openMethod ]();
+            F.transitions[F.isOpened ? current.nextMethod : current.openMethod]();
 
             F._preloadImages();
         },
@@ -1437,7 +1437,7 @@
                     if (!$(e.target).is('a') && !$(e.target).parent().is('a')) {
                         e.preventDefault();
 
-                        F[ current.closeClick ? 'close' : 'next' ]();
+                        F[current.closeClick ? 'close' : 'next']();
                     }
                 });
             }
@@ -1570,8 +1570,8 @@
                 padding = prop === 'width' ? current.wPadding : current.hPadding;
                 value = now - padding;
 
-                F.skin[ prop ](getScalar(prop === 'width' ? value : value - (wrapSpace * ratio)));
-                F.inner[ prop ](getScalar(prop === 'width' ? value : value - (wrapSpace * ratio) - (skinSpace * ratio)));
+                F.skin[prop](getScalar(prop === 'width' ? value : value - (wrapSpace * ratio)));
+                F.inner[prop](getScalar(prop === 'width' ? value : value - (wrapSpace * ratio) - (skinSpace * ratio)));
             }
         },
 
@@ -1630,7 +1630,7 @@
             var current = F.current,
                 effect = current.nextEffect,
                 startPos = current.pos,
-                endPos = { opacity: 1 },
+                endPos = {opacity: 1},
                 direction = F.direction,
                 distance = 200,
                 field;
@@ -1641,12 +1641,12 @@
                 field = direction === 'down' || direction === 'up' ? 'top' : 'left';
 
                 if (direction === 'down' || direction === 'right') {
-                    startPos[ field ] = getValue(getScalar(startPos[ field ]) - distance);
-                    endPos[ field ] = '+=' + distance + 'px';
+                    startPos[field] = getValue(getScalar(startPos[field]) - distance);
+                    endPos[field] = '+=' + distance + 'px';
 
                 } else {
-                    startPos[ field ] = getValue(getScalar(startPos[ field ]) + distance);
-                    endPos[ field ] = '-=' + distance + 'px';
+                    startPos[field] = getValue(getScalar(startPos[field]) + distance);
+                    endPos[field] = '-=' + distance + 'px';
                 }
             }
 
@@ -1669,12 +1669,12 @@
         changeOut: function () {
             var previous = F.previous,
                 effect = previous.prevEffect,
-                endPos = { opacity: 0.1 },
+                endPos = {opacity: 0.1},
                 direction = F.direction,
                 distance = 200;
 
             if (effect === 'elastic') {
-                endPos[ direction === 'down' || direction === 'up' ? 'top' : 'left' ] = ( direction === 'up' || direction === 'left' ? '-' : '+' ) + '=' + distance + 'px';
+                endPos[direction === 'down' || direction === 'up' ? 'top' : 'left'] = ( direction === 'up' || direction === 'left' ? '-' : '+' ) + '=' + distance + 'px';
             }
 
             previous.wrap.animate(endPos, {
@@ -1900,7 +1900,7 @@
                     break;
             }
 
-            title[ (opts.position === 'top' ? 'prependTo' : 'appendTo') ](target);
+            title[(opts.position === 'top' ? 'prependTo' : 'appendTo')](target);
         }
     };
 
@@ -1918,7 +1918,7 @@
 
                     if (!relVal) {
                         relType = 'rel';
-                        relVal = what.get(0)[ relType ];
+                        relVal = what.get(0)[relType];
                     }
 
                     if (relVal && relVal !== '' && relVal !== 'nofollow') {

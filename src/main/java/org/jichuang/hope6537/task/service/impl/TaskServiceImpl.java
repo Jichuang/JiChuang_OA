@@ -18,14 +18,14 @@ import java.util.List;
 public class TaskServiceImpl extends BaseServiceImpl<Task> implements
         TaskService {
     @Autowired
+    private Member_TaskDao member_taskDao;
+
+    @Autowired
     @Override
     @Qualifier("taskDao")
     public void setDao(BaseDao<Task> dao) {
         super.setDao(dao);
     }
-
-    @Autowired
-    private Member_TaskDao member_taskDao;
 
     @Override
     public List<Task> selectTaskByMemberId(Member member, boolean isSent) throws MemberException {

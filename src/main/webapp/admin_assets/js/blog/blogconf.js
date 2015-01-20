@@ -21,7 +21,7 @@ var BlogTable = function () {
                 for (var i = 0; i < infos.length; i++) {
                     var keys = infos[i].split("=");
                     sOut += '<tr><td>' + keys[0] + ':</td><td>' + keys[1]
-                        + '</td></tr>';
+                    + '</td></tr>';
                 }
                 sOut += '</table>';
                 return sOut;
@@ -40,15 +40,15 @@ var BlogTable = function () {
                 "aoColumnDefs": [
                     {
                         "bSortable": false,
-                        "aTargets": [ 0 ]
+                        "aTargets": [0]
                     }
                 ],
                 "aaSorting": [
-                    [ 1, 'asc' ]
+                    [1, 'asc']
                 ],
                 "aLengthMenu": [
-                    [ 5, 15, 20, -1 ],
-                    [ 5, 15, 20, "All" ] // change
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "All"] // change
                     // per
                     // page
                     // values
@@ -155,10 +155,10 @@ var BlogTable = function () {
                             var line7 = '<a class="delete" id="delete'
                                 + list[i].blogId
                                 + '"><button class="btn btn-xs red" id="deleteBlog"> <i class="icon-trash"> <span style="font-family: Microsoft Yahei;">删除博客</span></i> </button></a>';
-                            table.fnAddData([ line1,
+                            table.fnAddData([line1,
                                 line2, line3,
                                 line4, line5,
-                                line6 + line6_1, line7 ]);
+                                line6 + line6_1, line7]);
                         }
                     } else {
                         toast.error(data.returnMsg);

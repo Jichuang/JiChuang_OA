@@ -53,7 +53,7 @@ var Datatable = function () {
                     dataTable: {
                         "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-scrollable't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable
                         // layout
-                        "lengthMenu": [ 5, 10, 25, 50, 75, 100 ],
+                        "lengthMenu": [5, 10, 25, 50, 75, 100],
                         search: true,
                         "pageLength": 10, // default records per
                         // page
@@ -81,11 +81,11 @@ var Datatable = function () {
                             { // set default column
                                 // settings
                                 'orderable': false,
-                                'targets': [ 0 ]
+                                'targets': [0]
                             },
                             {
                                 "searchable": false,
-                                "targets": [ 0 ]
+                                "targets": [0]
                             }
                         ],
                         "orderCellsTop": true,
@@ -120,8 +120,8 @@ var Datatable = function () {
                                     if (data.order[0]) {
                                         var sortTemp = options
                                             .onSortColumn(
-                                                options.dataTable.columns[data.order[0].column].data,
-                                                data.order[0].dir);
+                                            options.dataTable.columns[data.order[0].column].data,
+                                            data.order[0].dir);
                                         data.sortField = sortTemp.sortColumn;
                                         data.sortOrder = sortTemp.sortDirection;
                                     } else {
@@ -130,7 +130,7 @@ var Datatable = function () {
                                     }
                                 }
                                 data.pageNo = parseInt(data.start
-                                    / data.length, 10) + 1;
+                                / data.length, 10) + 1;
                                 data.pageSize = data.length;
                                 Metronic
                                     .blockUI({
@@ -147,7 +147,7 @@ var Datatable = function () {
                                 // from the
                                 // server
                                 if ($('.group-checkable', table)
-                                    .size() === 1) {
+                                        .size() === 1) {
                                     $('.group-checkable', table)
                                         .attr("checked", false);
                                     $.uniform.update($(
@@ -231,7 +231,7 @@ var Datatable = function () {
             var tmp = $.fn.dataTableExt.oStdClasses;
 
             $.fn.dataTableExt.oStdClasses.sWrapper = $.fn.dataTableExt.oStdClasses.sWrapper
-                + " dataTables_extended_wrapper";
+            + " dataTables_extended_wrapper";
             $.fn.dataTableExt.oStdClasses.sFilterInput = "form-control input-small input-sm input-inline";
             $.fn.dataTableExt.oStdClasses.sLengthSelect = "form-control input-xsmall input-sm input-inline";
 

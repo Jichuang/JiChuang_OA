@@ -209,7 +209,7 @@
 
 
                 $toastElement[options.showMethod](
-                    { duration: options.showDuration, easing: options.showEasing, complete: options.onShown }
+                    {duration: options.showDuration, easing: options.showEasing, complete: options.onShown}
                 );
                 if (options.timeOut > 0) {
                     intervalId = setTimeout(hideToast, options.timeOut);
@@ -269,7 +269,7 @@
                 function stickAround() {
                     clearTimeout(intervalId);
                     $toastElement.stop(true, true)[options.showMethod](
-                        { duration: options.showDuration, easing: options.showEasing }
+                        {duration: options.showDuration, easing: options.showEasing}
                     );
                 }
             }
@@ -312,9 +312,9 @@
         })();
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {
-        if (typeof module !== 'undefined' && module.exports) { //Node
-            module.exports = factory(require(deps[0]));
-        } else {
-            window['toastr'] = factory(window['jQuery']);
-        }
-    }));
+    if (typeof module !== 'undefined' && module.exports) { //Node
+        module.exports = factory(require(deps[0]));
+    } else {
+        window['toastr'] = factory(window['jQuery']);
+    }
+}));

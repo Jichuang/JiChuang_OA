@@ -52,14 +52,14 @@ $.extend($.fn.dataTableExt.oPagination, {
                 // pagination with prev, next link icons
             $(nPaging).append(
                 '<ul class="pagination">' +
-                    '<li class="prev disabled"><a href="#" title="' + oLang.sPrevious + '"><i class="icon-angle-left"></i></a></li>' +
-                    '<li class="next disabled"><a href="#" title="' + oLang.sNext + '"><i class="icon-angle-right"></i></a></li>' +
-                    '</ul>'
+                '<li class="prev disabled"><a href="#" title="' + oLang.sPrevious + '"><i class="icon-angle-left"></i></a></li>' +
+                '<li class="next disabled"><a href="#" title="' + oLang.sNext + '"><i class="icon-angle-right"></i></a></li>' +
+                '</ul>'
             );
 
             var els = $('a', nPaging);
-            $(els[0]).bind('click.DT', { action: "previous" }, fnClickHandler);
-            $(els[1]).bind('click.DT', { action: "next" }, fnClickHandler);
+            $(els[0]).bind('click.DT', {action: "previous"}, fnClickHandler);
+            $(els[1]).bind('click.DT', {action: "next"}, fnClickHandler);
         },
 
         "fnUpdate": function (oSettings, fnDraw) {

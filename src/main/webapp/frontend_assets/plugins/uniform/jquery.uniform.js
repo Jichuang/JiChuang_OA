@@ -807,7 +807,7 @@
                         // span and div accordingly
                         sizingInvisible($el, function () {
                             // Force "display: block" - related to bug #287
-                            swap($([ $span[0], $div[0] ]), {
+                            swap($([$span[0], $div[0]]), {
                                 display: "block"
                             }, function () {
                                 var spanPad;

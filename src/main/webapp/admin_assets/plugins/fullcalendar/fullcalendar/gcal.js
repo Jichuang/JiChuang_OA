@@ -17,7 +17,7 @@
     fc.sourceNormalizers.push(function (sourceOptions) {
         if (sourceOptions.dataType == 'gcal' ||
             sourceOptions.dataType === undefined &&
-                (sourceOptions.url || '').match(/^(http|https):\/\/www.google.com\/calendar\/feeds\//)) {
+            (sourceOptions.url || '').match(/^(http|https):\/\/www.google.com\/calendar\/feeds\//)) {
             sourceOptions.dataType = 'gcal';
             if (sourceOptions.editable === undefined) {
                 sourceOptions.editable = false;
@@ -100,7 +100,7 @@
 
 // legacy
     fc.gcalFeed = function (url, sourceOptions) {
-        return $.extend({}, sourceOptions, { url: url, dataType: 'gcal' });
+        return $.extend({}, sourceOptions, {url: url, dataType: 'gcal'});
     };
 
 

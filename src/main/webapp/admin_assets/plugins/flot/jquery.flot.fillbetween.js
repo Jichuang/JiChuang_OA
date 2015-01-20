@@ -44,8 +44,8 @@
             var i;
 
             for (i = 0; i < allseries.length; ++i) {
-                if (allseries[ i ].id === s.fillBetween) {
-                    return allseries[ i ];
+                if (allseries[i].id === s.fillBetween) {
+                    return allseries[i];
                 }
             }
 
@@ -53,7 +53,7 @@
                 if (s.fillBetween < 0 || s.fillBetween >= allseries.length) {
                     return null;
                 }
-                return allseries[ s.fillBetween ];
+                return allseries[s.fillBetween];
             }
 
             return null;
@@ -93,12 +93,12 @@
 
                 l = newpoints.length;
 
-                if (points[ i ] == null) {
+                if (points[i] == null) {
 
                     // copy gaps
 
                     for (m = 0; m < ps; ++m) {
-                        newpoints.push(points[ i + m ]);
+                        newpoints.push(points[i + m]);
                     }
 
                     i += ps;
@@ -109,13 +109,13 @@
 
                     if (!withlines) {
                         for (m = 0; m < ps; ++m) {
-                            newpoints.push(points[ i + m ]);
+                            newpoints.push(points[i + m]);
                         }
                     }
 
                     i += ps;
 
-                } else if (otherpoints[ j ] == null) {
+                } else if (otherpoints[j] == null) {
 
                     // oops, got a gap
 
@@ -130,16 +130,16 @@
 
                     // cases where we actually got two points
 
-                    px = points[ i ];
-                    py = points[ i + 1 ];
-                    qx = otherpoints[ j ];
-                    qy = otherpoints[ j + 1 ];
+                    px = points[i];
+                    py = points[i + 1];
+                    qx = otherpoints[j];
+                    qy = otherpoints[j + 1];
                     bottom = 0;
 
                     if (px === qx) {
 
                         for (m = 0; m < ps; ++m) {
-                            newpoints.push(points[ i + m ]);
+                            newpoints.push(points[i + m]);
                         }
 
                         //newpoints[ l + 1 ] += qy;
@@ -153,12 +153,12 @@
                         // we got past point below, might need to
                         // insert interpolated extra point
 
-                        if (withlines && i > 0 && points[ i - ps ] != null) {
-                            intery = py + ( points[ i - ps + 1 ] - py ) * ( qx - px ) / ( points[ i - ps ] - px );
+                        if (withlines && i > 0 && points[i - ps] != null) {
+                            intery = py + ( points[i - ps + 1] - py ) * ( qx - px ) / ( points[i - ps] - px );
                             newpoints.push(qx);
                             newpoints.push(intery);
                             for (m = 2; m < ps; ++m) {
-                                newpoints.push(points[ i + m ]);
+                                newpoints.push(points[i + m]);
                             }
                             bottom = qy;
                         }
@@ -175,14 +175,14 @@
                         }
 
                         for (m = 0; m < ps; ++m) {
-                            newpoints.push(points[ i + m ]);
+                            newpoints.push(points[i + m]);
                         }
 
                         // we might be able to interpolate a point below,
                         // this can give us a better y
 
-                        if (withlines && j > 0 && otherpoints[ j - otherps ] != null) {
-                            bottom = qy + ( otherpoints[ j - otherps + 1 ] - qy ) * ( px - qx ) / ( otherpoints[ j - otherps ] - qx );
+                        if (withlines && j > 0 && otherpoints[j - otherps] != null) {
+                            bottom = qy + ( otherpoints[j - otherps + 1] - qy ) * ( px - qx ) / ( otherpoints[j - otherps] - qx );
                         }
 
                         //newpoints[l + 1] += bottom;
@@ -193,20 +193,20 @@
                     fromgap = false;
 
                     if (l !== newpoints.length && withbottom) {
-                        newpoints[ l + 2 ] = bottom;
+                        newpoints[l + 2] = bottom;
                     }
                 }
 
                 // maintain the line steps invariant
 
                 if (withsteps && l !== newpoints.length && l > 0 &&
-                    newpoints[ l ] !== null &&
-                    newpoints[ l ] !== newpoints[ l - ps ] &&
-                    newpoints[ l + 1 ] !== newpoints[ l - ps + 1 ]) {
+                    newpoints[l] !== null &&
+                    newpoints[l] !== newpoints[l - ps] &&
+                    newpoints[l + 1] !== newpoints[l - ps + 1]) {
                     for (m = 0; m < ps; ++m) {
-                        newpoints[ l + ps + m ] = newpoints[ l + m ];
+                        newpoints[l + ps + m] = newpoints[l + m];
                     }
-                    newpoints[ l + 1 ] = newpoints[ l - ps + 1 ];
+                    newpoints[l + 1] = newpoints[l - ps + 1];
                 }
             }
 

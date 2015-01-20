@@ -32,12 +32,12 @@
     $.support.fileInput = !(new RegExp(
         // Handle devices which give false positives for the feature detection:
         '(Android (1\\.[0156]|2\\.[01]))' +
-            '|(Windows Phone (OS 7|8\\.0))|(XBLWP)|(ZuneWP)|(WPDesktop)' +
-            '|(w(eb)?OSBrowser)|(webOS)' +
-            '|(Kindle/(1\\.0|2\\.[05]|3\\.0))'
+        '|(Windows Phone (OS 7|8\\.0))|(XBLWP)|(ZuneWP)|(WPDesktop)' +
+        '|(w(eb)?OSBrowser)|(webOS)' +
+        '|(Kindle/(1\\.0|2\\.[05]|3\\.0))'
     ).test(window.navigator.userAgent) ||
         // Feature detection for all other devices:
-        $('<input type="file">').prop('disabled'));
+    $('<input type="file">').prop('disabled'));
 
     // The FileReader API is not actually used, but works as feature detection,
     // as e.g. Safari supports XHR file uploads via the FormData API,
@@ -47,7 +47,7 @@
 
     // Detect support for Blob slicing (required for chunked uploads):
     $.support.blobSlice = window.Blob && (Blob.prototype.slice ||
-        Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
+    Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
 
     // The fileupload widget listens for change events on file input fields defined
     // via fileInput setting and paste or drop events of the given dropZone.
@@ -275,7 +275,7 @@
         _isXHRUpload: function (options) {
             return !options.forceIframeTransport &&
                 ((!options.multipart && $.support.xhrFileUpload) ||
-                    $.support.xhrFormDataFileUpload);
+                $.support.xhrFormDataFileUpload);
         },
 
         _getFormData: function (options) {
@@ -405,7 +405,7 @@
             }
             if (!multipart || options.blob || !this._isInstanceOf('File', file)) {
                 options.headers['Content-Disposition'] = 'attachment; filename="' +
-                    encodeURI(file.name) + '"';
+                encodeURI(file.name) + '"';
             }
             if (!multipart) {
                 options.contentType = file.type;
@@ -609,7 +609,7 @@
                 if (this.state() !== 'pending') {
                     data.jqXHR = this.jqXHR =
                         (that._trigger('submit', e, this) !== false) &&
-                            that._onSend(e, this);
+                        that._onSend(e, this);
                 }
                 return this.jqXHR || that._getXHRPromise();
             };
@@ -693,16 +693,16 @@
                 o.chunkSize = o.blob.size;
                 // Expose the chunk bytes position range:
                 o.contentRange = 'bytes ' + ub + '-' +
-                    (ub + o.chunkSize - 1) + '/' + fs;
+                (ub + o.chunkSize - 1) + '/' + fs;
                 // Process the upload data (the blob and potential form data):
                 that._initXHRData(o);
                 // Add progress listeners for this chunk upload:
                 that._initProgressListener(o);
                 jqXHR = ((that._trigger('chunksend', null, o) !== false && $.ajax(o)) ||
-                    that._getXHRPromise(false, o.context))
+                that._getXHRPromise(false, o.context))
                     .done(function (result, textStatus, jqXHR) {
                         ub = that._getUploadedBytes(jqXHR) ||
-                            (ub + o.chunkSize);
+                        (ub + o.chunkSize);
                         // Create a progress event if no final progress event
                         // with loaded equaling total has been triggered
                         // for this chunk:
@@ -829,10 +829,10 @@
                     // Set timer for bitrate progress calculation:
                     options._bitrateTimer = new that._BitrateTimer();
                     jqXHR = jqXHR || (
-                        ((aborted || that._trigger('send', e, options) === false) &&
-                            that._getXHRPromise(false, options.context, aborted)) ||
-                            that._chunkedUpload(options) || $.ajax(options)
-                        ).done(function (result, textStatus, jqXHR) {
+                    ((aborted || that._trigger('send', e, options) === false) &&
+                    that._getXHRPromise(false, options.context, aborted)) ||
+                    that._chunkedUpload(options) || $.ajax(options)
+                    ).done(function (result, textStatus, jqXHR) {
                             that._onDone(result, textStatus, jqXHR, options);
                         }).fail(function (jqXHR, textStatus, errorThrown) {
                             that._onFail(jqXHR, textStatus, errorThrown, options);
@@ -869,7 +869,7 @@
             this._beforeSend(e, options);
             if (this.options.sequentialUploads ||
                 (this.options.limitConcurrentUploads &&
-                    this.options.limitConcurrentUploads <= this._sending)) {
+                this.options.limitConcurrentUploads <= this._sending)) {
                 if (this.options.limitConcurrentUploads > 1) {
                     slot = $.Deferred();
                     this._slots.push(slot);
@@ -991,9 +991,9 @@
                 dirReader = entry.createReader();
                 dirReader.readEntries(function (entries) {
                     that._handleFileTreeEntries(
-                            entries,
-                            path + entry.name + '/'
-                        ).done(function (files) {
+                        entries,
+                        path + entry.name + '/'
+                    ).done(function (files) {
                             dfd.resolve(files);
                         }).fail(errorHandler);
                 }, errorHandler);
@@ -1008,11 +1008,11 @@
         _handleFileTreeEntries: function (entries, path) {
             var that = this;
             return $.when.apply(
-                    $,
-                    $.map(entries, function (entry) {
-                        return that._handleFileTreeEntry(entry, path);
-                    })
-                ).pipe(function () {
+                $,
+                $.map(entries, function (entry) {
+                    return that._handleFileTreeEntry(entry, path);
+                })
+            ).pipe(function () {
                     return Array.prototype.concat.apply(
                         [],
                         arguments
@@ -1081,9 +1081,9 @@
                 return this._getSingleFileInputFiles(fileInput);
             }
             return $.when.apply(
-                    $,
-                    $.map(fileInput, this._getSingleFileInputFiles)
-                ).pipe(function () {
+                $,
+                $.map(fileInput, this._getSingleFileInputFiles)
+            ).pipe(function () {
                     return Array.prototype.concat.apply(
                         [],
                         arguments

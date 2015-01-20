@@ -261,9 +261,9 @@
                         // mentioned in either of these options
 
                         var spec = (opts.tickSize && opts.tickSize[1] ===
-                            "quarter") ||
-                            (opts.minTickSize && opts.minTickSize[1] ===
-                                "quarter") ? specQuarters : specMonths;
+                        "quarter") ||
+                        (opts.minTickSize && opts.minTickSize[1] ===
+                        "quarter") ? specQuarters : specMonths;
 
                         if (opts.minTickSize != null) {
                             if (typeof opts.tickSize == "number") {
@@ -386,14 +386,14 @@
                                     d.setDate(1);
                                     var start = d.getTime();
                                     d.setMonth(d.getMonth() +
-                                        (unit == "quarter" ? 3 : 1));
+                                    (unit == "quarter" ? 3 : 1));
                                     var end = d.getTime();
                                     d.setTime(v + carry * timeUnitSize.hour + (end - start) * tickSize);
                                     carry = d.getHours();
                                     d.setHours(0);
                                 } else {
                                     d.setMonth(d.getMonth() +
-                                        tickSize * (unit == "quarter" ? 3 : 1));
+                                    tickSize * (unit == "quarter" ? 3 : 1));
                                 }
                             } else if (unit == "year") {
                                 d.setFullYear(d.getFullYear() + tickSize);
@@ -421,7 +421,7 @@
                         var useQuarters = (axis.options.tickSize &&
                             axis.options.tickSize[1] == "quarter") ||
                             (axis.options.minTickSize &&
-                                axis.options.minTickSize[1] == "quarter");
+                            axis.options.minTickSize[1] == "quarter");
 
                         var t = axis.tickSize[0] * timeUnitSize[axis.tickSize[1]];
                         var span = axis.max - axis.min;

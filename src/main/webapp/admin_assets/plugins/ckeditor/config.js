@@ -13,11 +13,11 @@ CKEDITOR.editorConfig = function (config) {
     config.toolbarGroups = [
         {
             name: 'clipboard',
-            groups: [ 'clipboard', 'undo' ]
+            groups: ['clipboard', 'undo']
         },
         {
             name: 'editing',
-            groups: [ 'find', 'selection', 'spellchecker' ]
+            groups: ['find', 'selection', 'spellchecker']
         },
         {
             name: 'links'
@@ -33,7 +33,7 @@ CKEDITOR.editorConfig = function (config) {
         },
         {
             name: 'document',
-            groups: [ 'mode', 'document', 'doctools' ]
+            groups: ['mode', 'document', 'doctools']
         },
         {
             name: 'others'
@@ -41,11 +41,11 @@ CKEDITOR.editorConfig = function (config) {
         '/',
         {
             name: 'basicstyles',
-            groups: [ 'basicstyles', 'cleanup' ]
+            groups: ['basicstyles', 'cleanup']
         },
         {
             name: 'paragraph',
-            groups: [ 'list', 'indent', 'blocks', 'align' ]
+            groups: ['list', 'indent', 'blocks', 'align']
         },
         {
             name: 'styles'
@@ -59,17 +59,17 @@ CKEDITOR.editorConfig = function (config) {
     ];
 
     config.keystrokes = [
-        [ CKEDITOR.ALT + 121 /* F10 */, 'toolbarFocus' ], // 获取焦点
-        [ CKEDITOR.ALT + 122 /* F11 */, 'elementsPathFocus' ], // 元素焦点
-        [ CKEDITOR.SHIFT + 121 /* F10 */, 'contextMenu' ], // 文本菜单
-        [ CKEDITOR.CTRL + 90 /* Z */, 'undo' ], // 撤销
-        [ CKEDITOR.CTRL + 89 /* Y */, 'redo' ], // 重做
-        [ CKEDITOR.CTRL + CKEDITOR.SHIFT + 90 /* Z */, 'redo' ], //
-        [ CKEDITOR.CTRL + 76 /* L */, 'link' ], // 链接
-        [ CKEDITOR.CTRL + 66 /* B */, 'bold' ], // 粗体
-        [ CKEDITOR.CTRL + 73 /* I */, 'italic' ], // 斜体
-        [ CKEDITOR.CTRL + 85 /* U */, 'underline' ], // 下划线
-        [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
+        [CKEDITOR.ALT + 121 /* F10 */, 'toolbarFocus'], // 获取焦点
+        [CKEDITOR.ALT + 122 /* F11 */, 'elementsPathFocus'], // 元素焦点
+        [CKEDITOR.SHIFT + 121 /* F10 */, 'contextMenu'], // 文本菜单
+        [CKEDITOR.CTRL + 90 /* Z */, 'undo'], // 撤销
+        [CKEDITOR.CTRL + 89 /* Y */, 'redo'], // 重做
+        [CKEDITOR.CTRL + CKEDITOR.SHIFT + 90 /* Z */, 'redo'], //
+        [CKEDITOR.CTRL + 76 /* L */, 'link'], // 链接
+        [CKEDITOR.CTRL + 66 /* B */, 'bold'], // 粗体
+        [CKEDITOR.CTRL + 73 /* I */, 'italic'], // 斜体
+        [CKEDITOR.CTRL + 85 /* U */, 'underline'], // 下划线
+        [CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse']
     ]
 
     // Remove some buttons, provided by the standard plugins, which we don't

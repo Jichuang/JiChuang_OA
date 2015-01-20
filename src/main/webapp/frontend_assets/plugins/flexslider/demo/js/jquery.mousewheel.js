@@ -16,7 +16,7 @@
 
     if ($.event.fixHooks) {
         for (var i = types.length; i;) {
-            $.event.fixHooks[ types[--i] ] = $.event.mouseHooks;
+            $.event.fixHooks[types[--i]] = $.event.mouseHooks;
         }
     }
 
