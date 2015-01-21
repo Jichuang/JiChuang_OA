@@ -70,7 +70,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements
 
     @Override
     public List<Member> selectMemberListByName(String name) {
-        return selectMemberListByName(name);
+        return memberDao.selectMemberListByName(name);
     }
 
     @Override

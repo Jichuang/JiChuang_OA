@@ -7,6 +7,7 @@ import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.MemberService;
 import org.jichuang.hope6537.utils.AjaxResponse;
 import org.jichuang.hope6537.utils.ApplicationConstant;
+import org.jichuang.hope6537.utils.BasicNameValuePair;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -183,5 +184,17 @@ public class MemberController {
         }
     }
 
-
+    @RequestMapping(value = "/memberNameQuery", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxResponse selectMemberByName(@RequestBody BasicNameValuePair<String, String> memberNameMap, HttpServletRequest request) {
+        logger.info("管理员业务，根据姓名获取用户");
+        Member member = (Member) request.getSession().getAttribute("loginMember");
+        if (!ApplicationConstant.notNull(member)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
+        } else {
+            String memberName = memberNameMap.getKey();
+            List<Member> memberList = memberService.selectMemberListByName(memberName);
+            return AjaxResponse.getInstanceByResult(ApplicationConstant.notNull(memberList)).addAttribute("memberList", memberList);
+        }
+    }
 }

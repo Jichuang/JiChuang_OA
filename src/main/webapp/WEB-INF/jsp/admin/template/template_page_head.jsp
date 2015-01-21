@@ -53,6 +53,7 @@
       href="admin_assets/plugins/bootstrap-switch/static/stylesheets/bootstrap-switch-metro.css"/>
 <link rel="stylesheet" type="text/css" href="admin_assets/plugins/jquery-tags-input/jquery.tagsinput.css"/>
 <link rel="stylesheet" type="text/css" href="admin_assets/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+<link type="text/css" rel="stylesheet" href="admin_assets/plugins/jquery-autocomplete/content/styles.css" />
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="admin_assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>

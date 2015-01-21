@@ -152,7 +152,6 @@ public class BaseController {
         }
     }
 
-
     @RequestMapping("toRole")
     public String toRole() {
         //TODO:添加权限验证

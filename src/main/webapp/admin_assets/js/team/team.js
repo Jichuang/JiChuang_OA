@@ -133,21 +133,39 @@ var Team = function () {
 
             });
         },
-        memberNameQuery: function () {
-            $("#memberNameQuery").focus().autocomplete("/ajax/Account", {
-                formatItem: function (row, i, max) {
-                    var obj = eval("(" + row + ")"); //转换成js对象
-                    return obj.Text;
-                },
-                formatResult: function (row) {
-                    var obj = eval("(" + row + ")"); //转换成js对象
-                    return obj.Text;
+        memberNameQuery: function (input) {
+
+            var memberName = {key: $("#memberNameQuery").val()};
+            if (memberName == undefined || memberName == "") {
+                return;
+            }
+            $.ajax({
+                url: basePath + 'member/memberNameQuery.hopedo',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(memberName),
+                success: function (data) {
+                    if (globalFunction.returnResult(data, undefined, false)) {
+                        var list = data.returnData.memberList;
+                        var memberNameList = new Array(list.length);
+                        for (var i = 0; i < list.length; i++) {
+                            var item = {
+                                value: list[i].name + '-' + list[i].username,
+                                data: list[i].memberId
+                            }
+                            memberNameList[i] = item;
+                        }
+                        $('#memberNameQuery').autocomplete({
+                            lookup: memberNameList,
+                            onSelect: function (suggestion) {
+                                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                            }
+                        });
+                    }
                 }
-            }).result(function (event, item) {
-                var obj = eval("(" + item + ")"); //转换成js对象
-                $("#link").attr("href", obj.url)
-                ;
             });
+
+
         },
         refreshMemberOfTeam: function () {
             $("#memberTable").empty();
@@ -314,7 +332,7 @@ var Team = function () {
                 }
             });
             App.initUniform('.fileupload-toggle-checkbox');
-        },
+        }
 
     }
 
@@ -341,6 +359,9 @@ var Team = function () {
             var path = $(this).parent().first().children(".imagePath").text();
             TeamService.image2Text(path, newDes);
         });
+        $("#memberNameQuery").on("focus", function () {
+            TeamService.memberNameQuery($(this));
+        })
     }
 
     return {

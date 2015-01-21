@@ -72,6 +72,7 @@
         src="admin_assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/moment.min.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/jquery.mockjax.js"></script>
+<script type="text/javascript" src="admin_assets/plugins/jquery-autocomplete/dist/jquery.autocomplete.js"></script>
 <script type="text/javascript"
         src="admin_assets/plugins/bootstrap-editable/bootstrap-editable/js/bootstrap-editable.min.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/address/address.js"></script>

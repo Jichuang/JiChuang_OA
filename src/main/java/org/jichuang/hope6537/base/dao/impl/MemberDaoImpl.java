@@ -29,7 +29,7 @@ public class MemberDaoImpl extends BaseDaoImpl<Member> implements MemberDao {
 
     @Override
     public List<Member> selectMemberListByName(String name) {
-        List<Member> memberList = this.selectEntryByHQL("from Member where username like '%" + name + "%'");
+        List<Member> memberList = this.selectEntryByHQL("from Member where name like '%" + name + "%'");
         return memberList;
     }
 
