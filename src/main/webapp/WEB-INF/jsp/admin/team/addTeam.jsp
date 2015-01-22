@@ -229,6 +229,118 @@
                 </div>
             </div>
             <!-- 页面正文结束-->
+
+
+            <div id="memberModal" class="modal container fade in" tabindex="-1" style="height: auto;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title"><i class="icon-pencil"></i> 项目组所属成员维护</h4>
+                </div>
+                <span hidden="hidden" id="memberData"></span>
+
+                <div class="modal-body form" style="height: auto; margin-left: 20px;margin-right: 20px;">
+                    <div class="form-body">
+                        <h2 class="margin-bottom-20">Member-Team</h2>
+                        <span hidden="hidden" id="memberId"></span>
+
+                        <h3 class="form-section">请确认成员信息</h3>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">成员姓名</label>
+
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="memberName"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">成员账号</label>
+
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="memberUsername"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">成员状态</label>
+
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="memberStatus"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">成员注册日期</label>
+
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="memberDate"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <h3 class="form-section">项目组信息</h3>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">项目组名称</label>
+
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="teamName"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">项目组类型</label>
+
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="_teamType"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">成员权限</label>
+
+                                    <div class="col-md-9">
+                                        <p class="form-control-static" id="founder">创建者</p>
+                                        <select class="form-control " id="memberRole">
+                                            <option value="读写">读写</option>
+                                            <option value="只读">只读</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" id="cancel" class="btn btn-default">取消</button>
+                    <button type="button" id="addMemberButton" class="btn blue">邀请进入</button>
+                    <button type="button" id="updateMemberButton" class="btn green">更新信息</button>
+                    <button type="button" id="deleteMemberButton" class="btn red">剔除成员</button>
+                </div>
+            </div>
+
             <div id="deleteModal" class="modal fade" tabindex="-1">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -331,6 +443,58 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
     <script id="template-download" type="text/x-tmpl">
       {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -374,6 +538,58 @@
           </tr>
       {% } %}
                       </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

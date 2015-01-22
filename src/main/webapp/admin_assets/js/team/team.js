@@ -7,7 +7,12 @@ var Team = function () {
         return h[0] + "//" + window.location.host + "/" + x[1] + "/";
     }();
     var newDes = CKEDITOR.replace('newDes')
-    var editTeam = null;
+    var image = $("#image").val();
+    var member_teamList = "";
+    var objId = {
+        id: "",
+        type: 0
+    };
     var newData = {
         teamId: "",
         name: $("#title").val(),
@@ -18,7 +23,6 @@ var Team = function () {
         //注意 这里需要添加image的信息
         image: ""
     }
-    var image = $("#image").val();
 
     function handleMultiFileUpload(oldTbody, newTbody, dataName) {
         var oldImages = oldTbody.children();
@@ -96,7 +100,7 @@ var Team = function () {
             })
         },
         deleteImage: function (table) {
-            console.log(table.parent().parent().remove());
+            table.parent().parent().remove();
         },
         image2Text: function (path, des) {
             des.insertHtml("<img src='" + path + "'>");
@@ -133,8 +137,7 @@ var Team = function () {
 
             });
         },
-        memberNameQuery: function (input) {
-
+        memberNameQuery: function () {
             var memberName = {key: $("#memberNameQuery").val()};
             if (memberName == undefined || memberName == "") {
                 return;
@@ -151,16 +154,26 @@ var Team = function () {
                         for (var i = 0; i < list.length; i++) {
                             var item = {
                                 value: list[i].name + '-' + list[i].username,
-                                data: list[i].memberId
+                                data: list[i]
                             }
                             memberNameList[i] = item;
                         }
                         $('#memberNameQuery').autocomplete({
                             lookup: memberNameList,
                             onSelect: function (suggestion) {
-                                alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                                $("#memberNameQuery").val("");
+                                $("#memberModal").modal();
+                                $("#founder").hide();
+                                $("#memberName").text(suggestion.data.name);
+                                $("#memberUsername").text(suggestion.data.username);
+                                $("#memberStatus").text(suggestion.data.status);
+                                $("#memberDate").text(suggestion.data.date);
+                                $("#memberId").text(suggestion.data.memberId);
+                                $("#updateMemberButton").hide();
+                                $("#deleteMemberButton").hide();
                             }
                         });
+
                     }
                 }
             });
@@ -169,6 +182,7 @@ var Team = function () {
         },
         refreshMemberOfTeam: function () {
             $("#memberTable").empty();
+            $("#founder").hide();
             var teamId = $("#teamId").text();
             $.ajax({
                 url: basePath + 'team/' + teamId + '/queryMember.hopedo',
@@ -177,8 +191,10 @@ var Team = function () {
                 success: function (data) {
                     if (globalFunction.returnResult(data)) {
                         var list = data.returnData.list;
+                        member_teamList = list;
                         var str = "";
                         for (var i = 0; i < list.length; i++) {
+                            var id = list[i].id;
                             var memberName = list[i].memberId.name;
                             var memberAccount = list[i].memberId.username;
                             var status = list[i].status;
@@ -186,7 +202,8 @@ var Team = function () {
                             ' <td class="highlight"> <div class="success"></div> <a href="#">' + memberName + '</a> </td> ' +
                             '<td class="hidden-xs">' + memberAccount + '</td> ' +
                             '<td>' + status + '</td> ' +
-                            '<td><a href="#" class="btn default btn-xs purple"><i class="icon-edit"></i>编辑</a></td> </tr>';
+                            '<td><a href="javascript:;" class="btn teamMemberEdit default btn-xs purple" data-objectid = "' + id +
+                            '"><i class="icon-edit"></i>编辑</a></td> </tr>';
                         }
                         $("#memberTable").append(str);
                     } else {
@@ -237,11 +254,12 @@ var Team = function () {
                     if (status == "OK") {
                         toast.info("项目组信息获取成功，准备修改");
                         var team = data.returnData.team;
-                        editTeam = team;
                         $("#oldTeamName").text(team.name);
                         newData.name = $("#title").val(team.name);
                         newData.des = newDes.setData(team.des);
                         newData.teamTypeId.teamTypeId = $("#teamType").find(team.teamTypeId.name).attr("selected", "selected");
+                        $("#teamName").text(team.name);
+                        $("#_teamType").text(team.teamTypeId.name);
                         initEditImage($(".oldFiles"), team.image);
                     } else {
                         toast.error(data.returnMsg);
@@ -332,8 +350,83 @@ var Team = function () {
                 }
             });
             App.initUniform('.fileupload-toggle-checkbox');
+        },
+        inviteMember: function () {
+            var data = {
+                teamId: $("#teamId").text(),
+                memberId: $("#memberId").text(),
+                status: $("#memberRole").val()
+            }
+            $.ajax({
+                url: basePath + "/team/invite.hopedo",
+                type: "POST",
+                dataType: "json",
+                data: (data),
+                success: function (data) {
+                    if (globalFunction.returnResult(data)) {
+                        $("#memberModal").modal('hide');
+                        TeamService.refreshMemberOfTeam();
+                    }
+                }
+            });
+        },
+        showInviteUpdate: function (button) {
+            $("#memberModal").modal();
+            $("#addMemberButton").hide();
+            var id = button.data("objectid");
+            objId.id = id;
+            for (var i = 0; i < member_teamList.length; i++) {
+                if (id == member_teamList[i].id) {
+                    var memberId = member_teamList[i].memberId;
+                    $("#memberName").text(memberId.name);
+                    $("#memberUsername").text(memberId.username);
+                    $("#memberStatus").text(memberId.status);
+                    $("#memberDate").text(memberId.date);
+                    $("#memberId").text(memberId.memberId);
+                    if (member_teamList[i].status == globalConstant.FOUNDER) {
+                        $("#founder").show();
+                        $("#memberRole").hide();
+                        $("#addMemberButton").hide();
+                        $("#updateMemberButton").hide();
+                        $("#deleteMemberButton").hide();
+                        objId.type = 1;
+                    }
+                    else {
+                        objId.type = 0;
+                        $("#founder").hide();
+                        $("#memberRole").show();
+                        $("#updateMemberButton").show();
+                        $("#deleteMemberButton").show();
+                        $("#memberRole").val(member_teamList[i].status);
+                    }
+                    break;
+                }
+            }
+        },
+        updateInviteMember: function () {
+            if (objId.type == 1) {
+                toast.error("创建者权限禁止修改");
+                return;
+            }
+            var data = {
+                id: objId.id,
+                teamId: $("#teamId").text(),
+                memberId: $("#memberId").text(),
+                status: $("#memberRole").val()
+            }
+            $.ajax({
+                url: basePath + "/team/invite.hopedo",
+                type: "PUT",
+                dataType: "json",
+                data: (data),
+                success: function (data) {
+                    if (globalFunction.returnResult(data)) {
+                        $("#memberModal").modal('hide');
+                        TeamService.refreshMemberOfTeam();
+                    }
+                }
+            });
         }
-
     }
 
     var handleEvent = function () {
@@ -360,8 +453,18 @@ var Team = function () {
             TeamService.image2Text(path, newDes);
         });
         $("#memberNameQuery").on("focus", function () {
-            TeamService.memberNameQuery($(this));
+            TeamService.memberNameQuery();
         })
+        $("#addMemberButton").on("click", function () {
+            TeamService.inviteMember();
+        })
+        $("#updateMemberButton").on("click", function () {
+            TeamService.updateInviteMember();
+        })
+        $("#memberTable").on("click", "a.teamMemberEdit", function () {
+            TeamService.showInviteUpdate($(this));
+        });
+
     }
 
     return {
@@ -397,4 +500,5 @@ var Team = function () {
         }
     };
 
-}();
+}
+();

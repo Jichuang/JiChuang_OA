@@ -18,7 +18,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.List;
+import java.util.Scanner;
 
 @Controller
 @RequestMapping("/team")
@@ -161,6 +165,34 @@ public class TeamController {
             return AjaxResponse.getInstanceByResult(team != null)
                     .addAttribute("team", team)
                     .addAttribute("memberList", memberList);
+        }
+
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/invite")
+    @ResponseBody
+    public AjaxResponse inviteMember(HttpServletRequest request) {
+        if (!ApplicationConstant.memberNotNull(request)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超時");
+        } else {
+            String memberId = request.getParameter("memberId");
+            String teamId = request.getParameter("teamId");
+            String status = request.getParameter("status");
+            boolean res = teamService.inviteMemberOfTeam(memberId, teamId, status);
+            return AjaxResponse.getInstanceByResult(res).addReturnMsg(res ? "邀请成功" : "操作失败，已经进入项目组");
+        }
+    }
+
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/invite")
+    @ResponseBody
+    public AjaxResponse updateInviteMember(HttpServletRequest request) {
+        if (!ApplicationConstant.memberNotNull(request)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超時");
+        } else {
+            String id = request.getParameter("id");
+            String status = request.getParameter("status");
+            return AjaxResponse.getInstanceByResult(teamService.updateInviteMemberOfTeam(id, status));
         }
     }
 }

@@ -11,6 +11,13 @@ var basePath = function () {
     return h[0] + "//" + window.location.host + "/" + x[1] + "/";
 }();
 
+var globalConstant = {
+
+    FOUNDER: "创建者",
+    READER:"只读",
+    WRITER:"读写"
+}
+
 var globalFunction = {
 
     returnResult: function (data, message, binding) {
