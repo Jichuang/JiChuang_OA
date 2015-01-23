@@ -13,6 +13,11 @@ public class ApplicationConstant {
     public static final int EFFECTIVE_LINE_ONE = 1;
     public static final int EFFECTIVE_LINE_ZERO = 0;
 
+    public static final String FOUNDER = "创建者";
+    public static final String READER= "只读";
+    public static final String WRITER = "读写";
+
+
     public static boolean notNull(Object o) {
         if (o instanceof String) {
             return o != null && !((String) o).isEmpty();

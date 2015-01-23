@@ -426,7 +426,30 @@ var Team = function () {
                     }
                 }
             });
+        },
+        deleteInviteMember: function () {
+            if (objId.type == 1) {
+                toast.error("创建者权限禁止修改");
+                return;
+            }
+            var data = {
+                id: objId.id,
+                status: $("#memberRole").val()
+            }
+            $.ajax({
+                url: basePath + "/team/invite.hopedo",
+                type: "DELETE",
+                dataType: "json",
+                data: (data),
+                success: function (data) {
+                    if (globalFunction.returnResult(data)) {
+                        $("#memberModal").modal('hide');
+                        TeamService.refreshMemberOfTeam();
+                    }
+                }
+            });
         }
+
     }
 
     var handleEvent = function () {
@@ -460,6 +483,9 @@ var Team = function () {
         })
         $("#updateMemberButton").on("click", function () {
             TeamService.updateInviteMember();
+        })
+        $("#deleteMemberButton").on("click", function () {
+            TeamService.deleteInviteMember();
         })
         $("#memberTable").on("click", "a.teamMemberEdit", function () {
             TeamService.showInviteUpdate($(this));

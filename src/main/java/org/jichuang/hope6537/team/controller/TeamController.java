@@ -18,11 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.util.List;
-import java.util.Scanner;
 
 @Controller
 @RequestMapping("/team")
@@ -195,4 +191,19 @@ public class TeamController {
             return AjaxResponse.getInstanceByResult(teamService.updateInviteMemberOfTeam(id, status));
         }
     }
+
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/invite")
+    @ResponseBody
+    public AjaxResponse deleteInviteMember(HttpServletRequest request) {
+        if (!ApplicationConstant.memberNotNull(request)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超時");
+        } else {
+            String id = request.getParameter("id");
+            String status = request.getParameter("status");
+            return AjaxResponse.getInstanceByResult(teamService.deleteInviteMemberOfTeam(id, status));
+        }
+    }
+
+
 }

@@ -142,4 +142,12 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
         return member_teamDao.updateEntryByObject(member_team) == ApplicationConstant.EFFECTIVE_LINE_ONE;
     }
 
+    @Override
+    public boolean deleteInviteMemberOfTeam(String id, String status) {
+        if (status.equals(ApplicationConstant.FOUNDER)) {
+            return false;
+        }
+        return member_teamDao.deleteEntryByPrimaryKey(Integer.parseInt(id)) == ApplicationConstant.EFFECTIVE_LINE_ONE;
+    }
+
 }
