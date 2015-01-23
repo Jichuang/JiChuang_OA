@@ -17,6 +17,7 @@ var Team = function () {
         teamId: "",
         name: $("#title").val(),
         des: newDes.getData(),
+        shortInfo: $("#shortInfo").val(),
         teamTypeId: {
             teamTypeId: $("#teamTypeId")
         },
@@ -110,6 +111,7 @@ var Team = function () {
             newData.des = newDes.getData();
             newData.teamId = $("#teamId").text();
             newData.teamTypeId.teamTypeId = $("#teamType").val();
+            newData.shortInfo = $("#shortInfo").val();
         },
         addTeam: function () {
             TeamService.refreshTeamData();
@@ -252,10 +254,10 @@ var Team = function () {
                 success: function (data) {
                     var status = data.returnState;
                     if (status == "OK") {
-                        toast.info("项目组信息获取成功，准备修改");
                         var team = data.returnData.team;
                         $("#oldTeamName").text(team.name);
                         newData.name = $("#title").val(team.name);
+                        newData.shortInfo = $("#shortInfo").val(team.shortInfo);
                         newData.des = newDes.setData(team.des);
                         newData.teamTypeId.teamTypeId = $("#teamType").find(team.teamTypeId.name).attr("selected", "selected");
                         $("#teamName").text(team.name);
@@ -437,10 +439,9 @@ var Team = function () {
                 status: $("#memberRole").val()
             }
             $.ajax({
-                url: basePath + "/team/invite.hopedo",
+                url: basePath + "/team/" + data.id + "/invite.hopedo",
                 type: "DELETE",
                 dataType: "json",
-                data: (data),
                 success: function (data) {
                     if (globalFunction.returnResult(data)) {
                         $("#memberModal").modal('hide');

@@ -53,6 +53,16 @@ public class Team implements Serializable {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = TeamType.class)
     @JoinColumn(name = "teamTypeId")
     private TeamType teamTypeId;
+    @Column(name = "shortInfo", length = 255)
+    private String shortInfo;
+
+    public String getShortInfo() {
+        return shortInfo;
+    }
+
+    public void setShortInfo(String shortInfo) {
+        this.shortInfo = shortInfo;
+    }
 
     public Team() {
     }

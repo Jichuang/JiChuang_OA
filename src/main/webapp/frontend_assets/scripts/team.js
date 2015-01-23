@@ -10,14 +10,14 @@ var FrontTeam = function () {
         initTeamList: function (teamList) {
             var team = "";
             for (var i = 0; i < teamList.length; i++) {
-                var imagePath = teamList[i].image;
+                var imagePath = JSON.parse(teamList[i].image);
                 var teamName = teamList[i].name;
-                var teamDes = teamList[i].des;
+                var teamShortInfo = teamList[i].shortInfo;
                 var teamTypeId = teamList[i].teamTypeId.teamTypeId;
                 var str = '<div class="col-md-4 col-sm-6 mix  ' + teamTypeId + ' "> <div class="mix-inner"> ' +
-                    '<img class="img-responsive" src="' + imagePath + '" alt=""> ' +
+                    '<img class="img-responsive" src="' + imagePath[0].path + '" alt=""> ' +
                     '<div class="mix-details"> <h4>' + teamName + '</h4> ' +
-                    '<p>' + teamDes + '</p> ' +
+                    '<p>' + teamShortInfo + '</p> ' +
                     '<a class="mix-link"><i class="icon-link"></i></a> ' +
                     '<a class="mix-preview fancybox-button" href="' + imagePath + '" title="' + teamName + '"' +
                     ' data-rel="fancybox-button">' +

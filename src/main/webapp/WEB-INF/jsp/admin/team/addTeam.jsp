@@ -78,6 +78,9 @@
                                         <label>项目组名称</label>
                                         <input type="text" class="form-control input-lg" name="title" id="title"
                                                placeholder="输入项目组的名称...">
+                                        <label>项目组短介绍</label>
+                                        <input type="text" class="form-control input-lg" name="shortInfo" id="shortInfo"
+                                               placeholder="输入项目组的短介绍...">
                                         <label>项目组描述&nbsp;
                                             <small>可以从Word文档中复制哦！</small>
                                         </label>
@@ -495,6 +498,8 @@
 
 
 
+
+
     </script>
     <script id="template-download" type="text/x-tmpl">
       {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -538,6 +543,8 @@
           </tr>
       {% } %}
                       </button>
+
+
 
 
 

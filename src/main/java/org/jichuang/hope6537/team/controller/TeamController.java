@@ -168,6 +168,7 @@ public class TeamController {
     @RequestMapping(method = RequestMethod.POST, value = "/invite")
     @ResponseBody
     public AjaxResponse inviteMember(HttpServletRequest request) {
+        logger.info("项目组业务——邀请成员");
         if (!ApplicationConstant.memberNotNull(request)) {
             return new AjaxResponse(ReturnState.ERROR, "操作超時");
         } else {
@@ -183,6 +184,7 @@ public class TeamController {
     @RequestMapping(method = RequestMethod.PUT, value = "/invite")
     @ResponseBody
     public AjaxResponse updateInviteMember(HttpServletRequest request) {
+        logger.info("项目组业务——更新邀请成员");
         if (!ApplicationConstant.memberNotNull(request)) {
             return new AjaxResponse(ReturnState.ERROR, "操作超時");
         } else {
@@ -193,15 +195,14 @@ public class TeamController {
     }
 
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/invite")
+    @RequestMapping(method = RequestMethod.DELETE, value = "{id}/invite")
     @ResponseBody
-    public AjaxResponse deleteInviteMember(HttpServletRequest request) {
+    public AjaxResponse deleteInviteMember(@PathVariable String id, HttpServletRequest request) {
+        logger.info("项目组业务——剔除成员");
         if (!ApplicationConstant.memberNotNull(request)) {
             return new AjaxResponse(ReturnState.ERROR, "操作超時");
         } else {
-            String id = request.getParameter("id");
-            String status = request.getParameter("status");
-            return AjaxResponse.getInstanceByResult(teamService.deleteInviteMemberOfTeam(id, status));
+            return AjaxResponse.getInstanceByResult(teamService.deleteInviteMemberOfTeam(id));
         }
     }
 

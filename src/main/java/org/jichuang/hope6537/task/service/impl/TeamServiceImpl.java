@@ -111,6 +111,7 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
         newTeam.setName(team.getName());
         newTeam.setDes(team.getDes());
         newTeam.setImage(team.getImage());
+        newTeam.setShortInfo(team.getShortInfo());
         return updateEntryByObject(newTeam);
     }
 
@@ -143,8 +144,9 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements
     }
 
     @Override
-    public boolean deleteInviteMemberOfTeam(String id, String status) {
-        if (status.equals(ApplicationConstant.FOUNDER)) {
+    public boolean deleteInviteMemberOfTeam(String id) {
+        Member_Team obj = member_teamDao.selectEntryFromPrimaryKey(Integer.parseInt(id));
+        if (obj.getStatus().equals(ApplicationConstant.FOUNDER)) {
             return false;
         }
         return member_teamDao.deleteEntryByPrimaryKey(Integer.parseInt(id)) == ApplicationConstant.EFFECTIVE_LINE_ONE;

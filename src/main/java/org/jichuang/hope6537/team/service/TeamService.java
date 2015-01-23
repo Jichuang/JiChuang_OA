@@ -29,6 +29,6 @@ public interface TeamService extends BaseService<Team> {
 
     boolean updateInviteMemberOfTeam(String id, String status);
 
-    boolean deleteInviteMemberOfTeam(String id, String status);
+    boolean deleteInviteMemberOfTeam(String id);
 
 }
