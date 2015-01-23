@@ -28,6 +28,7 @@
 <link href="admin_assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="admin_assets/js/base/global.js"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="admin_assets/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet"/>
 <link href="admin_assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="admin_assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
@@ -52,6 +53,7 @@
       href="admin_assets/plugins/bootstrap-switch/static/stylesheets/bootstrap-switch-metro.css"/>
 <link rel="stylesheet" type="text/css" href="admin_assets/plugins/jquery-tags-input/jquery.tagsinput.css"/>
 <link rel="stylesheet" type="text/css" href="admin_assets/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+<link type="text/css" rel="stylesheet" href="admin_assets/plugins/jquery-autocomplete/content/styles.css" />
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="admin_assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>

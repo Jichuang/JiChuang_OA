@@ -627,8 +627,8 @@ jasmine.XmlHttpRequest = (typeof XMLHttpRequest == "undefined") ? function () {
     }
 
     var xhr = tryIt(function () {
-        return new ActiveXObject("Msxml2.XMLHTTP.6.0");
-    }) ||
+            return new ActiveXObject("Msxml2.XMLHTTP.6.0");
+        }) ||
         tryIt(function () {
             return new ActiveXObject("Msxml2.XMLHTTP.3.0");
         }) ||
@@ -1327,7 +1327,7 @@ jasmine.Matchers.prototype.toBeNull = function () {
  */
 jasmine.Matchers.prototype.toBeNaN = function () {
     this.message = function () {
-        return [ "Expected " + jasmine.pp(this.actual) + " to be NaN." ];
+        return ["Expected " + jasmine.pp(this.actual) + " to be NaN."];
     };
 
     return (this.actual !== this.actual);
@@ -1930,7 +1930,7 @@ jasmine.PrettyPrinter.prototype.iterateObject = function (obj, fn) {
         if (!obj.hasOwnProperty(property)) continue;
         if (property == '__Jasmine_been_here_before__') continue;
         fn(property, obj.__lookupGetter__ ? (obj.__lookupGetter__(property) !== jasmine.undefined &&
-            obj.__lookupGetter__(property) !== null) : false);
+        obj.__lookupGetter__(property) !== null) : false);
     }
 };
 
@@ -2320,7 +2320,7 @@ jasmine.Spec.prototype.fail = function (e) {
     var expectationResult = new jasmine.ExpectationResult({
         passed: false,
         message: e ? jasmine.util.formatException(e) : 'Exception',
-        trace: { stack: e.stack }
+        trace: {stack: e.stack}
     });
     this.results_.addResult(expectationResult);
 };

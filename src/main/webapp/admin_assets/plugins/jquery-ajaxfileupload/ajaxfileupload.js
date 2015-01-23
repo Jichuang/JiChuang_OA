@@ -159,8 +159,10 @@ jQuery.extend({
         }
 
         jQuery('#' + frameId).load(uploadCallback);
-        return { abort: function () {
-        } };
+        return {
+            abort: function () {
+            }
+        };
 
     },
 

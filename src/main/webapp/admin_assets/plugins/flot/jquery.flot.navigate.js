@@ -93,7 +93,12 @@
         if (l.elem)j = h.dragTarget = l.elem, h.dragProxy = d.proxy || j, h.cursorOffsetX = l.pageX - l.left, h.cursorOffsetY = l.pageY - l.top, h.offsetX = h.pageX - h.cursorOffsetX, h.offsetY = h.pageY - h.cursorOffsetY; else if (d.dragging || l.which > 0 && h.which != l.which || a(h.target).is(l.not))return;
         switch (h.type) {
             case"mousedown":
-                return a.extend(l, a(j).offset(), {elem: j, target: h.target, pageX: h.pageX, pageY: h.pageY}), b.add(document, "mousemove mouseup", e, l), i(j, !1), d.dragging = null, !1;
+                return a.extend(l, a(j).offset(), {
+                    elem: j,
+                    target: h.target,
+                    pageX: h.pageX,
+                    pageY: h.pageY
+                }), b.add(document, "mousemove mouseup", e, l), i(j, !1), d.dragging = null, !1;
             case!d.dragging && "mousemove":
                 if (g(h.pageX - l.pageX) + g(h.pageY - l.pageY) < l.distance)break;
                 h.target = l.target, k = f(h, "dragstart", j), k !== !1 && (d.dragging = j, d.proxy = h.dragProxy = a(k || j)[0]);
@@ -105,7 +110,7 @@
             case"mouseup":
                 b.remove(document, "mousemove mouseup", e), d.dragging && (c.drop && c.drop.handler(h), f(h, "dragend", j)), i(j, !0), d.dragging = d.proxy = l.elem = !1
         }
-        return!0
+        return !0
     }
 
     function f(b, c, d) {
@@ -131,14 +136,22 @@
     a.fn.drag = function (a, b, c) {
         return b && this.bind("dragstart", a), c && this.bind("dragend", c), a ? this.bind("drag", b ? b : a) : this.trigger("drag")
     };
-    var b = a.event, c = b.special, d = c.drag = {not: ":input", distance: 0, which: 1, dragging: !1, setup: function (c) {
-        c = a.extend({distance: d.distance, which: d.which, not: d.not}, c || {}), c.distance = g(c.distance), b.add(this, "mousedown", e, c), this.attachEvent && this.attachEvent("ondragstart", h)
-    }, teardown: function () {
-        b.remove(this, "mousedown", e), this === d.dragging && (d.dragging = d.proxy = !1), i(this, !0), this.detachEvent && this.detachEvent("ondragstart", h)
-    }};
-    c.dragstart = c.dragend = {setup: function () {
-    }, teardown: function () {
-    }}
+    var b = a.event, c = b.special, d = c.drag = {
+        not: ":input", distance: 0, which: 1, dragging: !1, setup: function (c) {
+            c = a.extend({
+                distance: d.distance,
+                which: d.which,
+                not: d.not
+            }, c || {}), c.distance = g(c.distance), b.add(this, "mousedown", e, c), this.attachEvent && this.attachEvent("ondragstart", h)
+        }, teardown: function () {
+            b.remove(this, "mousedown", e), this === d.dragging && (d.dragging = d.proxy = !1), i(this, !0), this.detachEvent && this.detachEvent("ondragstart", h)
+        }
+    };
+    c.dragstart = c.dragend = {
+        setup: function () {
+        }, teardown: function () {
+        }
+    }
 })(jQuery);
 
 /* jquery.mousewheel.min.js
@@ -163,21 +176,25 @@
         void 0 !== b.wheelDeltaY && (g = b.wheelDeltaY / 120);
         void 0 !== b.wheelDeltaX && (e = -1 * b.wheelDeltaX / 120);
         c.unshift(a, f, e, g);
-        return(d.event.dispatch || d.event.handle).apply(this, c)
+        return (d.event.dispatch || d.event.handle).apply(this, c)
     }
 
     var c = ["DOMMouseScroll", "mousewheel"];
     if (d.event.fixHooks)for (var h = c.length; h;)d.event.fixHooks[c[--h]] = d.event.mouseHooks;
-    d.event.special.mousewheel = {setup: function () {
-        if (this.addEventListener)for (var a = c.length; a;)this.addEventListener(c[--a], e, !1); else this.onmousewheel = e
-    }, teardown: function () {
-        if (this.removeEventListener)for (var a = c.length; a;)this.removeEventListener(c[--a], e, !1); else this.onmousewheel = null
-    }};
-    d.fn.extend({mousewheel: function (a) {
-        return a ? this.bind("mousewheel", a) : this.trigger("mousewheel")
-    }, unmousewheel: function (a) {
-        return this.unbind("mousewheel", a)
-    }})
+    d.event.special.mousewheel = {
+        setup: function () {
+            if (this.addEventListener)for (var a = c.length; a;)this.addEventListener(c[--a], e, !1); else this.onmousewheel = e
+        }, teardown: function () {
+            if (this.removeEventListener)for (var a = c.length; a;)this.removeEventListener(c[--a], e, !1); else this.onmousewheel = null
+        }
+    };
+    d.fn.extend({
+        mousewheel: function (a) {
+            return a ? this.bind("mousewheel", a) : this.trigger("mousewheel")
+        }, unmousewheel: function (a) {
+            return this.unbind("mousewheel", a)
+        }
+    })
 })(jQuery);
 
 
@@ -205,9 +222,9 @@
             c.left = e.pageX - c.left;
             c.top = e.pageY - c.top;
             if (zoomOut)
-                plot.zoomOut({ center: c });
+                plot.zoomOut({center: c});
             else
-                plot.zoom({ center: c });
+                plot.zoom({center: c});
         }
 
         function onMouseWheel(e, delta) {
@@ -236,8 +253,10 @@
                 return;
 
             panTimeout = setTimeout(function () {
-                plot.pan({ left: prevPageX - e.pageX,
-                    top: prevPageY - e.pageY });
+                plot.pan({
+                    left: prevPageX - e.pageX,
+                    top: prevPageY - e.pageY
+                });
                 prevPageX = e.pageX;
                 prevPageY = e.pageY;
 
@@ -252,8 +271,10 @@
             }
 
             plot.getPlaceholder().css('cursor', prevCursor);
-            plot.pan({ left: prevPageX - e.pageX,
-                top: prevPageY - e.pageY });
+            plot.pan({
+                left: prevPageX - e.pageX,
+                top: prevPageY - e.pageY
+            });
         }
 
         function bindEvents(plot, eventHolder) {
@@ -264,7 +285,7 @@
             }
 
             if (o.pan.interactive) {
-                eventHolder.bind("dragstart", { distance: 10 }, onDragStart);
+                eventHolder.bind("dragstart", {distance: 10}, onDragStart);
                 eventHolder.bind("drag", onDrag);
                 eventHolder.bind("dragend", onDragEnd);
             }
@@ -290,7 +311,7 @@
                 w = plot.width(), h = plot.height();
 
             if (!c)
-                c = { left: w / 2, top: h / 2 };
+                c = {left: w / 2, top: h / 2};
 
             var xf = c.left / w,
                 yf = c.top / h,
@@ -337,7 +358,7 @@
                 var range = max - min;
                 if (zr &&
                     ((zr[0] != null && range < zr[0]) ||
-                        (zr[1] != null && range > zr[1])))
+                    (zr[1] != null && range > zr[1])))
                     return;
 
                 opts.min = min;
@@ -348,7 +369,7 @@
             plot.draw();
 
             if (!args.preventEvent)
-                plot.getPlaceholder().trigger("plotzoom", [ plot, args ]);
+                plot.getPlaceholder().trigger("plotzoom", [plot, args]);
         };
 
         plot.pan = function (args) {
@@ -396,7 +417,7 @@
             plot.draw();
 
             if (!args.preventEvent)
-                plot.getPlaceholder().trigger("plotpan", [ plot, args ]);
+                plot.getPlaceholder().trigger("plotpan", [plot, args]);
         };
 
         function shutdown(plot, eventHolder) {

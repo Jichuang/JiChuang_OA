@@ -15,6 +15,6 @@ public interface PostService extends BaseService<Post> {
 
     boolean deletePostRoles(String postId);
 
-    boolean updateRoles4PostById(Post post, String[] oldRoles, String[] newRoles, String postId);
+    boolean updateRoles4PostById(Post post);
 
 }

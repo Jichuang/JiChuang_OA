@@ -17,6 +17,8 @@ public interface MemberService extends BaseService<Member> {
 
     List<Post> getPostsByMember(Member member);
 
+    List<Member> selectMemberListByName(String name);
+
     boolean updateMemberPost(Member member);
 
     @Override

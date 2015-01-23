@@ -18,15 +18,14 @@ import java.util.List;
 public class MessageServiceImpl extends BaseServiceImpl<Message> implements
         MessageService {
     @Autowired
+    private Member_MessageDao member_messageDao;
+
+    @Autowired
     @Qualifier("messageDao")
     @Override
     public void setDao(BaseDao<Message> dao) {
         super.setDao(dao);
     }
-
-    @Autowired
-    private Member_MessageDao member_messageDao;
-
 
     @Override
     public List<Message> selectMessageByMemberId(Member member, boolean isSent) throws MemberException {

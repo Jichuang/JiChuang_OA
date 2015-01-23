@@ -31,15 +31,15 @@ var RoleTable = function () {
                 "aoColumnDefs": [
                     {
                         "bSortable": false,
-                        "aTargets": [ 0 ]
+                        "aTargets": [0]
                     }
                 ],
                 "aaSorting": [
-                    [ 1, 'asc' ]
+                    [1, 'asc']
                 ],
                 "aLengthMenu": [
-                    [ 5, 15, 20, -1 ],
-                    [ 5, 15, 20, "All" ]
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "All"]
                 ],
                 "iDisplayLength": 10
             });
@@ -187,7 +187,7 @@ var RoleTable = function () {
                                 + list[i].roleId
                                 + '"><button class="btn btn-xs blue" id="editRole"> <i class="icon-edit"> ' +
                                 '<span style="font-family: Microsoft Yahei;">编辑权限信息</span></i> </button></a>';
-                            table.fnAddData([ line1, line2, line4, line5, line6 , line7 ]);
+                            table.fnAddData([line1, line2, line4, line5, line6, line7]);
                         }
                     } else {
                         toast.error(data.returnMsg);

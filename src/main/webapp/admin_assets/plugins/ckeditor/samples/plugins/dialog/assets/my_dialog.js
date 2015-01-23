@@ -24,8 +24,8 @@ CKEDITOR.dialog.add('myDialog', function (editor) {
                         type: 'select',
                         label: 'Select Field',
                         items: [
-                            [ 'option1', 'value1' ],
-                            [ 'option2', 'value2' ]
+                            ['option1', 'value1'],
+                            ['option2', 'value2']
                         ]
                     }
                 ]

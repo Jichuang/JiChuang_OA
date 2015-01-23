@@ -124,8 +124,8 @@
         if (!('async' in opts)) opts.async = true;
         if (!opts.async) {
             return fleegix && fleegix.xhr
-                ? fleegix.xhr.doReq({ url: opts.url, async: false })
-                : $.ajax({ url: opts.url, async: false }).responseText;
+                ? fleegix.xhr.doReq({url: opts.url, async: false})
+                : $.ajax({url: opts.url, async: false}).responseText;
         }
         return fleegix && fleegix.xhr
             ? fleegix.xhr.send({
@@ -281,12 +281,12 @@
             // If timezone is specified, get the correct timezone info based on the Date given
             if (this.timezone) {
                 res = this.timezone === 'Etc/UTC' || this.timezone === 'Etc/GMT'
-                    ? { tzOffset: 0, tzAbbr: 'UTC' }
+                    ? {tzOffset: 0, tzAbbr: 'UTC'}
                     : timezoneJS.timezone.getTzInfo(this._timeProxy, this.timezone);
             }
             // If no timezone was specified, use the local browser offset
             else {
-                res = { tzOffset: this.getLocalOffset(), tzAbbr: null };
+                res = {tzOffset: this.getLocalOffset(), tzAbbr: null};
             }
             this._tzInfo = res;
             this._useCache = true;
@@ -522,8 +522,99 @@
 
     timezoneJS.timezone = new function () {
         var _this = this
-            , regionMap = {'Etc': 'etcetera', 'EST': 'northamerica', 'MST': 'northamerica', 'HST': 'northamerica', 'EST5EDT': 'northamerica', 'CST6CDT': 'northamerica', 'MST7MDT': 'northamerica', 'PST8PDT': 'northamerica', 'America': 'northamerica', 'Pacific': 'australasia', 'Atlantic': 'europe', 'Africa': 'africa', 'Indian': 'africa', 'Antarctica': 'antarctica', 'Asia': 'asia', 'Australia': 'australasia', 'Europe': 'europe', 'WET': 'europe', 'CET': 'europe', 'MET': 'europe', 'EET': 'europe'}
-            , regionExceptions = {'Pacific/Honolulu': 'northamerica', 'Atlantic/Bermuda': 'northamerica', 'Atlantic/Cape_Verde': 'africa', 'Atlantic/St_Helena': 'africa', 'Indian/Kerguelen': 'antarctica', 'Indian/Chagos': 'asia', 'Indian/Maldives': 'asia', 'Indian/Christmas': 'australasia', 'Indian/Cocos': 'australasia', 'America/Danmarkshavn': 'europe', 'America/Scoresbysund': 'europe', 'America/Godthab': 'europe', 'America/Thule': 'europe', 'Asia/Yekaterinburg': 'europe', 'Asia/Omsk': 'europe', 'Asia/Novosibirsk': 'europe', 'Asia/Krasnoyarsk': 'europe', 'Asia/Irkutsk': 'europe', 'Asia/Yakutsk': 'europe', 'Asia/Vladivostok': 'europe', 'Asia/Sakhalin': 'europe', 'Asia/Magadan': 'europe', 'Asia/Kamchatka': 'europe', 'Asia/Anadyr': 'europe', 'Africa/Ceuta': 'europe', 'America/Argentina/Buenos_Aires': 'southamerica', 'America/Argentina/Cordoba': 'southamerica', 'America/Argentina/Tucuman': 'southamerica', 'America/Argentina/La_Rioja': 'southamerica', 'America/Argentina/San_Juan': 'southamerica', 'America/Argentina/Jujuy': 'southamerica', 'America/Argentina/Catamarca': 'southamerica', 'America/Argentina/Mendoza': 'southamerica', 'America/Argentina/Rio_Gallegos': 'southamerica', 'America/Argentina/Ushuaia': 'southamerica', 'America/Aruba': 'southamerica', 'America/La_Paz': 'southamerica', 'America/Noronha': 'southamerica', 'America/Belem': 'southamerica', 'America/Fortaleza': 'southamerica', 'America/Recife': 'southamerica', 'America/Araguaina': 'southamerica', 'America/Maceio': 'southamerica', 'America/Bahia': 'southamerica', 'America/Sao_Paulo': 'southamerica', 'America/Campo_Grande': 'southamerica', 'America/Cuiaba': 'southamerica', 'America/Porto_Velho': 'southamerica', 'America/Boa_Vista': 'southamerica', 'America/Manaus': 'southamerica', 'America/Eirunepe': 'southamerica', 'America/Rio_Branco': 'southamerica', 'America/Santiago': 'southamerica', 'Pacific/Easter': 'southamerica', 'America/Bogota': 'southamerica', 'America/Curacao': 'southamerica', 'America/Guayaquil': 'southamerica', 'Pacific/Galapagos': 'southamerica', 'Atlantic/Stanley': 'southamerica', 'America/Cayenne': 'southamerica', 'America/Guyana': 'southamerica', 'America/Asuncion': 'southamerica', 'America/Lima': 'southamerica', 'Atlantic/South_Georgia': 'southamerica', 'America/Paramaribo': 'southamerica', 'America/Port_of_Spain': 'southamerica', 'America/Montevideo': 'southamerica', 'America/Caracas': 'southamerica'};
+            , regionMap = {
+                'Etc': 'etcetera',
+                'EST': 'northamerica',
+                'MST': 'northamerica',
+                'HST': 'northamerica',
+                'EST5EDT': 'northamerica',
+                'CST6CDT': 'northamerica',
+                'MST7MDT': 'northamerica',
+                'PST8PDT': 'northamerica',
+                'America': 'northamerica',
+                'Pacific': 'australasia',
+                'Atlantic': 'europe',
+                'Africa': 'africa',
+                'Indian': 'africa',
+                'Antarctica': 'antarctica',
+                'Asia': 'asia',
+                'Australia': 'australasia',
+                'Europe': 'europe',
+                'WET': 'europe',
+                'CET': 'europe',
+                'MET': 'europe',
+                'EET': 'europe'
+            }
+            , regionExceptions = {
+                'Pacific/Honolulu': 'northamerica',
+                'Atlantic/Bermuda': 'northamerica',
+                'Atlantic/Cape_Verde': 'africa',
+                'Atlantic/St_Helena': 'africa',
+                'Indian/Kerguelen': 'antarctica',
+                'Indian/Chagos': 'asia',
+                'Indian/Maldives': 'asia',
+                'Indian/Christmas': 'australasia',
+                'Indian/Cocos': 'australasia',
+                'America/Danmarkshavn': 'europe',
+                'America/Scoresbysund': 'europe',
+                'America/Godthab': 'europe',
+                'America/Thule': 'europe',
+                'Asia/Yekaterinburg': 'europe',
+                'Asia/Omsk': 'europe',
+                'Asia/Novosibirsk': 'europe',
+                'Asia/Krasnoyarsk': 'europe',
+                'Asia/Irkutsk': 'europe',
+                'Asia/Yakutsk': 'europe',
+                'Asia/Vladivostok': 'europe',
+                'Asia/Sakhalin': 'europe',
+                'Asia/Magadan': 'europe',
+                'Asia/Kamchatka': 'europe',
+                'Asia/Anadyr': 'europe',
+                'Africa/Ceuta': 'europe',
+                'America/Argentina/Buenos_Aires': 'southamerica',
+                'America/Argentina/Cordoba': 'southamerica',
+                'America/Argentina/Tucuman': 'southamerica',
+                'America/Argentina/La_Rioja': 'southamerica',
+                'America/Argentina/San_Juan': 'southamerica',
+                'America/Argentina/Jujuy': 'southamerica',
+                'America/Argentina/Catamarca': 'southamerica',
+                'America/Argentina/Mendoza': 'southamerica',
+                'America/Argentina/Rio_Gallegos': 'southamerica',
+                'America/Argentina/Ushuaia': 'southamerica',
+                'America/Aruba': 'southamerica',
+                'America/La_Paz': 'southamerica',
+                'America/Noronha': 'southamerica',
+                'America/Belem': 'southamerica',
+                'America/Fortaleza': 'southamerica',
+                'America/Recife': 'southamerica',
+                'America/Araguaina': 'southamerica',
+                'America/Maceio': 'southamerica',
+                'America/Bahia': 'southamerica',
+                'America/Sao_Paulo': 'southamerica',
+                'America/Campo_Grande': 'southamerica',
+                'America/Cuiaba': 'southamerica',
+                'America/Porto_Velho': 'southamerica',
+                'America/Boa_Vista': 'southamerica',
+                'America/Manaus': 'southamerica',
+                'America/Eirunepe': 'southamerica',
+                'America/Rio_Branco': 'southamerica',
+                'America/Santiago': 'southamerica',
+                'Pacific/Easter': 'southamerica',
+                'America/Bogota': 'southamerica',
+                'America/Curacao': 'southamerica',
+                'America/Guayaquil': 'southamerica',
+                'Pacific/Galapagos': 'southamerica',
+                'Atlantic/Stanley': 'southamerica',
+                'America/Cayenne': 'southamerica',
+                'America/Guyana': 'southamerica',
+                'America/Asuncion': 'southamerica',
+                'America/Lima': 'southamerica',
+                'Atlantic/South_Georgia': 'southamerica',
+                'America/Paramaribo': 'southamerica',
+                'America/Port_of_Spain': 'southamerica',
+                'America/Montevideo': 'southamerica',
+                'America/Caracas': 'southamerica'
+            };
 
         function invalidTZError(t) {
             throw new Error('Timezone "' + t + '" is either incorrect, or not loaded in the timezone registry.');
@@ -532,7 +623,7 @@
         function builtInLoadZoneFile(fileName, opts) {
             var url = _this.zoneFileBasePath + '/' + fileName;
             return !opts || !opts.async
-                ? _this.parseZones(_this.transport({ url: url, async: false }))
+                ? _this.parseZones(_this.transport({url: url, async: false}))
                 : _this.transport({
                 async: true,
                 url: url,
@@ -749,13 +840,13 @@
                     if (ruleset[i][0] <= year &&
                         (
                             // Date is in a set range.
-                            ruleset[i][1] >= year ||
-                                // Date is in an "only" year.
-                                (ruleset[i][0] === year && ruleset[i][1] === "only") ||
-                                //We're in a range from the start year to infinity.
-                                ruleset[i][1] === "max"
-                            )
-                        ) {
+                        ruleset[i][1] >= year ||
+                            // Date is in an "only" year.
+                        (ruleset[i][0] === year && ruleset[i][1] === "only") ||
+                            //We're in a range from the start year to infinity.
+                        ruleset[i][1] === "max"
+                        )
+                    ) {
                         //It's completely okay to have any number of matches here.
                         // Normally we should only see two, but that doesn't preclude other numbers of matches.
                         // These matches are applicable to this year.
@@ -863,7 +954,7 @@
         this.rules = {};
 
         this.init = function (o) {
-            var opts = { async: true }
+            var opts = {async: true}
                 , def = this.defaultZoneFile = this.loadingScheme === this.loadingSchemes.PRELOAD_ALL
                     ? this.zoneFiles
                     : 'northamerica'
@@ -913,8 +1004,8 @@
                 }
             };
             return sync
-                ? processData(_this.transport({ url: url, async: false }))
-                : _this.transport({ url: url, success: processData });
+                ? processData(_this.transport({url: url, async: false}))
+                : _this.transport({url: url, success: processData});
         };
         this.loadZoneDataFromObject = function (data) {
             if (!data) {
@@ -1014,7 +1105,7 @@
                 off = getAdjustedOffset(off, rule);
             }
             var abbr = getAbbreviation(z, rule);
-            return { tzOffset: off, tzAbbr: abbr };
+            return {tzOffset: off, tzAbbr: abbr};
         };
     };
 }).call(this);

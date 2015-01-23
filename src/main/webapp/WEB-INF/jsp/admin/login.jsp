@@ -4,7 +4,6 @@
     <title>集创OA登录</title>
     <link rel="shortcut icon" href="favicon.ico"/>
     <%@include file="template/template_page_head.jsp" %>
-    "/>
 </head>
 <body class="login">
 <div class="logo">

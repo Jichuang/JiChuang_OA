@@ -81,7 +81,7 @@
 (function ($) {
     function init(plot) {
         var selection = {
-            first: { x: -1, y: -1}, second: { x: -1, y: -1},
+            first: {x: -1, y: -1}, second: {x: -1, y: -1},
             show: false,
             active: false
         };
@@ -99,7 +99,7 @@
             if (selection.active) {
                 updateSelection(e);
 
-                plot.getPlaceholder().trigger("plotselecting", [ getSelection() ]);
+                plot.getPlaceholder().trigger("plotselecting", [getSelection()]);
             }
         }
 
@@ -154,8 +154,8 @@
                 triggerSelectedEvent();
             else {
                 // this counts as a clear
-                plot.getPlaceholder().trigger("plotunselected", [ ]);
-                plot.getPlaceholder().trigger("plotselecting", [ null ]);
+                plot.getPlaceholder().trigger("plotunselected", []);
+                plot.getPlaceholder().trigger("plotselecting", [null]);
             }
 
             return false;
@@ -171,7 +171,7 @@
             $.each(plot.getAxes(), function (name, axis) {
                 if (axis.used) {
                     var p1 = axis.c2p(c1[axis.direction]), p2 = axis.c2p(c2[axis.direction]);
-                    r[name] = { from: Math.min(p1, p2), to: Math.max(p1, p2) };
+                    r[name] = {from: Math.min(p1, p2), to: Math.max(p1, p2)};
                 }
             });
             return r;
@@ -180,12 +180,12 @@
         function triggerSelectedEvent() {
             var r = getSelection();
 
-            plot.getPlaceholder().trigger("plotselected", [ r ]);
+            plot.getPlaceholder().trigger("plotselected", [r]);
 
             // backwards-compat stuff, to be removed in future
             if (r.xaxis && r.yaxis)
                 plot.getPlaceholder().trigger("selected", [
-                    { x1: r.xaxis.from, y1: r.yaxis.from, x2: r.xaxis.to, y2: r.yaxis.to }
+                    {x1: r.xaxis.from, y1: r.yaxis.from, x2: r.xaxis.to, y2: r.yaxis.to}
                 ]);
         }
 
@@ -225,7 +225,7 @@
                 selection.show = false;
                 plot.triggerRedrawOverlay();
                 if (!preventEvent)
-                    plot.getPlaceholder().trigger("plotunselected", [ ]);
+                    plot.getPlaceholder().trigger("plotunselected", []);
             }
         }
 
@@ -261,7 +261,7 @@
                 to = tmp;
             }
 
-            return { from: from, to: to, axis: axis };
+            return {from: from, to: to, axis: axis};
         }
 
         function setSelection(ranges, preventEvent) {

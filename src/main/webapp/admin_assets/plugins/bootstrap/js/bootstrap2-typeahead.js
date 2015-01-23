@@ -257,7 +257,11 @@
     }
 
     $.fn.typeahead.defaults = {
-        source: [], items: 8, menu: '<ul class="typeahead dropdown-menu"></ul>', item: '<li><a href="#"></a></li>', minLength: 1
+        source: [],
+        items: 8,
+        menu: '<ul class="typeahead dropdown-menu"></ul>',
+        item: '<li><a href="#"></a></li>',
+        minLength: 1
     }
 
     $.fn.typeahead.Constructor = Typeahead

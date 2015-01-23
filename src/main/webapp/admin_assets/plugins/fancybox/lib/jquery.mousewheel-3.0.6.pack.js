@@ -20,20 +20,24 @@
         b.wheelDeltaY !== void 0 && (g = b.wheelDeltaY / 120);
         b.wheelDeltaX !== void 0 && (e = -1 * b.wheelDeltaX / 120);
         c.unshift(a, f, e, g);
-        return(d.event.dispatch || d.event.handle).apply(this, c)
+        return (d.event.dispatch || d.event.handle).apply(this, c)
     }
 
     var c = ["DOMMouseScroll", "mousewheel"];
     if (d.event.fixHooks)for (var h = c.length; h;)d.event.fixHooks[c[--h]] =
         d.event.mouseHooks;
-    d.event.special.mousewheel = {setup: function () {
-        if (this.addEventListener)for (var a = c.length; a;)this.addEventListener(c[--a], e, false); else this.onmousewheel = e
-    }, teardown: function () {
-        if (this.removeEventListener)for (var a = c.length; a;)this.removeEventListener(c[--a], e, false); else this.onmousewheel = null
-    }};
-    d.fn.extend({mousewheel: function (a) {
-        return a ? this.bind("mousewheel", a) : this.trigger("mousewheel")
-    }, unmousewheel: function (a) {
-        return this.unbind("mousewheel", a)
-    }})
+    d.event.special.mousewheel = {
+        setup: function () {
+            if (this.addEventListener)for (var a = c.length; a;)this.addEventListener(c[--a], e, false); else this.onmousewheel = e
+        }, teardown: function () {
+            if (this.removeEventListener)for (var a = c.length; a;)this.removeEventListener(c[--a], e, false); else this.onmousewheel = null
+        }
+    };
+    d.fn.extend({
+        mousewheel: function (a) {
+            return a ? this.bind("mousewheel", a) : this.trigger("mousewheel")
+        }, unmousewheel: function (a) {
+            return this.unbind("mousewheel", a)
+        }
+    })
 })(jQuery);

@@ -4,15 +4,17 @@ import org.apache.log4j.Logger;
 import org.jichuang.hope6537.base.controller.AdminPageController;
 import org.jichuang.hope6537.base.exception.MemberException;
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.team.model.Member_Team;
 import org.jichuang.hope6537.team.model.Team;
 import org.jichuang.hope6537.team.service.TeamService;
 import org.jichuang.hope6537.team.service.TeamTypeService;
 import org.jichuang.hope6537.utils.AjaxResponse;
+import org.jichuang.hope6537.utils.ApplicationConstant;
 import org.jichuang.hope6537.utils.ReturnState;
+import org.jichuang.hope6537.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +25,12 @@ import java.util.List;
 @Scope("prototype")
 public class TeamController {
 
+    private static final String PATH = AdminPageController.PATH;
     @Autowired
     private TeamService teamService;
     @Autowired
     private TeamTypeService teamTypeService;
     private Logger logger = Logger.getLogger(getClass());
-    private static final String PATH = AdminPageController.PATH;
 
     @RequestMapping("/conf")
     public String toTeam() {
@@ -50,20 +52,44 @@ public class TeamController {
         return PATH + "/team/addTeam";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/getFront")
+    @ResponseBody
+    public AjaxResponse getTeamListByFront() {
+        logger.info("项目组业务——前台查询所有的项目组");
+        List<Team> list = teamService.selectTeamListByStatus(Status.正常);
+        return AjaxResponse.getInstanceByResult(list != null).addAttribute("teamList", list);
+    }
+
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
-    public AjaxResponse updateTeamById(Model model, @ModelAttribute Team team, HttpServletRequest request) {
+    public AjaxResponse updateTeamById(@RequestBody Team team, HttpServletRequest request) {
         logger.info("项目组业务——更新当前单体项目组");
         Member member = (Member) request.getSession().getAttribute("loginMember");
-        String newTeamTypeId = request.getParameter("teamType");
         if (team == null) {
             return new AjaxResponse(ReturnState.ERROR, "没有对应的項目組");
         } else if (member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            int res = teamService.updateTeam(team, member, newTeamTypeId);
+            int res = teamService.updateTeam(team, member);
             logger.info("项目组业务——更新当前单体项目组完成");
-            return AjaxResponse.getInstanceByResult(res > -1).addReturnMsg("修改项目组成功");
+            return AjaxResponse.getInstanceByResult(res > ApplicationConstant.EFFECTIVE_LINE_ZERO).addReturnMsg("修改项目组成功");
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{teamId}/queryMember")
+    @ResponseBody
+    public AjaxResponse refreshMemberOfTeam(@PathVariable String teamId, HttpServletRequest request) {
+        logger.info("項目組業務——查詢當前項目組下成員");
+        Member member = (Member) request.getSession().getAttribute("loginMember");
+        if (!ApplicationConstant.notNull(member)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超時");
+        }
+        if (!ApplicationConstant.notNull(teamId)) {
+            return new AjaxResponse(ReturnState.ERROR, "没有对应的項目組");
+        } else {
+            Team team = teamService.selectEntryFromPrimaryKey(Integer.parseInt(teamId));
+            List<Member_Team> objectList = teamService.selectMember_Team(team);
+            return AjaxResponse.getInstanceByResult(ApplicationConstant.notNull(objectList)).addAttribute("list", objectList);
         }
     }
 
@@ -92,7 +118,7 @@ public class TeamController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public AjaxResponse addTeam(Model model, @ModelAttribute Team team, HttpServletRequest request) {
+    public AjaxResponse addTeam(@RequestBody Team team, HttpServletRequest request) {
         logger.info("项目组业务——添加新项目组");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
@@ -102,9 +128,8 @@ public class TeamController {
         if (member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            String teamTypeId = request.getParameter("teamType");
-            int res = teamService.insertTeam(team, member, teamTypeId);
-            return AjaxResponse.getInstanceByResult(res > 0);
+            int res = teamService.insertTeam(team, member);
+            return AjaxResponse.getInstanceByResult(res > ApplicationConstant.EFFECTIVE_LINE_ZERO);
         }
     }
 
@@ -118,7 +143,7 @@ public class TeamController {
             return new AjaxResponse(ReturnState.ERROR, "无效操作");
         } else {
             int res = teamService.deleteTeam(teamId, member);
-            return AjaxResponse.getInstanceByResult(res > 0).addReturnMsg("删除成功");
+            return AjaxResponse.getInstanceByResult(res > ApplicationConstant.EFFECTIVE_LINE_ZERO).addReturnMsg("删除成功");
         }
 
     }
@@ -132,7 +157,54 @@ public class TeamController {
             return new AjaxResponse(ReturnState.ERROR, "错误的Id");
         } else {
             Team team = teamService.selectEntryFromPrimaryKey(Integer.parseInt(teamId));
-            return AjaxResponse.getInstanceByResult(team != null).addAttribute("team", team);
+            List<Member> memberList = teamService.selectMemberOfTeam(team);
+            return AjaxResponse.getInstanceByResult(team != null)
+                    .addAttribute("team", team)
+                    .addAttribute("memberList", memberList);
+        }
+
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/invite")
+    @ResponseBody
+    public AjaxResponse inviteMember(HttpServletRequest request) {
+        logger.info("项目组业务——邀请成员");
+        if (!ApplicationConstant.memberNotNull(request)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超時");
+        } else {
+            String memberId = request.getParameter("memberId");
+            String teamId = request.getParameter("teamId");
+            String status = request.getParameter("status");
+            boolean res = teamService.inviteMemberOfTeam(memberId, teamId, status);
+            return AjaxResponse.getInstanceByResult(res).addReturnMsg(res ? "邀请成功" : "操作失败，已经进入项目组");
         }
     }
+
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/invite")
+    @ResponseBody
+    public AjaxResponse updateInviteMember(HttpServletRequest request) {
+        logger.info("项目组业务——更新邀请成员");
+        if (!ApplicationConstant.memberNotNull(request)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超時");
+        } else {
+            String id = request.getParameter("id");
+            String status = request.getParameter("status");
+            return AjaxResponse.getInstanceByResult(teamService.updateInviteMemberOfTeam(id, status));
+        }
+    }
+
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "{id}/invite")
+    @ResponseBody
+    public AjaxResponse deleteInviteMember(@PathVariable String id, HttpServletRequest request) {
+        logger.info("项目组业务——剔除成员");
+        if (!ApplicationConstant.memberNotNull(request)) {
+            return new AjaxResponse(ReturnState.ERROR, "操作超時");
+        } else {
+            return AjaxResponse.getInstanceByResult(teamService.deleteInviteMemberOfTeam(id));
+        }
+    }
+
+
 }

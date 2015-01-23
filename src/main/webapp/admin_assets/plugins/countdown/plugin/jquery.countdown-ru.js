@@ -14,6 +14,7 @@
                 (units == 1 && tens != 1 ? 1 : 0)));
         },
         digits: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-        timeSeparator: ':', isRTL: false};
+        timeSeparator: ':', isRTL: false
+    };
     $.countdown.setDefaults($.countdown.regional['ru']);
 })(jQuery);

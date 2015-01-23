@@ -21,11 +21,11 @@
         this.options = options;
         this.$element = $(element);
 
-        this.$container = $('<div/>', { 'class': "ms-container" });
-        this.$selectableContainer = $('<div/>', { 'class': 'ms-selectable' });
-        this.$selectionContainer = $('<div/>', { 'class': 'ms-selection' });
-        this.$selectableUl = $('<ul/>', { 'class': "ms-list", 'tabindex': '-1' });
-        this.$selectionUl = $('<ul/>', { 'class': "ms-list", 'tabindex': '-1' });
+        this.$container = $('<div/>', {'class': "ms-container"});
+        this.$selectableContainer = $('<div/>', {'class': 'ms-selectable'});
+        this.$selectionContainer = $('<div/>', {'class': 'ms-selection'});
+        this.$selectableUl = $('<ul/>', {'class': "ms-list", 'tabindex': '-1'});
+        this.$selectionUl = $('<ul/>', {'class': "ms-list", 'tabindex': '-1'});
         this.scrollTo = 0;
         this.sanitizeRegexp = new RegExp("\\W+", 'gi');
         this.elemsSelector = 'li:visible:not(.ms-optgroup-label,.ms-optgroup-container,.' + options.disabledClass + ')';
@@ -39,7 +39,7 @@
                 ms = this.$element;
 
             if (ms.next('.ms-container').length === 0) {
-                ms.css({ position: 'absolute', left: '-9999px' });
+                ms.css({position: 'absolute', left: '-9999px'});
                 ms.attr('id', ms.attr('id') ? ms.attr('id') : Math.ceil(Math.random() * 1000) + 'multiselect');
                 this.$container.attr('id', 'ms-' + ms.attr('id'));
 
@@ -323,12 +323,12 @@
             var that = this,
                 ms = this.$element,
                 msIds = $.map(value, function (val) {
-                    return(that.sanitize(val, that.sanitizeRegexp));
+                    return (that.sanitize(val, that.sanitizeRegexp));
                 }),
                 selectables = this.$selectableUl.find('#' + msIds.join('-selectable, #') + '-selectable').filter(':not(.' + that.options.disabledClass + ')'),
                 selections = this.$selectionUl.find('#' + msIds.join('-selection, #') + '-selection').filter(':not(.' + that.options.disabledClass + ')'),
                 options = ms.find('option:not(:disabled)').filter(function () {
-                    return($.inArray(this.value, value) > -1);
+                    return ($.inArray(this.value, value) > -1);
                 });
 
             if (selectables.length > 0) {
@@ -377,12 +377,12 @@
             var that = this,
                 ms = this.$element,
                 msIds = $.map(value, function (val) {
-                    return(that.sanitize(val, that.sanitizeRegexp));
+                    return (that.sanitize(val, that.sanitizeRegexp));
                 }),
                 selectables = this.$selectableUl.find('#' + msIds.join('-selectable, #') + '-selectable'),
                 selections = this.$selectionUl.find('#' + msIds.join('-selection, #') + '-selection').filter('.ms-selected'),
                 options = ms.find('option').filter(function () {
-                    return($.inArray(this.value, value) > -1);
+                    return ($.inArray(this.value, value) > -1);
                 });
 
             if (selections.length > 0) {
@@ -450,7 +450,7 @@
         },
 
         sanitize: function (value, reg) {
-            return(value.replace(reg, '_'));
+            return (value.replace(reg, '_'));
         }
     };
 

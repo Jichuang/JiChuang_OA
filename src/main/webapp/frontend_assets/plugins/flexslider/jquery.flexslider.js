@@ -53,7 +53,7 @@
                     var obj = document.createElement('div'),
                         props = ['perspectiveProperty', 'WebkitPerspective', 'MozPerspective', 'OPerspective', 'msPerspective'];
                     for (var i in props) {
-                        if (obj.style[ props[i] ] !== undefined) {
+                        if (obj.style[props[i]] !== undefined) {
                             slider.pfx = props[i].replace('Perspective', '').toLowerCase();
                             slider.prop = "-" + slider.pfx + "-transform";
                             return true;
@@ -530,8 +530,8 @@
                         slider.slides.eq(slider.currentSlide).fadeOut(vars.animationSpeed, vars.easing);
                         slider.slides.eq(target).fadeIn(vars.animationSpeed, vars.easing, slider.wrapup);
                     } else {
-                        slider.slides.eq(slider.currentSlide).css({ "opacity": 0, "zIndex": 1 });
-                        slider.slides.eq(target).css({ "opacity": 1, "zIndex": 2 });
+                        slider.slides.eq(slider.currentSlide).css({"opacity": 0, "zIndex": 1});
+                        slider.slides.eq(target).css({"opacity": 1, "zIndex": 2});
 
                         slider.slides.unbind("webkitTransitionEnd transitionend");
                         slider.slides.eq(slider.currentSlide).bind("webkitTransitionEnd transitionend", function () {
@@ -649,7 +649,10 @@
                 var sliderOffset, arr;
 
                 if (type === "init") {
-                    slider.viewport = $('<div class="' + namespace + 'viewport"></div>').css({"overflow": "hidden", "position": "relative"}).appendTo(slider).append(slider.container);
+                    slider.viewport = $('<div class="' + namespace + 'viewport"></div>').css({
+                        "overflow": "hidden",
+                        "position": "relative"
+                    }).appendTo(slider).append(slider.container);
                     // INFINITE LOOP:
                     slider.cloneCount = 0;
                     slider.cloneOffset = 0;
@@ -696,7 +699,12 @@
                     if (!touch) {
                         slider.slides.eq(slider.currentSlide).fadeIn(vars.animationSpeed, vars.easing);
                     } else {
-                        slider.slides.css({ "opacity": 0, "display": "block", "webkitTransition": "opacity " + vars.animationSpeed / 1000 + "s ease", "zIndex": 1 }).eq(slider.currentSlide).css({ "opacity": 1, "zIndex": 2});
+                        slider.slides.css({
+                            "opacity": 0,
+                            "display": "block",
+                            "webkitTransition": "opacity " + vars.animationSpeed / 1000 + "s ease",
+                            "zIndex": 1
+                        }).eq(slider.currentSlide).css({"opacity": 1, "zIndex": 2});
                     }
                 }
                 // SMOOTH HEIGHT:

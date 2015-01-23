@@ -79,10 +79,10 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
                 /*
                  * Core styles.
                  */
-                coreStyles_bold: { element: 'b' },
-                coreStyles_italic: { element: 'i' },
-                coreStyles_underline: { element: 'u' },
-                coreStyles_strike: { element: 'strike' },
+                coreStyles_bold: {element: 'b'},
+                coreStyles_italic: {element: 'i'},
+                coreStyles_underline: {element: 'u'},
+                coreStyles_strike: {element: 'strike'},
 
                 /*
                  * Font face.
@@ -92,7 +92,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
                 // The "font" element will be used.
                 font_style: {
                     element: 'font',
-                    attributes: { 'face': '#(family)' }
+                    attributes: {'face': '#(family)'}
                 },
 
                 /*
@@ -101,7 +101,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
                 fontSize_sizes: 'xx-small/1;x-small/2;small/3;medium/4;large/5;x-large/6;xx-large/7',
                 fontSize_style: {
                     element: 'font',
-                    attributes: { 'size': '#(size)' }
+                    attributes: {'size': '#(size)'}
                 },
 
                 /*
@@ -111,29 +111,29 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 
                 colorButton_foreStyle: {
                     element: 'font',
-                    attributes: { 'color': '#(color)' }
+                    attributes: {'color': '#(color)'}
                 },
 
                 colorButton_backStyle: {
                     element: 'font',
-                    styles: { 'background-color': '#(color)' }
+                    styles: {'background-color': '#(color)'}
                 },
 
                 /*
                  * Styles combo.
                  */
                 stylesSet: [
-                    { name: 'Computer Code', element: 'code' },
-                    { name: 'Keyboard Phrase', element: 'kbd' },
-                    { name: 'Sample Text', element: 'samp' },
-                    { name: 'Variable', element: 'var' },
-                    { name: 'Deleted Text', element: 'del' },
-                    { name: 'Inserted Text', element: 'ins' },
-                    { name: 'Cited Work', element: 'cite' },
-                    { name: 'Inline Quotation', element: 'q' }
+                    {name: 'Computer Code', element: 'code'},
+                    {name: 'Keyboard Phrase', element: 'kbd'},
+                    {name: 'Sample Text', element: 'samp'},
+                    {name: 'Variable', element: 'var'},
+                    {name: 'Deleted Text', element: 'del'},
+                    {name: 'Inserted Text', element: 'ins'},
+                    {name: 'Cited Work', element: 'cite'},
+                    {name: 'Inline Quotation', element: 'q'}
                 ],
 
-                on: { 'instanceReady': configureHtmlOutput }
+                on: {'instanceReady': configureHtmlOutput}
             });
 
             /*
@@ -155,7 +155,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
                         indent: true,
                         breakBeforeOpen: true,
                         breakAfterOpen: false,
-                        breakBeforeClose: !dtd[ e ][ '#' ],
+                        breakBeforeClose: !dtd[e]['#'],
                         breakAfterClose: true
                     });
                 }
@@ -171,11 +171,11 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
                                 if (style) {
                                     // Get the width from the style.
                                     var match = ( /(?:^|\s)width\s*:\s*(\d+)px/i ).exec(style),
-                                            width = match && match[ 1 ];
+                                            width = match && match[1];
 
                                     // Get the height from the style.
                                     match = ( /(?:^|\s)height\s*:\s*(\d+)px/i ).exec(style);
-                                    var height = match && match[ 1 ];
+                                    var height = match && match[1];
 
                                     if (width) {
                                         element.attributes.style = element.attributes.style.replace(/(?:^|\s)width\s*:\s*(\d+)px;?/i, '');
@@ -196,7 +196,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
                                 if (style) {
                                     // Get the align from the style.
                                     match = ( /(?:^|\s)text-align\s*:\s*(\w*);/i ).exec(style);
-                                    var align = match && match[ 1 ];
+                                    var align = match && match[1];
 
                                     if (align) {
                                         element.attributes.style = element.attributes.style.replace(/(?:^|\s)text-align\s*:\s*(\w*);?/i, '');

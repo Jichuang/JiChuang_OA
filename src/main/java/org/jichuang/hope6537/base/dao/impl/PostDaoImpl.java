@@ -3,13 +3,10 @@ package org.jichuang.hope6537.base.dao.impl;
 import org.jichuang.hope6537.base.dao.PostDao;
 import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.model.Post;
-import org.jichuang.hope6537.utils.ApplicationVar;
+import org.jichuang.hope6537.utils.ApplicationConstant;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Repository("postDao")
 public class PostDaoImpl extends BaseDaoImpl<Post> implements PostDao {
@@ -22,61 +19,28 @@ public class PostDaoImpl extends BaseDaoImpl<Post> implements PostDao {
     }
 
     /**
-     * 思路很清晰 求出交集 old的非交集部分删掉 new的非交集部分添加
+     * 删掉原来，添加新增
      *
-     * @param post
-     * @param oldRoles
-     * @param newRoles
-     * @param postId
      * @return
      */
     @Override
-    public boolean updateRoles4PostById(Post post, String[] oldRoles, String[] newRoles, String postId) {
-        int updateRes = this.updateEntryByObject(post);
-        Set<String> oldSet = new HashSet<String>();
-        Set<String> tempSet = new HashSet<String>();
-        Set<String> newSet = new HashSet<String>();
-        tempSet.addAll(Arrays.asList(oldRoles));
-        oldSet.addAll(Arrays.asList(oldRoles));
-        newSet.addAll(Arrays.asList(newRoles));
-        oldSet.removeAll(newSet);
-        newSet.removeAll(tempSet);
-        int deleteRes = 0;
-        if (!oldSet.isEmpty()) {
-            StringBuffer deleteQuery = new StringBuffer()
-                    .append("delete from Post_Role where ")
-                    .append(" postId =")
-                    .append(postId)
-                    .append(" and (");
-
-            int index = 0;
-            for (String roleId : oldSet) {
-                index++;
-                deleteQuery
-                        .append("roleId")
-                        .append(" = ")
-                        .append(roleId);
-                if (index < oldSet.size()) {
-                    deleteQuery.append(" OR ");
-                }
+    public boolean updateRoles4PostById(Post post) {
+        this.doQueryBySql("delete pr.* from post_role pr where pr.postId = " + post.getPostId());
+        String[] roles = post.getRoleId().split(",");
+        StringBuilder insertSql = new StringBuilder().append("insert into post_role (postId , roleId ) values ");
+        for (int i = 0; i < roles.length; i++) {
+            insertSql.append("(")
+                    .append(post.getPostId())
+                    .append(",")
+                    .append(roles[i])
+                    .append(")");
+            if (i < roles.length - 1) {
+                insertSql.append(",");
             }
-            deleteQuery.append(")");
-            deleteRes = this.doQueryBySql(deleteQuery.toString());
         }
-        int insertRes = 0;
-        if (!newSet.isEmpty()) {
-            StringBuffer insertQuery = new StringBuffer().append("insert into Post_Role (postId,roleId) values ");
-            int index = 0;
-            for (String roleId : newSet) {
-                index++;
-                insertQuery.append("(").append(postId).append(",").append(roleId).append(")");
-                if (index < newSet.size()) {
-                    insertQuery.append(",");
-                }
-            }
-            insertRes = this.doQueryBySql(insertQuery.toString());
-        }
-        return updateRes + deleteRes + insertRes >= ApplicationVar.EFFECTIVE_LINE_ONE;
+        this.doQueryBySql(insertSql.toString());
+        int updateEntryRes = this.updateEntryByObject(post);
+        return updateEntryRes == ApplicationConstant.EFFECTIVE_LINE_ONE;
     }
 
     @Override
@@ -92,13 +56,13 @@ public class PostDaoImpl extends BaseDaoImpl<Post> implements PostDao {
         }
         String sql = hql.toString();
         int res = this.doQueryBySql(sql);
-        return res > ApplicationVar.EFFECTIVE_LINE_ZERO;
+        return res > ApplicationConstant.EFFECTIVE_LINE_ZERO;
     }
 
 
     @Override
     public boolean deletePostRoles(String postId) {
         int res = doQueryBySql("delete from post_role where postId = " + postId);
-        return res > ApplicationVar.EFFECTIVE_LINE_ZERO;
+        return res > ApplicationConstant.EFFECTIVE_LINE_ZERO;
     }
 }

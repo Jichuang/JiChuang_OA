@@ -72,11 +72,13 @@
         src="admin_assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/moment.min.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/jquery.mockjax.js"></script>
+<script type="text/javascript" src="admin_assets/plugins/jquery-autocomplete/dist/jquery.autocomplete.js"></script>
 <script type="text/javascript"
         src="admin_assets/plugins/bootstrap-editable/bootstrap-editable/js/bootstrap-editable.min.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/address/address.js"></script>
 <script type="text/javascript" src="admin_assets/plugins/bootstrap-editable/inputs-ext/wysihtml5/wysihtml5.js"></script>
-
+<script src="admin_assets/js/base/global.js"></script>
+<script src="admin_assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js"></script>
 <script src="admin_assets/js/cryptico/aes.js"></script>
 <script src="admin_assets/js/cryptico/api.js"></script>
 <script src="admin_assets/js/cryptico/cryptico.js"></script>

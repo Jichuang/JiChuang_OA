@@ -59,7 +59,7 @@
                 (drawStart = performance.now ?
                     (performance.now() + performance.timing.navigationStart) : Date.now()) :
                 // Integer milliseconds since unix epoch
-                timestamp || new Date().getTime());
+            timestamp || new Date().getTime());
             if (drawStart - animationStartTime >= 1000) {
                 plugin._updateTargets();
                 animationStartTime = drawStart;
@@ -80,8 +80,8 @@
         }
         else {
             animationStartTime = window.animationStartTime ||
-                window.webkitAnimationStartTime || window.mozAnimationStartTime ||
-                window.oAnimationStartTime || window.msAnimationStartTime || new Date().getTime();
+            window.webkitAnimationStartTime || window.mozAnimationStartTime ||
+            window.oAnimationStartTime || window.msAnimationStartTime || new Date().getTime();
             requestAnimationFrame(timerCallBack);
         }
     }
@@ -268,7 +268,7 @@
             }
             var expired = inst._hold != 'pause' &&
                 (inst._since ? inst._now.getTime() < inst._since.getTime() :
-                    inst._now.getTime() >= inst._until.getTime());
+                inst._now.getTime() >= inst._until.getTime());
             if (expired && !inst._expiring) {
                 inst._expiring = true;
                 if (this._hasTarget(target) || inst.options.alwaysExpire) {
@@ -399,9 +399,9 @@
                     var sign = (inst._since ? '-' : '+');
                     inst[inst._since ? '_since' : '_until'] =
                         this._determineTime(sign + inst._periods[0] + 'y' +
-                            sign + inst._periods[1] + 'o' + sign + inst._periods[2] + 'w' +
-                            sign + inst._periods[3] + 'd' + sign + inst._periods[4] + 'h' +
-                            sign + inst._periods[5] + 'm' + sign + inst._periods[6] + 's');
+                        sign + inst._periods[1] + 'o' + sign + inst._periods[2] + 'w' +
+                        sign + inst._periods[3] + 'd' + sign + inst._periods[4] + 'h' +
+                        sign + inst._periods[5] + 'm' + sign + inst._periods[6] + 's');
                     this._addTarget(target);
                 }
                 inst._hold = hold;
@@ -530,35 +530,35 @@
             var showCompact = function (period) {
                 var labelsNum = inst.options['compactLabels' + whichLabels(inst._periods[period])];
                 return (show[period] ? self._translateDigits(inst, inst._periods[period]) +
-                    (labelsNum ? labelsNum[period] : labels[period]) + ' ' : '');
+                (labelsNum ? labelsNum[period] : labels[period]) + ' ' : '');
             };
             var showFull = function (period) {
                 var labelsNum = inst.options['labels' + whichLabels(inst._periods[period])];
                 return ((!inst.options.significant && show[period]) ||
-                    (inst.options.significant && showSignificant[period]) ?
-                    '<span class="' + plugin._sectionClass + '">' +
-                        '<span class="' + plugin._amountClass + '">' +
-                        self._translateDigits(inst, inst._periods[period]) + '</span><br/>' +
-                        (labelsNum ? labelsNum[period] : labels[period]) + '</span>' : '');
+                (inst.options.significant && showSignificant[period]) ?
+                '<span class="' + plugin._sectionClass + '">' +
+                '<span class="' + plugin._amountClass + '">' +
+                self._translateDigits(inst, inst._periods[period]) + '</span><br/>' +
+                (labelsNum ? labelsNum[period] : labels[period]) + '</span>' : '');
             };
             return (inst.options.layout ? this._buildLayout(inst, show, inst.options.layout,
                 inst.options.compact, inst.options.significant, showSignificant) :
                 ((inst.options.compact ? // Compact version
-                    '<span class="' + this._rowClass + ' ' + this._amountClass +
-                        (inst._hold ? ' ' + this._holdingClass : '') + '">' +
-                        showCompact(Y) + showCompact(O) + showCompact(W) + showCompact(D) +
-                        (show[H] ? this._minDigits(inst, inst._periods[H], 2) : '') +
-                        (show[M] ? (show[H] ? inst.options.timeSeparator : '') +
-                            this._minDigits(inst, inst._periods[M], 2) : '') +
-                        (show[S] ? (show[H] || show[M] ? inst.options.timeSeparator : '') +
-                            this._minDigits(inst, inst._periods[S], 2) : '') :
+                '<span class="' + this._rowClass + ' ' + this._amountClass +
+                (inst._hold ? ' ' + this._holdingClass : '') + '">' +
+                showCompact(Y) + showCompact(O) + showCompact(W) + showCompact(D) +
+                (show[H] ? this._minDigits(inst, inst._periods[H], 2) : '') +
+                (show[M] ? (show[H] ? inst.options.timeSeparator : '') +
+                this._minDigits(inst, inst._periods[M], 2) : '') +
+                (show[S] ? (show[H] || show[M] ? inst.options.timeSeparator : '') +
+                this._minDigits(inst, inst._periods[S], 2) : '') :
                     // Full version
-                    '<span class="' + this._rowClass + ' ' + this._showClass + (inst.options.significant || showCount) +
-                        (inst._hold ? ' ' + this._holdingClass : '') + '">' +
-                        showFull(Y) + showFull(O) + showFull(W) + showFull(D) +
-                        showFull(H) + showFull(M) + showFull(S)) + '</span>' +
-                    (inst.options.description ? '<span class="' + this._rowClass + ' ' + this._descrClass + '">' +
-                        inst.options.description + '</span>' : '')));
+                '<span class="' + this._rowClass + ' ' + this._showClass + (inst.options.significant || showCount) +
+                (inst._hold ? ' ' + this._holdingClass : '') + '">' +
+                showFull(Y) + showFull(O) + showFull(W) + showFull(D) +
+                showFull(H) + showFull(M) + showFull(S)) + '</span>' +
+                (inst.options.description ? '<span class="' + this._rowClass + ' ' + this._descrClass + '">' +
+                inst.options.description + '</span>' : '')));
         },
 
         /* Construct a custom layout.
@@ -574,12 +574,13 @@
             var whichLabels = inst.options.whichLabels || this._normalLabels;
             var labelFor = function (index) {
                 return (inst.options[(compact ? 'compactLabels' : 'labels') +
-                    whichLabels(inst._periods[index])] || labels)[index];
+                whichLabels(inst._periods[index])] || labels)[index];
             };
             var digit = function (value, position) {
                 return inst.options.digits[Math.floor(value / position) % 10];
             };
-            var subs = {desc: inst.options.description, sep: inst.options.timeSeparator,
+            var subs = {
+                desc: inst.options.description, sep: inst.options.timeSeparator,
                 yl: labelFor(Y), yn: this._minDigits(inst, inst._periods[Y], 1),
                 ynn: this._minDigits(inst, inst._periods[Y], 2),
                 ynnn: this._minDigits(inst, inst._periods[Y], 3), y1: digit(inst._periods[Y], 1),
@@ -614,14 +615,15 @@
                 snn: this._minDigits(inst, inst._periods[S], 2),
                 snnn: this._minDigits(inst, inst._periods[S], 3), s1: digit(inst._periods[S], 1),
                 s10: digit(inst._periods[S], 10), s100: digit(inst._periods[S], 100),
-                s1000: digit(inst._periods[S], 1000)};
+                s1000: digit(inst._periods[S], 1000)
+            };
             var html = layout;
             // Replace period containers: {p<}...{p>}
             for (var i = Y; i <= S; i++) {
                 var period = 'yowdhms'.charAt(i);
                 var re = new RegExp('\\{' + period + '<\\}(.*)\\{' + period + '>\\}', 'g');
                 html = html.replace(re, ((!significant && show[i]) ||
-                    (significant && showSignificant[i]) ? '$1' : ''));
+                (significant && showSignificant[i]) ? '$1' : ''));
             }
             // Replace period values: {pn}
             $.each(subs, function (n, v) {
@@ -705,15 +707,15 @@
                 var lastNow = plugin._getDaysInMonth(now.getFullYear(), now.getMonth());
                 var lastUntil = plugin._getDaysInMonth(until.getFullYear(), until.getMonth());
                 var sameDay = (until.getDate() == now.getDate() ||
-                    (until.getDate() >= Math.min(lastNow, lastUntil) &&
-                        now.getDate() >= Math.min(lastNow, lastUntil)));
+                (until.getDate() >= Math.min(lastNow, lastUntil) &&
+                now.getDate() >= Math.min(lastNow, lastUntil)));
                 var getSecs = function (date) {
                     return (date.getHours() * 60 + date.getMinutes()) * 60 + date.getSeconds();
                 };
                 var months = Math.max(0,
                     (until.getFullYear() - now.getFullYear()) * 12 + until.getMonth() - now.getMonth() +
-                        ((until.getDate() < now.getDate() && !sameDay) ||
-                            (sameDay && getSecs(until) < getSecs(now)) ? -1 : 0));
+                    ((until.getDate() < now.getDate() && !sameDay) ||
+                    (sameDay && getSecs(until) < getSecs(now)) ? -1 : 0));
                 periods[Y] = (show[Y] ? Math.floor(months / 12) : 0);
                 periods[O] = (show[O] ? months - periods[Y] * 12 : 0);
                 // Adjust for months difference and end of month if necessary

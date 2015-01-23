@@ -6,11 +6,11 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
             var f = a.charCodeAt(0);
             if (f !== 92)return f;
             var b = a.charAt(1);
-            return(f = r[b]) ? f : "0" <= b && b <= "7" ? parseInt(a.substring(1), 8) : b === "u" || b === "x" ? parseInt(a.substring(2), 16) : a.charCodeAt(1)
+            return (f = r[b]) ? f : "0" <= b && b <= "7" ? parseInt(a.substring(1), 8) : b === "u" || b === "x" ? parseInt(a.substring(2), 16) : a.charCodeAt(1)
         }
 
         function e(a) {
-            if (a < 32)return(a < 16 ? "\\x0" : "\\x") + a.toString(16);
+            if (a < 32)return (a < 16 ? "\\x0" : "\\x") + a.toString(16);
             a = String.fromCharCode(a);
             if (a === "\\" || a === "-" || a === "[" || a === "]")a = "\\" + a;
             return a
@@ -37,7 +37,7 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
             o && b.push("^");
             b.push.apply(b, a);
             for (c = 0; c <
-                f.length; ++c)i = f[c], b.push(e(i[0])), i[1] > i[0] && (i[1] + 1 > i[0] && b.push("-"), b.push(e(i[1])));
+            f.length; ++c)i = f[c], b.push(e(i[0])), i[1] > i[0] && (i[1] + 1 > i[0] && b.push("-"), b.push(e(i[1])));
             b.push("]");
             return b.join("")
         }
@@ -49,11 +49,11 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
             }
             for (c = 1; c < d.length; ++c)-1 === d[c] && (d[c] = ++t);
             for (i = c = 0; c < b; ++c)j = f[c], j === "(" ? (++i, d[i] === void 0 && (f[c] = "(?:")) : "\\" === j.charAt(0) &&
-                (j = +j.substring(1)) && j <= i && (f[c] = "\\" + d[i]);
+            (j = +j.substring(1)) && j <= i && (f[c] = "\\" + d[i]);
             for (i = c = 0; c < b; ++c)"^" === f[c] && "^" !== f[c + 1] && (f[c] = "");
             if (a.ignoreCase && s)for (c = 0; c < b; ++c)j = f[c], a = j.charAt(0), j.length >= 2 && a === "[" ? f[c] = h(j) : a !== "\\" && (f[c] = j.replace(/[A-Za-z]/g, function (a) {
                 a = a.charCodeAt(0);
-                return"[" + String.fromCharCode(a & -33, a | 32) + "]"
+                return "[" + String.fromCharCode(a & -33, a | 32) + "]"
             }));
             return f.join("")
         }
@@ -95,7 +95,7 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
         a.currentStyle ? l = a.currentStyle.whiteSpace : window.getComputedStyle && (l = document.defaultView.getComputedStyle(a, q).getPropertyValue("white-space"));
         var p = l && "pre" === l.substring(0, 3);
         m(a);
-        return{a: h.join("").replace(/\n$/, ""), c: t}
+        return {a: h.join("").replace(/\n$/, ""), c: t}
     }
 
     function B(a, m, e, h) {
@@ -176,7 +176,7 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
                 case 1:
                     if (k.test(a.className))break;
                     if ("BR" === a.nodeName)h(a),
-                        a.parentNode && a.parentNode.removeChild(a); else for (a = a.firstChild; a; a = a.nextSibling)e(a);
+                    a.parentNode && a.parentNode.removeChild(a); else for (a = a.firstChild; a; a = a.nextSibling)e(a);
                     break;
                 case 3:
                 case 4:
@@ -281,21 +281,23 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
             "catch,class,delete,false,import,new,operator,private,protected,public,this,throw,true,try,typeof"
         ], F = [w, "alignof,align_union,asm,axiom,bool,concept,concept_map,const_cast,constexpr,decltype,dynamic_cast,explicit,export,friend,inline,late_check,mutable,namespace,nullptr,reinterpret_cast,static_assert,static_cast,template,typeid,typename,using,virtual,where"], G = [w, "abstract,boolean,byte,extends,final,finally,implements,import,instanceof,null,native,package,strictfp,super,synchronized,throws,transient"],
         H = [G, "as,base,by,checked,decimal,delegate,descending,dynamic,event,fixed,foreach,from,group,implicit,in,interface,internal,into,is,lock,object,out,override,orderby,params,partial,readonly,ref,sbyte,sealed,stackalloc,string,select,uint,ulong,unchecked,unsafe,ushort,var"], w = [w, "debugger,eval,export,function,get,null,set,undefined,var,with,Infinity,NaN"], I = [v, "and,as,assert,class,def,del,elif,except,exec,finally,from,global,import,in,is,lambda,nonlocal,not,or,pass,print,raise,try,with,yield,False,True,None"],
-        J = [v, "alias,and,begin,case,class,def,defined,elsif,end,ensure,false,in,module,next,nil,not,or,redo,rescue,retry,self,super,then,true,undef,unless,until,when,yield,BEGIN,END"], v = [v, "case,done,elif,esac,eval,fi,function,in,local,set,then,until"], K = /^(DIR|FILE|vector|(de|priority_)?queue|list|stack|(const_)?iterator|(multi)?(set|map)|bitset|u?(int|float)\d*)/, N = /\S/, O = u({keywords: [F, H, w, "caller,delete,die,do,dump,elsif,eval,exit,foreach,for,goto,if,import,last,local,my,next,no,our,print,package,redo,require,sub,undef,unless,until,use,wantarray,while,BEGIN,END" +
-            I, J, v], hashComments: !0, cStyleComments: !0, multiLineStrings: !0, regexLiterals: !0}), A = {};
+        J = [v, "alias,and,begin,case,class,def,defined,elsif,end,ensure,false,in,module,next,nil,not,or,redo,rescue,retry,self,super,then,true,undef,unless,until,when,yield,BEGIN,END"], v = [v, "case,done,elif,esac,eval,fi,function,in,local,set,then,until"], K = /^(DIR|FILE|vector|(de|priority_)?queue|list|stack|(const_)?iterator|(multi)?(set|map)|bitset|u?(int|float)\d*)/, N = /\S/, O = u({
+            keywords: [F, H, w, "caller,delete,die,do,dump,elsif,eval,exit,foreach,for,goto,if,import,last,local,my,next,no,our,print,package,redo,require,sub,undef,unless,until,use,wantarray,while,BEGIN,END" +
+            I, J, v], hashComments: !0, cStyleComments: !0, multiLineStrings: !0, regexLiterals: !0
+        }), A = {};
     k(O, ["default-code"]);
     k(x([], [
-        ["pln", /^[^<?]+/],
-        ["dec", /^<!\w[^>]*(?:>|$)/],
-        ["com", /^<\!--[\S\s]*?(?:--\>|$)/],
-        ["lang-", /^<\?([\S\s]+?)(?:\?>|$)/],
-        ["lang-", /^<%([\S\s]+?)(?:%>|$)/],
-        ["pun", /^(?:<[%?]|[%?]>)/],
-        ["lang-", /^<xmp\b[^>]*>([\S\s]+?)<\/xmp\b[^>]*>/i],
-        ["lang-js", /^<script\b[^>]*>([\S\s]*?)(<\/script\b[^>]*>)/i],
-        ["lang-css", /^<style\b[^>]*>([\S\s]*?)(<\/style\b[^>]*>)/i],
-        ["lang-in.tag", /^(<\/?[a-z][^<>]*>)/i]
-    ]),
+            ["pln", /^[^<?]+/],
+            ["dec", /^<!\w[^>]*(?:>|$)/],
+            ["com", /^<\!--[\S\s]*?(?:--\>|$)/],
+            ["lang-", /^<\?([\S\s]+?)(?:\?>|$)/],
+            ["lang-", /^<%([\S\s]+?)(?:%>|$)/],
+            ["pun", /^(?:<[%?]|[%?]>)/],
+            ["lang-", /^<xmp\b[^>]*>([\S\s]+?)<\/xmp\b[^>]*>/i],
+            ["lang-js", /^<script\b[^>]*>([\S\s]*?)(<\/script\b[^>]*>)/i],
+            ["lang-css", /^<style\b[^>]*>([\S\s]*?)(<\/style\b[^>]*>)/i],
+            ["lang-in.tag", /^(<\/?[a-z][^<>]*>)/i]
+        ]),
         ["default-markup", "htm", "html", "mxml", "xhtml", "xml", "xsl"]);
     k(x([
         ["pln", /^\s+/, q, " \t\r\n"],
@@ -323,11 +325,18 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
     k(u({keywords: v, hashComments: !0, multiLineStrings: !0}), ["bsh", "csh", "sh"]);
     k(u({keywords: I, hashComments: !0, multiLineStrings: !0, tripleQuotedStrings: !0}),
         ["cv", "py"]);
-    k(u({keywords: "caller,delete,die,do,dump,elsif,eval,exit,foreach,for,goto,if,import,last,local,my,next,no,our,print,package,redo,require,sub,undef,unless,until,use,wantarray,while,BEGIN,END", hashComments: !0, multiLineStrings: !0, regexLiterals: !0}), ["perl", "pl", "pm"]);
+    k(u({
+        keywords: "caller,delete,die,do,dump,elsif,eval,exit,foreach,for,goto,if,import,last,local,my,next,no,our,print,package,redo,require,sub,undef,unless,until,use,wantarray,while,BEGIN,END",
+        hashComments: !0,
+        multiLineStrings: !0,
+        regexLiterals: !0
+    }), ["perl", "pl", "pm"]);
     k(u({keywords: J, hashComments: !0, multiLineStrings: !0, regexLiterals: !0}), ["rb"]);
     k(u({keywords: w, cStyleComments: !0, regexLiterals: !0}), ["js"]);
-    k(u({keywords: "all,and,by,catch,class,else,extends,false,finally,for,if,in,is,isnt,loop,new,no,not,null,of,off,on,or,return,super,then,true,try,unless,until,when,while,yes",
-        hashComments: 3, cStyleComments: !0, multilineStrings: !0, tripleQuotedStrings: !0, regexLiterals: !0}), ["coffee"]);
+    k(u({
+        keywords: "all,and,by,catch,class,else,extends,false,finally,for,if,in,is,isnt,loop,new,no,not,null,of,off,on,or,return,super,then,true,try,unless,until,when,while,yes",
+        hashComments: 3, cStyleComments: !0, multilineStrings: !0, tripleQuotedStrings: !0, regexLiterals: !0
+    }), ["coffee"]);
     k(x([], [
         ["str", /^[\S\s]+/]
     ]), ["regex"]);
@@ -356,7 +365,11 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
                         b = !0;
                         break
                     }
-                    b || ((b = (b = n.className.match(/\blinenums\b(?::(\d+))?/)) ? b[1] && b[1].length ? +b[1] : !0 : !1) && D(n, b), d = {g: k, h: n, i: b}, E(d))
+                    b || ((b = (b = n.className.match(/\blinenums\b(?::(\d+))?/)) ? b[1] && b[1].length ? +b[1] : !0 : !1) && D(n, b), d = {
+                        g: k,
+                        h: n,
+                        i: b
+                    }, E(d))
                 }
             }
             p < h.length ? setTimeout(m,
@@ -365,12 +378,30 @@ window.PR_SHOULD_USE_CONTINUATION = !0;
 
         for (var e = [document.getElementsByTagName("pre"), document.getElementsByTagName("code"), document.getElementsByTagName("xmp")], h = [], k = 0; k < e.length; ++k)for (var t = 0, s = e[k].length; t < s; ++t)h.push(e[k][t]);
         var e = q, l = Date;
-        l.now || (l = {now: function () {
-            return+new Date
-        }});
+        l.now || (l = {
+            now: function () {
+                return +new Date
+            }
+        });
         var p = 0, d, g = /\blang(?:uage)?-([\w.]+)(?!\S)/;
         m()
     };
-    window.PR = {createSimpleLexer: x, registerLangHandler: k, sourceDecorator: u, PR_ATTRIB_NAME: "atn", PR_ATTRIB_VALUE: "atv", PR_COMMENT: "com", PR_DECLARATION: "dec", PR_KEYWORD: "kwd", PR_LITERAL: "lit",
-        PR_NOCODE: "nocode", PR_PLAIN: "pln", PR_PUNCTUATION: "pun", PR_SOURCE: "src", PR_STRING: "str", PR_TAG: "tag", PR_TYPE: "typ"}
+    window.PR = {
+        createSimpleLexer: x,
+        registerLangHandler: k,
+        sourceDecorator: u,
+        PR_ATTRIB_NAME: "atn",
+        PR_ATTRIB_VALUE: "atv",
+        PR_COMMENT: "com",
+        PR_DECLARATION: "dec",
+        PR_KEYWORD: "kwd",
+        PR_LITERAL: "lit",
+        PR_NOCODE: "nocode",
+        PR_PLAIN: "pln",
+        PR_PUNCTUATION: "pun",
+        PR_SOURCE: "src",
+        PR_STRING: "str",
+        PR_TAG: "tag",
+        PR_TYPE: "typ"
+    }
 })();

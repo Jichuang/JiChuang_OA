@@ -27,7 +27,6 @@
 <script src="frontend_assets/scripts/app.js"></script>
 <script src="frontend_assets/scripts/index.js"></script>
 <script src="frontend_assets/plugins/jquery.mixitup.min.js"></script>
-<script src="frontend_assets/scripts/portfolio.js"></script>
 <script src="admin_assets/js/blog/blogconf.js"></script>
 <script src="admin_assets/plugins/bootstrap-toastr/toastr.min.js"></script>
 <script src="admin_assets/scripts/toast.js" type="text/javascript"></script>
@@ -35,9 +34,7 @@
     jQuery(document).ready(function () {
         App.init();
         App.initBxSlider();
-        Portfolio.init();
         Index.initRevolutionSlider();
-        BlogTable.frontInit();
     });
 </script>
 

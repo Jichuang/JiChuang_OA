@@ -14,14 +14,28 @@ CKEDITOR.dialog.add("checkspell", function (a) {
         var f = new window._SP_FCK_LangCompare, b = CKEDITOR.getUrl(a.plugins.wsc.path + "dialogs/"), e = b + "tmpFrameset.html";
         window.gFCKPluginName = "wsc";
         f.setDefaulLangCode(a.config.defaultLanguage);
-        window.doSpell({ctrl: g, lang: a.config.wsc_lang || f.getSPLangCode(a.langCode), intLang: a.config.wsc_uiLang ||
-            f.getSPLangCode(a.langCode), winType: d, onCancel: function () {
-            c.hide()
-        }, onFinish: function (b) {
-            a.focus();
-            c.getParentEditor().setData(b.value);
-            c.hide()
-        }, staticFrame: e, framesetPath: e, iframePath: b + "ciframe.html", schemaURI: b + "wsc.css", userDictionaryName: a.config.wsc_userDictionaryName, customDictionaryName: a.config.wsc_customDictionaryIds && a.config.wsc_customDictionaryIds.split(","), domainName: a.config.wsc_domainName});
+        window.doSpell({
+            ctrl: g,
+            lang: a.config.wsc_lang || f.getSPLangCode(a.langCode),
+            intLang: a.config.wsc_uiLang ||
+            f.getSPLangCode(a.langCode),
+            winType: d,
+            onCancel: function () {
+                c.hide()
+            },
+            onFinish: function (b) {
+                a.focus();
+                c.getParentEditor().setData(b.value);
+                c.hide()
+            },
+            staticFrame: e,
+            framesetPath: e,
+            iframePath: b + "ciframe.html",
+            schemaURI: b + "wsc.css",
+            userDictionaryName: a.config.wsc_userDictionaryName,
+            customDictionaryName: a.config.wsc_customDictionaryIds && a.config.wsc_customDictionaryIds.split(","),
+            domainName: a.config.wsc_domainName
+        });
         CKEDITOR.document.getById(h).setStyle("display", "none");
         CKEDITOR.document.getById(d).setStyle("display",
             "block")
@@ -39,25 +53,35 @@ CKEDITOR.dialog.add("checkspell", function (a) {
             b.setHtml(c || a.lang.wsc.notAvailable)
         }
     };
-    return{title: a.config.wsc_dialogTitle || a.lang.wsc.title, minWidth: 485, minHeight: 380, buttons: [CKEDITOR.dialog.cancelButton], onShow: function () {
-        var b = this.getContentElement("general", "content").getElement();
-        b.setHtml(k);
-        b.getChild(2).setStyle("height", this._.contentSize.height + "px");
-        "function" != typeof window.doSpell && CKEDITOR.document.getHead().append(CKEDITOR.document.createElement("script",
-            {attributes: {type: "text/javascript", src: l}}));
-        b = a.getData();
-        CKEDITOR.document.getById(g).setValue(b);
-        e = window.setInterval(c(this, i), 250)
-    }, onHide: function () {
-        window.ooo = void 0;
-        window.int_framsetLoaded = void 0;
-        window.framesetLoaded = void 0;
-        window.is_window_opened = !1
-    }, contents: [
-        {id: "general", label: a.config.wsc_dialogTitle || a.lang.wsc.title, padding: 0, elements: [
-            {type: "html", id: "content", html: ""}
-        ]}
-    ]}
+    return {
+        title: a.config.wsc_dialogTitle || a.lang.wsc.title,
+        minWidth: 485,
+        minHeight: 380,
+        buttons: [CKEDITOR.dialog.cancelButton],
+        onShow: function () {
+            var b = this.getContentElement("general", "content").getElement();
+            b.setHtml(k);
+            b.getChild(2).setStyle("height", this._.contentSize.height + "px");
+            "function" != typeof window.doSpell && CKEDITOR.document.getHead().append(CKEDITOR.document.createElement("script",
+                {attributes: {type: "text/javascript", src: l}}));
+            b = a.getData();
+            CKEDITOR.document.getById(g).setValue(b);
+            e = window.setInterval(c(this, i), 250)
+        },
+        onHide: function () {
+            window.ooo = void 0;
+            window.int_framsetLoaded = void 0;
+            window.framesetLoaded = void 0;
+            window.is_window_opened = !1
+        },
+        contents: [
+            {
+                id: "general", label: a.config.wsc_dialogTitle || a.lang.wsc.title, padding: 0, elements: [
+                {type: "html", id: "content", html: ""}
+            ]
+            }
+        ]
+    }
 });
 CKEDITOR.dialog.on("resize", function (a) {
     var a = a.data, c = a.dialog;

@@ -21,15 +21,14 @@ import java.util.List;
 public class NotificationServiceImpl extends BaseServiceImpl<Notification> implements NotificationService {
 
     @Autowired
+    private Member_NotificationDao member_notificationDao;
+
+    @Autowired
     @Qualifier(value = "notificationDao")
     @Override
     public void setDao(BaseDao<Notification> dao) {
         super.setDao(dao);
     }
-
-    @Autowired
-    private Member_NotificationDao member_notificationDao;
-
 
     @Override
     public List<Notification> selectNotificationByMemberId(Member member) throws MemberException {

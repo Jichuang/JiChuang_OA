@@ -67,7 +67,8 @@ public class Member implements Serializable {
      */
     @Column(name = "info", length = 10000)
     private String info;
-
+    @Transient
+    private String postId;
 
     /**
      * <p>Describe: 解密</p>
@@ -95,8 +96,6 @@ public class Member implements Serializable {
     public void Encrypt() {
         password = AESLocker.Encrypt(password);
     }
-
-    private String postId;
 
     public String getPostId() {
         return postId;

@@ -614,8 +614,8 @@ jasmine.XmlHttpRequest = (typeof XMLHttpRequest == "undefined") ? function () {
     }
 
     var xhr = tryIt(function () {
-        return new ActiveXObject("Msxml2.XMLHTTP.6.0");
-    }) ||
+            return new ActiveXObject("Msxml2.XMLHTTP.6.0");
+        }) ||
         tryIt(function () {
             return new ActiveXObject("Msxml2.XMLHTTP.3.0");
         }) ||
@@ -1888,7 +1888,7 @@ jasmine.PrettyPrinter.prototype.iterateObject = function (obj, fn) {
     for (var property in obj) {
         if (property == '__Jasmine_been_here_before__') continue;
         fn(property, obj.__lookupGetter__ ? (obj.__lookupGetter__(property) !== jasmine.undefined &&
-            obj.__lookupGetter__(property) !== null) : false);
+        obj.__lookupGetter__(property) !== null) : false);
     }
 };
 
@@ -2249,7 +2249,7 @@ jasmine.Spec.prototype.fail = function (e) {
     var expectationResult = new jasmine.ExpectationResult({
         passed: false,
         message: e ? jasmine.util.formatException(e) : 'Exception',
-        trace: { stack: e.stack }
+        trace: {stack: e.stack}
     });
     this.results_.addResult(expectationResult);
 };

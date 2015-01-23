@@ -18,13 +18,13 @@ describe("Adding Map Styles", function () {
                 {
                     elementType: 'geometry',
                     stylers: [
-                        { lightness: 50 }
+                        {lightness: 50}
                     ]
                 },
                 {
                     elementType: 'labels',
                     stylers: [
-                        { visibility: 'off' }
+                        {visibility: 'off'}
                     ]
                 },
             ]

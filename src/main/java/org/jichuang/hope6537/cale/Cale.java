@@ -11,20 +11,15 @@ public class Cale implements Serializable {
      * <p>Using: </p>
      */
     private static final long serialVersionUID = -8397832384066686723L;
+    private Integer caleId;
+    private String date;
+    private Team teamId;
+    private String status;
+    private String info;
 
     public Cale() {
 
     }
-
-    private Integer caleId;
-
-    private String date;
-
-    private Team teamId;
-
-    private String status;
-
-    private String info;
 
     public Integer getCaleId() {
         return caleId;

@@ -34,7 +34,10 @@
 
                 var el = document.createElement('bootstrap')
                     , transEndEventNames = {
-                        'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd otransitionend', 'transition': 'transitionend'
+                        'WebkitTransition': 'webkitTransitionEnd',
+                        'MozTransition': 'transitionend',
+                        'OTransition': 'oTransitionEnd otransitionend',
+                        'transition': 'transitionend'
                     }
                     , name
 
@@ -47,8 +50,8 @@
             }())
 
             return transitionEnd && {
-                end: transitionEnd
-            }
+                    end: transitionEnd
+                }
 
         })()
 
@@ -270,7 +273,7 @@
         var $this = $(this)
             , href = $this.attr('href')
             , $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
-            , option = $target.data('modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+            , option = $target.data('modal') ? 'toggle' : $.extend({remote: !/#/.test(href) && href}, $target.data(), $this.data())
 
         e.preventDefault()
 
@@ -479,8 +482,8 @@
         this.options = $.extend({}, $.fn.scrollspy.defaults, options)
         this.$scrollElement = $element.on('scroll.scroll-spy.data-api', process)
         this.selector = (this.options.target
-            || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
-            || '') + ' .nav li > a'
+        || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+        || '') + ' .nav li > a'
         this.$body = $('body')
         this.refresh()
         this.process()
@@ -504,8 +507,8 @@
                     return ( $href
                         && $href.length
                         && [
-                        [ $href.position().top + self.$scrollElement.scrollTop(), href ]
-                    ] ) || null
+                            [$href.position().top + self.$scrollElement.scrollTop(), href]
+                        ] ) || null
                 })
                 .sort(function (a, b) {
                     return a[0] - b[0]
@@ -530,8 +533,8 @@
 
             for (i = offsets.length; i--;) {
                 activeTarget != targets[i]
-                    && scrollTop >= offsets[i]
-                    && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+                && scrollTop >= offsets[i]
+                && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
                 && this.activate(targets[i])
             }
         }, activate: function (target) {
@@ -545,8 +548,8 @@
                 .removeClass('active')
 
             selector = this.selector
-                + '[data-target="' + target + '"],'
-                + this.selector + '[href="' + target + '"]'
+            + '[data-target="' + target + '"],'
+            + this.selector + '[href="' + target + '"]'
 
             active = $(selector)
                 .parent('li')
@@ -797,7 +800,7 @@
             }
 
             this.options.selector ?
-                (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+                (this._options = $.extend({}, this.options, {trigger: 'manual', selector: ''})) :
                 this.fixTitle()
         }, getOptions: function (options) {
             options = $.extend({}, $.fn[this.type].defaults, options, this.$element.data())
@@ -854,7 +857,7 @@
 
                 $tip
                     .detach()
-                    .css({ top: 0, left: 0, display: 'block' })
+                    .css({top: 0, left: 0, display: 'block'})
                     .insertAfter(this.$element)
 
                 pos = this.getPosition(inside)
@@ -927,7 +930,7 @@
                 , o = this.options
 
             title = $e.attr('data-original-title')
-                || (typeof o.title == 'function' ? o.title.call($e[0]) : o.title)
+            || (typeof o.title == 'function' ? o.title.call($e[0]) : o.title)
 
             return title
         }, tip: function () {
@@ -972,7 +975,14 @@
     $.fn.tooltip.Constructor = Tooltip
 
     $.fn.tooltip.defaults = {
-        animation: true, placement: 'top', selector: false, template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>', trigger: 'hover', title: '', delay: 0, html: false
+        animation: true,
+        placement: 'top',
+        selector: false,
+        template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+        trigger: 'hover',
+        title: '',
+        delay: 0,
+        html: false
     }
 
 
@@ -1040,7 +1050,7 @@
                 , o = this.options
 
             content = $e.attr('data-content')
-                || (typeof o.content == 'function' ? o.content.call($e[0]) : o.content)
+            || (typeof o.content == 'function' ? o.content.call($e[0]) : o.content)
 
             return content
         }, tip: function () {
@@ -1073,7 +1083,10 @@
     $.fn.popover.Constructor = Popover
 
     $.fn.popover.defaults = $.extend({}, $.fn.tooltip.defaults, {
-        placement: 'right', trigger: 'click', content: '', template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"></div></div></div>'
+        placement: 'right',
+        trigger: 'click',
+        content: '',
+        template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"></div></div></div>'
     })
 
 
@@ -1605,7 +1618,7 @@
         cycle: function (e) {
             if (!e) this.paused = false
             this.options.interval
-                && !this.paused
+            && !this.paused
             && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
             return this
         }, to: function (pos) {
@@ -1992,7 +2005,11 @@
     }
 
     $.fn.typeahead.defaults = {
-        source: [], items: 8, menu: '<ul class="typeahead dropdown-menu"></ul>', item: '<li><a href="#"></a></li>', minLength: 1
+        source: [],
+        items: 8,
+        menu: '<ul class="typeahead dropdown-menu"></ul>',
+        item: '<li><a href="#"></a></li>',
+        minLength: 1
     }
 
     $.fn.typeahead.Constructor = Typeahead

@@ -11,7 +11,7 @@ import org.jichuang.hope6537.base.service.PostService;
 import org.jichuang.hope6537.base.service.RoleService;
 import org.jichuang.hope6537.utils.AESLocker;
 import org.jichuang.hope6537.utils.AjaxResponse;
-import org.jichuang.hope6537.utils.ApplicationVar;
+import org.jichuang.hope6537.utils.ApplicationConstant;
 import org.jichuang.hope6537.utils.ReturnState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,14 +24,13 @@ import java.util.List;
 @RequestMapping("/base")
 public class BaseController {
 
+    public static final String PATH = AdminPageController.PATH;
     @Autowired
     private MemberService memberService;
     @Autowired
     private PostService postService;
     @Autowired
     private RoleService roleService;
-
-    public static final String PATH = AdminPageController.PATH;
     private Logger logger = Logger.getLogger(getClass());
 
     static Member MemberBaseReplace(Member oldMember, Member newMember) {
@@ -102,8 +101,7 @@ public class BaseController {
         if (loginMember == null || member == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            boolean res = memberService.insertEntry(member) == ApplicationVar.EFFECTIVE_LINE_ONE;
-            res = res && memberService.updateMemberPost(member);
+            boolean res = memberService.insertEntry(member) == ApplicationConstant.EFFECTIVE_LINE_ONE;
             return AjaxResponse.getInstanceByResult(res).addReturnMsg("添加用户成功");
         }
     }
@@ -119,7 +117,7 @@ public class BaseController {
             member = MemberBaseReplace(
                     memberService.selectEntryFromPrimaryKey(Integer.parseInt(memberId)), member);
             return AjaxResponse.getInstanceByResult
-                    (memberService.updateMember(member) == ApplicationVar.EFFECTIVE_LINE_ONE && memberService.updateMemberPost(member)).
+                    (memberService.updateMember(member) == ApplicationConstant.EFFECTIVE_LINE_ONE && memberService.updateMemberPost(member)).
                     addReturnMsg("更新用户成功");
         }
     }
@@ -153,7 +151,6 @@ public class BaseController {
                     .addAttribute("postList", postList);
         }
     }
-
 
     @RequestMapping("toRole")
     public String toRole() {
@@ -285,22 +282,16 @@ public class BaseController {
     }
 
 
-    @RequestMapping(value = "/{postId}/post", method = RequestMethod.PUT)
+    @RequestMapping(value = "/post", method = RequestMethod.PUT)
     @ResponseBody
-    public AjaxResponse updatePostById(@PathVariable String postId, HttpServletRequest request) {
+    public AjaxResponse updatePostById(@RequestBody Post post, HttpServletRequest request) {
         logger.info("管理员业务——更新单体职位");
         Member member = (Member) request.getSession().getAttribute(
                 "loginMember");
-        if (member == null || postId == null) {
+        if (member == null || post == null) {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
-            Post post = postService.selectEntryFromPrimaryKey(Integer.parseInt(postId));
-            post.setDes(request.getParameter("des"));
-            post.setStatus(request.getParameter("status"));
-            String[] oldRoles = request.getParameter("postRoleIds").split(",");
-            String[] newRoles = request.getParameter("roleList").split(",");
-            //本体更新完了，接下来更新权限集合
-            return AjaxResponse.getInstanceByResult(postService.updateRoles4PostById(post, oldRoles, newRoles, postId)).addReturnMsg("更新权限成功");
+            return AjaxResponse.getInstanceByResult(postService.updateRoles4PostById(post)).addReturnMsg("更新权限成功");
         }
     }
 
@@ -315,7 +306,7 @@ public class BaseController {
             return new AjaxResponse(ReturnState.ERROR, "操作超时，请重新登录");
         } else {
             boolean res = postService.deletePostRoles(postId);
-            res = res && postService.deleteEntryByPrimaryKey(Integer.parseInt(postId)) == ApplicationVar.EFFECTIVE_LINE_ONE;
+            res = res && postService.deleteEntryByPrimaryKey(Integer.parseInt(postId)) == ApplicationConstant.EFFECTIVE_LINE_ONE;
             return AjaxResponse.getInstanceByResult(res);
         }
     }

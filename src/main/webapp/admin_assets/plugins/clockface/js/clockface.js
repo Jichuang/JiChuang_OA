@@ -347,8 +347,8 @@
          */
         place: function () {
             var zIndex = parseInt(this.$element.parents().filter(function () {
-                    return $(this).css('z-index') != 'auto';
-                }).first().css('z-index'), 10) + 10,
+                        return $(this).css('z-index') != 'auto';
+                    }).first().css('z-index'), 10) + 10,
                 offset = this.$element.offset();
             this.$clockface.css({
                 top: offset.top + this.$element.outerHeight(),
@@ -585,30 +585,30 @@
 
 
     $.fn.clockface.template = '' +
-        '<div class="clockface">' +
-        '<div class="l1">' +
-        '<div class="cell"></div>' +
-        '<div class="cell"></div>' +
-        '<div class="cell"></div>' +
-        '</div>' +
-        '<div class="l2">' +
-        '<div class="cell left"></div>' +
-        '<div class="cell right"></div>' +
-        '</div>' +
-        '<div class="l3">' +
-        '<div class="cell left"></div>' +
-        '<div class="cell right"></div>' +
-        '<div class="center"><a href="#" class="ampm"></a></div>' +
-        '</div>' +
-        '<div class="l4">' +
-        '<div class="cell left"></div>' +
-        '<div class="cell right"></div>' +
-        '</div>' +
-        '<div class="l5">' +
-        '<div class="cell"></div>' +
-        '<div class="cell"></div>' +
-        '<div class="cell"></div>' +
-        '</div>' +
-        '</div>';
+    '<div class="clockface">' +
+    '<div class="l1">' +
+    '<div class="cell"></div>' +
+    '<div class="cell"></div>' +
+    '<div class="cell"></div>' +
+    '</div>' +
+    '<div class="l2">' +
+    '<div class="cell left"></div>' +
+    '<div class="cell right"></div>' +
+    '</div>' +
+    '<div class="l3">' +
+    '<div class="cell left"></div>' +
+    '<div class="cell right"></div>' +
+    '<div class="center"><a href="#" class="ampm"></a></div>' +
+    '</div>' +
+    '<div class="l4">' +
+    '<div class="cell left"></div>' +
+    '<div class="cell right"></div>' +
+    '</div>' +
+    '<div class="l5">' +
+    '<div class="cell"></div>' +
+    '<div class="cell"></div>' +
+    '<div class="cell"></div>' +
+    '</div>' +
+    '</div>';
 
 }(window.jQuery));

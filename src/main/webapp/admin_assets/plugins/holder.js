@@ -236,7 +236,7 @@ var Holder = Holder || {};
         fallback = true;
     } else {
         if (canvas.toDataURL("image/png")
-            .indexOf("data:image/png") < 0) {
+                .indexOf("data:image/png") < 0) {
             //Android doesn't support data URI
             fallback = true;
         } else {

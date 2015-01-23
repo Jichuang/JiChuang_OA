@@ -1,5 +1,6 @@
 package org.jichuang.hope6537.base.dao.impl;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jichuang.hope6537.base.dao.BaseDao;
@@ -25,10 +26,10 @@ import java.util.List;
  */
 public class BaseDaoImpl<T> implements BaseDao<T> {
 
-    private Class<?> clz;
-
     @Autowired(required = true)
     protected SessionFactory sessionFactory;
+    private Class<?> clz;
+    private Logger logger = Logger.getLogger(getClass() + "DataBase Service");
 
     public BaseDaoImpl() {
         ParameterizedType type = (ParameterizedType) this.getClass()
@@ -41,10 +42,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             return (T) sessionFactory.getCurrentSession().get(clz, id);
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             T t = (T) session.get(clz, id);
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
             return t;
         }
     }
@@ -55,10 +56,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             return 1;
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             session.save(t);
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
             return 0;
         }
     }
@@ -69,10 +70,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             return 1;
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             session.update(t);
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
             return 0;
         }
     }
@@ -84,11 +85,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             return 1;
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             T t = this.selectEntryFromPrimaryKey(id);
             session.delete(t);
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
             return 0;
         }
     }
@@ -100,11 +101,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
                     .createQuery("from " + clz.getSimpleName()).list();
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             List list = session
                     .createQuery("from " + clz.getSimpleName()).list();
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
             return list;
 
         }
@@ -116,10 +117,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             return sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             int res = session.createQuery(hql).executeUpdate();
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
             return res;
         }
 
@@ -130,10 +131,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             return sessionFactory.getCurrentSession().createSQLQuery(sql).executeUpdate();
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             int res = session.createSQLQuery(sql).executeUpdate();
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
             return res;
         }
 
@@ -146,10 +147,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             list = sessionFactory.getCurrentSession().createQuery(hql).list();
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             list = session.createQuery(hql).list();
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
         }
         return list;
     }
@@ -161,10 +162,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             list = sessionFactory.getCurrentSession().createSQLQuery(sql).list();
         } catch (Exception e) {
             Session session = sessionFactory.openSession();
-            System.err.println("Open Session");
+            logger.error("Open Session");
             list = session.createSQLQuery(sql).list();
             session.close();
-            System.err.println("Open Session Closed");
+            logger.error("Open Session Closed");
         }
         return list;
     }

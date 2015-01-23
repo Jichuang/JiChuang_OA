@@ -757,7 +757,8 @@
         // TOUCH ENABLED SCROLL
 
         if (opt.touchenabled == "on")
-            container.swipe({data: container,
+            container.swipe({
+                data: container,
                 swipeRight: function () {
 
                     if (opt.transition == 0) {
@@ -775,7 +776,8 @@
                         callingNewSlide(opt, container);
                     }
                 },
-                allowPageScroll: "auto"});
+                allowPageScroll: "auto"
+            });
     }
 
 
@@ -882,17 +884,29 @@
             tl.css({'position': 'absolute'});
             tr.css({'position': 'absolute'});
 
-            if (opt.soloArrowLeftValign == "center")    tl.css({'top': '50%', 'marginTop': (opt.soloArrowLeftVOffset - Math.round(tl.innerHeight() / 2)) + "px"});
+            if (opt.soloArrowLeftValign == "center")    tl.css({
+                'top': '50%',
+                'marginTop': (opt.soloArrowLeftVOffset - Math.round(tl.innerHeight() / 2)) + "px"
+            });
             if (opt.soloArrowLeftValign == "bottom")    tl.css({'bottom': (0 + opt.soloArrowLeftVOffset) + "px"});
             if (opt.soloArrowLeftValign == "top")        tl.css({'top': (0 + opt.soloArrowLeftVOffset) + "px"});
-            if (opt.soloArrowLeftHalign == "center")    tl.css({'left': '50%', 'marginLeft': (opt.soloArrowLeftHOffset - Math.round(tl.innerWidth() / 2)) + "px"});
+            if (opt.soloArrowLeftHalign == "center")    tl.css({
+                'left': '50%',
+                'marginLeft': (opt.soloArrowLeftHOffset - Math.round(tl.innerWidth() / 2)) + "px"
+            });
             if (opt.soloArrowLeftHalign == "left")    tl.css({'left': (0 + opt.soloArrowLeftHOffset) + "px"});
             if (opt.soloArrowLeftHalign == "right")    tl.css({'right': (0 + opt.soloArrowLeftHOffset) + "px"});
 
-            if (opt.soloArrowRightValign == "center")    tr.css({'top': '50%', 'marginTop': (opt.soloArrowRightVOffset - Math.round(tr.innerHeight() / 2)) + "px"});
+            if (opt.soloArrowRightValign == "center")    tr.css({
+                'top': '50%',
+                'marginTop': (opt.soloArrowRightVOffset - Math.round(tr.innerHeight() / 2)) + "px"
+            });
             if (opt.soloArrowRightValign == "bottom")    tr.css({'bottom': (0 + opt.soloArrowRightVOffset) + "px"});
             if (opt.soloArrowRightValign == "top")    tr.css({'top': (0 + opt.soloArrowRightVOffset) + "px"});
-            if (opt.soloArrowRightHalign == "center")    tr.css({'left': '50%', 'marginLeft': (opt.soloArrowRightHOffset - Math.round(tr.innerWidth() / 2)) + "px"});
+            if (opt.soloArrowRightHalign == "center")    tr.css({
+                'left': '50%',
+                'marginLeft': (opt.soloArrowRightHOffset - Math.round(tr.innerWidth() / 2)) + "px"
+            });
             if (opt.soloArrowRightHalign == "left")    tr.css({'left': (0 + opt.soloArrowRightHOffset) + "px"});
             if (opt.soloArrowRightHalign == "right")    tr.css({'right': (0 + opt.soloArrowRightHOffset) + "px"});
 
@@ -912,12 +926,18 @@
         // SET THE POSITIONS OF THE BULLETS // THUMBNAILS
 
 
-        if (opt.navigationVAlign == "center")     bullets.css({'top': '50%', 'marginTop': (opt.navigationVOffset - Math.round(bullets.innerHeight() / 2)) + "px"});
+        if (opt.navigationVAlign == "center")     bullets.css({
+            'top': '50%',
+            'marginTop': (opt.navigationVOffset - Math.round(bullets.innerHeight() / 2)) + "px"
+        });
         if (opt.navigationVAlign == "bottom")     bullets.css({'bottom': (0 + opt.navigationVOffset) + "px"});
         if (opt.navigationVAlign == "top")     bullets.css({'top': (0 + opt.navigationVOffset) + "px"});
 
 
-        if (opt.navigationHAlign == "center")    bullets.css({'left': '50%', 'marginLeft': (opt.navigationHOffset - Math.round(bullets.innerWidth() / 2)) + "px"});
+        if (opt.navigationHAlign == "center")    bullets.css({
+            'left': '50%',
+            'marginLeft': (opt.navigationHOffset - Math.round(bullets.innerWidth() / 2)) + "px"
+        });
         if (opt.navigationHAlign == "left")    bullets.css({'left': (0 + opt.navigationHOffset) + "px"});
         if (opt.navigationHAlign == "right")    bullets.css({'right': (0 + opt.navigationHOffset) + "px"});
 
@@ -1132,20 +1152,20 @@
 
         for (var i = 0; i < opt.slots + 2; i++)
             sh.append('<div class="slot" style="position:absolute;' +
-                'top:' + (fullyoff + (i * opt.sloth)) + 'px;' +
-                'left:' + (fulloff) + 'px;' +
-                'overflow:hidden;' +
-                'width:' + w + 'px;' +
-                'height:' + (opt.sloth) + 'px"' +
-                '><div class="slotslide" style="position:absolute;' +
-                'top:' + (off) + 'px;' +
-                'left:0px;width:' + w + 'px;' +
-                'height:' + opt.sloth + 'px;' +
-                'overflow:hidden;"><img style="position:absolute;' +
-                'background-color:' + bgcolor + ';' +
-                'top:' + (0 - (i * opt.sloth)) + 'px;' +
-                'left:0px;width:' + w + 'px;' +
-                'height:' + h + 'px" src="' + src + '"></div></div>');
+            'top:' + (fullyoff + (i * opt.sloth)) + 'px;' +
+            'left:' + (fulloff) + 'px;' +
+            'overflow:hidden;' +
+            'width:' + w + 'px;' +
+            'height:' + (opt.sloth) + 'px"' +
+            '><div class="slotslide" style="position:absolute;' +
+            'top:' + (off) + 'px;' +
+            'left:0px;width:' + w + 'px;' +
+            'height:' + opt.sloth + 'px;' +
+            'overflow:hidden;"><img style="position:absolute;' +
+            'background-color:' + bgcolor + ';' +
+            'top:' + (0 - (i * opt.sloth)) + 'px;' +
+            'left:0px;width:' + w + 'px;' +
+            'height:' + h + 'px" src="' + src + '"></div></div>');
 
     }
 
@@ -1198,28 +1218,28 @@
 
 
                 sh.append('<div class="slot" ' +
-                    'style="position:absolute;' +
-                    'top:' + (fullyoff + y) + 'px;' +
-                    'left:' + (fulloff + x) + 'px;' +
-                    'width:' + basicsize + 'px;' +
-                    'height:' + basicsize + 'px;' +
-                    'overflow:hidden;">' +
+                'style="position:absolute;' +
+                'top:' + (fullyoff + y) + 'px;' +
+                'left:' + (fulloff + x) + 'px;' +
+                'width:' + basicsize + 'px;' +
+                'height:' + basicsize + 'px;' +
+                'overflow:hidden;">' +
 
-                    '<div class="slotslide" data-x="' + x + '" data-y="' + y + '" ' +
-                    'style="position:absolute;' +
-                    'top:' + (0) + 'px;' +
-                    'left:' + (0) + 'px;' +
-                    'width:' + basicsize + 'px;' +
-                    'height:' + basicsize + 'px;' +
-                    'overflow:hidden;">' +
+                '<div class="slotslide" data-x="' + x + '" data-y="' + y + '" ' +
+                'style="position:absolute;' +
+                'top:' + (0) + 'px;' +
+                'left:' + (0) + 'px;' +
+                'width:' + basicsize + 'px;' +
+                'height:' + basicsize + 'px;' +
+                'overflow:hidden;">' +
 
-                    '<img style="position:absolute;' +
-                    'top:' + (0 - y) + 'px;' +
-                    'left:' + (0 - x) + 'px;' +
-                    'width:' + w + 'px;' +
-                    'height:' + h + 'px' +
-                    'background-color:' + bgcolor + ';"' +
-                    'src="' + src + '"></div></div>');
+                '<img style="position:absolute;' +
+                'top:' + (0 - y) + 'px;' +
+                'left:' + (0 - x) + 'px;' +
+                'width:' + w + 'px;' +
+                'height:' + h + 'px' +
+                'background-color:' + bgcolor + ';"' +
+                'src="' + src + '"></div></div>');
                 y = y + basicsize;
             }
             x = x + basicsize;
@@ -1260,9 +1280,17 @@
 
             // MOVE THE CAPTIONS TO THE RIGHT POSITION
             if (nextcaption.hasClass('hcenter'))
-                nextcaption.css({'height': opt.height + "px", 'top': '0px', 'left': (opt.width / 2 - nextcaption.outerWidth() / 2) + 'px'});
+                nextcaption.css({
+                    'height': opt.height + "px",
+                    'top': '0px',
+                    'left': (opt.width / 2 - nextcaption.outerWidth() / 2) + 'px'
+                });
             else if (nextcaption.hasClass('vcenter'))
-                nextcaption.css({'width': opt.width + "px", 'left': '0px', 'top': (opt.height / 2 - nextcaption.outerHeight() / 2) + 'px'});
+                nextcaption.css({
+                    'width': opt.width + "px",
+                    'left': '0px',
+                    'top': (opt.height / 2 - nextcaption.outerHeight() / 2) + 'px'
+                });
         }
     }
 
@@ -1571,14 +1599,26 @@
                 ss.css({'opacity': 0});
                 ss.find('img').css({'opacity': 0});
                 if (opt.ie9)
-                    ss.find('img').transition({'top': (Math.random() * opt.slotw - opt.slotw) + "px", 'left': (Math.random() * opt.slotw - opt.slotw) + "px"}, 0);
+                    ss.find('img').transition({
+                        'top': (Math.random() * opt.slotw - opt.slotw) + "px",
+                        'left': (Math.random() * opt.slotw - opt.slotw) + "px"
+                    }, 0);
                 else
-                    ss.find('img').transition({'top': (Math.random() * opt.slotw - opt.slotw) + "px", 'left': (Math.random() * opt.slotw - opt.slotw) + "px", rotate: opt.rotate}, 0);
+                    ss.find('img').transition({
+                        'top': (Math.random() * opt.slotw - opt.slotw) + "px",
+                        'left': (Math.random() * opt.slotw - opt.slotw) + "px",
+                        rotate: opt.rotate
+                    }, 0);
 
                 var rand = Math.random() * 1000 + (masterspeed + 200);
                 if (j == (opt.slots * opt.slots) - 1) rand = 1500;
 
-                ss.find('img').transition({'opacity': 1, 'top': (0 - ss.data('y')) + "px", 'left': (0 - ss.data('x')) + 'px', rotate: 0}, rand);
+                ss.find('img').transition({
+                    'opacity': 1,
+                    'top': (0 - ss.data('y')) + "px",
+                    'left': (0 - ss.data('x')) + 'px',
+                    rotate: 0
+                }, rand);
                 ss.transition({'opacity': 1}, rand, function () {
                     if (j == (opt.slots * opt.slots) - 1) {
                         removeSlots(container, opt);
@@ -1728,7 +1768,11 @@
             actsh.find('.slotslide').each(function (i) {
                 var ss = $(this);
 
-                ss.transit({'top': (0 + (opt.height)) + "px", 'opacity': 1, rotate: opt.rotate}, masterspeed + (i * (70 - opt.slots)));
+                ss.transit({
+                    'top': (0 + (opt.height)) + "px",
+                    'opacity': 1,
+                    rotate: opt.rotate
+                }, masterspeed + (i * (70 - opt.slots)));
             });
 
             // ALL NEW SLOTS SHOULD BE SLIDED FROM THE LEFT TO THE RIGHT
@@ -1739,7 +1783,11 @@
                 else
                     ss.transition({'top': (0 - (opt.height)) + "px", 'opacity': 0, rotate: opt.rotate}, 0);
 
-                ss.transition({'top': '0px', 'opacity': 1, rotate: 0}, masterspeed + (i * (70 - opt.slots)), function () {
+                ss.transition({
+                    'top': '0px',
+                    'opacity': 1,
+                    rotate: 0
+                }, masterspeed + (i * (70 - opt.slots)), function () {
                     if (i == opt.slots - 1) {
                         removeSlots(container, opt);
                         nextsh.find('.defaultimg').css({'opacity': 1});
@@ -1774,7 +1822,11 @@
             actsh.find('.slotslide').each(function (i) {
                 var ss = $(this);
 
-                ss.transition({'top': (0 + (opt.height)) + "px", 'opacity': 1, rotate: opt.rotate}, masterspeed + ((opt.slots - i) * (70 - opt.slots)));
+                ss.transition({
+                    'top': (0 + (opt.height)) + "px",
+                    'opacity': 1,
+                    rotate: opt.rotate
+                }, masterspeed + ((opt.slots - i) * (70 - opt.slots)));
 
             });
 
@@ -1786,7 +1838,11 @@
                 else
                     ss.transition({'top': (0 - (opt.height)) + "px", 'opacity': 0, rotate: opt.rotate}, 0);
 
-                ss.transition({'top': '0px', 'opacity': 1, rotate: 0}, masterspeed + ((opt.slots - i) * (70 - opt.slots)), function () {
+                ss.transition({
+                    'top': '0px',
+                    'opacity': 1,
+                    rotate: 0
+                }, masterspeed + ((opt.slots - i) * (70 - opt.slots)), function () {
                     if (i == 0) {
                         removeSlots(container, opt);
                         nextsh.find('.defaultimg').css({'opacity': 1});
@@ -1879,7 +1935,8 @@
             actsh.find('.slotslide').each(function () {
                 var ss = $(this).find('img');
 
-                ss.transition({'left': (0 - opt.slotw / 2) + 'px',
+                ss.transition({
+                    'left': (0 - opt.slotw / 2) + 'px',
                     'top': (0 - opt.height / 2) + 'px',
                     'width': (opt.slotw * 2) + "px",
                     'height': (opt.height * 2) + "px",
@@ -1905,7 +1962,8 @@
                     ss.transition({'left': (0) + 'px', 'top': (0) + 'px', opacity: 0}, 0);
                 else
                     ss.transition({'left': (0) + 'px', 'top': (0) + 'px', opacity: 0, rotate: opt.rotate}, 0);
-                ss.transition({'left': (0 - i * opt.slotw) + 'px',
+                ss.transition({
+                    'left': (0 - i * opt.slotw) + 'px',
                     'top': (0) + 'px',
                     'width': (nextsh.find('.defaultimg').data('neww')) + "px",
                     'height': (nextsh.find('.defaultimg').data('newh')) + "px",
@@ -1944,7 +2002,8 @@
             actsh.find('.slotslide').each(function () {
                 var ss = $(this).find('img');
 
-                ss.transition({'left': (0 - opt.width / 2) + 'px',
+                ss.transition({
+                    'left': (0 - opt.width / 2) + 'px',
                     'top': (0 - opt.sloth / 2) + 'px',
                     'width': (opt.width * 2) + "px",
                     'height': (opt.sloth * 2) + "px",
@@ -1969,7 +2028,8 @@
                     ss.transition({'left': (0) + 'px', 'top': (0) + 'px', opacity: 0}, 0);
                 else
                     ss.transition({'left': (0) + 'px', 'top': (0) + 'px', opacity: 0, rotate: opt.rotate}, 0);
-                ss.transition({'left': (0) + 'px',
+                ss.transition({
+                    'left': (0) + 'px',
                     'top': (0 - i * opt.sloth) + 'px',
                     'width': (nextsh.find('.defaultimg').data('neww')) + "px",
                     'height': (nextsh.find('.defaultimg').data('newh')) + "px",
@@ -2010,9 +2070,9 @@
                 ssamount++;
                 ss.transition({'opacity': 0, x: 0, y: 0}, 0);
                 ss.data('tout', setTimeout(function () {
-                    ss.transition({x: 0, y: 0, 'opacity': 1}, masterspeed);
+                        ss.transition({x: 0, y: 0, 'opacity': 1}, masterspeed);
 
-                }, i * 4)
+                    }, i * 4)
                 );
 
             });
@@ -2054,9 +2114,9 @@
                 ssamount++;
                 ss.transition({'opacity': 0, x: 0, y: 0}, 0);
                 ss.data('tout', setTimeout(function () {
-                    ss.transition({x: 0, y: 0, 'opacity': 1}, masterspeed);
+                        ss.transition({x: 0, y: 0, 'opacity': 1}, masterspeed);
 
-                }, i * 4)
+                    }, i * 4)
                 );
 
             });
@@ -2231,26 +2291,65 @@
                 var imgh = opt.height / 2;
                 var to = 0;
             }
-            actli.find('.tp-half-one').css({'width': opt.width + "px", 'height': (to + imgh) + "px", 'overflow': 'hidden', 'position': 'absolute', 'top': '0px', 'left': '0px'});
-            actli.find('.tp-half-two').css({'width': opt.width + "px", 'height': (to + imgh) + "px", 'overflow': 'hidden', 'position': 'absolute', 'top': (to + imgh) + 'px', 'left': '0px'});
-            actli.find('.tp-half-two .tp-offset').css({'position': 'absolute', 'top': (0 - imgh - to) + 'px', 'left': '0px'});
+            actli.find('.tp-half-one').css({
+                'width': opt.width + "px",
+                'height': (to + imgh) + "px",
+                'overflow': 'hidden',
+                'position': 'absolute',
+                'top': '0px',
+                'left': '0px'
+            });
+            actli.find('.tp-half-two').css({
+                'width': opt.width + "px",
+                'height': (to + imgh) + "px",
+                'overflow': 'hidden',
+                'position': 'absolute',
+                'top': (to + imgh) + 'px',
+                'left': '0px'
+            });
+            actli.find('.tp-half-two .tp-offset').css({
+                'position': 'absolute',
+                'top': (0 - imgh - to) + 'px',
+                'left': '0px'
+            });
 
 
             // Delegate .transition() calls to .animate()
             // if the browser can't do CSS transitions.
             if (!$.support.transition) {
 
-                actli.find('.tp-half-one').animate({'opacity': 0, 'top': (0 - opt.height / 2) + "px"}, {duration: 500, queue: false});
-                actli.find('.tp-half-two').animate({'opacity': 0, 'top': (opt.height) + "px"}, {duration: 500, queue: false});
+                actli.find('.tp-half-one').animate({'opacity': 0, 'top': (0 - opt.height / 2) + "px"}, {
+                    duration: 500,
+                    queue: false
+                });
+                actli.find('.tp-half-two').animate({'opacity': 0, 'top': (opt.height) + "px"}, {
+                    duration: 500,
+                    queue: false
+                });
             } else {
                 var ro1 = Math.round(Math.random() * 40 - 20);
                 var ro2 = Math.round(Math.random() * 40 - 20);
                 var sc1 = Math.random() * 1 + 1;
                 var sc2 = Math.random() * 1 + 1;
-                actli.find('.tp-half-one').transition({opacity: 1, scale: sc1, rotate: ro1, y: (0 - opt.height / 1.4) + "px"}, 800, 'in');
-                actli.find('.tp-half-two').transition({opacity: 1, scale: sc2, rotate: ro2, y: (0 + opt.height / 1.4) + "px"}, 800, 'in');
+                actli.find('.tp-half-one').transition({
+                    opacity: 1,
+                    scale: sc1,
+                    rotate: ro1,
+                    y: (0 - opt.height / 1.4) + "px"
+                }, 800, 'in');
+                actli.find('.tp-half-two').transition({
+                    opacity: 1,
+                    scale: sc2,
+                    rotate: ro2,
+                    y: (0 + opt.height / 1.4) + "px"
+                }, 800, 'in');
 
-                if (actli.html() != null) nextli.transition({scale: 0.8, x: opt.width * 0.1, y: opt.height * 0.1, rotate: ro1}, 0).transition({rotate: 0, scale: 1, x: 0, y: 0}, 600, 'snap');
+                if (actli.html() != null) nextli.transition({
+                    scale: 0.8,
+                    x: opt.width * 0.1,
+                    y: opt.height * 0.1,
+                    rotate: ro1
+                }, 0).transition({rotate: 0, scale: 1, x: 0, y: 0}, 600, 'snap');
             }
             nextsh.find('.defaultimg').css({'opacity': 1});
             setTimeout(function () {
@@ -2298,9 +2397,18 @@
 
             nextsh.find('.slotslide').each(function (j) {
                 var ss = $(this);
-                ss.transition({ opacity: 0, rotateY: 350, rotateX: 40, perspective: '1400px'}, 0);
+                ss.transition({opacity: 0, rotateY: 350, rotateX: 40, perspective: '1400px'}, 0);
                 setTimeout(function () {
-                    ss.transition({opacity: 1, top: 0, left: 0, scale: 1, perspective: '150px', rotate: 0, rotateY: 0, rotateX: 0}, masterspeed * 2, function () {
+                    ss.transition({
+                        opacity: 1,
+                        top: 0,
+                        left: 0,
+                        scale: 1,
+                        perspective: '150px',
+                        rotate: 0,
+                        rotateY: 0,
+                        rotateX: 0
+                    }, masterspeed * 2, function () {
 
                         if (j == opt.slots - 1) {
                             removeSlots(container, opt);
@@ -2341,9 +2449,18 @@
 
             nextsh.find('.slotslide').each(function (j) {
                 var ss = $(this);
-                ss.transition({  rotateX: 10, rotateY: 310, perspective: '1400px', rotate: 0, opacity: 0}, 0);
+                ss.transition({rotateX: 10, rotateY: 310, perspective: '1400px', rotate: 0, opacity: 0}, 0);
                 setTimeout(function () {
-                    ss.transition({top: 0, left: 0, scale: 1, perspective: '150px', rotate: 0, rotateY: 0, rotateX: 0, opacity: 1}, masterspeed * 2, function () {
+                    ss.transition({
+                        top: 0,
+                        left: 0,
+                        scale: 1,
+                        perspective: '150px',
+                        rotate: 0,
+                        rotateY: 0,
+                        rotateX: 0,
+                        opacity: 1
+                    }, masterspeed * 2, function () {
 
                         if (j == opt.slots - 1) {
                             removeSlots(container, opt);
@@ -2389,13 +2506,18 @@
                 ss.parent().css({'overflow': 'visible'});
                 ss.css({'background': '#333'});
                 if (direction == 1)
-                    ss.transition({  opacity: 0, left: 0, top: opt.height / 2, rotate3d: '1, 0, 0, -90deg '}, 0);
+                    ss.transition({opacity: 0, left: 0, top: opt.height / 2, rotate3d: '1, 0, 0, -90deg '}, 0);
                 else
-                    ss.transition({ opacity: 0, left: 0, top: 0 - opt.height / 2, rotate3d: '1, 0, 0, 90deg '}, 0);
+                    ss.transition({opacity: 0, left: 0, top: 0 - opt.height / 2, rotate3d: '1, 0, 0, 90deg '}, 0);
 
                 setTimeout(function () {
 
-                    ss.transition({opacity: 1, top: 0, perspective: opt.height * 2, rotate3d: ' 1, 0, 0, 0deg '}, masterspeed * 2, function () {
+                    ss.transition({
+                        opacity: 1,
+                        top: 0,
+                        perspective: opt.height * 2,
+                        rotate3d: ' 1, 0, 0, 0deg '
+                    }, masterspeed * 2, function () {
 
                         if (j == opt.slots - 1) {
                             removeSlots(container, opt);
@@ -2415,14 +2537,26 @@
                 var ss = $(this);
                 ss.parent().css({'overflow': 'visible'});
                 ss.css({'background': '#333'});
-                ss.transition({ top: 0, rotate3d: '1, 0, 0, 0deg'}, 0);
+                ss.transition({top: 0, rotate3d: '1, 0, 0, 0deg'}, 0);
                 actsh.find('.defaultimg').css({'opacity': 0});
                 setTimeout(function () {
                     if (direction == 1)
-                        ss.transition({opacity: 0.6, left: 0, perspective: opt.height * 2, top: 0 - opt.height / 2, rotate3d: '1, 0, 0, 90deg'}, masterspeed * 2, function () {
+                        ss.transition({
+                            opacity: 0.6,
+                            left: 0,
+                            perspective: opt.height * 2,
+                            top: 0 - opt.height / 2,
+                            rotate3d: '1, 0, 0, 90deg'
+                        }, masterspeed * 2, function () {
                         });
                     else
-                        ss.transition({opacity: 0.6, left: 0, perspective: opt.height * 2, top: (0 + opt.height / 2), rotate3d: '1, 0, 0, -90deg'}, masterspeed * 2, function () {
+                        ss.transition({
+                            opacity: 0.6,
+                            left: 0,
+                            perspective: opt.height * 2,
+                            top: (0 + opt.height / 2),
+                            rotate3d: '1, 0, 0, -90deg'
+                        }, masterspeed * 2, function () {
                         });
                 }, j * 150);
             });
@@ -2455,11 +2589,16 @@
                 ss.parent().css({'overflow': 'visible'});
 
                 if (direction == 1)
-                    ss.transition({ scale: 0.8, top: 0, left: 0 - opt.width, rotate3d: '2, 5, 0, 110deg'}, 0);
+                    ss.transition({scale: 0.8, top: 0, left: 0 - opt.width, rotate3d: '2, 5, 0, 110deg'}, 0);
                 else
-                    ss.transition({ scale: 0.8, top: 0, left: 0 + opt.width, rotate3d: '2, 5, 0, -110deg'}, 0);
+                    ss.transition({scale: 0.8, top: 0, left: 0 + opt.width, rotate3d: '2, 5, 0, -110deg'}, 0);
                 setTimeout(function () {
-                    ss.transition({ scale: 0.8, left: 0, perspective: opt.width, rotate3d: '1, 5, 0, 0deg'}, masterspeed * 2, 'ease').transition({scale: 1}, 200, 'out', function () {
+                    ss.transition({
+                        scale: 0.8,
+                        left: 0,
+                        perspective: opt.width,
+                        rotate3d: '1, 5, 0, 0deg'
+                    }, masterspeed * 2, 'ease').transition({scale: 1}, 200, 'out', function () {
 
                         if (j == opt.slots - 1) {
                             removeSlots(container, opt);
@@ -2476,14 +2615,26 @@
 
             actsh.find('.slotslide').each(function (j) {
                 var ss = $(this);
-                ss.transition({ scale: 0.5, left: 0, rotate3d: '1, 5, 0, 5deg'}, 300, 'in-out');
+                ss.transition({scale: 0.5, left: 0, rotate3d: '1, 5, 0, 5deg'}, 300, 'in-out');
                 actsh.find('.defaultimg').css({'opacity': 0});
                 setTimeout(function () {
                     if (direction == 1)
-                        ss.transition({top: 0, left: opt.width / 2, perspective: opt.width, rotate3d: '0, -3, 0, 70deg', opacity: 0}, masterspeed * 2, 'out', function () {
+                        ss.transition({
+                            top: 0,
+                            left: opt.width / 2,
+                            perspective: opt.width,
+                            rotate3d: '0, -3, 0, 70deg',
+                            opacity: 0
+                        }, masterspeed * 2, 'out', function () {
                         });
                     else
-                        ss.transition({top: 0, left: 0 - opt.width / 2, perspective: opt.width, rotate3d: '0, -3, 0, -70deg', opacity: 0}, masterspeed * 2, 'out', function () {
+                        ss.transition({
+                            top: 0,
+                            left: 0 - opt.width / 2,
+                            perspective: opt.width,
+                            rotate3d: '0, -3, 0, -70deg',
+                            opacity: 0
+                        }, masterspeed * 2, 'out', function () {
                         });
                 }, j * 100);
             });
@@ -2514,11 +2665,15 @@
             nextsh.find('.slotslide').each(function (j) {
                 var ss = $(this);
                 if (direction == 1)
-                    ss.transition({ top: 0, left: 0 - (opt.width), rotate3d: '0, 1, 0, 90deg'}, 0);
+                    ss.transition({top: 0, left: 0 - (opt.width), rotate3d: '0, 1, 0, 90deg'}, 0);
                 else
-                    ss.transition({ top: 0, left: 0 + (opt.width), rotate3d: '0, 1, 0, -90deg'}, 0);
+                    ss.transition({top: 0, left: 0 + (opt.width), rotate3d: '0, 1, 0, -90deg'}, 0);
                 setTimeout(function () {
-                    ss.transition({left: 0, perspective: opt.width * 2, rotate3d: '0, 0, 0, 0deg'}, masterspeed * 2, function () {
+                    ss.transition({
+                        left: 0,
+                        perspective: opt.width * 2,
+                        rotate3d: '0, 0, 0, 0deg'
+                    }, masterspeed * 2, function () {
 
                         if (j == opt.slots - 1) {
                             removeSlots(container, opt);
@@ -2535,14 +2690,24 @@
 
             actsh.find('.slotslide').each(function (j) {
                 var ss = $(this);
-                ss.transition({ left: 0, rotate3d: '0, 0, 0, 0deg'}, 0);
+                ss.transition({left: 0, rotate3d: '0, 0, 0, 0deg'}, 0);
                 actsh.find('.defaultimg').css({'opacity': 0});
                 setTimeout(function () {
                     if (direction == 1)
-                        ss.transition({top: 0, left: (opt.width / 2), perspective: opt.width, rotate3d: '0, 1, 0, -90deg'}, masterspeed * 1.5, function () {
+                        ss.transition({
+                            top: 0,
+                            left: (opt.width / 2),
+                            perspective: opt.width,
+                            rotate3d: '0, 1, 0, -90deg'
+                        }, masterspeed * 1.5, function () {
                         });
                     else
-                        ss.transition({top: 0, left: (0 - opt.width / 2), perspective: opt.width, rotate3d: '0, 1, 0, +90deg'}, masterspeed * 1.5, function () {
+                        ss.transition({
+                            top: 0,
+                            left: (0 - opt.width / 2),
+                            perspective: opt.width,
+                            rotate3d: '0, 1, 0, +90deg'
+                        }, masterspeed * 1.5, function () {
                         });
 
                 }, j * 100);
@@ -2638,7 +2803,11 @@
                 var bt = $('body').find('.tp-bannertimer');
                 var opt = bt.data('opt');
                 if (opt.conthover == 0)
-                    bt.animate({'width': "100%"}, {duration: ((opt.delay - opt.cd) - 100), queue: false, easing: "linear"});
+                    bt.animate({'width': "100%"}, {
+                        duration: ((opt.delay - opt.cd) - 100),
+                        queue: false,
+                        easing: "linear"
+                    });
                 opt.videoplaying = false;
                 opt.videostartednow = 1;
             });
@@ -2647,7 +2816,11 @@
                 var bt = $('body').find('.tp-bannertimer');
                 var opt = bt.data('opt');
                 if (opt.conthover == 0)
-                    bt.animate({'width': "100%"}, {duration: ((opt.delay - opt.cd) - 100), queue: false, easing: "linear"});
+                    bt.animate({'width': "100%"}, {
+                        duration: ((opt.delay - opt.cd) - 100),
+                        queue: false,
+                        easing: "linear"
+                    });
                 opt.videoplaying = false;
                 opt.videostoppednow = 1;
             });
@@ -3025,12 +3198,19 @@
 
                 if (nextcaption.hasClass('fade')) {
 
-                    nextcaption.css({'opacity': 0, 'left': (xbw * nextcaption.data('x') + offsetx) + 'px', 'top': (opt.bh * nextcaption.data('y')) + "px"});
+                    nextcaption.css({
+                        'opacity': 0,
+                        'left': (xbw * nextcaption.data('x') + offsetx) + 'px',
+                        'top': (opt.bh * nextcaption.data('y')) + "px"
+                    });
                 }
 
                 if (nextcaption.hasClass("randomrotate")) {
 
-                    nextcaption.css({'left': (xbw * nextcaption.data('x') + offsetx) + 'px', 'top': ((xbh * nextcaption.data('y')) + offsety) + "px" });
+                    nextcaption.css({
+                        'left': (xbw * nextcaption.data('x') + offsetx) + 'px',
+                        'top': ((xbh * nextcaption.data('y')) + offsety) + "px"
+                    });
                     var sc = Math.random() * 2 + 1;
                     var ro = Math.round(Math.random() * 200 - 100);
                     var xx = Math.round(Math.random() * 200 - 100);
@@ -3047,49 +3227,81 @@
                     }
                     else {
                         if (nextcaption.find('iframe').length == 0)
-                            nextcaption.transition({ scale: 1, rotate: 0});
+                            nextcaption.transition({scale: 1, rotate: 0});
                     }
                 }
 
                 if (nextcaption.hasClass('lfr')) {
 
-                    nextcaption.css({'opacity': 1, 'left': (15 + opt.width) + 'px', 'top': (opt.bh * nextcaption.data('y')) + "px"});
+                    nextcaption.css({
+                        'opacity': 1,
+                        'left': (15 + opt.width) + 'px',
+                        'top': (opt.bh * nextcaption.data('y')) + "px"
+                    });
 
                 }
 
                 if (nextcaption.hasClass('lfl')) {
 
-                    nextcaption.css({'opacity': 1, 'left': (-15 - imw) + 'px', 'top': (opt.bh * nextcaption.data('y')) + "px"});
+                    nextcaption.css({
+                        'opacity': 1,
+                        'left': (-15 - imw) + 'px',
+                        'top': (opt.bh * nextcaption.data('y')) + "px"
+                    });
 
                 }
 
                 if (nextcaption.hasClass('sfl')) {
 
-                    nextcaption.css({'opacity': 0, 'left': ((xbw * nextcaption.data('x')) - 50 + offsetx) + 'px', 'top': (opt.bh * nextcaption.data('y')) + "px"});
+                    nextcaption.css({
+                        'opacity': 0,
+                        'left': ((xbw * nextcaption.data('x')) - 50 + offsetx) + 'px',
+                        'top': (opt.bh * nextcaption.data('y')) + "px"
+                    });
                 }
 
                 if (nextcaption.hasClass('sfr')) {
-                    nextcaption.css({'opacity': 0, 'left': ((xbw * nextcaption.data('x')) + 50 + offsetx) + 'px', 'top': (opt.bh * nextcaption.data('y')) + "px"});
+                    nextcaption.css({
+                        'opacity': 0,
+                        'left': ((xbw * nextcaption.data('x')) + 50 + offsetx) + 'px',
+                        'top': (opt.bh * nextcaption.data('y')) + "px"
+                    });
                 }
 
 
                 if (nextcaption.hasClass('lft')) {
 
-                    nextcaption.css({'opacity': 1, 'left': (xbw * nextcaption.data('x') + offsetx) + 'px', 'top': (-25 - imh) + "px"});
+                    nextcaption.css({
+                        'opacity': 1,
+                        'left': (xbw * nextcaption.data('x') + offsetx) + 'px',
+                        'top': (-25 - imh) + "px"
+                    });
 
                 }
 
                 if (nextcaption.hasClass('lfb')) {
-                    nextcaption.css({'opacity': 1, 'left': (xbw * nextcaption.data('x') + offsetx) + 'px', 'top': (25 + opt.height) + "px"});
+                    nextcaption.css({
+                        'opacity': 1,
+                        'left': (xbw * nextcaption.data('x') + offsetx) + 'px',
+                        'top': (25 + opt.height) + "px"
+                    });
 
                 }
 
                 if (nextcaption.hasClass('sft')) {
-                    nextcaption.css({'opacity': 0, 'left': (xbw * nextcaption.data('x') + offsetx) + 'px', 'top': ((opt.bh * nextcaption.data('y')) - 50) + "px"});
+                    nextcaption.css({
+                        'opacity': 0,
+                        'left': (xbw * nextcaption.data('x') + offsetx) + 'px',
+                        'top': ((opt.bh * nextcaption.data('y')) - 50) + "px"
+                    });
                 }
 
                 if (nextcaption.hasClass('sfb')) {
-                    nextcaption.css({'opacity': 0, 'left': (xbw * nextcaption.data('x') + offsetx) + 'px', 'top': ((opt.bh * nextcaption.data('y')) + 50) + "px"});
+                    nextcaption.css({
+                        'opacity': 0,
+                        'left': (xbw * nextcaption.data('x') + offsetx) + 'px',
+                        'top': ((opt.bh * nextcaption.data('y')) + 50) + "px"
+                    });
                 }
 
 
@@ -3097,15 +3309,26 @@
                     nextcaption.css({'visibility': 'visible'});
                     if (nextcaption.hasClass('fade')) {
                         nextcaption.data('repo', nextcaption.css('opacity'));
-                        nextcaption.animate({'opacity': 1}, {duration: nextcaption.data('speed'), complete: function () {
-                            if (opt.ie) $(this).addClass('noFilterClass');
-                        }});
+                        nextcaption.animate({'opacity': 1}, {
+                            duration: nextcaption.data('speed'), complete: function () {
+                                if (opt.ie) $(this).addClass('noFilterClass');
+                            }
+                        });
                         //if (opt.ie) nextcaption.addClass('noFilterClass');
                     }
 
                     if (nextcaption.hasClass("randomrotate")) {
 
-                        nextcaption.transition({opacity: 1, scale: 1, 'left': (xbw * nextcaption.data('x') + offsetx) + 'px', 'top': (xbh * (nextcaption.data('y')) + offsety) + "px", rotate: 0, x: 0, y: 0, duration: nextcaption.data('speed')});
+                        nextcaption.transition({
+                            opacity: 1,
+                            scale: 1,
+                            'left': (xbw * nextcaption.data('x') + offsetx) + 'px',
+                            'top': (xbh * (nextcaption.data('y')) + offsety) + "px",
+                            rotate: 0,
+                            x: 0,
+                            y: 0,
+                            duration: nextcaption.data('speed')
+                        });
                         if (opt.ie) nextcaption.addClass('noFilterClass');
                     }
 
@@ -3117,7 +3340,7 @@
                         nextcaption.hasClass('lfb') ||
                         nextcaption.hasClass('sft') ||
                         nextcaption.hasClass('sfb')
-                        ) {
+                    ) {
                         var easetype = nextcaption.data('easing');
                         if (easetype == undefined) easetype = "linear";
                         nextcaption.data('repx', nextcaption.position().left);
@@ -3126,9 +3349,15 @@
                         nextcaption.data('repo', nextcaption.css('opacity'));
 
 
-                        nextcaption.animate({'opacity': 1, 'left': (xbw * nextcaption.data('x') + offsetx) + 'px', 'top': opt.bh * (nextcaption.data('y')) + "px"}, {duration: nextcaption.data('speed'), easing: easetype, complete: function () {
-                            if (opt.ie) $(this).addClass('noFilterClass');
-                        }});
+                        nextcaption.animate({
+                            'opacity': 1,
+                            'left': (xbw * nextcaption.data('x') + offsetx) + 'px',
+                            'top': opt.bh * (nextcaption.data('y')) + "px"
+                        }, {
+                            duration: nextcaption.data('speed'), easing: easetype, complete: function () {
+                                if (opt.ie) $(this).addClass('noFilterClass');
+                            }
+                        });
                         //if (opt.ie) nextcaption.addClass('noFilterClass');
                     }
                 }, nextcaption.data('start')));
@@ -3237,7 +3466,7 @@
             nextcaption.hasClass('ltb') ||
             nextcaption.hasClass('stt') ||
             nextcaption.hasClass('stb')
-            ) {
+        ) {
 
             xx = nextcaption.position().left;
             yy = nextcaption.position().top;
@@ -3267,27 +3496,39 @@
             var easetype = nextcaption.data('endeasing');
             if (easetype == undefined) easetype = "linear";
 
-            nextcaption.animate({'opacity': oo, 'left': xx + 'px', 'top': yy + "px"}, {duration: nextcaption.data('endspeed'), easing: easetype, complete: function () {
-                $(this).css({visibility: 'hidden'})
-            }});
+            nextcaption.animate({'opacity': oo, 'left': xx + 'px', 'top': yy + "px"}, {
+                duration: nextcaption.data('endspeed'), easing: easetype, complete: function () {
+                    $(this).css({visibility: 'hidden'})
+                }
+            });
             if (opt.ie) nextcaption.removeClass('noFilterClass');
 
         }
 
         else if (nextcaption.hasClass("randomrotateout")) {
 
-            nextcaption.transition({opacity: 0, scale: Math.random() * 2 + 0.3, 'left': Math.random() * opt.width + 'px', 'top': Math.random() * opt.height + "px", rotate: Math.random() * 40, duration: endspeed, complete: function () {
-                $(this).css({visibility: 'hidden'})
-            }});
+            nextcaption.transition({
+                opacity: 0,
+                scale: Math.random() * 2 + 0.3,
+                'left': Math.random() * opt.width + 'px',
+                'top': Math.random() * opt.height + "px",
+                rotate: Math.random() * 40,
+                duration: endspeed,
+                complete: function () {
+                    $(this).css({visibility: 'hidden'})
+                }
+            });
             if (opt.ie) nextcaption.removeClass('noFilterClass');
 
         }
 
         else if (nextcaption.hasClass('fadeout')) {
             if (opt.ie) nextcaption.removeClass('noFilterClass');
-            nextcaption.animate({'opacity': 0}, {duration: 200, complete: function () {
-                $(this).css({visibility: 'hidden'})
-            }});
+            nextcaption.animate({'opacity': 0}, {
+                duration: 200, complete: function () {
+                    $(this).css({visibility: 'hidden'})
+                }
+            });
 
         }
 
@@ -3299,7 +3540,7 @@
             nextcaption.hasClass('lfb') ||
             nextcaption.hasClass('sft') ||
             nextcaption.hasClass('sfb')
-            ) {
+        ) {
 
             if (nextcaption.hasClass('lfr'))
                 xx = opt.width + 60;
@@ -3314,25 +3555,36 @@
             var easetype = nextcaption.data('endeasing');
             if (easetype == undefined) easetype = "linear";
 
-            nextcaption.animate({'opacity': oo, 'left': xx + 'px', 'top': yy + "px"}, {duration: nextcaption.data('endspeed'), easing: easetype, complete: function () {
-                $(this).css({visibility: 'hidden'})
-            }});
+            nextcaption.animate({'opacity': oo, 'left': xx + 'px', 'top': yy + "px"}, {
+                duration: nextcaption.data('endspeed'), easing: easetype, complete: function () {
+                    $(this).css({visibility: 'hidden'})
+                }
+            });
             if (opt.ie) nextcaption.removeClass('noFilterClass');
 
         }
 
         else if (nextcaption.hasClass('fade')) {
 
-            nextcaption.animate({'opacity': 0}, {duration: endspeed, complete: function () {
-                $(this).css({visibility: 'hidden'})
-            } });
+            nextcaption.animate({'opacity': 0}, {
+                duration: endspeed, complete: function () {
+                    $(this).css({visibility: 'hidden'})
+                }
+            });
             if (opt.ie) nextcaption.removeClass('noFilterClass');
 
         }
 
         else if (nextcaption.hasClass("randomrotate")) {
 
-            nextcaption.transition({opacity: 0, scale: Math.random() * 2 + 0.3, 'left': Math.random() * opt.width + 'px', 'top': Math.random() * opt.height + "px", rotate: Math.random() * 40, duration: endspeed });
+            nextcaption.transition({
+                opacity: 0,
+                scale: Math.random() * 2 + 0.3,
+                'left': Math.random() * opt.width + 'px',
+                'top': Math.random() * opt.height + "px",
+                rotate: Math.random() * 40,
+                duration: endspeed
+            });
             if (opt.ie) nextcaption.removeClass('noFilterClass');
 
         }
@@ -3479,7 +3731,11 @@
                         container.trigger('revolution.slide.onresume');
                         opt.conthover = 0;
                         if (opt.onHoverStop == "on" && opt.videoplaying != true) {
-                            bt.animate({'width': "100%"}, {duration: ((opt.delay - opt.cd) - 100), queue: false, easing: "linear"});
+                            bt.animate({'width': "100%"}, {
+                                duration: ((opt.delay - opt.cd) - 100),
+                                queue: false,
+                                easing: "linear"
+                            });
                         }
                     }
                 });

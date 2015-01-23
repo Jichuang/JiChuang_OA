@@ -283,16 +283,20 @@ var cryptico = (function () {
             var publickey = my.publicKeyFromString(plaintext[1]);
             var signature = my.b64to16(plaintext[2]);
             if (publickey.verifyString(plaintext[0], signature)) {
-                return {status: "success",
+                return {
+                    status: "success",
                     plaintext: plaintext[0],
                     signature: "verified",
-                    publicKeyString: my.publicKeyString(publickey)};
+                    publicKeyString: my.publicKeyString(publickey)
+                };
             }
             else {
-                return {status: "success",
+                return {
+                    status: "success",
                     plaintext: plaintext[0],
                     signature: "forged",
-                    publicKeyString: my.publicKeyString(publickey)};
+                    publicKeyString: my.publicKeyString(publickey)
+                };
             }
         }
         else {

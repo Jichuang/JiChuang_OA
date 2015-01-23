@@ -16,7 +16,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
             var results = regex.exec(window.location.href);
 
             if (results)
-                return results[ 1 ];
+                return results[1];
             else
                 return '';
         }
@@ -27,7 +27,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
             var destination = window.parent.parent;
             try {
                 if (destination.XDTMaster) {
-                    var t = destination.XDTMaster.read([ gup('cmd'), gup('data') ]);
+                    var t = destination.XDTMaster.read([gup('cmd'), gup('data')]);
                     window.clearInterval(interval);
                 }
             }

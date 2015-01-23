@@ -8,11 +8,11 @@ window.Modernizr = function (a, b, c) {
 
     function C(a, b) {
         for (var d in a)if (k[a[d]] !== c)return b == "pfx" ? a[d] : !0;
-        return!1
+        return !1
     }
 
     function B(a, b) {
-        return!!~("" + a).indexOf(b)
+        return !!~("" + a).indexOf(b)
     }
 
     function A(a, b) {
@@ -31,7 +31,7 @@ window.Modernizr = function (a, b, c) {
         var f, h, j, k = b.createElement("div");
         if (parseInt(d, 10))while (d--)j = b.createElement("div"), j.id = e ? e[d] : i + (d + 1), k.appendChild(j);
         f = ["&shy;", "<style>", a, "</style>"].join(""), k.id = i, k.innerHTML += f, g.appendChild(k), h = c(k, a), k.parentNode.removeChild(k);
-        return!!h
+        return !!h
     }, u = function (b) {
         if (a.matchMedia)return matchMedia(b).matches;
         var c;
@@ -73,7 +73,7 @@ window.Modernizr = function (a, b, c) {
         a.iepp = a.iepp || {};
         var d = a.iepp, e = d.html5elements || "abbr|article|aside|audio|canvas|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video", f = e.split("|"), g = f.length, h = new RegExp("(^|\\s)(" + e + ")", "gi"), i = new RegExp("<(/*)(" + e + ")", "gi"), j = /^\s*[\{\}]\s*$/, k = new RegExp("(^|[^\\n]*?\\s)(" + e + ")([^\\n]*)({[\\n\\w\\W]*?})", "gi"), l = b.createDocumentFragment(), m = b.documentElement, n = m.firstChild, o = b.createElement("body"), p = b.createElement("style"), q = /print|all/, r;
         d.getCSS = function (a, b) {
-            if (a + "" === c)return"";
+            if (a + "" === c)return "";
             var e = -1, f = a.length, g, h = [];
             while (++e < f) {
                 g = a[e];
@@ -115,7 +115,10 @@ window.Modernizr = function (a, b, c) {
     if (!b) {
         var c = a.document, d = c.documentElement, e = [], f = [], g = [], h = {}, i = 30, j = c.getElementsByTagName("head")[0] || d, k = j.getElementsByTagName("link"), l = [], m = function () {
             var b = k, c = b.length, d = 0, e, f, g, i;
-            for (; d < c; d++)e = b[d], f = e.href, g = e.media, i = e.rel && e.rel.toLowerCase() === "stylesheet", !!f && i && !h[f] && (!/^([a-zA-Z]+?:(\/\/)?(www\.)?)/.test(f) || f.replace(RegExp.$1, "").split("/")[0] === a.location.host ? l.push({href: f, media: g}) : h[f] = !0);
+            for (; d < c; d++)e = b[d], f = e.href, g = e.media, i = e.rel && e.rel.toLowerCase() === "stylesheet", !!f && i && !h[f] && (!/^([a-zA-Z]+?:(\/\/)?(www\.)?)/.test(f) || f.replace(RegExp.$1, "").split("/")[0] === a.location.host ? l.push({
+                href: f,
+                media: g
+            }) : h[f] = !0);
             n()
         }, n = function () {
             if (l.length) {
@@ -131,7 +134,12 @@ window.Modernizr = function (a, b, c) {
             b.length && (b += "/"), i && (g = 1);
             for (; j < g; j++) {
                 k = 0, i ? (l = c, f.push(h(a))) : (l = d[j].match(/@media ([^\{]+)\{([\S\s]+?)$/) && RegExp.$1, f.push(RegExp.$2 && h(RegExp.$2))), n = l.split(","), o = n.length;
-                for (; k < o; k++)m = n[k], e.push({media: m.match(/(only\s+)?([a-zA-Z]+)(\sand)?/) && RegExp.$2, rules: f.length - 1, minw: m.match(/\(min\-width:[\s]*([\s]*[0-9]+)px[\s]*\)/) && parseFloat(RegExp.$1), maxw: m.match(/\(max\-width:[\s]*([\s]*[0-9]+)px[\s]*\)/) && parseFloat(RegExp.$1)})
+                for (; k < o; k++)m = n[k], e.push({
+                    media: m.match(/(only\s+)?([a-zA-Z]+)(\sand)?/) && RegExp.$2,
+                    rules: f.length - 1,
+                    minw: m.match(/\(min\-width:[\s]*([\s]*[0-9]+)px[\s]*\)/) && parseFloat(RegExp.$1),
+                    maxw: m.match(/\(max\-width:[\s]*([\s]*[0-9]+)px[\s]*\)/) && parseFloat(RegExp.$1)
+                })
             }
             r()
         }, p, q, r = function (a) {
@@ -180,7 +188,7 @@ window.Modernizr = function (a, b, c) {
     }
 }(this, Modernizr.mq("only all")), function (a, b, c) {
     function k(a) {
-        return!a || a == "loaded" || a == "complete"
+        return !a || a == "loaded" || a == "complete"
     }
 
     function j() {
@@ -259,8 +267,8 @@ window.Modernizr = function (a, b, c) {
     }
 
     var l = b.documentElement, m = a.setTimeout, n = b.getElementsByTagName("script")[0], o = {}.toString, p = [], q = 0, r = "MozAppearance"in l.style, s = r && !!b.createRange().compareNode, t = r && !s, u = s ? l : n.parentNode, v = a.opera && o.call(a.opera) == "[object Opera]", w = "webkitAppearance"in l.style, x = w && "async"in b.createElement("script"), y = r ? "object" : v || x ? "img" : "script", z = w ? "img" : y, A = Array.isArray || function (a) {
-        return o.call(a) == "[object Array]"
-    }, B = function (a) {
+            return o.call(a) == "[object Array]"
+        }, B = function (a) {
         return Object(a) === a
     }, C = function (a) {
         return typeof a == "string"

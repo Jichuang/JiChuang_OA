@@ -290,11 +290,11 @@
 
             if (
                 this.forceParse &&
-                    (
-                        this.isInput && this.element.val() ||
-                            this.hasInput && this.element.find('input').val()
-                        )
+                (
+                this.isInput && this.element.val() ||
+                this.hasInput && this.element.find('input').val()
                 )
+            )
                 this.setValue();
             this.isVisible = false;
             this.element.trigger({
@@ -405,8 +405,8 @@
         place: function () {
             if (this.isInline) return;
             var zIndex = parseInt(this.element.parents().filter(function () {
-                return $(this).css('z-index') != 'auto';
-            }).first().css('z-index')) + 10;
+                    return $(this).css('z-index') != 'auto';
+                }).first().css('z-index')) + 10;
             var offset, top, left;
             if (this.component) {
                 offset = this.component.offset();
@@ -1213,8 +1213,7 @@
         });
     };
 
-    $.fn.datetimepicker.defaults = {
-    };
+    $.fn.datetimepicker.defaults = {};
     $.fn.datetimepicker.Constructor = Datetimepicker;
     var dates = $.fn.datetimepicker.dates = {
         en: {
@@ -1539,52 +1538,52 @@
             return viewMode;
         },
         headTemplate: '<thead>' +
-            '<tr>' +
-            '<th class="prev"><i class="icon-angle-left"/></th>' +
-            '<th colspan="5" class="switch"></th>' +
-            '<th class="next"><i class="icon-angle-right"/></th>' +
-            '</tr>' +
-            '</thead>',
+        '<tr>' +
+        '<th class="prev"><i class="icon-angle-left"/></th>' +
+        '<th colspan="5" class="switch"></th>' +
+        '<th class="next"><i class="icon-angle-right"/></th>' +
+        '</tr>' +
+        '</thead>',
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
         footTemplate: '<tfoot><tr><th colspan="7" class="today"></th></tr></tfoot>'
     };
     DPGlobal.template = '<div class="datetimepicker">' +
-        '<div class="datetimepicker-minutes">' +
-        '<table class=" table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datetimepicker-hours">' +
-        '<table class=" table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datetimepicker-days">' +
-        '<table class=" table-condensed">' +
-        DPGlobal.headTemplate +
-        '<tbody></tbody>' +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datetimepicker-months">' +
-        '<table class="table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datetimepicker-years">' +
-        '<table class="table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
-        '</table>' +
-        '</div>' +
-        '</div>';
+    '<div class="datetimepicker-minutes">' +
+    '<table class=" table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datetimepicker-hours">' +
+    '<table class=" table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datetimepicker-days">' +
+    '<table class=" table-condensed">' +
+    DPGlobal.headTemplate +
+    '<tbody></tbody>' +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datetimepicker-months">' +
+    '<table class="table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datetimepicker-years">' +
+    '<table class="table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    DPGlobal.footTemplate +
+    '</table>' +
+    '</div>' +
+    '</div>';
 
     $.fn.datetimepicker.DPGlobal = DPGlobal;
 

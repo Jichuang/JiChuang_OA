@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository("member_teamDao")
 public class Member_TeamDaoImpl extends BaseDaoImpl<Member_Team> implements Member_TeamDao {
 
+
 }

@@ -61,15 +61,15 @@
         var fonts = '[mM]onospace [tT]ahoma [vV]erdana [aA]rial [hH]elvetica [sS]ans-serif [sS]erif [cC]ourier mono sans serif';
 
         this.regexList = [
-            { regex: SyntaxHighlighter.regexLib.multiLineCComments, css: 'comments' },	// multiline comments
-            { regex: SyntaxHighlighter.regexLib.doubleQuotedString, css: 'string' },	// double quoted strings
-            { regex: SyntaxHighlighter.regexLib.singleQuotedString, css: 'string' },	// single quoted strings
-            { regex: /\#[a-fA-F0-9]{3,6}/g, css: 'value' },		// html colors
-            { regex: /(-?\d+)(\.\d+)?(px|em|pt|\:|\%|)/g, css: 'value' },		// sizes
-            { regex: /!important/g, css: 'color3' },	// !important
-            { regex: new RegExp(getKeywordsCSS(keywords), 'gm'), css: 'keyword' },	// keywords
-            { regex: new RegExp(getValuesCSS(values), 'g'), css: 'value' },		// values
-            { regex: new RegExp(this.getKeywords(fonts), 'g'), css: 'color1' }		// fonts
+            {regex: SyntaxHighlighter.regexLib.multiLineCComments, css: 'comments'},	// multiline comments
+            {regex: SyntaxHighlighter.regexLib.doubleQuotedString, css: 'string'},	// double quoted strings
+            {regex: SyntaxHighlighter.regexLib.singleQuotedString, css: 'string'},	// single quoted strings
+            {regex: /\#[a-fA-F0-9]{3,6}/g, css: 'value'},		// html colors
+            {regex: /(-?\d+)(\.\d+)?(px|em|pt|\:|\%|)/g, css: 'value'},		// sizes
+            {regex: /!important/g, css: 'color3'},	// !important
+            {regex: new RegExp(getKeywordsCSS(keywords), 'gm'), css: 'keyword'},	// keywords
+            {regex: new RegExp(getValuesCSS(values), 'g'), css: 'value'},		// values
+            {regex: new RegExp(this.getKeywords(fonts), 'g'), css: 'color1'}		// fonts
         ];
 
         this.forHtmlScript({

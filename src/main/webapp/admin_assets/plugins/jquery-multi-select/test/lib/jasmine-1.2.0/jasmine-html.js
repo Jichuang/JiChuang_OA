@@ -145,16 +145,16 @@ jasmine.HtmlReporter = function (_doc) {
     }
 
     function createReporterDom(version) {
-        dom.reporter = self.createDom('div', { id: 'HTMLReporter', className: 'jasmine_reporter' },
-            dom.banner = self.createDom('div', { className: 'banner' },
-                self.createDom('span', { className: 'title' }, "Jasmine "),
-                self.createDom('span', { className: 'version' }, version)),
+        dom.reporter = self.createDom('div', {id: 'HTMLReporter', className: 'jasmine_reporter'},
+            dom.banner = self.createDom('div', {className: 'banner'},
+                self.createDom('span', {className: 'title'}, "Jasmine "),
+                self.createDom('span', {className: 'version'}, version)),
 
             dom.symbolSummary = self.createDom('ul', {className: 'symbolSummary'}),
             dom.alert = self.createDom('div', {className: 'alert'}),
             dom.results = self.createDom('div', {className: 'results'},
-                dom.summary = self.createDom('div', { className: 'summary' }),
-                dom.details = self.createDom('div', { id: 'details' }))
+                dom.summary = self.createDom('div', {className: 'summary'}),
+                dom.details = self.createDom('div', {id: 'details'}))
         );
     }
 };
@@ -328,10 +328,10 @@ jasmine.HtmlReporter.SpecView = function (spec, dom, views) {
     this.dom = dom;
     this.views = views;
 
-    this.symbol = this.createDom('li', { className: 'pending' });
+    this.symbol = this.createDom('li', {className: 'pending'});
     this.dom.symbolSummary.appendChild(this.symbol);
 
-    this.summary = this.createDom('div', { className: 'specSummary' },
+    this.summary = this.createDom('div', {className: 'specSummary'},
         this.createDom('a', {
             className: 'description',
             href: '?spec=' + encodeURIComponent(this.spec.getFullName()),
@@ -339,7 +339,7 @@ jasmine.HtmlReporter.SpecView = function (spec, dom, views) {
         }, this.spec.description)
     );
 
-    this.detail = this.createDom('div', { className: 'specDetail' },
+    this.detail = this.createDom('div', {className: 'specDetail'},
         this.createDom('a', {
             className: 'description',
             href: '?spec=' + encodeURIComponent(this.spec.getFullName()),
@@ -379,7 +379,7 @@ jasmine.HtmlReporter.SpecView.prototype.appendFailureDetail = function () {
     this.detail.className += ' ' + this.status();
 
     var resultItems = this.spec.results().getItems();
-    var messagesDiv = this.createDom('div', { className: 'messages' });
+    var messagesDiv = this.createDom('div', {className: 'messages'});
 
     for (var i = 0; i < resultItems.length; i++) {
         var result = resultItems[i];
@@ -407,8 +407,11 @@ jasmine.HtmlReporter.SuiteView = function (suite, dom, views) {
     this.dom = dom;
     this.views = views;
 
-    this.element = this.createDom('div', { className: 'suite' },
-        this.createDom('a', { className: 'description', href: '?spec=' + encodeURIComponent(this.suite.getFullName()) }, this.suite.description)
+    this.element = this.createDom('div', {className: 'suite'},
+        this.createDom('a', {
+            className: 'description',
+            href: '?spec=' + encodeURIComponent(this.suite.getFullName())
+        }, this.suite.description)
     );
 
     this.appendToSummary(this.suite, this.element);
@@ -461,24 +464,27 @@ jasmine.TrivialReporter.prototype.createDom = function (type, attrs, childrenVar
 jasmine.TrivialReporter.prototype.reportRunnerStarting = function (runner) {
     var showPassed, showSkipped;
 
-    this.outerDiv = this.createDom('div', { id: 'TrivialReporter', className: 'jasmine_reporter' },
-        this.createDom('div', { className: 'banner' },
-            this.createDom('div', { className: 'logo' },
-                this.createDom('span', { className: 'title' }, "Jasmine"),
-                this.createDom('span', { className: 'version' }, runner.env.versionString())),
-            this.createDom('div', { className: 'options' },
+    this.outerDiv = this.createDom('div', {id: 'TrivialReporter', className: 'jasmine_reporter'},
+        this.createDom('div', {className: 'banner'},
+            this.createDom('div', {className: 'logo'},
+                this.createDom('span', {className: 'title'}, "Jasmine"),
+                this.createDom('span', {className: 'version'}, runner.env.versionString())),
+            this.createDom('div', {className: 'options'},
                 "Show ",
-                showPassed = this.createDom('input', { id: "__jasmine_TrivialReporter_showPassed__", type: 'checkbox' }),
-                this.createDom('label', { "for": "__jasmine_TrivialReporter_showPassed__" }, " passed "),
-                showSkipped = this.createDom('input', { id: "__jasmine_TrivialReporter_showSkipped__", type: 'checkbox' }),
-                this.createDom('label', { "for": "__jasmine_TrivialReporter_showSkipped__" }, " skipped")
+                showPassed = this.createDom('input', {id: "__jasmine_TrivialReporter_showPassed__", type: 'checkbox'}),
+                this.createDom('label', {"for": "__jasmine_TrivialReporter_showPassed__"}, " passed "),
+                showSkipped = this.createDom('input', {
+                    id: "__jasmine_TrivialReporter_showSkipped__",
+                    type: 'checkbox'
+                }),
+                this.createDom('label', {"for": "__jasmine_TrivialReporter_showSkipped__"}, " skipped")
             )
         ),
 
-        this.runnerDiv = this.createDom('div', { className: 'runner running' },
-            this.createDom('a', { className: 'run_spec', href: '?' }, "run all"),
+        this.runnerDiv = this.createDom('div', {className: 'runner running'},
+            this.createDom('a', {className: 'run_spec', href: '?'}, "run all"),
             this.runnerMessageSpan = this.createDom('span', {}, "Running..."),
-            this.finishedAtSpan = this.createDom('span', { className: 'finished-at' }, ""))
+            this.finishedAtSpan = this.createDom('span', {className: 'finished-at'}, ""))
     );
 
     this.document.body.appendChild(this.outerDiv);
@@ -486,9 +492,15 @@ jasmine.TrivialReporter.prototype.reportRunnerStarting = function (runner) {
     var suites = runner.suites();
     for (var i = 0; i < suites.length; i++) {
         var suite = suites[i];
-        var suiteDiv = this.createDom('div', { className: 'suite' },
-            this.createDom('a', { className: 'run_spec', href: '?spec=' + encodeURIComponent(suite.getFullName()) }, "run"),
-            this.createDom('a', { className: 'description', href: '?spec=' + encodeURIComponent(suite.getFullName()) }, suite.description));
+        var suiteDiv = this.createDom('div', {className: 'suite'},
+            this.createDom('a', {
+                className: 'run_spec',
+                href: '?spec=' + encodeURIComponent(suite.getFullName())
+            }, "run"),
+            this.createDom('a', {
+                className: 'description',
+                href: '?spec=' + encodeURIComponent(suite.getFullName())
+            }, suite.description));
         this.suiteDivs[suite.id] = suiteDiv;
         var parentDiv = this.outerDiv;
         if (suite.parentSuite) {
@@ -532,7 +544,10 @@ jasmine.TrivialReporter.prototype.reportRunnerResults = function (runner) {
     }
     var message = "" + specCount + " spec" + (specCount == 1 ? "" : "s" ) + ", " + results.failedCount + " failure" + ((results.failedCount == 1) ? "" : "s");
     message += " in " + ((new Date().getTime() - this.startedAt.getTime()) / 1000) + "s";
-    this.runnerMessageSpan.replaceChild(this.createDom('a', { className: 'description', href: '?'}, message), this.runnerMessageSpan.firstChild);
+    this.runnerMessageSpan.replaceChild(this.createDom('a', {
+        className: 'description',
+        href: '?'
+    }, message), this.runnerMessageSpan.firstChild);
 
     this.finishedAtSpan.appendChild(document.createTextNode("Finished at " + new Date().toString()));
 };
@@ -558,8 +573,8 @@ jasmine.TrivialReporter.prototype.reportSpecResults = function (spec) {
     if (results.skipped) {
         status = 'skipped';
     }
-    var specDiv = this.createDom('div', { className: 'spec ' + status },
-        this.createDom('a', { className: 'run_spec', href: '?spec=' + encodeURIComponent(spec.getFullName()) }, "run"),
+    var specDiv = this.createDom('div', {className: 'spec ' + status},
+        this.createDom('a', {className: 'run_spec', href: '?spec=' + encodeURIComponent(spec.getFullName())}, "run"),
         this.createDom('a', {
             className: 'description',
             href: '?spec=' + encodeURIComponent(spec.getFullName()),
@@ -568,7 +583,7 @@ jasmine.TrivialReporter.prototype.reportSpecResults = function (spec) {
 
 
     var resultItems = results.getItems();
-    var messagesDiv = this.createDom('div', { className: 'messages' });
+    var messagesDiv = this.createDom('div', {className: 'messages'});
     for (var i = 0; i < resultItems.length; i++) {
         var result = resultItems[i];
 

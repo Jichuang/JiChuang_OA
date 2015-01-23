@@ -44,7 +44,7 @@
 
 (function ($) {
     var options = {
-        series: { threshold: null } // or { below: number, color: color spec}
+        series: {threshold: null} // or { below: number, color: color spec}
     };
 
     function init(plot) {
@@ -52,7 +52,7 @@
             var ps = datapoints.pointsize, i, x, y, p, prevp,
                 thresholded = $.extend({}, s); // note: shallow copy
 
-            thresholded.datapoints = { points: [], pointsize: ps, format: datapoints.format };
+            thresholded.datapoints = {points: [], pointsize: ps, format: datapoints.format};
             thresholded.label = null;
             thresholded.color = color;
             thresholded.threshold = null;

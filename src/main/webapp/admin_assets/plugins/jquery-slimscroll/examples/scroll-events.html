@@ -144,8 +144,8 @@
         $('#testDiv').slimscroll({
             alwaysVisible: true
         }).bind('slimscroll', function (e, pos) {
-                    $('#testDivOut').append("Reached " + pos + ", ");
-                });
+            $('#testDivOut').append("Reached " + pos + ", ");
+        });
 
         $('#testDiv2').slimscroll().bind('slimscrolling', function (e, pos) {
             $('#testDivOut2').append("Scroll: " + pos + "px, ");

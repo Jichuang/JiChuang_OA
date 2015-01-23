@@ -132,8 +132,8 @@ var Blog = function () {
                     if (status == "OK") {
                         toast.success(data.returnMsg);
                         imagesUl.append('<br/> <li>文件名 <span class="divider">:</span><span class = "imagePath"> '
-                            + data.returnData.path + ' ' +
-                            '</span><a href="javascript:;" class = "insertImage">[插入到文本域中]</a><br/>');
+                        + data.returnData.path + ' ' +
+                        '</span><a href="javascript:;" class = "insertImage">[插入到文本域中]</a><br/>');
                     }
                     else {
                         toast.error(data.returnMsg);

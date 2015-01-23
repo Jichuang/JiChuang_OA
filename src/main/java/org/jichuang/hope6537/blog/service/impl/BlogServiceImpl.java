@@ -6,7 +6,7 @@ import org.jichuang.hope6537.base.model.Member;
 import org.jichuang.hope6537.base.service.impl.BaseServiceImpl;
 import org.jichuang.hope6537.blog.model.Blog;
 import org.jichuang.hope6537.blog.service.BlogService;
-import org.jichuang.hope6537.utils.ApplicationVar;
+import org.jichuang.hope6537.utils.ApplicationConstant;
 import org.jichuang.hope6537.utils.DateFormatCalculate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -59,7 +59,7 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
         blog.setMemberId(member);
         blog.setDate(DateFormatCalculate.createNowTime());
         blog.setStatus("待审核");
-        return super.insertEntry(blog) == ApplicationVar.EFFECTIVE_LINE_ONE;
+        return super.insertEntry(blog) == ApplicationConstant.EFFECTIVE_LINE_ONE;
     }
 
     public List<Blog> selectBlogAllByMember(Member member) {
@@ -70,22 +70,15 @@ public class BlogServiceImpl extends BaseServiceImpl<Blog> implements
         return blogList;
     }
 
-    public int updateBlog(Blog blog, JSONObject infos) {
+    public int updateBlog(Blog blog) {
         if (blog == null) {
             throw new NullPointerException("博客对象为空");
-        }
-        if (blog.getTitle() == null || blog.getTitle().isEmpty()) {
-            throw new NullPointerException("博客没有标题");
-        }
-        if (blog.getContent() == null || blog.getContent().isEmpty()) {
-            throw new NullPointerException("博客没有内容");
         } else {
             Blog oldBlog = this.selectEntryFromPrimaryKey(blog.getBlogId());
             oldBlog.setContent(blog.getContent());
             oldBlog.setTitle(blog.getTitle());
-            // 不设置日期
             oldBlog.setStatus("待审核");
-            oldBlog.setInfo(infos.toString());
+            oldBlog.setInfo(blog.getInfo());
             return this.updateEntryByObject(oldBlog);
         }
     }

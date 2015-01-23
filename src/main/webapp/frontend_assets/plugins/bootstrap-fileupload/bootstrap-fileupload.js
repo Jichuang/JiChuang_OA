@@ -65,7 +65,7 @@
         },
 
         change: function (e, invoked) {
-            var file = e.target.files !== undefined ? e.target.files[0] : (e.target.value ? { name: e.target.value.replace(/^.+\\/, '') } : null)
+            var file = e.target.files !== undefined ? e.target.files[0] : (e.target.value ? {name: e.target.value.replace(/^.+\\/, '')} : null)
             if (invoked === 'clear') return
 
             if (!file) {
@@ -113,7 +113,7 @@
             this.$element.addClass('fileupload-new').removeClass('fileupload-exists')
 
             if (e) {
-                this.$input.trigger('change', [ 'clear' ])
+                this.$input.trigger('change', ['clear'])
                 e.preventDefault()
             }
         },

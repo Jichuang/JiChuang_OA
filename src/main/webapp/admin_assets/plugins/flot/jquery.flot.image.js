@@ -219,11 +219,11 @@
 
         // format is Image, x1, y1, x2, y2 (opposite corners)
         datapoints.format = [
-            { required: true },
-            { x: true, number: true, required: true },
-            { y: true, number: true, required: true },
-            { x: true, number: true, required: true },
-            { y: true, number: true, required: true }
+            {required: true},
+            {x: true, number: true, required: true},
+            {y: true, number: true, required: true},
+            {x: true, number: true, required: true},
+            {y: true, number: true, required: true}
         ];
     }
 

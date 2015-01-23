@@ -1,9 +1,9 @@
 module('Component', {
     setup: function () {
         this.component = $('<div class="input-append date" id="datetimepicker">' +
-            '<input size="16" type="text" value="12-02-2012" readonly>' +
-            '<span class="add-on"><i class="icon-th"></i></span>' +
-            '</div>')
+        '<input size="16" type="text" value="12-02-2012" readonly>' +
+        '<span class="add-on"><i class="icon-th"></i></span>' +
+        '</div>')
             .appendTo('#qunit-fixture')
             .datetimepicker({format: "dd-mm-yyyy", viewSelect: 2});
         this.input = this.component.find('input');

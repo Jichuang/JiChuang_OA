@@ -64,7 +64,7 @@
                     counter += 1;
                     iframe = $(
                         '<iframe src="javascript:false;" name="iframe-transport-' +
-                            counter + '"></iframe>'
+                        counter + '"></iframe>'
                     ).bind('load', function () {
                             var fileInputClones,
                                 paramNames = $.isArray(options.paramName) ?
@@ -194,7 +194,7 @@
                 var xmlDoc = iframe && iframe[0];
                 return xmlDoc && $.isXMLDoc(xmlDoc) ? xmlDoc :
                     $.parseXML((xmlDoc.XMLDocument && xmlDoc.XMLDocument.xml) ||
-                        $(xmlDoc.body).html());
+                    $(xmlDoc.body).html());
             },
             'iframe script': function (iframe) {
                 return iframe && $.globalEval($(iframe[0].body).text());

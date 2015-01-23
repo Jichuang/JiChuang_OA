@@ -32,15 +32,15 @@ var TeamTable = function () {
                 "aoColumnDefs": [
                     {
                         "bSortable": false,
-                        "aTargets": [ 0 ]
+                        "aTargets": [0]
                     }
                 ],
                 "aaSorting": [
-                    [ 1, 'asc' ]
+                    [1, 'asc']
                 ],
                 "aLengthMenu": [
-                    [ 5, 15, 20, -1 ],
-                    [ 5, 15, 20, "All" ]
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "All"]
                 ],
                 "iDisplayLength": 10
             });
@@ -91,10 +91,10 @@ var TeamTable = function () {
                             var line7 = '<a class="edit" id="edit'
                                 + list[i].teamId
                                 + '"><button class="btn btn-xs red" id="editTeam"> <i class="icon-trash"> <span style="font-family: Microsoft Yahei;">编辑项目组信息</span></i> </button></a>';
-                            table.fnAddData([ line1,
+                            table.fnAddData([line1,
                                 line2, line3,
                                 line4, line5,
-                                line6 , line7 ]);
+                                line6, line7]);
                         }
                     } else {
                         toast.error(data.returnMsg);

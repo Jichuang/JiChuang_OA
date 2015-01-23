@@ -53,7 +53,7 @@
         },
 
         createModal: function (element, options) {
-            $(element).modal($.extend({ manager: this }, options));
+            $(element).modal($.extend({manager: this}, options));
         },
 
         appendModal: function (modal) {

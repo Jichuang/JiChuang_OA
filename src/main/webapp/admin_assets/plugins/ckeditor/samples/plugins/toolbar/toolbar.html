@@ -126,15 +126,15 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
             if (!editor.config.toolbar) {
                 output +=
                         '// Toolbar configuration generated automatically by the editor based on config.toolbarGroups.\n' +
-                                dumpToolbarConfiguration(editor) +
-                                '\n\n' +
-                                '// Toolbar groups configuration.\n' +
-                                dumpToolbarConfiguration(editor, true)
+                        dumpToolbarConfiguration(editor) +
+                        '\n\n' +
+                        '// Toolbar groups configuration.\n' +
+                        dumpToolbarConfiguration(editor, true)
             }
             // Toolbar groups doesn't count in this case - print only toolbar.
             else {
                 output += '// Toolbar configuration.\n' +
-                        dumpToolbarConfiguration(editor);
+                dumpToolbarConfiguration(editor);
             }
 
             // Recreate to avoid old IE from loosing whitespaces on filling <pre> content.
@@ -143,7 +143,7 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
         });
 
 
-        CKEDITOR.replace('editorCurrent', { height: 100 });
+        CKEDITOR.replace('editorCurrent', {height: 100});
         CKEDITOR.replace('editorFull', {
             // Reset toolbar settings, so full toolbar will be generated automatically.
             toolbar: null,
@@ -156,7 +156,7 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
                     toolbar = editor.toolbar;
 
             for (var i = 0; i < toolbar.length; ++i) {
-                var group = dumpToolbarGroup(toolbar[ i ], printGroups);
+                var group = dumpToolbarGroup(toolbar[i], printGroups);
                 if (group)
                     output.push(group);
             }

@@ -21,7 +21,7 @@ var BlogTable = function () {
                 for (var i = 0; i < infos.length; i++) {
                     var keys = infos[i].split("=");
                     sOut += '<tr><td>' + keys[0] + ':</td><td>' + keys[1]
-                        + '</td></tr>';
+                    + '</td></tr>';
                 }
                 sOut += '</table>';
                 return sOut;
@@ -40,15 +40,15 @@ var BlogTable = function () {
                 "aoColumnDefs": [
                     {
                         "bSortable": false,
-                        "aTargets": [ 0 ]
+                        "aTargets": [0]
                     }
                 ],
                 "aaSorting": [
-                    [ 1, 'asc' ]
+                    [1, 'asc']
                 ],
                 "aLengthMenu": [
-                    [ 5, 15, 20, -1 ],
-                    [ 5, 15, 20, "All" ] // change
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "All"] // change
                     // per
                     // page
                     // values
@@ -155,10 +155,10 @@ var BlogTable = function () {
                             var line7 = '<a class="delete" id="delete'
                                 + list[i].blogId
                                 + '"><button class="btn btn-xs red" id="deleteBlog"> <i class="icon-trash"> <span style="font-family: Microsoft Yahei;">删除博客</span></i> </button></a>';
-                            table.fnAddData([ line1,
+                            table.fnAddData([line1,
                                 line2, line3,
                                 line4, line5,
-                                line6 + line6_1, line7 ]);
+                                line6 + line6_1, line7]);
                         }
                     } else {
                         toast.error(data.returnMsg);
@@ -168,43 +168,6 @@ var BlogTable = function () {
         }
     }
 
-    var ShowBlogService = {
-        refreshBlog: function () {
-            var frontBlogItem = {
-                title: $("#_title"),
-                content: $("#content"),
-                member: $("#member"),
-                date: $("#date"),
-                blogType: $("#blogType"),
-                blogTags: $("#blogTags")
-            }
-            var
-                blogId = $("#frontBlogItemId").text()
-
-            $.ajax({
-                url: basePath + "/blog/" + blogId + ".hopedo",
-                data: (blogId),
-                contentType: 'application/json',
-                type: "GET",
-                success: function (data) {
-                    var status = data.returnState;
-                    if (status == "OK") {
-                        toast.success(data.returnMsg);
-                        var blogItem = data.returnData.blog;
-                        var blogInfo = eval("(" + blogItem.info + ")");
-                        frontBlogItem.title.text(blogItem.title);
-                        frontBlogItem.member.text(blogItem.memberId.name);
-                        frontBlogItem.date.text(blogItem.date);
-                        frontBlogItem.blogType.text(blogInfo.blogType);
-                        frontBlogItem.blogTags.text(blogInfo.blogTag);
-                        frontBlogItem.content.text("").append(blogItem.content);
-                    } else {
-                        toast.error(data.returnMsg);
-                    }
-                }
-            })
-        }
-    }
 
     var handleEvent = function () {
         $("#datatable").on("click", "a.delete", function () {
@@ -217,9 +180,7 @@ var BlogTable = function () {
         $("#reload").on("click", function () {
             BlogService.reloadTable();
         });
-        $("#refreshBlogItemButton").on("click", function () {
-            ShowBlogService.refreshBlog();
-        });
+
     }
 
     return {
@@ -232,11 +193,6 @@ var BlogTable = function () {
                 BlogService.reloadTable();
                 handleEvent();
             }
-        },
-        frontInit: function () {
-            handleEvent();
-            ShowBlogService.refreshBlog();
         }
-
     };
 }();

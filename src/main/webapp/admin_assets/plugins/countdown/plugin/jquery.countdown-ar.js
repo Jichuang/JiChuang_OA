@@ -8,6 +8,7 @@
         compactLabels: ['س', 'ش', 'أ', 'ي'],
         whichLabels: null,
         digits: ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'],
-        timeSeparator: ':', isRTL: true};
+        timeSeparator: ':', isRTL: true
+    };
     $.countdown.setDefaults($.countdown.regional['ar']);
 })(jQuery);

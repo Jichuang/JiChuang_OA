@@ -64,7 +64,7 @@
         } else {
             $.extend(defaultParams, options);
             defaultParams.container = this;
-            this.css({ position: 'relative', overflow: 'hidden' });
+            this.css({position: 'relative', overflow: 'hidden'});
 
             map = new WorldMap(defaultParams);
 
@@ -255,7 +255,7 @@
         var result = '';
         var cx = 0, cy = 0, ctrlx, ctrly;
 
-        return path.replace(/([MmLlHhVvCcSs])((?:-?(?:\d+)?(?:\.\d+)?,?\s?)+)/g,function (segment, letter, coords, index) {
+        return path.replace(/([MmLlHhVvCcSs])((?:-?(?:\d+)?(?:\.\d+)?,?\s?)+)/g, function (segment, letter, coords, index) {
             coords = coords.replace(/(\d)-/g, '$1,-').replace(/\s+/g, ',').split(',');
             if (!coords[0]) {
                 coords.shift();
@@ -740,23 +740,23 @@
 
             }).mousedown(function (e) {
 
-                    mouseDown = true;
-                    oldPageX = e.pageX;
-                    oldPageY = e.pageY;
+                mouseDown = true;
+                oldPageX = e.pageX;
+                oldPageY = e.pageY;
 
-                    return false;
+                return false;
 
-                }).mouseup(function () {
+            }).mouseup(function () {
 
-                    mouseDown = false;
+                mouseDown = false;
 
-                    self.isMovingTimeout = setTimeout(function () {
-                        self.isMoving = false;
-                    }, 100);
+                self.isMovingTimeout = setTimeout(function () {
+                    self.isMoving = false;
+                }, 100);
 
-                    return false;
+                return false;
 
-                });
+            });
         },
 
         bindZoomButtons: function () {

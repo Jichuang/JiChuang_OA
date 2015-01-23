@@ -585,7 +585,8 @@ var Index = function () {
                     barWidth: 5,
                     height: '55',
                     barColor: '#35aa47',
-                    negBarColor: '#e02222'}
+                    negBarColor: '#e02222'
+                }
             );
 
             $("#sparkline_bar2").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11, 10, 12, 11, 10], {
@@ -594,7 +595,8 @@ var Index = function () {
                     barWidth: 5,
                     height: '55',
                     barColor: '#ffb848',
-                    negBarColor: '#e02222'}
+                    negBarColor: '#e02222'
+                }
             );
 
             $("#sparkline_line").sparkline([9, 10, 9, 10, 10, 11, 12, 10, 10, 11, 11, 12, 11, 10, 12, 11, 10, 12], {

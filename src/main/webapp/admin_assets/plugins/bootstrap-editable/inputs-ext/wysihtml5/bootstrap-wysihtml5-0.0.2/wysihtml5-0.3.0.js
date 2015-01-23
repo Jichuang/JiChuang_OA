@@ -770,7 +770,7 @@ rangy.createModule("DomRange", function (api, module) {
 
     function iterateSubtree(rangeIterator, func, iteratorState) {
         var it, n;
-        iteratorState = iteratorState || { stop: false };
+        iteratorState = iteratorState || {stop: false};
         for (var node, subRangeIterator; node = rangeIterator.next();) {
             //log.debug("iterateSubtree, partially selected: " + rangeIterator.isPartiallySelectedSubtree(), nodeToString(node));
             if (rangeIterator.isPartiallySelectedSubtree()) {
@@ -1028,7 +1028,7 @@ rangy.createModule("DomRange", function (api, module) {
 
         next: function () {
             this._current = this._next;
-            this._next = this.nodes[ ++this._position ];
+            this._next = this.nodes[++this._position];
             return this._current;
         },
 
@@ -1168,8 +1168,8 @@ rangy.createModule("DomRange", function (api, module) {
             // namespace"
             if (el === null || (
                 el.nodeName == "HTML"
-                    && dom.isHtmlNamespace(dom.getDocument(el).documentElement)
-                    && dom.isHtmlNamespace(el)
+                && dom.isHtmlNamespace(dom.getDocument(el).documentElement)
+                && dom.isHtmlNamespace(el)
                 )) {
 
                 // "let element be a new Element with "body" as its local name and the HTML
@@ -1283,7 +1283,7 @@ rangy.createModule("DomRange", function (api, module) {
             // no non-text nodes.
             var iterator = new RangeIterator(this, true);
             var boundariesInvalid = (iterator._first && (isNonTextPartiallySelected(iterator._first, this)) ||
-                (iterator._last && isNonTextPartiallySelected(iterator._last, this)));
+            (iterator._last && isNonTextPartiallySelected(iterator._last, this)));
             iterator.detach();
             return !boundariesInvalid;
         },
@@ -1697,7 +1697,7 @@ rangy.createModule("DomRange", function (api, module) {
                 // no non-text nodes.
                 var iterator = new RangeIterator(this, true);
                 var boundariesInvalid = (iterator._first && (isNonTextPartiallySelected(iterator._first, this)) ||
-                    (iterator._last && isNonTextPartiallySelected(iterator._last, this)));
+                (iterator._last && isNonTextPartiallySelected(iterator._last, this)));
                 iterator.detach();
                 return !boundariesInvalid;
             },
@@ -1967,7 +1967,7 @@ rangy.createModule("WrappedRange", function (api, module) {
             containerElement.insertBefore(workingNode, workingNode.previousSibling);
             workingRange.moveToElementText(workingNode);
         } while ((comparison = workingRange.compareEndPoints(workingComparisonType, textRange)) > 0 &&
-            workingNode.previousSibling);
+        workingNode.previousSibling);
 
         // We've now reached or gone past the boundary of the text range we're interested in
         // so have identified the node we want
@@ -2513,7 +2513,7 @@ rangy.createModule("WrappedSelection", function (api, module) {
 
     // Obtaining a range from a selection
     var selectionHasAnchorAndFocus = util.areHostObjects(testSelection, ["anchorNode", "focusNode"] &&
-        util.areHostProperties(testSelection, ["anchorOffset", "focusOffset"]));
+    util.areHostProperties(testSelection, ["anchorOffset", "focusOffset"]));
     api.features.selectionHasAnchorAndFocus = selectionHasAnchorAndFocus;
 
     // Test for existence of native selection extend() method
@@ -3300,7 +3300,7 @@ Base.prototype = {
         if (arguments.length > 1) { // extending with a name/value pair
             var ancestor = this[source];
             if (ancestor && (typeof value == "function") && // overriding a method?
-                // the valueOf() comparison is to avoid circular references
+                    // the valueOf() comparison is to avoid circular references
                 (!ancestor.valueOf || ancestor.valueOf() != value.valueOf()) &&
                 /\bbase\b/.test(value)) {
                 // get the underlying method
@@ -3487,9 +3487,9 @@ wysihtml5.browser = (function () {
 
         supportsEvent: function (eventName) {
             return "on" + eventName in testElement || (function () {
-                testElement.setAttribute("on" + eventName, "return;");
-                return typeof(testElement["on" + eventName]) === "function";
-            })();
+                    testElement.setAttribute("on" + eventName, "return;");
+                    return typeof(testElement["on" + eventName]) === "function";
+                })();
         },
 
         /**
@@ -3940,7 +3940,7 @@ wysihtml5.lang.object = function (obj) {
     var /**
          * Don't auto-link urls that are contained in the following elements:
          */
-            IGNORE_URLS_IN = wysihtml5.lang.array(["CODE", "PRE", "A", "SCRIPT", "HEAD", "TITLE", "STYLE"]),
+        IGNORE_URLS_IN = wysihtml5.lang.array(["CODE", "PRE", "A", "SCRIPT", "HEAD", "TITLE", "STYLE"]),
         /**
          * revision 1:
          *    /(\S+\.{1}[^\s\,\.\!]+)/g
@@ -3951,10 +3951,10 @@ wysihtml5.lang.object = function (obj) {
          * put this in the beginning if you don't wan't to match within a word
          *    (^|[\>\(\{\[\s\>])
        */
-            URL_REG_EXP = /((https?:\/\/|www\.)[^\s<]{3,})/gi,
+        URL_REG_EXP = /((https?:\/\/|www\.)[^\s<]{3,})/gi,
         TRAILING_CHAR_REG_EXP = /([^\w\/\-](,?))$/i,
         MAX_DISPLAY_LENGTH = 100,
-        BRACKETS = { ")": "(", "]": "[", "}": "{" };
+        BRACKETS = {")": "(", "]": "[", "}": "{"};
 
     function autoLink(element) {
         if (_hasParentThatShouldBeIgnored(element)) {
@@ -4244,7 +4244,7 @@ wysihtml5.dom.copyAttributes = function (attributesToCopy) {
                             elementToCopyTo[attribute] = elementToCopyFrom[attribute];
                         }
                     }
-                    return { andTo: arguments.callee };
+                    return {andTo: arguments.callee};
                 }
             };
         }
@@ -4314,7 +4314,7 @@ wysihtml5.dom.copyAttributes = function (attributesToCopy) {
                 return {
                     to: function (element) {
                         dom.setStyles(cssText).on(element);
-                        return { andTo: arguments.callee };
+                        return {andTo: arguments.callee};
                     }
                 };
             }
@@ -4780,7 +4780,7 @@ wysihtml5.dom.parse = (function () {
     // Rename unknown tags to this
         DEFAULT_NODE_NAME = "span",
         WHITE_SPACE_REG_EXP = /\s+/,
-        defaultRules = { tags: {}, classes: {} },
+        defaultRules = {tags: {}, classes: {}},
         currentRules = {};
 
     /**
@@ -4902,9 +4902,9 @@ wysihtml5.dom.parse = (function () {
                 return null;
             }
 
-            rule = typeof(rule) === "string" ? { rename_tag: rule } : rule;
+            rule = typeof(rule) === "string" ? {rename_tag: rule} : rule;
         } else if (oldNode.firstChild) {
-            rule = { rename_tag: DEFAULT_NODE_NAME };
+            rule = {rename_tag: DEFAULT_NODE_NAME};
         } else {
             // Remove empty unknown elements
             return null;
@@ -5344,18 +5344,18 @@ wysihtml5.dom.replaceWithChildNodes = function (node) {
     var /**
          * Default configuration
          */
-            doc = document,
+        doc = document,
         /**
          * Properties to unset/protect on the window object
          */
-            windowProperties = [
+        windowProperties = [
             "parent", "top", "opener", "frameElement", "frames",
             "localStorage", "globalStorage", "sessionStorage", "indexedDB"
         ],
         /**
          * Properties on the window object which are set to an empty function
          */
-            windowProperties2 = [
+        windowProperties2 = [
             "open", "close", "openDialog", "showModalDialog",
             "alert", "confirm", "prompt",
             "openDatabase", "postMessage",
@@ -5364,7 +5364,7 @@ wysihtml5.dom.replaceWithChildNodes = function (node) {
         /**
          * Properties to unset/protect on the document object
          */
-            documentProperties = [
+        documentProperties = [
             "referrer",
             "write", "open", "close"
         ];
@@ -5543,8 +5543,8 @@ wysihtml5.dom.replaceWithChildNodes = function (node) {
 
                 return wysihtml5.lang.string(
                     '<!DOCTYPE html><html><head>'
-                        + '<meta charset="#{charset}">#{stylesheets}</head>'
-                        + '<body></body></html>'
+                    + '<meta charset="#{charset}">#{stylesheets}</head>'
+                    + '<body></body></html>'
                 ).interpolate(templateVars);
             },
 
@@ -5783,7 +5783,7 @@ wysihtml5.quirks.cleanPastedHTML = (function () {
                 return;
             }
 
-            var list = dom.getParentElement(element, { nodeName: ELEMENTS_THAT_CONTAIN_LI });
+            var list = dom.getParentElement(element, {nodeName: ELEMENTS_THAT_CONTAIN_LI});
             if (!list) {
                 return;
             }
@@ -5867,7 +5867,7 @@ wysihtml5.quirks.cleanPastedHTML = (function () {
 
     wysihtml5.quirks.insertLineBreakOnReturn = function (composer) {
         function unwrap(selectedNode) {
-            var parentElement = dom.getParentElement(selectedNode, { nodeName: ["P", "DIV"] }, 2);
+            var parentElement = dom.getParentElement(selectedNode, {nodeName: ["P", "DIV"]}, 2);
             if (!parentElement) {
                 return;
             }
@@ -5886,7 +5886,7 @@ wysihtml5.quirks.cleanPastedHTML = (function () {
 
             var element = event.target,
                 selectedNode = composer.selection.getSelectedNode(),
-                blockElement = dom.getParentElement(selectedNode, { nodeName: USE_NATIVE_LINE_BREAK_WHEN_CARET_INSIDE_TAGS }, 4);
+                blockElement = dom.getParentElement(selectedNode, {nodeName: USE_NATIVE_LINE_BREAK_WHEN_CARET_INSIDE_TAGS}, 4);
             if (blockElement) {
                 // Some browsers create <p> elements after leaving a list
                 // check after keydown of backspace and return whether a <p> got inserted and unwrap it
@@ -6967,7 +6967,7 @@ wysihtml5.Commands = Base.extend(
             textContent;
         for (; i < length; i++) {
             anchor = anchors[i];
-            codeElement = dom.getParentElement(anchor, { nodeName: "code" });
+            codeElement = dom.getParentElement(anchor, {nodeName: "code"});
             textContent = dom.getTextContent(anchor);
 
             // if <a> contains url-like text content, rename it to <code> to prevent re-autolinking
@@ -7045,7 +7045,7 @@ wysihtml5.Commands = Base.extend(
                 });
             } else {
                 // Create links
-                value = typeof(value) === "object" ? value : { href: value };
+                value = typeof(value) === "object" ? value : {href: value};
                 _format(composer, value);
             }
         },
@@ -7462,7 +7462,7 @@ wysihtml5.Commands = Base.extend(
          *    wysihtml5.commands.insertImage.exec(composer, "insertImage", { src: "http://www.google.de/logo.jpg", title: "foo" });
          */
         exec: function (composer, command, value) {
-            value = typeof(value) === "object" ? value : { src: value };
+            value = typeof(value) === "object" ? value : {src: value};
 
             var doc = composer.doc,
                 image = this.state(composer),
@@ -7583,8 +7583,8 @@ wysihtml5.Commands = Base.extend(
         exec: function (composer, command) {
             var doc = composer.doc,
                 selectedNode = composer.selection.getSelectedNode(),
-                list = wysihtml5.dom.getParentElement(selectedNode, { nodeName: "OL" }),
-                otherList = wysihtml5.dom.getParentElement(selectedNode, { nodeName: "UL" }),
+                list = wysihtml5.dom.getParentElement(selectedNode, {nodeName: "OL"}),
+                otherList = wysihtml5.dom.getParentElement(selectedNode, {nodeName: "UL"}),
                 tempClassName = "_wysihtml5-temp-" + new Date().getTime(),
                 isEmpty,
                 tempElement;
@@ -7626,7 +7626,7 @@ wysihtml5.Commands = Base.extend(
 
         state: function (composer) {
             var selectedNode = composer.selection.getSelectedNode();
-            return wysihtml5.dom.getParentElement(selectedNode, { nodeName: "OL" });
+            return wysihtml5.dom.getParentElement(selectedNode, {nodeName: "OL"});
         },
 
         value: function () {
@@ -7641,8 +7641,8 @@ wysihtml5.Commands = Base.extend(
         exec: function (composer, command) {
             var doc = composer.doc,
                 selectedNode = composer.selection.getSelectedNode(),
-                list = wysihtml5.dom.getParentElement(selectedNode, { nodeName: "UL" }),
-                otherList = wysihtml5.dom.getParentElement(selectedNode, { nodeName: "OL" }),
+                list = wysihtml5.dom.getParentElement(selectedNode, {nodeName: "UL"}),
+                otherList = wysihtml5.dom.getParentElement(selectedNode, {nodeName: "OL"}),
                 tempClassName = "_wysihtml5-temp-" + new Date().getTime(),
                 isEmpty,
                 tempElement;
@@ -7684,7 +7684,7 @@ wysihtml5.Commands = Base.extend(
 
         state: function (composer) {
             var selectedNode = composer.selection.getSelectedNode();
-            return wysihtml5.dom.getParentElement(selectedNode, { nodeName: "UL" });
+            return wysihtml5.dom.getParentElement(selectedNode, {nodeName: "UL"});
         },
 
         value: function () {
@@ -8269,7 +8269,7 @@ wysihtml5.views.View = Base.extend(
                     }
 
                     var selectedNode = that.selection.getSelectedNode(event.target.ownerDocument),
-                        link = dom.getParentElement(selectedNode, { nodeName: "A" }, 4),
+                        link = dom.getParentElement(selectedNode, {nodeName: "A"}, 4),
                         textContent;
 
                     if (!link) {
@@ -8343,7 +8343,7 @@ wysihtml5.views.View = Base.extend(
         /**
          * Styles to copy from textarea to the composer element
          */
-            TEXT_FORMATTING = [
+        TEXT_FORMATTING = [
             "background-color",
             "color", "cursor",
             "font-family", "font-size", "font-style", "font-variant", "font-weight",
@@ -8354,7 +8354,7 @@ wysihtml5.views.View = Base.extend(
         /**
          * Styles to copy from textarea to the iframe
          */
-            BOX_FORMATTING = [
+        BOX_FORMATTING = [
             "background-color",
             "border-collapse",
             "border-bottom-color", "border-bottom-style", "border-bottom-width",
@@ -8378,7 +8378,7 @@ wysihtml5.views.View = Base.extend(
         /**
          * Styles to sync while the window gets resized
          */
-            RESIZE_STYLE = [
+        RESIZE_STYLE = [
             "width", "height",
             "top", "left", "right", "bottom"
         ],
@@ -8543,7 +8543,7 @@ wysihtml5.views.View = Base.extend(
         /**
          * Map keyCodes to query commands
          */
-            shortcuts = {
+        shortcuts = {
             "66": "bold",     // B
             "73": "italic",   // I
             "85": "underline" // U
@@ -8872,7 +8872,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
                  * Calling focus() or blur() on an element doesn't synchronously trigger the attached focus/blur events
                  * This is the case for focusin and focusout, so let's use them whenever possible, kkthxbai
                  */
-                    events = wysihtml5.browser.supportsEvent("focusin") ? ["focusin", "focusout", "change"] : ["focus", "blur", "change"];
+                events = wysihtml5.browser.supportsEvent("focusin") ? ["focusin", "focusout", "change"] : ["focus", "blur", "change"];
 
             parent.observe("beforeload", function () {
                 wysihtml5.dom.observe(element, events, function (event) {
@@ -9259,7 +9259,11 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
                     dialog.observe("show", function () {
                         caretBookmark = that.composer.selection.getBookmark();
 
-                        that.editor.fire("show:dialog", { command: command, dialogContainer: dialogElement, commandLink: link });
+                        that.editor.fire("show:dialog", {
+                            command: command,
+                            dialogContainer: dialogElement,
+                            commandLink: link
+                        });
                     });
 
                     dialog.observe("save", function (attributes) {
@@ -9268,12 +9272,20 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
                         }
                         that._execCommand(command, attributes);
 
-                        that.editor.fire("save:dialog", { command: command, dialogContainer: dialogElement, commandLink: link });
+                        that.editor.fire("save:dialog", {
+                            command: command,
+                            dialogContainer: dialogElement,
+                            commandLink: link
+                        });
                     });
 
                     dialog.observe("cancel", function () {
                         that.editor.focus(false);
-                        that.editor.fire("cancel:dialog", { command: command, dialogContainer: dialogElement, commandLink: link });
+                        that.editor.fire("cancel:dialog", {
+                            command: command,
+                            dialogContainer: dialogElement,
+                            commandLink: link
+                        });
                     });
                 }
                 return dialog;
@@ -9517,7 +9529,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
         autoLink: true,
         // Object which includes parser rules to apply when html gets inserted via copy & paste
         // See parser_rules/*.js for examples
-        parserRules: { tags: { br: {}, span: {}, div: {}, p: {} }, classes: {} },
+        parserRules: {tags: {br: {}, span: {}, div: {}, p: {}}, classes: {}},
         // Parser method to use when the user inserts content via copy & paste
         parser: wysihtml5.dom.parse,
         // Class name which should be set on the contentEditable element in the created sandbox iframe, can be styled via the 'stylesheets' option

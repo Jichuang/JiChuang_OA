@@ -1,55 +1,53 @@
-
 <html>
 
-    <head>
+<head>
 
-        <script language="JavaScript" type="text/javascript" src="jsbn.js"></script>
-        <script language="JavaScript" type="text/javascript" src="random.js"></script>
-        <script language="JavaScript" type="text/javascript" src="hash.js"></script>
-        <script language="JavaScript" type="text/javascript" src="rsa.js"></script>
-        <script language="JavaScript" type="text/javascript" src="aes.js"></script>
-        <script language="JavaScript" type="text/javascript" src="api.js"></script>
+    <script language="JavaScript" type="text/javascript" src="jsbn.js"></script>
+    <script language="JavaScript" type="text/javascript" src="random.js"></script>
+    <script language="JavaScript" type="text/javascript" src="hash.js"></script>
+    <script language="JavaScript" type="text/javascript" src="rsa.js"></script>
+    <script language="JavaScript" type="text/javascript" src="aes.js"></script>
+    <script language="JavaScript" type="text/javascript" src="api.js"></script>
 
-        <script>
+    <script>
 
-        function print(string)
-        {
+        function print(string) {
             document.write(string + "\n\n");
         }
 
         print("<h1>Unsigned:</h1>");
-        
+
         var PassPhrase = "The Moon is a Harsh Mistress.";
         var Bits = 512;
-        
+
         print("Matt's passphrase: " + PassPhrase);
         print("Bit length: " + Bits);
-        
+
         var MattsRSAkey = cryptico.generateRSAKey(PassPhrase, Bits);
-        var MattsPublicKeyString = cryptico.publicKeyString(MattsRSAkey);       
-        
+        var MattsPublicKeyString = cryptico.publicKeyString(MattsRSAkey);
+
         print("Matt's public key string:");
         print(MattsPublicKeyString);
-        
+
         var PlainText = "Matt, I need you to help me with my Starcraft strategy.";
-        
+
         print("Sam's message: " + PlainText);
-        
+
         var EncryptionResult = cryptico.encrypt(PlainText, MattsPublicKeyString);
-        
+
         print("The encrypted message:");
-        print(EncryptionResult.cipher);        
-        
+        print(EncryptionResult.cipher);
+
         var DecryptionResult = cryptico.decrypt(EncryptionResult.cipher, MattsRSAkey);
-        
+
         print("The decrypted message:");
-        print(DecryptionResult.plaintext);        
+        print(DecryptionResult.plaintext);
         print("DecryptionResult.signature: " + DecryptionResult.signature);
 
         print("<h1>Signed, good signature:</h1>");
 
-        var PassPhrase = "There Ain't No Such Thing As A Free Lunch."; 
-        var Bits = 512; 
+        var PassPhrase = "There Ain't No Such Thing As A Free Lunch.";
+        var Bits = 512;
         var SamsRSAkey = cryptico.generateRSAKey(PassPhrase, Bits);
         var PlainText = "Matt, I need you to help me with my Starcraft strategy.";
         var EncryptionResult = cryptico.encrypt(PlainText, MattsPublicKeyString, SamsRSAkey);
@@ -57,21 +55,20 @@
         print("Sam's public key ID: " + cryptico.publicKeyID(cryptico.publicKeyString(SamsRSAkey)));
 
         print("The encrypted message:");
-        print(EncryptionResult.cipher);        
-        
+        print(EncryptionResult.cipher);
+
         var DecryptionResult = cryptico.decrypt(EncryptionResult.cipher, MattsRSAkey);
 
         print("The decrypted message:");
-        print(DecryptionResult.plaintext);        
+        print(DecryptionResult.plaintext);
 
         print("DecryptionResult.signature: " + DecryptionResult.signature);
 
         print("The signature public key string:");
-        print(DecryptionResult.publicKeyString);        
+        print(DecryptionResult.publicKeyString);
 
         print("The signature public key ID:");
-        print(cryptico.publicKeyID(DecryptionResult.publicKeyString));        
-
+        print(cryptico.publicKeyID(DecryptionResult.publicKeyString));
 
 
         print("<h1>Signed, forged signature:</h1>");
@@ -87,31 +84,30 @@ GvhTe0CEn5HKGpWx1+TGbC7pim6/KOFo34DScLOrclUNGl0VY8W+/+EBXhin\n\
 dthvRRcjy+0BRn4tDpC4QJjdJoXCqDmT3NRU="
 
         print("The encrypted message:");
-        print(EncryptionResult.cipher);        
-        
+        print(EncryptionResult.cipher);
+
         var DecryptionResult = cryptico.decrypt(EncryptionResult.cipher, MattsRSAkey);
 
         print("The decrypted message:");
-        print(DecryptionResult.plaintext);        
+        print(DecryptionResult.plaintext);
 
         print("DecryptionResult.signature: " + DecryptionResult.signature);
 
         print("The signature public key string:");
-        print(DecryptionResult.publicKeyString);        
+        print(DecryptionResult.publicKeyString);
 
         print("The signature public key ID:");
-        print(cryptico.publicKeyID(DecryptionResult.publicKeyString));        
-        
+        print(cryptico.publicKeyID(DecryptionResult.publicKeyString));
 
-            
-        </script>
 
-    </head>
-    
-    <body style="font-family: monospace; white-space:pre;">
+    </script>
 
-    </body>
-    
+</head>
+
+<body style="font-family: monospace; white-space:pre;">
+
+</body>
+
 </html>
 
 

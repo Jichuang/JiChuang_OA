@@ -48,7 +48,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
                 element = element.parentNode;
             }
             while (element && ( name = element.nodeName.toLowerCase() ) &&
-                    ( name != 'div' || element.className.indexOf('editable') == -1 ) && name != 'body');
+            ( name != 'div' || element.className.indexOf('editable') == -1 ) && name != 'body');
 
             if (name == 'div' && element.className.indexOf('editable') != -1)
                 replaceDiv(element);

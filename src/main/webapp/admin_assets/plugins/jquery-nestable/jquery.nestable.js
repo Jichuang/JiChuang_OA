@@ -133,7 +133,7 @@
                 depth = 0,
                 list = this;
             step = function (level, depth) {
-                var array = [ ],
+                var array = [],
                     items = level.children(list.options.itemNodeName);
                 items.each(function () {
                     var li = $(this),

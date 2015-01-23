@@ -465,10 +465,10 @@
             var time = $('input.bootstrap-timepicker-hour', this.$widget).val() + ':' +
                 $('input.bootstrap-timepicker-minute', this.$widget).val() +
                 (this.showSeconds ?
-                    ':' + $('input.bootstrap-timepicker-second', this.$widget).val()
+                ':' + $('input.bootstrap-timepicker-second', this.$widget).val()
                     : '') +
                 (this.showMeridian ?
-                    ' ' + $('input.bootstrap-timepicker-meridian', this.$widget).val()
+                ' ' + $('input.bootstrap-timepicker-meridian', this.$widget).val()
                     : '');
 
             this.setValues(time);
@@ -640,12 +640,12 @@
                 '<td class="separator">&nbsp;</td>' +
                 '<td><a href="#" data-action="incrementMinute"><i class="icon-angle-up"></i></a></td>' +
                 (this.showSeconds ?
-                    '<td class="separator">&nbsp;</td>' +
-                        '<td><a href="#" data-action="incrementSecond"><i class="icon-angle-up"></i></a></td>'
+                '<td class="separator">&nbsp;</td>' +
+                '<td><a href="#" data-action="incrementSecond"><i class="icon-angle-up"></i></a></td>'
                     : '') +
                 (this.showMeridian ?
-                    '<td class="separator">&nbsp;</td>' +
-                        '<td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="icon-angle-up"></i></a></td>'
+                '<td class="separator">&nbsp;</td>' +
+                '<td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="icon-angle-up"></i></a></td>'
                     : '') +
                 '</tr>' +
                 '<tr>' +
@@ -653,12 +653,12 @@
                 '<td class="separator">:</td>' +
                 '<td>' + minuteTemplate + '</td> ' +
                 (this.showSeconds ?
-                    '<td class="separator">:</td>' +
-                        '<td>' + secondTemplate + '</td>'
+                '<td class="separator">:</td>' +
+                '<td>' + secondTemplate + '</td>'
                     : '') +
                 (this.showMeridian ?
-                    '<td class="separator">&nbsp;</td>' +
-                        '<td>' + meridianTemplate + '</td>'
+                '<td class="separator">&nbsp;</td>' +
+                '<td>' + meridianTemplate + '</td>'
                     : '') +
                 '</tr>' +
                 '<tr>' +
@@ -666,12 +666,12 @@
                 '<td class="separator"></td>' +
                 '<td><a href="#" data-action="decrementMinute"><i class="icon-angle-down"></i></a></td>' +
                 (this.showSeconds ?
-                    '<td class="separator">&nbsp;</td>' +
-                        '<td><a href="#" data-action="decrementSecond"><i class="icon-angle-down"></i></a></td>'
+                '<td class="separator">&nbsp;</td>' +
+                '<td><a href="#" data-action="decrementSecond"><i class="icon-angle-down"></i></a></td>'
                     : '') +
                 (this.showMeridian ?
-                    '<td class="separator">&nbsp;</td>' +
-                        '<td><a href="#" data-action="toggleMeridian"><i class="icon-angle-down"></i></a></td>'
+                '<td class="separator">&nbsp;</td>' +
+                '<td><a href="#" data-action="toggleMeridian"><i class="icon-angle-down"></i></a></td>'
                     : '') +
                 '</tr>' +
                 '</table>';
@@ -680,23 +680,23 @@
             switch (this.options.template) {
                 case 'modal':
                     template = '<div class="bootstrap-timepicker modal hide fade in" style="top: 30%; margin-top: 0; width: 200px; margin-left: -100px;" data-backdrop="' + (this.modalBackdrop ? 'true' : 'false') + '">' +
-                        '<div class="modal-header">' +
-                        '<a href="#" class="close" data-dismiss="modal">×</a>' +
-                        '<h3>Pick a Time</h3>' +
-                        '</div>' +
-                        '<div class="modal-content">' +
-                        templateContent +
-                        '</div>' +
-                        '<div class="modal-footer">' +
-                        '<a href="#" class="btn btn-primary" data-dismiss="modal">Ok</a>' +
-                        '</div>' +
-                        '</div>';
+                    '<div class="modal-header">' +
+                    '<a href="#" class="close" data-dismiss="modal">×</a>' +
+                    '<h3>Pick a Time</h3>' +
+                    '</div>' +
+                    '<div class="modal-content">' +
+                    templateContent +
+                    '</div>' +
+                    '<div class="modal-footer">' +
+                    '<a href="#" class="btn btn-primary" data-dismiss="modal">Ok</a>' +
+                    '</div>' +
+                    '</div>';
 
                     break;
                 case 'dropdown':
                     template = '<div class="bootstrap-timepicker dropdown-menu">' +
-                        templateContent +
-                        '</div>';
+                    templateContent +
+                    '</div>';
                     break;
 
             }
@@ -723,7 +723,16 @@
     }
 
     $.fn.timepicker.defaults = {
-        minuteStep: 15, secondStep: 15, disableFocus: false, defaultTime: 'current', showSeconds: false, showInputs: true, showMeridian: true, template: 'dropdown', modalBackdrop: false, templates: {} // set custom templates
+        minuteStep: 15,
+        secondStep: 15,
+        disableFocus: false,
+        defaultTime: 'current',
+        showSeconds: false,
+        showInputs: true,
+        showMeridian: true,
+        template: 'dropdown',
+        modalBackdrop: false,
+        templates: {} // set custom templates
     }
 
     $.fn.timepicker.Constructor = Timepicker

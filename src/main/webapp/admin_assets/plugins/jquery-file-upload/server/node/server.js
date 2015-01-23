@@ -148,7 +148,7 @@
             // Force a download dialog for unsafe file extensions:
             _headers['Content-Type'] = 'application/octet-stream';
             _headers['Content-Disposition'] = 'attachment; filename="' +
-                utf8encode(path.basename(files[0])) + '"';
+            utf8encode(path.basename(files[0])) + '"';
         }
         nodeStatic.Server.prototype.respond
             .call(this, pathname, status, _headers, files, stat, req, res, finish);
@@ -179,10 +179,10 @@
             this.url = this.deleteUrl = baseUrl + encodeURIComponent(this.name);
             Object.keys(options.imageVersions).forEach(function (version) {
                 if (_existsSync(
-                    options.uploadDir + '/' + version + '/' + that.name
-                )) {
+                        options.uploadDir + '/' + version + '/' + that.name
+                    )) {
                     that[version + 'Url'] = baseUrl + version + '/' +
-                        encodeURIComponent(that.name);
+                    encodeURIComponent(that.name);
                 }
             });
         }
@@ -224,48 +224,48 @@
                 }
             };
         form.uploadDir = options.tmpDir;
-        form.on('fileBegin',function (name, file) {
+        form.on('fileBegin', function (name, file) {
             tmpFiles.push(file.path);
             var fileInfo = new FileInfo(file, handler.req, true);
             fileInfo.safeName();
             map[path.basename(file.path)] = fileInfo;
             files.push(fileInfo);
-        }).on('field',function (name, value) {
-                if (name === 'redirect') {
-                    redirect = value;
-                }
-            }).on('file',function (name, file) {
-                var fileInfo = map[path.basename(file.path)];
-                fileInfo.size = file.size;
-                if (!fileInfo.validate()) {
-                    fs.unlink(file.path);
-                    return;
-                }
-                fs.renameSync(file.path, options.uploadDir + '/' + fileInfo.name);
-                if (options.imageTypes.test(fileInfo.name)) {
-                    Object.keys(options.imageVersions).forEach(function (version) {
-                        counter += 1;
-                        var opts = options.imageVersions[version];
-                        imageMagick.resize({
-                            width: opts.width,
-                            height: opts.height,
-                            srcPath: options.uploadDir + '/' + fileInfo.name,
-                            dstPath: options.uploadDir + '/' + version + '/' +
-                                fileInfo.name
-                        }, finish);
-                    });
-                }
-            }).on('aborted',function () {
-                tmpFiles.forEach(function (file) {
-                    fs.unlink(file);
+        }).on('field', function (name, value) {
+            if (name === 'redirect') {
+                redirect = value;
+            }
+        }).on('file', function (name, file) {
+            var fileInfo = map[path.basename(file.path)];
+            fileInfo.size = file.size;
+            if (!fileInfo.validate()) {
+                fs.unlink(file.path);
+                return;
+            }
+            fs.renameSync(file.path, options.uploadDir + '/' + fileInfo.name);
+            if (options.imageTypes.test(fileInfo.name)) {
+                Object.keys(options.imageVersions).forEach(function (version) {
+                    counter += 1;
+                    var opts = options.imageVersions[version];
+                    imageMagick.resize({
+                        width: opts.width,
+                        height: opts.height,
+                        srcPath: options.uploadDir + '/' + fileInfo.name,
+                        dstPath: options.uploadDir + '/' + version + '/' +
+                        fileInfo.name
+                    }, finish);
                 });
-            }).on('error',function (e) {
-                console.log(e);
-            }).on('progress',function (bytesReceived, bytesExpected) {
-                if (bytesReceived > options.maxPostSize) {
-                    handler.req.connection.destroy();
-                }
-            }).on('end', finish).parse(handler.req);
+            }
+        }).on('aborted', function () {
+            tmpFiles.forEach(function (file) {
+                fs.unlink(file);
+            });
+        }).on('error', function (e) {
+            console.log(e);
+        }).on('progress', function (bytesReceived, bytesExpected) {
+            if (bytesReceived > options.maxPostSize) {
+                handler.req.connection.destroy();
+            }
+        }).on('end', finish).parse(handler.req);
     };
     UploadHandler.prototype.destroy = function () {
         var handler = this,

@@ -2,6 +2,8 @@ package org.jichuang.hope6537.base.dao.impl;
 
 import org.jichuang.hope6537.base.dao.MemberDao;
 import org.jichuang.hope6537.base.model.Member;
+import org.jichuang.hope6537.team.model.Team;
+import org.jichuang.hope6537.utils.Status;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,5 +25,17 @@ public class MemberDaoImpl extends BaseDaoImpl<Member> implements MemberDao {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Member> selectMemberListByName(String name) {
+        List<Member> memberList = this.selectEntryByHQL("from Member where name like '%" + name + "%'");
+        return memberList;
+    }
+
+    @Override
+    public List<Member> selectMemberListByTeam(Team team) {
+        List<Member> memberList = this.selectEntryByHQL("select m from Member m , Team t , Member_Team mt where mt.teamId = t.teamId  and m.memberId = mt.memberId and t.teamId = " + team.getTeamId() + " and m.status ='" + Status.正常 + "'");
+        return memberList;
     }
 }

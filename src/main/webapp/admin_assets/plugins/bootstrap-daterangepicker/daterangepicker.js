@@ -417,7 +417,7 @@
             this.oldEndDate = this.endDate.clone();
 
             $(document).off('mousedown', this.hide);
-            this.element.trigger('hidden', { picker: this });
+            this.element.trigger('hidden', {picker: this});
         },
 
         enterRange: function (e) {
@@ -688,8 +688,8 @@
             for (var m = 0; m < 12; m++) {
                 if ((!inMinYear || m >= minDate.month()) && (!inMaxYear || m <= maxDate.month())) {
                     monthHtml += "<option value='" + m + "'" +
-                        (m === currentMonth ? " selected='selected'" : "") +
-                        ">" + this.locale.monthNames[m] + "</option>";
+                    (m === currentMonth ? " selected='selected'" : "") +
+                    ">" + this.locale.monthNames[m] + "</option>";
                 }
             }
             monthHtml += "</select>";
@@ -701,8 +701,8 @@
 
             for (var y = minYear; y <= maxYear; y++) {
                 yearHtml += '<option value="' + y + '"' +
-                    (y === currentYear ? ' selected="selected"' : '') +
-                    '>' + y + '</option>';
+                (y === currentYear ? ' selected="selected"' : '') +
+                '>' + y + '</option>';
             }
 
             yearHtml += '</select>';

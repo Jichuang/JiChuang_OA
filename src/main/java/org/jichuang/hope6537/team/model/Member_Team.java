@@ -16,6 +16,14 @@ public class Member_Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", length = 50)
     private Integer id;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Member.class)
+    @JoinColumn(name = "memberId")
+    private Member memberId;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Team.class)
+    @JoinColumn(name = "teamId")
+    private Team teamId;
+    @Column(name = "status", length = 50)
+    private String status;
 
     public Integer getId() {
         return id;
@@ -24,16 +32,6 @@ public class Member_Team {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Member.class)
-    @JoinColumn(name = "memberId")
-    private Member memberId;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Team.class)
-    @JoinColumn(name = "teamId")
-    private Team teamId;
-
-    @Column(name = "status", length = 50)
-    private String status;
 
     public String getStatus() {
         return status;

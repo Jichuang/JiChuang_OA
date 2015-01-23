@@ -40,19 +40,10 @@ public class Team implements Serializable {
     private Integer teamId;
     @Column(name = "name")
     private String name;
-    @Column(name = "image", length = 255)
+    @Column(name = "image", length = 1000)
     private String image;
-    @Column(name = "des", length = 255)
+    @Column(name = "des", length = 1000)
     private String des;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Column(name = "status", length = 50)
     private String status;
     @Column(name = "date")
@@ -62,6 +53,27 @@ public class Team implements Serializable {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = TeamType.class)
     @JoinColumn(name = "teamTypeId")
     private TeamType teamTypeId;
+    @Column(name = "shortInfo", length = 255)
+    private String shortInfo;
+
+    public String getShortInfo() {
+        return shortInfo;
+    }
+
+    public void setShortInfo(String shortInfo) {
+        this.shortInfo = shortInfo;
+    }
+
+    public Team() {
+    }
+
+    public Team(String name, String image, String des, String date, String info) {
+        this.name = name;
+        this.image = image;
+        this.des = des;
+        this.date = date;
+        this.info = info;
+    }
 
     public Integer getTeamId() {
         return teamId;
@@ -119,16 +131,12 @@ public class Team implements Serializable {
         this.teamTypeId = teamTypeId;
     }
 
-
-    public Team() {
+    public String getStatus() {
+        return status;
     }
 
-    public Team(String name, String image, String des, String date, String info) {
-        this.name = name;
-        this.image = image;
-        this.des = des;
-        this.date = date;
-        this.info = info;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

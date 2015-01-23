@@ -85,7 +85,7 @@ $(document).ready(function () {
         sectionscount = sections.length;
 
         //bind the handler to the scroll event
-        win.bind('scroll',function (event) {
+        win.bind('scroll', function (event) {
             clearInterval(timeout);
             //should occur with a delay
             timeout = setTimeout(function () {
